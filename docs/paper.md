@@ -392,7 +392,7 @@ BR0/BR2 两个 CRF 的模板是 `Word.PrevWord.Text / Word.POS / Word.SyllableNu
 合计 **138 句全部逐 id 一致（138/138 = 100%）**；
 另外用引擎实测语料留出集（seg_B，3000 句 UI/系统文本）做大规规模中文泛化验证：**2855/3000 = 95.2%**；
 逐项分析显示神经断词逐字类别已精确复刻，残差集中在「词表后处理合并」与「多音字上下文读音」两类长尾。
-Python 与 Node 双端逐 id 一致（`tools/check_node_parity.py`，17/17，含 5 句 CRF 多音字决策与 3 句词界合并回归）。Node SDK 也完整复刻了 A 段 Trie 遍历与 B 段权重打分（`node/lib/crf_zh.js`），不依赖 Python 运行时。
+Python 与 Node 双端逐 id 一致（`tools/check_node_parity.py` 17/17，含 5 句 CRF 多音字决策与 3 句词界合并回归；`tools/check_zh_parity_batch.py` 批量 899/899，覆盖 599 句与大规模评测抽样）。Node SDK 也完整复刻了 A 段 Trie 遍历与 B 段权重打分（`node/lib/crf_zh.js`），不依赖 Python 运行时。
 评测工具：`tools/eval_ml_offline.py`（golden 为引擎实测 encoder 输入 id，离线可复现）；中文评测：
 `tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl`。
 
@@ -454,7 +454,7 @@ TN 压力集从 5.9% 提升到 **100%（102/102）**（覆盖货币、日期、�
 |---|---|---|
 | SDK 端到端（106 项，含 8 语种引擎实测前端 golden） | `tests/test_all.py` | **106/106** |
 | 中文 599 句首句逐 id | `tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl` | **582/599 = 97.2%** |
-| Node≡Python 逐 id（含 CRF/词界回归） | `check_node_parity.py` | **17/17** |
+| Node≡Python 逐 id（中文基础 + 批量） | `check_node_parity.py` / `check_zh_parity_batch.py` | **17/17 + 899/899** |
 | 八语种 138 句逐 id（离线 golden） | `tools/eval_ml_offline.py` | **138/138 = 100%** |
 
 ## 6 讨论与局限
