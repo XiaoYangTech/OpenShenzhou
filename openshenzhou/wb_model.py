@@ -160,6 +160,26 @@ def _load_merge_evidence():
     return ev
 
 
+_PROBE = None
+
+
+def _load_probe_words():
+    """引擎词表探针结果：word → token 数（1=引擎整体认作一个词）。
+    来自 tools/probe_zh_words_batch.py（把候选词当句子发给引擎，读 encoder 探针）。"""
+    global _PROBE
+    if _PROBE is not None:
+        return _PROBE
+    if os.environ.get("OS_ZH_PROBE", "1") == "0":
+        _PROBE = {}
+        return _PROBE
+    try:
+        d = json.load(open(os.path.join(ROOT, "data", "zh_engine_probe.json"), encoding="utf-8"))
+        _PROBE = d if isinstance(d, dict) else {}
+    except Exception:
+        _PROBE = {}
+    return _PROBE
+
+
 def _load_merge_params():
     if "rates" in _cache and "threshold" in _cache:
         return _cache["rates"], _cache["threshold"]
@@ -197,12 +217,23 @@ def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
         changed = False
         out = []
         i = 0
+        probe = _load_probe_words()
         while i < len(segs):
             best = None
             for k in range(len(segs) - 1, i, -1):
                 end = segs[k][0] + segs[k][1]
                 cand = text[segs[i][0]:end]
-                if len(cand) > max_len or cand not in words:
+                if len(cand) > max_len:
+                    continue
+                if cand not in words and cand not in probe:
+                    continue
+                probe = _load_probe_words()
+                pv = probe.get(cand)
+                if pv is not None:
+                    ok = (pv == 1)
+                    if ok:
+                        best = k
+                        break
                     continue
                 rate = rates.get(cand)
                 if rate is None:
