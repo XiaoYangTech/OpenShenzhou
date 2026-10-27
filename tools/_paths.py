@@ -23,3 +23,13 @@ def voice_root():
 
 def voice_pkg(name):
     return os.path.join(voice_root(), name)
+
+
+def sdk_root():
+    """SDK 代码根目录：优先 OS_SDK_ROOT，其次仓库根（main 分支不含 SDK 时需指向 python 分支）"""
+    cand = os.environ.get("OS_SDK_ROOT")
+    if cand and os.path.isdir(os.path.join(cand, "openshenzhou")):
+        return cand
+    if os.path.isdir(os.path.join(REPO_ROOT, "openshenzhou")):
+        return REPO_ROOT
+    return cand or REPO_ROOT

@@ -1,0 +1,3034 @@
+{"w": "a", "phones": ["ey1"]}
+{"w": "a-piece", "phones": ["ey1", "-", "p", "iy1", "s"]}
+{"w": "a.m.", "phones": ["ey1", "-", "eh1", "m"]}
+{"w": "aa", "phones": ["ey", "-", "ey1"]}
+{"w": "abc", "phones": ["ey1", "-", "b", "iy2", "-", "s", "iy1"]}
+{"w": "about", "phones": ["ax", "-", "b", "aw1", "t"]}
+{"w": "absence", "phones": ["ae1", "b", "-", "s", "ax", "n", "s"]}
+{"w": "abuse", "phones": ["ax", "-", "b", "y", "uw1", "s"]}
+{"w": "abusing", "phones": ["ax", "-", "b", "y", "uw1", "-", "z", "ih", "ng"]}
+{"w": "accept", "phones": ["ax", "k", "-", "s", "eh1", "p", "t"]}
+{"w": "accepted", "phones": ["eh", "k", "-", "s", "eh1", "p", "-", "t", "ax", "d"]}
+{"w": "accidental", "phones": ["ae2", "k", "-", "s", "ax", "-", "d", "eh1", "n", "-", "t", "ax", "l"]}
+{"w": "accompanied", "phones": ["ax", "-", "k", "ah1", "m", "-", "p", "ax", "-", "n", "iy", "d"]}
+{"w": "accomplished", "phones": ["ax", "-", "k", "aa1", "m", "-", "p", "l", "ih", "sh", "t"]}
+{"w": "account", "phones": ["ax", "-", "k", "aw1", "n", "t"]}
+{"w": "accounting", "phones": ["ax", "-", "k", "aw1", "n", "-", "t", "ih", "ng"]}
+{"w": "accuracy", "phones": ["ae1", "-", "k", "y", "ax", "-", "r", "ax", "-", "s", "iy"]}
+{"w": "ached", "phones": ["ey1", "k", "t"]}
+{"w": "acknowledged", "phones": ["ax", "k", "-", "n", "aa1", "-", "l", "ih", "jh", "d"]}
+{"w": "acknowledgments", "phones": ["ax", "k", "-", "n", "aa1", "-", "l", "ih", "jh", "-", "m", "ax", "n", "t", "s"]}
+{"w": "acquaintance", "phones": ["ax", "-", "k", "w", "ey1", "n", "-", "t", "ax", "n", "s"]}
+{"w": "acquainted", "phones": ["ax", "-", "k", "w", "ey1", "n", "-", "t", "ih", "d"]}
+{"w": "across", "phones": ["ax", "-", "k", "r", "aa1", "s"]}
+{"w": "actually", "phones": ["ae1", "k", "-", "ch", "uh", "-", "ax", "-", "l", "iy"]}
+{"w": "acutely", "phones": ["ax", "-", "k", "y", "uw1", "t", "-", "l", "iy"]}
+{"w": "add", "phones": ["ae1", "d"]}
+{"w": "addison", "phones": ["ae1", "-", "d", "ax", "-", "s", "ax", "n"]}
+{"w": "address", "phones": ["ax", "-", "d", "r", "eh1", "s"]}
+{"w": "addressed", "phones": ["ax", "-", "d", "r", "eh1", "s", "t"]}
+{"w": "adjusted", "phones": ["ax", "-", "jh", "ah1", "-", "s", "t", "ih", "d"]}
+{"w": "admired", "phones": ["ax", "d", "-", "m", "ay1", "-", "ax", "r", "d"]}
+{"w": "admitted", "phones": ["ax", "d", "-", "m", "ih1", "-", "t", "ih", "d"]}
+{"w": "admitting", "phones": ["ax", "d", "-", "m", "ih1", "-", "t", "ih", "ng"]}
+{"w": "advance", "phones": ["ax", "d", "-", "v", "ae1", "n", "s"]}
+{"w": "advantage", "phones": ["ax", "d", "-", "v", "ae1", "n", "-", "t", "ih", "jh"]}
+{"w": "advent", "phones": ["ae1", "d", "-", "v", "eh", "n", "t"]}
+{"w": "advice", "phones": ["ax", "d", "-", "v", "ay1", "s"]}
+{"w": "affair", "phones": ["ax", "-", "f", "eh1", "r"]}
+{"w": "affectation", "phones": ["ae2", "-", "f", "ih", "k", "-", "t", "ey1", "-", "sh", "ax", "n"]}
+{"w": "affection", "phones": ["ax", "-", "f", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "afforded", "phones": ["ax", "-", "f", "ao1", "r", "-", "d", "ih", "d"]}
+{"w": "after", "phones": ["ae1", "f", "-", "t", "ax", "r"]}
+{"w": "afterwards", "phones": ["ae1", "f", "-", "t", "ax", "r", "-", "w", "ax", "r", "d", "z"]}
+{"w": "again", "phones": ["ax", "-", "g", "eh1", "n"]}
+{"w": "against", "phones": ["ax", "-", "g", "eh1", "n", "s", "t"]}
+{"w": "age", "phones": ["ey1", "jh"]}
+{"w": "agree", "phones": ["ax", "-", "g", "r", "iy1"]}
+{"w": "agreeable", "phones": ["ax", "-", "g", "r", "iy1", "-", "ax", "-", "b", "ax", "l"]}
+{"w": "agreeably", "phones": ["ax", "-", "g", "r", "iy1", "-", "ax", "-", "b", "l", "iy"]}
+{"w": "aimed", "phones": ["ey1", "m", "d"]}
+{"w": "air", "phones": ["eh1", "r"]}
+{"w": "alas", "phones": ["ax", "-", "l", "ae1", "s"]}
+{"w": "alice", "phones": ["ae1", "-", "l", "ih", "s"]}
+{"w": "alive", "phones": ["ax", "-", "l", "ay1", "v"]}
+{"w": "all", "phones": ["ao1", "l"]}
+{"w": "allegra", "phones": ["ae", "-", "l", "eh1", "-", "g", "r", "ax"]}
+{"w": "allegro", "phones": ["ax", "-", "l", "ey1", "-", "g", "r", "ow"]}
+{"w": "allen", "phones": ["ae1", "-", "l", "ax", "n"]}
+{"w": "allow", "phones": ["ax", "-", "l", "aw1"]}
+{"w": "allowed", "phones": ["ax", "-", "l", "aw1", "d"]}
+{"w": "almost", "phones": ["ao", "l", "-", "m", "ow1", "s", "t"]}
+{"w": "alone", "phones": ["ax", "-", "l", "ow1", "n"]}
+{"w": "already", "phones": ["ao", "l", "-", "r", "eh1", "-", "d", "iy"]}
+{"w": "also", "phones": ["ao1", "l", "-", "s", "ow"]}
+{"w": "alt", "phones": ["aa1", "l", "t"]}
+{"w": "altogether", "phones": ["ao2", "l", "-", "t", "ax", "-", "g", "eh1", "-", "dh", "ax", "r"]}
+{"w": "always", "phones": ["ao1", "l", "-", "w", "ey", "z"]}
+{"w": "am", "phones": ["ae1", "m"]}
+{"w": "amiable", "phones": ["ey1", "-", "m", "iy", "-", "ax", "-", "b", "ax", "l"]}
+{"w": "among", "phones": ["ax", "-", "m", "ah1", "ng"]}
+{"w": "amongst", "phones": ["ax", "-", "m", "ah1", "ng", "s", "t"]}
+{"w": "amount", "phones": ["ax", "-", "m", "aw1", "n", "t"]}
+{"w": "amused", "phones": ["ax", "-", "m", "y", "uw1", "z", "d"]}
+{"w": "amusing", "phones": ["ax", "-", "m", "y", "uw1", "-", "z", "ih", "ng"]}
+{"w": "an", "phones": ["ax", "n"]}
+{"w": "and", "phones": ["ae1", "n", "d"]}
+{"w": "anecdote", "phones": ["ae1", "-", "n", "ih", "k", "-", "d", "ow2", "t"]}
+{"w": "annoyed", "phones": ["ax", "-", "n", "oy1", "d"]}
+{"w": "another", "phones": ["ax", "-", "n", "ah1", "-", "dh", "ax", "r"]}
+{"w": "answer", "phones": ["ae1", "n", "-", "s", "ax", "r"]}
+{"w": "answered", "phones": ["ae1", "n", "-", "s", "ax", "r", "d"]}
+{"w": "anxiously", "phones": ["ae1", "ng", "k", "-", "sh", "ax", "-", "s", "l", "iy"]}
+{"w": "any", "phones": ["eh1", "-", "n", "iy"]}
+{"w": "anybody", "phones": ["eh1", "-", "n", "iy", "-", "b", "aa", "-", "d", "iy"]}
+{"w": "anyone", "phones": ["eh1", "-", "n", "iy", "-", "w", "ah", "n"]}
+{"w": "anything", "phones": ["eh1", "-", "n", "iy", "-", "th", "ih", "ng"]}
+{"w": "apology", "phones": ["ax", "-", "p", "aa1", "-", "l", "ax", "-", "jh", "iy"]}
+{"w": "apparent", "phones": ["ax", "-", "p", "eh1", "-", "r", "ax", "n", "t"]}
+{"w": "appear", "phones": ["ax", "-", "p", "iy1", "r"]}
+{"w": "appearance", "phones": ["ax", "-", "p", "iy1", "-", "r", "ax", "n", "s"]}
+{"w": "appeared", "phones": ["ax", "-", "p", "iy1", "r", "d"]}
+{"w": "applied", "phones": ["ax", "-", "p", "l", "ay1", "d"]}
+{"w": "approbation", "phones": ["ae", "-", "p", "r", "ax", "-", "b", "ey1", "-", "sh", "ax", "n"]}
+{"w": "april", "phones": ["ey1", "-", "p", "r", "ax", "l"]}
+{"w": "are", "phones": ["aa1", "r"]}
+{"w": "argemone", "phones": ["aa1", "r", "jh", "-", "m", "ax", "-", "n", "iy"]}
+{"w": "arguments", "phones": ["aa1", "r", "-", "g", "y", "uw", "-", "m", "ax", "n", "t", "s"]}
+{"w": "arial", "phones": ["ae1", "-", "r", "iy", "-", "ax", "l"]}
+{"w": "arms", "phones": ["aa1", "r", "m", "z"]}
+{"w": "army", "phones": ["aa1", "r", "-", "m", "iy"]}
+{"w": "arrive", "phones": ["ax", "-", "r", "ay1", "v"]}
+{"w": "arrived", "phones": ["ax", "-", "r", "ay1", "v", "d"]}
+{"w": "art", "phones": ["aa1", "r", "t"]}
+{"w": "artfully", "phones": ["aa1", "r", "t", "-", "f", "ax", "-", "l", "iy"]}
+{"w": "as", "phones": ["ae1", "z"]}
+{"w": "asked", "phones": ["ae1", "s", "k", "t"]}
+{"w": "asking", "phones": ["ae1", "-", "s", "k", "ih", "ng"]}
+{"w": "asleep", "phones": ["ax", "-", "s", "l", "iy1", "p"]}
+{"w": "assembled", "phones": ["ax", "-", "s", "eh1", "m", "-", "b", "ax", "l", "d"]}
+{"w": "assembly", "phones": ["ax", "-", "s", "eh1", "m", "-", "b", "l", "iy"]}
+{"w": "assembly-room", "phones": ["ax", "-", "s", "eh1", "m", "-", "b", "l", "iy", "-", "r", "uw1", "m"]}
+{"w": "assure", "phones": ["ax", "-", "sh", "uh1", "r"]}
+{"w": "assured", "phones": ["ax", "-", "sh", "uh1", "r", "d"]}
+{"w": "astonishment", "phones": ["ax", "-", "s", "t", "aa1", "-", "n", "ih", "sh", "-", "m", "ax", "n", "t"]}
+{"w": "at", "phones": ["ae1", "t"]}
+{"w": "attachment", "phones": ["ax", "-", "t", "ae1", "ch", "-", "m", "ax", "n", "t"]}
+{"w": "attempt", "phones": ["ax", "-", "t", "eh1", "m", "p", "t"]}
+{"w": "attempting", "phones": ["ax", "-", "t", "eh1", "m", "p", "-", "t", "ih", "ng"]}
+{"w": "attended", "phones": ["ax", "-", "t", "eh1", "n", "-", "d", "ih", "d"]}
+{"w": "attending", "phones": ["ax", "-", "t", "eh1", "n", "-", "d", "ih", "ng"]}
+{"w": "attention", "phones": ["ax", "-", "t", "eh1", "n", "-", "sh", "ax", "n"]}
+{"w": "attorney", "phones": ["ax", "-", "t", "er1", "r", "-", "n", "iy"]}
+{"w": "august", "phones": ["ao1", "-", "g", "ax", "s", "t"]}
+{"w": "aunt", "phones": ["ae1", "n", "t"]}
+{"w": "austen", "phones": ["ao1", "-", "s", "t", "ax", "n"]}
+{"w": "author", "phones": ["ao1", "-", "th", "ax", "r"]}
+{"w": "authorized", "phones": ["ao1", "-", "th", "ax", "-", "r", "ay2", "z", "d"]}
+{"w": "avoid", "phones": ["ax", "-", "v", "oy1", "d"]}
+{"w": "awake", "phones": ["ax", "-", "w", "ey1", "k"]}
+{"w": "aware", "phones": ["ax", "-", "w", "eh1", "r"]}
+{"w": "away", "phones": ["ax", "-", "w", "ey1"]}
+{"w": "b", "phones": ["b", "iy1"]}
+{"w": "back", "phones": ["b", "ae1", "k"]}
+{"w": "bad", "phones": ["b", "ae1", "d"]}
+{"w": "ball", "phones": ["b", "ao1", "l"]}
+{"w": "ballad", "phones": ["b", "ae1", "-", "l", "ax", "d"]}
+{"w": "barbara", "phones": ["b", "aa1", "r", "-", "b", "r", "ax"]}
+{"w": "be", "phones": ["b", "iy1"]}
+{"w": "beatrix", "phones": ["b", "iy1", "-", "ax", "-", "t", "r", "ih", "k", "s"]}
+{"w": "beauties", "phones": ["b", "y", "uw1", "-", "t", "iy", "z"]}
+{"w": "beautiful", "phones": ["b", "y", "uw1", "-", "t", "ax", "-", "f", "ax", "l"]}
+{"w": "beauty", "phones": ["b", "y", "uw1", "-", "t", "iy"]}
+{"w": "because", "phones": ["b", "ih", "-", "k", "ao1", "z"]}
+{"w": "become", "phones": ["b", "ih", "-", "k", "ah1", "m"]}
+{"w": "been", "phones": ["b", "ih1", "n"]}
+{"w": "before", "phones": ["b", "ih", "-", "f", "ao1", "r"]}
+{"w": "began", "phones": ["b", "ih", "-", "g", "ae1", "n"]}
+{"w": "begged", "phones": ["b", "eh1", "g", "d"]}
+{"w": "behaviour", "phones": ["b", "ih", "-", "h", "ey1", "-", "v", "y", "ax", "r"]}
+{"w": "behind", "phones": ["b", "ih", "-", "h", "ay1", "n", "d"]}
+{"w": "being", "phones": ["b", "iy1", "-", "ih", "ng"]}
+{"w": "believe", "phones": ["b", "ax", "-", "l", "iy1", "v"]}
+{"w": "believed", "phones": ["b", "ax", "-", "l", "iy1", "v", "d"]}
+{"w": "belongs", "phones": ["b", "ih", "-", "l", "ao1", "ng", "z"]}
+{"w": "bennet", "phones": ["b", "eh1", "-", "n", "ax", "t"]}
+{"w": "bennets", "phones": ["b", "eh1", "-", "n", "ih", "t", "s"]}
+{"w": "better", "phones": ["b", "eh1", "-", "t", "ax", "r"]}
+{"w": "between", "phones": ["b", "ih", "-", "t", "w", "iy1", "n"]}
+{"w": "bill", "phones": ["b", "ih1", "l"]}
+{"w": "billion", "phones": ["b", "ih1", "-", "l", "y", "ax", "n"]}
+{"w": "bingley", "phones": ["b", "ih1", "ng", "-", "l", "iy"]}
+{"w": "birds", "phones": ["b", "er1", "r", "d", "z"]}
+{"w": "bit", "phones": ["b", "ih1", "t"]}
+{"w": "bitter", "phones": ["b", "ih1", "-", "t", "ax", "r"]}
+{"w": "blind", "phones": ["b", "l", "ay1", "n", "d"]}
+{"w": "boast", "phones": ["b", "ow1", "s", "t"]}
+{"w": "boils", "phones": ["b", "oy1", "l", "z"]}
+{"w": "book", "phones": ["b", "uh1", "k"]}
+{"w": "bore", "phones": ["b", "ao1", "r"]}
+{"w": "born", "phones": ["b", "ao1", "r", "n"]}
+{"w": "both", "phones": ["b", "ow1", "th"]}
+{"w": "bottle", "phones": ["b", "aa1", "-", "t", "ax", "l"]}
+{"w": "bourgh", "phones": ["b", "uw1", "r", "g"]}
+{"w": "box", "phones": ["b", "aa1", "k", "s"]}
+{"w": "bread-and-butter", "phones": ["b", "r", "eh1", "d", "-", "ae1", "n", "-", "b", "ah1", "-", "t", "ax", "r"]}
+{"w": "break", "phones": ["b", "r", "ey1", "k"]}
+{"w": "breakfast", "phones": ["b", "r", "eh1", "k", "-", "f", "ax", "s", "t"]}
+{"w": "bred", "phones": ["b", "r", "eh1", "d"]}
+{"w": "bright-eyed", "phones": ["b", "r", "ay1", "t", "-", "ay1", "d"]}
+{"w": "bring", "phones": ["b", "r", "ih1", "ng"]}
+{"w": "broke", "phones": ["b", "r", "ow1", "k"]}
+{"w": "broken", "phones": ["b", "r", "ow1", "-", "k", "ax", "n"]}
+{"w": "brother", "phones": ["b", "r", "ah1", "-", "dh", "ax", "r"]}
+{"w": "brought", "phones": ["b", "r", "ao1", "t"]}
+{"w": "brown", "phones": ["b", "r", "aw1", "n"]}
+{"w": "budget", "phones": ["b", "ah1", "-", "jh", "ih", "t"]}
+{"w": "build", "phones": ["b", "ih1", "l", "d"]}
+{"w": "busily", "phones": ["b", "ih1", "-", "z", "ax", "l", "-", "iy"]}
+{"w": "business", "phones": ["b", "ih1", "z", "-", "n", "ih", "s"]}
+{"w": "but", "phones": ["b", "ah1", "t"]}
+{"w": "button", "phones": ["b", "ah1", "-", "t", "ax", "n"]}
+{"w": "by", "phones": ["b", "ay1"]}
+{"w": "c", "phones": ["s", "iy1"]}
+{"w": "cake", "phones": ["k", "ey1", "k"]}
+{"w": "call", "phones": ["k", "ao1", "l"]}
+{"w": "called", "phones": ["k", "ao1", "l", "d"]}
+{"w": "calmness", "phones": ["k", "aa1", "m", "-", "n", "ih", "s"]}
+{"w": "came", "phones": ["k", "ey1", "m"]}
+{"w": "can", "phones": ["k", "ae1", "n"]}
+{"w": "candour", "phones": ["k", "ae1", "n", "-", "d", "uw2", "r"]}
+{"w": "cannot", "phones": ["k", "ae1", "-", "n", "aa", "t"]}
+{"w": "card-table", "phones": ["k", "aa1", "r", "d", "-", "t", "ey1", "-", "b", "ax", "l"]}
+{"w": "cards", "phones": ["k", "aa1", "r", "d", "z"]}
+{"w": "care", "phones": ["k", "eh1", "r"]}
+{"w": "cares", "phones": ["k", "eh1", "r", "z"]}
+{"w": "carriage", "phones": ["k", "eh1", "-", "r", "ih", "jh"]}
+{"w": "case", "phones": ["k", "ey1", "s"]}
+{"w": "cases", "phones": ["k", "ey1", "-", "s", "ih", "z"]}
+{"w": "cat", "phones": ["k", "ae1", "t"]}
+{"w": "catch", "phones": ["k", "ae1", "ch"]}
+{"w": "caterpillar", "phones": ["k", "ae1", "-", "t", "ax", "-", "p", "ih2", "-", "l", "ax", "r"]}
+{"w": "catherine", "phones": ["k", "ae1", "-", "th", "r", "ih", "n"]}
+{"w": "cats", "phones": ["k", "ae1", "t", "s"]}
+{"w": "caucus-race", "phones": ["k", "ao1", "-", "k", "ax", "s", "-", "r", "ey1", "s"]}
+{"w": "cautious", "phones": ["k", "ao1", "-", "sh", "ax", "s"]}
+{"w": "cent", "phones": ["s", "eh1", "n", "t"]}
+{"w": "cents", "phones": ["s", "eh1", "n", "t", "s"]}
+{"w": "century", "phones": ["s", "eh1", "n", "-", "ch", "ax", "-", "r", "iy"]}
+{"w": "certain", "phones": ["s", "er1", "r", "-", "t", "ax", "n"]}
+{"w": "certainly", "phones": ["s", "er1", "r", "-", "t", "ax", "n", "-", "l", "iy"]}
+{"w": "chance", "phones": ["ch", "ae1", "n", "s"]}
+{"w": "chancery", "phones": ["ch", "ae1", "n", "-", "s", "ax", "-", "r", "iy"]}
+{"w": "changed", "phones": ["ch", "ey1", "n", "jh", "d"]}
+{"w": "changes", "phones": ["ch", "ey1", "n", "-", "jh", "ih", "z"]}
+{"w": "chapter", "phones": ["ch", "ae1", "p", "-", "t", "ax", "r"]}
+{"w": "character", "phones": ["k", "eh1", "-", "r", "ih", "k", "-", "t", "ax", "r"]}
+{"w": "characteristic", "phones": ["k", "ae2", "-", "r", "ih", "k", "-", "t", "ax", "-", "r", "ih1", "-", "s", "t", "ih", "k"]}
+{"w": "charge", "phones": ["ch", "aa1", "r", "jh"]}
+{"w": "charged", "phones": ["ch", "aa1", "r", "jh", "d"]}
+{"w": "charles", "phones": ["ch", "aa1", "r", "l", "z"]}
+{"w": "charm", "phones": ["ch", "aa1", "r", "m"]}
+{"w": "charming", "phones": ["ch", "aa1", "r", "-", "m", "ih", "ng"]}
+{"w": "charmingly", "phones": ["ch", "aa1", "r", "-", "m", "ih", "ng", "-", "l", "iy"]}
+{"w": "checked", "phones": ["ch", "eh1", "k", "t"]}
+{"w": "cheered", "phones": ["ch", "iy1", "r", "d"]}
+{"w": "child", "phones": ["ch", "ay1", "l", "d"]}
+{"w": "children", "phones": ["ch", "ih1", "l", "-", "d", "r", "ax", "n"]}
+{"w": "chin", "phones": ["ch", "ih1", "n"]}
+{"w": "chip", "phones": ["ch", "ih1", "p"]}
+{"w": "chiswick", "phones": ["ch", "ih1", "-", "z", "ih", "k"]}
+{"w": "choked", "phones": ["ch", "ow1", "k", "t"]}
+{"w": "chose", "phones": ["ch", "ow1", "z"]}
+{"w": "chronological", "phones": ["k", "r", "aa2", "-", "n", "ax", "-", "l", "aa1", "-", "jh", "ih", "-", "k", "ax", "l"]}
+{"w": "chuckled", "phones": ["ch", "ah1", "-", "k", "ax", "l", "d"]}
+{"w": "circumstance", "phones": ["s", "er1", "r", "-", "k", "ax", "m", "-", "s", "t", "ae2", "n", "s"]}
+{"w": "civil", "phones": ["s", "ih1", "-", "v", "ax", "l"]}
+{"w": "civility", "phones": ["s", "ax", "-", "v", "ih1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "class", "phones": ["k", "l", "ae1", "s"]}
+{"w": "classical", "phones": ["k", "l", "ae1", "-", "s", "ih", "-", "k", "ax", "l"]}
+{"w": "clever", "phones": ["k", "l", "eh1", "-", "v", "ax", "r"]}
+{"w": "clock", "phones": ["k", "l", "aa1", "k"]}
+{"w": "close", "phones": ["k", "l", "ow1", "z"]}
+{"w": "closed", "phones": ["k", "l", "ow1", "z", "d"]}
+{"w": "cm", "phones": ["s", "iy1", "-", "eh1", "m"]}
+{"w": "co", "phones": ["k", "ow1"]}
+{"w": "coffee", "phones": ["k", "ao1", "-", "f", "iy"]}
+{"w": "cold", "phones": ["k", "ow1", "l", "d"]}
+{"w": "colds", "phones": ["k", "ow1", "l", "d", "z"]}
+{"w": "coleridge", "phones": ["k", "ow1", "l", "-", "r", "ih", "jh"]}
+{"w": "collins", "phones": ["k", "aa1", "-", "l", "ih", "n", "z"]}
+{"w": "colour", "phones": ["k", "ah1", "-", "l", "ax", "r"]}
+{"w": "com", "phones": ["k", "aa1", "m"]}
+{"w": "come", "phones": ["k", "ah1", "m"]}
+{"w": "comers", "phones": ["k", "ah1", "-", "m", "ax", "r", "z"]}
+{"w": "coming", "phones": ["k", "ah1", "-", "m", "ih", "ng"]}
+{"w": "command", "phones": ["k", "ax", "-", "m", "ae1", "n", "d"]}
+{"w": "commendation", "phones": ["k", "aa2", "-", "m", "ax", "n", "-", "d", "ey1", "-", "sh", "ax", "n"]}
+{"w": "common", "phones": ["k", "aa1", "-", "m", "ax", "n"]}
+{"w": "companion", "phones": ["k", "ax", "m", "-", "p", "ae1", "-", "n", "y", "ax", "n"]}
+{"w": "company", "phones": ["k", "ah1", "m", "-", "p", "ax", "-", "n", "iy"]}
+{"w": "comparison", "phones": ["k", "ax", "m", "-", "p", "ae1", "-", "r", "ax", "-", "s", "ax", "n"]}
+{"w": "compassion", "phones": ["k", "ax", "m", "-", "p", "ae1", "-", "sh", "ax", "n"]}
+{"w": "complacency", "phones": ["k", "ax", "m", "-", "p", "l", "ey1", "-", "s", "ax", "n", "-", "s", "iy"]}
+{"w": "complaints", "phones": ["k", "ax", "m", "-", "p", "l", "ey1", "n", "t", "s"]}
+{"w": "complete", "phones": ["k", "ax", "m", "-", "p", "l", "iy1", "t"]}
+{"w": "complied", "phones": ["k", "ax", "m", "-", "p", "l", "ay1", "d"]}
+{"w": "compliments", "phones": ["k", "aa1", "m", "-", "p", "l", "ax", "-", "m", "ax", "n", "t", "s"]}
+{"w": "conceited", "phones": ["k", "ax", "n", "-", "s", "iy1", "-", "t", "ih", "d"]}
+{"w": "congratulation", "phones": ["k", "ax", "n", "-", "g", "r", "ae2", "-", "ch", "ax", "-", "l", "ey1", "-", "sh", "ax", "n"]}
+{"w": "connections", "phones": ["k", "ax", "-", "n", "eh1", "k", "-", "sh", "ax", "n", "z"]}
+{"w": "consented", "phones": ["k", "ax", "n", "-", "s", "eh1", "n", "-", "t", "ih", "d"]}
+{"w": "consequently", "phones": ["k", "aa1", "n", "-", "s", "ax", "-", "k", "w", "eh2", "n", "t", "-", "l", "iy"]}
+{"w": "consider", "phones": ["k", "ax", "n", "-", "s", "ih1", "-", "d", "ax", "r"]}
+{"w": "considerable", "phones": ["k", "ax", "n", "-", "s", "ih1", "-", "d", "ax", "-", "r", "ax", "-", "b", "ax", "l"]}
+{"w": "considering", "phones": ["k", "ax", "n", "-", "s", "ih1", "-", "d", "ax", "-", "r", "ih", "ng"]}
+{"w": "consisted", "phones": ["k", "ax", "n", "-", "s", "ih1", "-", "s", "t", "ih", "d"]}
+{"w": "contain", "phones": ["k", "ax", "n", "-", "t", "ey1", "n"]}
+{"w": "contempt", "phones": ["k", "ax", "n", "-", "t", "eh1", "m", "p", "t"]}
+{"w": "contents", "phones": ["k", "aa1", "n", "-", "t", "eh", "n", "t", "s"]}
+{"w": "continually", "phones": ["k", "ax", "n", "-", "t", "ih1", "-", "n", "y", "uh", "-", "ax", "-", "l", "iy"]}
+{"w": "continue", "phones": ["k", "ax", "n", "-", "t", "ih1", "-", "n", "y", "uw"]}
+{"w": "continued", "phones": ["k", "ax", "n", "-", "t", "ih1", "-", "n", "y", "uw", "d"]}
+{"w": "contradicted", "phones": ["k", "aa2", "n", "-", "t", "r", "ax", "-", "d", "ih1", "k", "-", "t", "ih", "d"]}
+{"w": "contrary", "phones": ["k", "aa1", "n", "-", "t", "r", "ax", "-", "r", "iy"]}
+{"w": "contrast", "phones": ["k", "aa1", "n", "-", "t", "r", "ae", "s", "t"]}
+{"w": "contrivance", "phones": ["k", "ax", "n", "-", "t", "r", "ay1", "-", "v", "ax", "n", "s"]}
+{"w": "conversation", "phones": ["k", "aa2", "n", "-", "v", "ax", "r", "-", "s", "ey1", "-", "sh", "ax", "n"]}
+{"w": "conversing", "phones": ["k", "ax", "n", "-", "v", "er1", "r", "-", "s", "ih", "ng"]}
+{"w": "convinced", "phones": ["k", "ax", "n", "-", "v", "ih1", "n", "s", "t"]}
+{"w": "cook", "phones": ["k", "uh1", "k"]}
+{"w": "cooperated", "phones": ["k", "ow", "-", "aa1", "-", "p", "ax", "-", "r", "ey2", "-", "t", "ih", "d"]}
+{"w": "copy", "phones": ["k", "aa1", "-", "p", "iy"]}
+{"w": "copyright", "phones": ["k", "aa1", "-", "p", "iy", "-", "r", "ay", "t"]}
+{"w": "cordial", "phones": ["k", "ao1", "r", "-", "jh", "ax", "l"]}
+{"w": "corner", "phones": ["k", "ao1", "r", "-", "n", "ax", "r"]}
+{"w": "cosmic", "phones": ["k", "aa1", "z", "-", "m", "ih", "k"]}
+{"w": "costs", "phones": ["k", "ao1", "s", "t", "s"]}
+{"w": "could", "phones": ["k", "uh1", "d"]}
+{"w": "countenance", "phones": ["k", "aw1", "n", "-", "t", "ax", "-", "n", "ax", "n", "s"]}
+{"w": "country", "phones": ["k", "ah1", "n", "-", "t", "r", "iy"]}
+{"w": "couple", "phones": ["k", "ah1", "-", "p", "ax", "l"]}
+{"w": "course", "phones": ["k", "ao1", "r", "s"]}
+{"w": "courses", "phones": ["k", "ao1", "r", "-", "s", "ih", "z"]}
+{"w": "court", "phones": ["k", "ao1", "r", "t"]}
+{"w": "cover", "phones": ["k", "ah1", "-", "v", "ax", "r"]}
+{"w": "crawford", "phones": ["k", "r", "aa1", "-", "f", "ax", "r", "d"]}
+{"w": "created", "phones": ["k", "r", "iy", "-", "ey1", "-", "t", "ih", "d"]}
+{"w": "creatress", "phones": ["k", "r", "ey1", "-", "t", "r", "eh1", "s"]}
+{"w": "creature", "phones": ["k", "r", "iy1", "-", "ch", "ax", "r"]}
+{"w": "credit", "phones": ["k", "r", "eh1", "-", "d", "ih", "t"]}
+{"w": "crept", "phones": ["k", "r", "eh1", "p", "t"]}
+{"w": "cruelty", "phones": ["k", "r", "uw1", "-", "ax", "l", "-", "t", "iy"]}
+{"w": "ctrl", "phones": ["k", "ax", "n", "-", "t", "r", "ow1", "l"]}
+{"w": "cups", "phones": ["k", "ah1", "p", "s"]}
+{"w": "curiosity", "phones": ["k", "y", "uh2", "-", "r", "iy", "-", "aa1", "-", "s", "ax", "-", "t", "iy"]}
+{"w": "curious", "phones": ["k", "y", "uh1", "-", "r", "iy", "-", "ax", "s"]}
+{"w": "curly", "phones": ["k", "er1", "-", "l", "iy"]}
+{"w": "d", "phones": ["d", "iy1"]}
+{"w": "dainties", "phones": ["d", "ey1", "n", "-", "t", "iy", "s"]}
+{"w": "damsel", "phones": ["d", "ae1", "m", "-", "z", "ax", "l"]}
+{"w": "dance", "phones": ["d", "ae1", "n", "s"]}
+{"w": "danced", "phones": ["d", "ae1", "n", "s", "t"]}
+{"w": "dances", "phones": ["d", "ae1", "n", "-", "s", "ih", "z"]}
+{"w": "dancing", "phones": ["d", "ae1", "n", "-", "s", "ih", "ng"]}
+{"w": "danger", "phones": ["d", "ey1", "n", "-", "jh", "ax", "r"]}
+{"w": "darcy", "phones": ["d", "aa1", "r", "-", "s", "iy"]}
+{"w": "dare", "phones": ["d", "eh1", "r"]}
+{"w": "dates", "phones": ["d", "ey1", "t", "s"]}
+{"w": "daughter", "phones": ["d", "ao1", "-", "t", "ax", "r"]}
+{"w": "daughters", "phones": ["d", "ao1", "-", "t", "ax", "r", "z"]}
+{"w": "day", "phones": ["d", "ey1"]}
+{"w": "de", "phones": ["d", "ax"]}
+{"w": "dead", "phones": ["d", "eh1", "d"]}
+{"w": "deadline", "phones": ["d", "eh1", "d", "-", "l", "ay2", "n"]}
+{"w": "deal", "phones": ["d", "iy1", "l"]}
+{"w": "dear", "phones": ["d", "iy1", "r"]}
+{"w": "december", "phones": ["d", "ih", "-", "s", "eh1", "m", "-", "b", "ax", "r"]}
+{"w": "decided", "phones": ["d", "ih", "-", "s", "ay1", "-", "d", "ih", "d"]}
+{"w": "decidedly", "phones": ["d", "ih", "-", "s", "ay1", "-", "d", "ih", "d", "-", "l", "iy"]}
+{"w": "declare", "phones": ["d", "ih", "-", "k", "l", "eh1", "r"]}
+{"w": "declared", "phones": ["d", "ih", "-", "k", "l", "eh1", "r", "d"]}
+{"w": "deeply", "phones": ["d", "iy1", "-", "p", "l", "iy"]}
+{"w": "deference", "phones": ["d", "eh1", "-", "f", "ax", "-", "r", "ax", "n", "s"]}
+{"w": "deferred", "phones": ["d", "ih", "-", "f", "er1", "r", "d"]}
+{"w": "deficient", "phones": ["d", "ih", "-", "f", "ih1", "-", "sh", "ax", "n", "t"]}
+{"w": "defy", "phones": ["d", "ih", "-", "f", "ay1"]}
+{"w": "degree", "phones": ["d", "ih", "-", "g", "r", "iy1"]}
+{"w": "degrees", "phones": ["d", "ih", "-", "g", "r", "iy1", "z"]}
+{"w": "deigned", "phones": ["d", "ey1", "n", "d"]}
+{"w": "delete", "phones": ["d", "ih", "-", "l", "iy1", "t"]}
+{"w": "delicate", "phones": ["d", "eh1", "-", "l", "ax", "-", "k", "ax", "t"]}
+{"w": "delight", "phones": ["d", "ih", "-", "l", "ay1", "t"]}
+{"w": "delighted", "phones": ["d", "ih", "-", "l", "ay1", "-", "t", "ih", "d"]}
+{"w": "delightful", "phones": ["d", "ih", "-", "l", "ay1", "t", "-", "f", "ax", "l"]}
+{"w": "derbyshire", "phones": ["d", "er1", "-", "b", "iy", "-", "sh", "ay2", "-", "ax", "r"]}
+{"w": "describe", "phones": ["d", "ih", "-", "s", "k", "r", "ay1", "b"]}
+{"w": "description", "phones": ["d", "ih", "-", "s", "k", "r", "ih1", "p", "-", "sh", "ax", "n"]}
+{"w": "desirable", "phones": ["d", "ih", "-", "z", "ay1", "-", "r", "ax", "-", "b", "ax", "l"]}
+{"w": "despatched", "phones": ["d", "iy", "-", "s", "p", "ae1", "ch", "t"]}
+{"w": "details", "phones": ["d", "iy1", "-", "t", "ey", "l", "z"]}
+{"w": "determined", "phones": ["d", "ih", "-", "t", "er1", "r", "-", "m", "ih", "n", "d"]}
+{"w": "determining", "phones": ["d", "ih", "-", "t", "er1", "r", "-", "m", "ih", "-", "n", "ih", "ng"]}
+{"w": "detest", "phones": ["d", "ih", "-", "t", "eh1", "s", "t"]}
+{"w": "develope", "phones": ["d", "ih", "-", "v", "eh1", "-", "l", "ax", "p"]}
+{"w": "device", "phones": ["d", "ih", "-", "v", "ay1", "s"]}
+{"w": "dial", "phones": ["d", "ay1", "-", "ax", "l"]}
+{"w": "diana", "phones": ["d", "ay", "-", "ae1", "-", "n", "ax"]}
+{"w": "did", "phones": ["d", "ih1", "d"]}
+{"w": "die", "phones": ["d", "ay1"]}
+{"w": "difference", "phones": ["d", "ih1", "-", "f", "r", "ax", "n", "s"]}
+{"w": "different", "phones": ["d", "ih1", "-", "f", "r", "ax", "n", "t"]}
+{"w": "differently", "phones": ["d", "ih1", "-", "f", "ax", "-", "r", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "difficult", "phones": ["d", "ih1", "-", "f", "ax", "-", "k", "ax", "l", "t"]}
+{"w": "dinah", "phones": ["d", "ay1", "-", "n", "ax"]}
+{"w": "dine", "phones": ["d", "ay1", "n"]}
+{"w": "dined", "phones": ["d", "ay1", "n", "d"]}
+{"w": "dining-parlour", "phones": ["d", "ay1", "-", "n", "ih", "ng", "-", "p", "aa1", "r", "-", "l", "ax", "r"]}
+{"w": "dinner", "phones": ["d", "ih1", "-", "n", "ax", "r"]}
+{"w": "directed", "phones": ["d", "ih", "-", "r", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "directions", "phones": ["d", "ih", "-", "r", "eh1", "k", "-", "sh", "ax", "n", "z"]}
+{"w": "directly", "phones": ["d", "ih", "-", "r", "eh1", "k", "t", "-", "l", "iy"]}
+{"w": "dirty", "phones": ["d", "er1", "r", "-", "t", "iy"]}
+{"w": "disagreeable", "phones": ["d", "ih2", "-", "s", "ax", "-", "g", "r", "iy1", "-", "ax", "-", "b", "ax", "l"]}
+{"w": "discarding", "phones": ["d", "ih", "-", "s", "k", "aa1", "r", "-", "d", "ih", "ng"]}
+{"w": "disclosed", "phones": ["d", "ih", "-", "s", "k", "l", "ow1", "z", "d"]}
+{"w": "disconcerted", "phones": ["d", "ih2", "-", "s", "k", "ax", "n", "-", "s", "er1", "r", "-", "t", "ih", "d"]}
+{"w": "discontented", "phones": ["d", "ih", "-", "s", "k", "ax", "n", "-", "t", "eh1", "n", "-", "t", "ih", "d"]}
+{"w": "discount", "phones": ["d", "ih1", "-", "s", "k", "aw2", "n", "t"]}
+{"w": "discovery", "phones": ["d", "ih", "-", "s", "k", "ah1", "v", "-", "ax", "-", "r", "iy"]}
+{"w": "discretion", "phones": ["d", "ih", "-", "s", "k", "r", "eh1", "-", "sh", "ax", "n"]}
+{"w": "discuss", "phones": ["d", "ih", "-", "s", "k", "ah1", "s"]}
+{"w": "dish", "phones": ["d", "ih1", "sh"]}
+{"w": "dislike", "phones": ["d", "ih", "-", "s", "l", "ay1", "k"]}
+{"w": "displaying", "phones": ["d", "ih", "-", "s", "p", "l", "ey1", "-", "ih", "ng"]}
+{"w": "disposed", "phones": ["d", "ih", "-", "s", "p", "ow1", "z", "d"]}
+{"w": "disposition", "phones": ["d", "ih2", "-", "s", "p", "ax", "-", "z", "ih1", "-", "sh", "ax", "n"]}
+{"w": "disputes", "phones": ["d", "ih", "-", "s", "p", "y", "uw1", "t", "s"]}
+{"w": "dissecting", "phones": ["d", "ih", "-", "s", "eh1", "k", "-", "t", "ih", "ng"]}
+{"w": "distance", "phones": ["d", "ih1", "-", "s", "t", "ax", "n", "s"]}
+{"w": "distinction", "phones": ["d", "ih", "-", "s", "t", "ih1", "ng", "k", "-", "sh", "ax", "n"]}
+{"w": "distinguished", "phones": ["d", "ih", "-", "s", "t", "ih1", "ng", "-", "g", "w", "ih", "sh", "t"]}
+{"w": "distinguishing", "phones": ["d", "ih", "-", "s", "t", "ih1", "ng", "-", "g", "w", "ih", "-", "sh", "ih", "ng"]}
+{"w": "divert", "phones": ["d", "ax", "-", "v", "er1", "r", "t"]}
+{"w": "divide", "phones": ["d", "ih", "-", "v", "ay1", "d"]}
+{"w": "division", "phones": ["d", "ax", "-", "v", "ih1", "-", "zh", "ax", "n"]}
+{"w": "do", "phones": ["d", "uw1"]}
+{"w": "does", "phones": ["d", "ah1", "z"]}
+{"w": "dogs", "phones": ["d", "ao1", "g", "z"]}
+{"w": "doing", "phones": ["d", "uw1", "-", "ih", "ng"]}
+{"w": "dollar", "phones": ["d", "aa1", "-", "l", "ax", "r"]}
+{"w": "dollars", "phones": ["d", "aa1", "-", "l", "ax", "r", "z"]}
+{"w": "done", "phones": ["d", "ah1", "n"]}
+{"w": "door", "phones": ["d", "ao1", "r"]}
+{"w": "dormouse", "phones": ["d", "ao1", "r", "m", "-", "uw1", "z"]}
+{"w": "down", "phones": ["d", "aw1", "n"]}
+{"w": "dr", "phones": ["d", "iy1", "-", "aa1", "r"]}
+{"w": "dresses", "phones": ["d", "r", "eh1", "-", "s", "ih", "z"]}
+{"w": "drew", "phones": ["d", "r", "uw1"]}
+{"w": "dried", "phones": ["d", "r", "ay1", "d"]}
+{"w": "driest", "phones": ["d", "r", "ay1", "-", "ih", "s", "t"]}
+{"w": "dry", "phones": ["d", "r", "ay1"]}
+{"w": "duchess", "phones": ["d", "ah1", "-", "ch", "ih", "s"]}
+{"w": "due", "phones": ["d", "uw1"]}
+{"w": "during", "phones": ["d", "uh1", "-", "r", "ih", "ng"]}
+{"w": "dying", "phones": ["d", "ay1", "-", "ih", "ng"]}
+{"w": "e", "phones": ["iy1"]}
+{"w": "each", "phones": ["iy1", "ch"]}
+{"w": "eager", "phones": ["iy1", "-", "g", "ax", "r"]}
+{"w": "eagerly", "phones": ["iy1", "-", "g", "ax", "r", "-", "l", "iy"]}
+{"w": "earliest", "phones": ["er1", "r", "-", "l", "iy", "-", "ih", "s", "t"]}
+{"w": "early", "phones": ["er1", "r", "-", "l", "iy"]}
+{"w": "easy", "phones": ["iy1", "-", "z", "iy"]}
+{"w": "eat", "phones": ["iy1", "t"]}
+{"w": "edge", "phones": ["eh1", "jh"]}
+{"w": "effusions", "phones": ["ax", "-", "f", "y", "uw1", "-", "zh", "ax", "n", "z"]}
+{"w": "eight", "phones": ["ey1", "t"]}
+{"w": "eighteen", "phones": ["ey", "-", "t", "iy1", "n"]}
+{"w": "eighteenth", "phones": ["ey2", "-", "t", "iy1", "n", "th"]}
+{"w": "eighth", "phones": ["ey1", "t", "th"]}
+{"w": "eightieth", "phones": ["ey1", "-", "t", "iy", "-", "ax", "th"]}
+{"w": "eighty", "phones": ["ey1", "-", "t", "iy"]}
+{"w": "either", "phones": ["iy1", "-", "dh", "ax", "r"]}
+{"w": "elated", "phones": ["ih", "-", "l", "ey1", "-", "t", "ih", "d"]}
+{"w": "eldest", "phones": ["eh1", "l", "-", "d", "ax", "s", "t"]}
+{"w": "elegant", "phones": ["eh1", "-", "l", "ax", "-", "g", "ax", "n", "t"]}
+{"w": "eleven", "phones": ["ih", "-", "l", "eh1", "-", "v", "ax", "n"]}
+{"w": "eleventh", "phones": ["ih", "-", "l", "eh1", "-", "v", "ax", "n", "th"]}
+{"w": "elizabeth", "phones": ["ih", "-", "l", "ih1", "-", "z", "ax", "-", "b", "ax", "th"]}
+{"w": "elopement", "phones": ["ih", "-", "l", "ow1", "p", "-", "m", "ax", "n", "t"]}
+{"w": "else", "phones": ["eh1", "l", "s"]}
+{"w": "email", "phones": ["iy1", "-", "m", "ey2", "l"]}
+{"w": "eminent", "phones": ["eh1", "-", "m", "ax", "-", "n", "ax", "n", "t"]}
+{"w": "emp", "phones": ["iy1", "-", "eh2", "m", "-", "p", "iy1"]}
+{"w": "enable", "phones": ["ih", "-", "n", "ey1", "-", "b", "ax", "l"]}
+{"w": "encouraging", "phones": ["ih", "n", "-", "k", "er1", "-", "r", "ih", "-", "jh", "ih", "ng"]}
+{"w": "end", "phones": ["eh1", "n", "d"]}
+{"w": "enduring", "phones": ["ih", "n", "-", "d", "uh1", "-", "r", "ih", "ng"]}
+{"w": "engaged", "phones": ["ih", "n", "-", "g", "ey1", "jh", "d"]}
+{"w": "engrossed", "phones": ["ih", "n", "-", "g", "r", "ow1", "s", "t"]}
+{"w": "enjoyment", "phones": ["ih", "n", "-", "jh", "oy1", "-", "m", "ax", "n", "t"]}
+{"w": "ennyworth", "phones": ["eh1", "-", "n", "iy", "-", "w", "er1", "r", "th"]}
+{"w": "enormous", "phones": ["ih", "-", "n", "ao1", "r", "-", "m", "ax", "s"]}
+{"w": "enough", "phones": ["ih", "-", "n", "ah1", "f"]}
+{"w": "enter", "phones": ["eh1", "n", "-", "t", "ax", "r"]}
+{"w": "entered", "phones": ["eh1", "n", "-", "t", "ax", "r", "d"]}
+{"w": "entertained", "phones": ["eh2", "n", "-", "t", "ax", "r", "-", "t", "ey1", "n", "d"]}
+{"w": "entertainment", "phones": ["eh2", "n", "-", "t", "ax", "r", "-", "t", "ey1", "n", "-", "m", "ax", "n", "t"]}
+{"w": "entirely", "phones": ["ih", "n", "-", "t", "ay1", "-", "ax", "r", "-", "l", "iy"]}
+{"w": "epicurean", "phones": ["eh2", "-", "p", "ih", "-", "k", "y", "uh", "-", "r", "iy1", "-", "ax", "n"]}
+{"w": "equal", "phones": ["iy1", "-", "k", "w", "ax", "l"]}
+{"w": "equally", "phones": ["iy1", "-", "k", "w", "ax", "-", "l", "iy"]}
+{"w": "esmond", "phones": ["eh1", "z", "-", "m", "ax", "n", "d"]}
+{"w": "essay", "phones": ["eh1", "-", "s", "ey"]}
+{"w": "established", "phones": ["ax", "-", "s", "t", "ae1", "-", "b", "l", "ih", "sh", "t"]}
+{"w": "establishment", "phones": ["ax", "-", "s", "t", "ae1", "-", "b", "l", "ih", "sh", "-", "m", "ax", "n", "t"]}
+{"w": "etc", "phones": ["eh", "t", "-", "s", "eh1", "-", "t", "ax", "-", "r", "ax"]}
+{"w": "euro", "phones": ["y", "uh1", "-", "r", "ow"]}
+{"w": "euros", "phones": ["y", "er1", "-", "r", "ow", "z"]}
+{"w": "even", "phones": ["iy1", "-", "v", "ax", "n"]}
+{"w": "evening", "phones": ["iy1", "v", "-", "n", "ih", "ng"]}
+{"w": "ever", "phones": ["eh1", "-", "v", "ax", "r"]}
+{"w": "every", "phones": ["eh1", "-", "v", "r", "iy"]}
+{"w": "everybody", "phones": ["eh1", "-", "v", "r", "iy", "-", "b", "aa", "-", "d", "iy"]}
+{"w": "everything", "phones": ["eh1", "-", "v", "r", "iy", "-", "th", "ih", "ng"]}
+{"w": "everywhere", "phones": ["eh1", "v", "-", "r", "iy", "-", "w", "eh", "r"]}
+{"w": "exactly", "phones": ["ih", "g", "-", "z", "ae1", "k", "t", "-", "l", "iy"]}
+{"w": "exaggeration", "phones": ["ih", "g", "-", "z", "ae2", "-", "jh", "ax", "-", "r", "ey1", "-", "sh", "ax", "n"]}
+{"w": "example", "phones": ["ih", "g", "-", "z", "ae1", "m", "-", "p", "ax", "l"]}
+{"w": "except", "phones": ["ih", "k", "-", "s", "eh1", "p", "t"]}
+{"w": "excessively", "phones": ["ih", "k", "-", "s", "eh1", "-", "s", "ih", "v", "-", "l", "iy"]}
+{"w": "exercise", "phones": ["eh1", "k", "-", "s", "ax", "r", "-", "s", "ay2", "z"]}
+{"w": "exhibited", "phones": ["ih", "g", "-", "z", "ih1", "-", "b", "ih", "-", "t", "ih", "d"]}
+{"w": "expect", "phones": ["ih", "k", "-", "s", "p", "eh1", "k", "t"]}
+{"w": "expected", "phones": ["ih", "k", "-", "s", "p", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "explain", "phones": ["ih", "k", "-", "s", "p", "l", "ey1", "n"]}
+{"w": "explains", "phones": ["ih", "k", "-", "s", "p", "l", "ey1", "n", "z"]}
+{"w": "explanation", "phones": ["eh2", "k", "-", "s", "p", "l", "ax", "-", "n", "ey1", "-", "sh", "ax", "n"]}
+{"w": "expose", "phones": ["ih", "k", "-", "s", "p", "ow1", "z"]}
+{"w": "expostulation", "phones": ["ih", "k", "-", "s", "p", "aa1", "s", "-", "ch", "ax", "-", "l", "ey1", "-", "sh", "ax", "n"]}
+{"w": "expressed", "phones": ["ih", "k", "-", "s", "p", "r", "eh1", "s", "t"]}
+{"w": "expressive", "phones": ["ih", "k", "-", "s", "p", "r", "eh1", "-", "s", "ih", "v"]}
+{"w": "exquisitely", "phones": ["eh1", "k", "-", "s", "k", "w", "ih", "-", "z", "ih", "t", "-", "l", "iy"]}
+{"w": "extraordinary", "phones": ["ih", "k", "-", "s", "t", "r", "ao1", "r", "-", "d", "ax", "n", "-", "eh2", "-", "r", "iy"]}
+{"w": "extremely", "phones": ["ih", "k", "-", "s", "t", "r", "iy1", "m", "-", "l", "iy"]}
+{"w": "eye", "phones": ["ay1"]}
+{"w": "eyes", "phones": ["ay1", "z"]}
+{"w": "f", "phones": ["eh1", "f"]}
+{"w": "face", "phones": ["f", "ey1", "s"]}
+{"w": "faint", "phones": ["f", "ey1", "n", "t"]}
+{"w": "fairy-tales", "phones": ["f", "eh1", "-", "r", "iy", "-", "t", "ey1", "l", "z"]}
+{"w": "fall", "phones": ["f", "ao1", "l"]}
+{"w": "falling", "phones": ["f", "ao1", "-", "l", "ih", "ng"]}
+{"w": "false", "phones": ["f", "aa1", "l", "s"]}
+{"w": "family", "phones": ["f", "ae1", "m", "-", "l", "iy"]}
+{"w": "famous", "phones": ["f", "ey1", "-", "m", "ax", "s"]}
+{"w": "fan", "phones": ["f", "ae1", "n"]}
+{"w": "fancied", "phones": ["f", "ae1", "n", "-", "s", "iy", "d"]}
+{"w": "fancy", "phones": ["f", "ae1", "n", "-", "s", "iy"]}
+{"w": "fancying", "phones": ["f", "ae1", "n", "-", "s", "iy", "-", "ih", "ng"]}
+{"w": "far", "phones": ["f", "aa1", "r"]}
+{"w": "farm", "phones": ["f", "aa1", "r", "m"]}
+{"w": "fashion", "phones": ["f", "ae1", "-", "sh", "ax", "n"]}
+{"w": "fast", "phones": ["f", "ae1", "s", "t"]}
+{"w": "fastidious", "phones": ["f", "ae", "-", "s", "t", "ih1", "-", "d", "iy", "-", "ax", "s"]}
+{"w": "father", "phones": ["f", "aa1", "-", "dh", "ax", "r"]}
+{"w": "fatigued", "phones": ["f", "ax", "-", "t", "iy1", "g", "d"]}
+{"w": "fault", "phones": ["f", "ao1", "l", "t"]}
+{"w": "favour", "phones": ["f", "ey1", "-", "v", "ax", "r"]}
+{"w": "favourable", "phones": ["f", "ey1", "-", "v", "ax", "-", "r", "ax", "-", "b", "ax", "l"]}
+{"w": "favourably", "phones": ["f", "ey1", "-", "v", "ax", "-", "r", "ax", "-", "b", "l", "iy"]}
+{"w": "favourite", "phones": ["f", "ey1", "-", "v", "ax", "-", "r", "ih", "t"]}
+{"w": "fbi", "phones": ["eh2", "f", "-", "b", "iy", "-", "ay1"]}
+{"w": "february", "phones": ["f", "eh1", "-", "b", "y", "uw", "-", "eh2", "-", "r", "iy"]}
+{"w": "feebly", "phones": ["f", "iy1", "-", "b", "l", "iy"]}
+{"w": "feel", "phones": ["f", "iy1", "l"]}
+{"w": "feeling", "phones": ["f", "iy1", "-", "l", "ih", "ng"]}
+{"w": "feelings", "phones": ["f", "iy1", "-", "l", "ih", "ng", "z"]}
+{"w": "feels", "phones": ["f", "iy1", "l", "z"]}
+{"w": "feet", "phones": ["f", "iy1", "t"]}
+{"w": "felicity", "phones": ["f", "ax", "-", "l", "ih1", "-", "s", "ax", "-", "t", "iy"]}
+{"w": "fellow", "phones": ["f", "eh1", "-", "l", "ow"]}
+{"w": "felt", "phones": ["f", "eh1", "l", "t"]}
+{"w": "fetch", "phones": ["f", "eh1", "ch"]}
+{"w": "feverish", "phones": ["f", "iy1", "-", "v", "ax", "-", "r", "ih", "sh"]}
+{"w": "few", "phones": ["f", "y", "uw1"]}
+{"w": "fielding", "phones": ["f", "iy1", "l", "-", "d", "ih", "ng"]}
+{"w": "fifteen", "phones": ["f", "ih", "f", "-", "t", "iy1", "n"]}
+{"w": "fifteenth", "phones": ["f", "ih", "f", "-", "t", "iy1", "n", "th"]}
+{"w": "fifth", "phones": ["f", "ih1", "f", "th"]}
+{"w": "fiftieth", "phones": ["f", "ih1", "f", "-", "t", "iy", "-", "ax", "th"]}
+{"w": "fifty", "phones": ["f", "ih1", "f", "-", "t", "iy"]}
+{"w": "figure", "phones": ["f", "ih1", "-", "g", "y", "ax", "r"]}
+{"w": "figures", "phones": ["f", "ih1", "-", "g", "y", "ax", "r", "z"]}
+{"w": "file", "phones": ["f", "ay1", "l"]}
+{"w": "files", "phones": ["f", "ay1", "l", "z"]}
+{"w": "finding", "phones": ["f", "ay1", "n", "-", "d", "ih", "ng"]}
+{"w": "fine", "phones": ["f", "ay1", "n"]}
+{"w": "finery", "phones": ["f", "ay1", "-", "n", "ax", "-", "r", "iy"]}
+{"w": "finish", "phones": ["f", "ih1", "-", "n", "ih", "sh"]}
+{"w": "finished", "phones": ["f", "ih1", "-", "n", "ih", "sh", "t"]}
+{"w": "fire", "phones": ["f", "ay1", "-", "ax", "r"]}
+{"w": "first", "phones": ["f", "er1", "r", "s", "t"]}
+{"w": "fish", "phones": ["f", "ih1", "sh"]}
+{"w": "fit", "phones": ["f", "ih1", "t"]}
+{"w": "five", "phones": ["f", "ay1", "v"]}
+{"w": "fixed", "phones": ["f", "ih1", "k", "s", "t"]}
+{"w": "flapper", "phones": ["f", "l", "ae1", "-", "p", "ax", "r"]}
+{"w": "flight", "phones": ["f", "l", "ay1", "t"]}
+{"w": "floor", "phones": ["f", "l", "ao1", "r"]}
+{"w": "flour", "phones": ["f", "l", "aw1", "-", "ax", "r"]}
+{"w": "folded", "phones": ["f", "ow1", "l", "-", "d", "ih", "d"]}
+{"w": "folders", "phones": ["f", "ow1", "l", "-", "d", "ax", "r", "z"]}
+{"w": "follies", "phones": ["f", "aa1", "-", "l", "iy", "z"]}
+{"w": "followed", "phones": ["f", "aa1", "-", "l", "ow", "d"]}
+{"w": "following", "phones": ["f", "aa1", "-", "l", "ow", "-", "ih", "ng"]}
+{"w": "fond", "phones": ["f", "aa1", "n", "d"]}
+{"w": "font", "phones": ["f", "aa1", "n", "t"]}
+{"w": "fools", "phones": ["f", "uw1", "l", "z"]}
+{"w": "footsteps", "phones": ["f", "uh1", "t", "-", "s", "t", "eh2", "p", "s"]}
+{"w": "for", "phones": ["f", "ao1", "r"]}
+{"w": "forced", "phones": ["f", "ao1", "r", "s", "t"]}
+{"w": "forget", "phones": ["f", "ax", "r", "-", "g", "eh1", "t"]}
+{"w": "form", "phones": ["f", "ao1", "r", "m"]}
+{"w": "formality", "phones": ["f", "ao", "r", "-", "m", "ae1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "former", "phones": ["f", "ao1", "r", "-", "m", "ax", "r"]}
+{"w": "fortieth", "phones": ["f", "ao1", "r", "-", "t", "iy", "-", "ax", "th"]}
+{"w": "fortnight", "phones": ["f", "ao1", "r", "t", "-", "n", "ay", "t"]}
+{"w": "fortune", "phones": ["f", "ao1", "r", "-", "ch", "ax", "n"]}
+{"w": "forty", "phones": ["f", "ao1", "r", "-", "t", "iy"]}
+{"w": "forward", "phones": ["f", "ao1", "r", "-", "w", "ax", "r", "d"]}
+{"w": "found", "phones": ["f", "aw1", "n", "d"]}
+{"w": "four", "phones": ["f", "ao1", "r"]}
+{"w": "fourteen", "phones": ["f", "ao", "r", "-", "t", "iy1", "n"]}
+{"w": "fourteenth", "phones": ["f", "ao", "r", "-", "t", "iy1", "n", "th"]}
+{"w": "fourth", "phones": ["f", "ao1", "r", "th"]}
+{"w": "free", "phones": ["f", "r", "iy1"]}
+{"w": "frenchman", "phones": ["f", "r", "eh1", "n", "ch", "-", "m", "ax2", "n"]}
+{"w": "friday", "phones": ["f", "r", "ay1", "-", "d", "ey"]}
+{"w": "friend", "phones": ["f", "r", "eh1", "n", "d"]}
+{"w": "friendly", "phones": ["f", "r", "eh1", "n", "d", "-", "l", "iy"]}
+{"w": "friends", "phones": ["f", "r", "eh1", "n", "d", "z"]}
+{"w": "friendship", "phones": ["f", "r", "eh1", "n", "d", "-", "sh", "ih", "p"]}
+{"w": "fright", "phones": ["f", "r", "ay1", "t"]}
+{"w": "from", "phones": ["f", "r", "aa1", "m"]}
+{"w": "front", "phones": ["f", "r", "ah1", "n", "t"]}
+{"w": "frowning", "phones": ["f", "r", "aw1", "-", "n", "ih", "ng"]}
+{"w": "frying-pan", "phones": ["f", "r", "ay1", "-", "ih", "ng", "-", "p", "ae1", "n"]}
+{"w": "ft", "phones": ["eh1", "f", "-", "t", "iy1"]}
+{"w": "full", "phones": ["f", "uh1", "l"]}
+{"w": "fur", "phones": ["f", "er1", "r"]}
+{"w": "further", "phones": ["f", "er1", "r", "-", "dh", "ax", "r"]}
+{"w": "g", "phones": ["jh", "iy1"]}
+{"w": "gallantry", "phones": ["g", "ae1", "-", "l", "ax", "n", "-", "t", "r", "iy"]}
+{"w": "gallery", "phones": ["g", "ae1", "-", "l", "ax", "-", "r", "iy"]}
+{"w": "game", "phones": ["g", "ey1", "m"]}
+{"w": "garden", "phones": ["g", "aa1", "r", "-", "d", "ax", "n"]}
+{"w": "gave", "phones": ["g", "ey1", "v"]}
+{"w": "general", "phones": ["jh", "eh1", "-", "n", "ax", "-", "r", "ax", "l"]}
+{"w": "genteel", "phones": ["jh", "eh", "n", "-", "t", "iy1", "l"]}
+{"w": "gentleman", "phones": ["jh", "eh1", "n", "-", "t", "ax", "l", "-", "m", "ax", "n"]}
+{"w": "gentlemanlike", "phones": ["jh", "eh1", "n", "-", "t", "ax", "l", "-", "m", "ax", "n", "-", "l", "ay", "k"]}
+{"w": "gentlemen", "phones": ["jh", "eh1", "n", "-", "t", "ax", "l", "-", "m", "ax", "n"]}
+{"w": "george", "phones": ["jh", "ao1", "r", "jh"]}
+{"w": "german", "phones": ["jh", "er1", "r", "-", "m", "ax", "n"]}
+{"w": "get", "phones": ["g", "eh1", "t"]}
+{"w": "getting", "phones": ["g", "eh1", "-", "t", "ih", "ng"]}
+{"w": "girl", "phones": ["g", "er1", "r", "l"]}
+{"w": "girls", "phones": ["g", "er1", "r", "l", "z"]}
+{"w": "give", "phones": ["g", "ih1", "v"]}
+{"w": "given", "phones": ["g", "ih1", "-", "v", "ax", "n"]}
+{"w": "gives", "phones": ["g", "ih1", "v", "z"]}
+{"w": "giving", "phones": ["g", "ih1", "-", "v", "ih", "ng"]}
+{"w": "glanced", "phones": ["g", "l", "ae1", "n", "s", "t"]}
+{"w": "glass", "phones": ["g", "l", "ae1", "s"]}
+{"w": "gloves", "phones": ["g", "l", "ah1", "v", "z"]}
+{"w": "go", "phones": ["g", "ow1"]}
+{"w": "going", "phones": ["g", "ow1", "-", "ih", "ng"]}
+{"w": "gone", "phones": ["g", "aa1", "n"]}
+{"w": "good", "phones": ["g", "uh1", "d"]}
+{"w": "good-humoured", "phones": ["g", "uh1", "d", "-", "h", "y", "uw1", "-", "m", "ax", "r", "d"]}
+{"w": "good-looking", "phones": ["g", "uh1", "d", "-", "l", "uh1", "-", "k", "ih", "ng"]}
+{"w": "got", "phones": ["g", "aa1", "t"]}
+{"w": "graciousness", "phones": ["g", "r", "ey1", "-", "sh", "ax", "-", "s", "n", "ih", "s"]}
+{"w": "grant", "phones": ["g", "r", "ae1", "n", "t"]}
+{"w": "gratified", "phones": ["g", "r", "ae1", "-", "t", "ax", "-", "f", "ay2", "d"]}
+{"w": "gratitude", "phones": ["g", "r", "ae1", "-", "t", "ax", "-", "t", "uw2", "d"]}
+{"w": "grave", "phones": ["g", "r", "ey1", "v"]}
+{"w": "gravel", "phones": ["g", "r", "ae1", "-", "v", "ax", "l"]}
+{"w": "great", "phones": ["g", "r", "ey1", "t"]}
+{"w": "great-uncle", "phones": ["g", "r", "ey1", "t", "-", "ah1", "ng", "-", "k", "ax", "l"]}
+{"w": "greater", "phones": ["g", "r", "ey1", "-", "t", "ax", "r"]}
+{"w": "greatly", "phones": ["g", "r", "ey1", "t", "-", "l", "iy"]}
+{"w": "grew", "phones": ["g", "r", "uw1"]}
+{"w": "grinned", "phones": ["g", "r", "ih1", "n", "d"]}
+{"w": "grouped", "phones": ["g", "r", "uw1", "p", "t"]}
+{"w": "gryphon", "phones": ["g", "r", "ih1", "-", "f", "ax", "n"]}
+{"w": "guess", "phones": ["g", "eh1", "s"]}
+{"w": "guinea-pig", "phones": ["g", "ih1", "-", "n", "iy", "-", "p", "ih1", "g"]}
+{"w": "guinea-pigs", "phones": ["g", "ih1", "-", "n", "iy", "-", "p", "ih1", "g", "z"]}
+{"w": "h", "phones": ["ey1", "ch"]}
+{"w": "had", "phones": ["h", "ae1", "d"]}
+{"w": "hair", "phones": ["h", "eh1", "r"]}
+{"w": "half", "phones": ["h", "ae1", "f"]}
+{"w": "hall", "phones": ["h", "ao1", "l"]}
+{"w": "hand", "phones": ["h", "ae1", "n", "d"]}
+{"w": "handsome", "phones": ["h", "ae1", "n", "-", "s", "ax", "m"]}
+{"w": "handsomer", "phones": ["h", "ae1", "n", "-", "s", "ax", "-", "m", "er"]}
+{"w": "happened", "phones": ["h", "ae1", "-", "p", "ax", "n", "d"]}
+{"w": "happening", "phones": ["h", "ae1", "-", "p", "ax", "-", "n", "ih", "ng"]}
+{"w": "happiness", "phones": ["h", "ae1", "-", "p", "iy", "-", "n", "ih", "s"]}
+{"w": "hard", "phones": ["h", "aa1", "r", "d"]}
+{"w": "hardly", "phones": ["h", "aa1", "r", "d", "-", "l", "iy"]}
+{"w": "has", "phones": ["h", "ae1", "z"]}
+{"w": "hastily", "phones": ["h", "ey1", "-", "s", "t", "ih", "-", "l", "iy"]}
+{"w": "hate", "phones": ["h", "ey1", "t"]}
+{"w": "hated", "phones": ["h", "ey1", "-", "t", "ih", "d"]}
+{"w": "hatter", "phones": ["h", "ae1", "-", "t", "ax", "r"]}
+{"w": "haughty", "phones": ["h", "ao1", "-", "t", "iy"]}
+{"w": "have", "phones": ["h", "ae1", "v"]}
+{"w": "having", "phones": ["h", "ae1", "-", "v", "ih", "ng"]}
+{"w": "he", "phones": ["h", "iy1"]}
+{"w": "head", "phones": ["h", "eh1", "d"]}
+{"w": "heading", "phones": ["h", "eh1", "-", "d", "ih", "ng"]}
+{"w": "heap", "phones": ["h", "iy1", "p"]}
+{"w": "hear", "phones": ["h", "iy1", "r"]}
+{"w": "heard", "phones": ["h", "er1", "r", "d"]}
+{"w": "hearing", "phones": ["h", "iy1", "-", "r", "ih", "ng"]}
+{"w": "hedgehog", "phones": ["h", "eh1", "jh", "-", "h", "aa", "g"]}
+{"w": "held", "phones": ["h", "eh1", "l", "d"]}
+{"w": "hello", "phones": ["h", "eh", "-", "l", "ow1"]}
+{"w": "help", "phones": ["h", "eh1", "l", "p"]}
+{"w": "henry", "phones": ["h", "eh1", "n", "-", "r", "iy"]}
+{"w": "her", "phones": ["h", "er1", "r"]}
+{"w": "here", "phones": ["h", "iy1", "r"]}
+{"w": "herself", "phones": ["h", "er", "r", "-", "s", "eh1", "l", "f"]}
+{"w": "high", "phones": ["h", "ay1"]}
+{"w": "highly", "phones": ["h", "ay1", "-", "l", "iy"]}
+{"w": "hill", "phones": ["h", "ih1", "l"]}
+{"w": "him", "phones": ["h", "ih1", "m"]}
+{"w": "himself", "phones": ["h", "ih", "m", "-", "s", "eh1", "l", "f"]}
+{"w": "his", "phones": ["h", "ih1", "z"]}
+{"w": "home", "phones": ["h", "ow1", "m"]}
+{"w": "honestly", "phones": ["aa1", "-", "n", "ih", "s", "t", "-", "l", "iy"]}
+{"w": "honour", "phones": ["aa1", "-", "n", "ax", "r"]}
+{"w": "hookah", "phones": ["h", "uw1", "-", "k", "ax"]}
+{"w": "hope", "phones": ["h", "ow1", "p"]}
+{"w": "hoped", "phones": ["h", "ow1", "p", "t"]}
+{"w": "hopes", "phones": ["h", "ow1", "p", "s"]}
+{"w": "horribly", "phones": ["h", "ao1", "-", "r", "ax", "-", "b", "l", "iy"]}
+{"w": "hour", "phones": ["aw1", "-", "ax", "r"]}
+{"w": "hours", "phones": ["aw1", "-", "ax", "r", "z"]}
+{"w": "house", "phones": ["h", "aw1", "s"]}
+{"w": "housekeeping", "phones": ["h", "aw1", "-", "s", "k", "iy2", "-", "p", "ih", "ng"]}
+{"w": "housemaid", "phones": ["h", "aw1", "-", "s", "m", "ey2", "d"]}
+{"w": "how", "phones": ["h", "aw1"]}
+{"w": "however", "phones": ["h", "aw", "-", "eh1", "-", "v", "ax", "r"]}
+{"w": "html", "phones": ["ey2", "ch", "-", "t", "iy", "-", "eh", "m", "-", "eh1", "l"]}
+{"w": "hugh", "phones": ["h", "y", "uw1"]}
+{"w": "humanity", "phones": ["h", "y", "uw", "-", "m", "ae1", "-", "n", "ax", "-", "t", "iy"]}
+{"w": "humour", "phones": ["h", "y", "uw1", "-", "m", "ax", "r"]}
+{"w": "hundred", "phones": ["h", "ah1", "n", "-", "d", "r", "ih", "d"]}
+{"w": "hunsford", "phones": ["h", "ah1", "n", "z", "-", "f", "er", "d"]}
+{"w": "hurst", "phones": ["h", "er1", "s", "t"]}
+{"w": "husband", "phones": ["h", "ah1", "z", "-", "b", "ax", "n", "d"]}
+{"w": "i", "phones": ["ay1"]}
+{"w": "if", "phones": ["ih1", "f"]}
+{"w": "ii", "phones": ["t", "uw1"]}
+{"w": "iii", "phones": ["th", "r", "iy1"]}
+{"w": "ile", "phones": ["ay1", "l"]}
+{"w": "ill", "phones": ["ih1", "l"]}
+{"w": "illustration", "phones": ["ih2", "-", "l", "ax", "-", "s", "t", "r", "ey1", "-", "sh", "ax", "n"]}
+{"w": "illustrations", "phones": ["ih2", "-", "l", "ax", "-", "s", "t", "r", "ey1", "-", "sh", "ax", "n", "z"]}
+{"w": "immediately", "phones": ["ih", "-", "m", "iy1", "-", "d", "iy", "-", "ih", "t", "-", "l", "iy"]}
+{"w": "important", "phones": ["ih", "m", "-", "p", "ao1", "r", "-", "t", "ax", "n", "t"]}
+{"w": "impossible", "phones": ["ih", "m", "-", "p", "aa1", "-", "s", "ih", "-", "b", "ax", "l"]}
+{"w": "impression", "phones": ["ih", "m", "-", "p", "r", "eh1", "-", "sh", "ax", "n"]}
+{"w": "in", "phones": ["ih1", "n"]}
+{"w": "inattention", "phones": ["ih", "-", "n", "ax", "-", "t", "eh1", "n", "-", "sh", "ax", "n"]}
+{"w": "inconsistencies", "phones": ["ih2", "n", "-", "k", "ax", "n", "-", "s", "ih1", "-", "s", "t", "ax", "n", "-", "s", "iy", "z"]}
+{"w": "increased", "phones": ["ih", "n", "-", "k", "r", "iy1", "s", "t"]}
+{"w": "incredible", "phones": ["ih", "n", "-", "k", "r", "eh1", "-", "d", "ax", "-", "b", "ax", "l"]}
+{"w": "indeed", "phones": ["ih", "n", "-", "d", "iy1", "d"]}
+{"w": "indignity", "phones": ["ih", "n", "-", "d", "ih1", "g", "-", "n", "ax", "-", "t", "iy"]}
+{"w": "indulgence", "phones": ["ih", "n", "-", "d", "ah1", "l", "-", "jh", "ax", "n", "s"]}
+{"w": "inferiority", "phones": ["ih", "n", "-", "f", "iy2", "-", "r", "iy", "-", "ao1", "-", "r", "ax", "-", "t", "iy"]}
+{"w": "inflexibly", "phones": ["ih", "n", "-", "f", "l", "eh1", "k", "-", "s", "ax", "-", "b", "l", "iy"]}
+{"w": "influence", "phones": ["ih1", "n", "-", "f", "l", "uw", "-", "ax", "n", "s"]}
+{"w": "information", "phones": ["ih2", "n", "-", "f", "ax", "r", "-", "m", "ey1", "-", "sh", "ax", "n"]}
+{"w": "inhabitants", "phones": ["ih", "n", "-", "h", "ae1", "-", "b", "ax", "-", "t", "ax", "n", "t", "s"]}
+{"w": "inhuman", "phones": ["ih", "n", "-", "h", "y", "uw1", "-", "m", "ax", "n"]}
+{"w": "inoffensive", "phones": ["ih", "-", "n", "ax", "-", "f", "eh1", "n", "-", "s", "ih", "v"]}
+{"w": "inquired", "phones": ["ih", "n", "-", "k", "w", "ay1", "-", "ax", "r", "d"]}
+{"w": "inquiries", "phones": ["ih1", "n", "-", "k", "w", "ax", "-", "r", "iy", "z"]}
+{"w": "insipidity", "phones": ["ih", "n", "-", "s", "ih1", "-", "p", "ih1", "-", "d", "ax", "-", "t", "iy"]}
+{"w": "insist", "phones": ["ih", "n", "-", "s", "ih1", "s", "t"]}
+{"w": "insupportable", "phones": ["ih", "n", "-", "s", "ax", "-", "p", "ao1", "r", "-", "t", "ax", "-", "b", "ax", "l"]}
+{"w": "intelligence", "phones": ["ih", "n", "-", "t", "eh1", "-", "l", "ax", "-", "jh", "ax", "n", "s"]}
+{"w": "intend", "phones": ["ih", "n", "-", "t", "eh1", "n", "d"]}
+{"w": "intended", "phones": ["ih", "n", "-", "t", "eh1", "n", "-", "d", "ih", "d"]}
+{"w": "interesting", "phones": ["ih1", "n", "-", "t", "r", "ax", "-", "s", "t", "ih", "ng"]}
+{"w": "intermission", "phones": ["ih2", "n", "-", "t", "ax", "r", "-", "m", "ih1", "-", "sh", "ax", "n"]}
+{"w": "intimacy", "phones": ["ih1", "n", "-", "t", "ax", "-", "m", "ax", "-", "s", "iy"]}
+{"w": "intimate", "phones": ["ih1", "n", "-", "t", "ax", "-", "m", "ih", "t"]}
+{"w": "into", "phones": ["ih1", "n", "-", "t", "uw"]}
+{"w": "introduced", "phones": ["ih2", "n", "-", "t", "r", "ax", "-", "d", "uw1", "s", "t"]}
+{"w": "invitation", "phones": ["ih2", "n", "-", "v", "ax", "-", "t", "ey1", "-", "sh", "ax", "n"]}
+{"w": "inviting", "phones": ["ih", "n", "-", "v", "ay1", "-", "t", "ih", "ng"]}
+{"w": "involved", "phones": ["ih", "n", "-", "v", "aa1", "l", "v", "d"]}
+{"w": "ip", "phones": ["ay2", "-", "p", "iy1"]}
+{"w": "is", "phones": ["ih1", "z"]}
+{"w": "it", "phones": ["ih1", "t"]}
+{"w": "italian", "phones": ["ih", "-", "t", "ae1", "-", "l", "y", "ax", "n"]}
+{"w": "item", "phones": ["ay1", "-", "t", "ax", "m"]}
+{"w": "its", "phones": ["ih1", "t", "s"]}
+{"w": "itself", "phones": ["ih", "t", "-", "s", "eh1", "l", "f"]}
+{"w": "iv", "phones": ["f", "ao1", "r"]}
+{"w": "ix", "phones": ["n", "ay1", "n"]}
+{"w": "j", "phones": ["jh", "ey1"]}
+{"w": "jane", "phones": ["jh", "ey1", "n"]}
+{"w": "january", "phones": ["jh", "ae1", "-", "n", "y", "uh", "-", "eh2", "-", "r", "iy"]}
+{"w": "john's", "phones": ["jh", "aa1", "n", "z"]}
+{"w": "join", "phones": ["jh", "oy1", "n"]}
+{"w": "joined", "phones": ["jh", "oy1", "n", "d"]}
+{"w": "jones", "phones": ["jh", "ow1", "n", "z"]}
+{"w": "joy", "phones": ["jh", "oy1"]}
+{"w": "judge", "phones": ["jh", "ah1", "jh"]}
+{"w": "july", "phones": ["jh", "ax", "-", "l", "ay1"]}
+{"w": "june", "phones": ["jh", "uw1", "n"]}
+{"w": "jurors", "phones": ["jh", "uh1", "-", "r", "ax", "r", "z"]}
+{"w": "just", "phones": ["jh", "ah1", "s", "t"]}
+{"w": "justice", "phones": ["jh", "ah1", "-", "s", "t", "ih", "s"]}
+{"w": "justify", "phones": ["jh", "ah1", "-", "s", "t", "ax", "-", "f", "ay2"]}
+{"w": "k", "phones": ["k", "ey1"]}
+{"w": "keep", "phones": ["k", "iy1", "p"]}
+{"w": "kept", "phones": ["k", "eh1", "p", "t"]}
+{"w": "key", "phones": ["k", "iy1"]}
+{"w": "kg", "phones": ["k", "ey1", "-", "jh", "iy1"]}
+{"w": "kind", "phones": ["k", "ay1", "n", "d"]}
+{"w": "kindness", "phones": ["k", "ay1", "n", "d", "-", "n", "ih", "s"]}
+{"w": "king", "phones": ["k", "ih1", "ng"]}
+{"w": "km", "phones": ["k", "ey1", "-", "eh1", "m"]}
+{"w": "knave", "phones": ["n", "ey1", "v"]}
+{"w": "knew", "phones": ["n", "uw1"]}
+{"w": "knocked", "phones": ["n", "aa1", "k", "t"]}
+{"w": "know", "phones": ["n", "ow1"]}
+{"w": "known", "phones": ["n", "ow1", "n"]}
+{"w": "knows", "phones": ["n", "ow1", "z"]}
+{"w": "l", "phones": ["eh1", "l"]}
+{"w": "laboriously", "phones": ["l", "ax", "-", "b", "ao1", "-", "r", "iy", "-", "ax", "-", "s", "l", "iy"]}
+{"w": "lace", "phones": ["l", "ey1", "s"]}
+{"w": "ladies", "phones": ["l", "ey1", "-", "d", "iy", "z"]}
+{"w": "lady", "phones": ["l", "ey1", "-", "d", "iy"]}
+{"w": "lane", "phones": ["l", "ey1", "n"]}
+{"w": "large", "phones": ["l", "aa1", "r", "jh"]}
+{"w": "last", "phones": ["l", "ae1", "s", "t"]}
+{"w": "late", "phones": ["l", "ey1", "t"]}
+{"w": "latter", "phones": ["l", "ae1", "-", "t", "ax", "r"]}
+{"w": "laugh", "phones": ["l", "ae1", "f"]}
+{"w": "laughter", "phones": ["l", "ae1", "f", "-", "t", "ax", "r"]}
+{"w": "lavington", "phones": ["l", "ey1", "-", "v", "ih", "ng", "-", "t", "ax", "n"]}
+{"w": "leap", "phones": ["l", "iy1", "p"]}
+{"w": "learn", "phones": ["l", "er1", "r", "n"]}
+{"w": "least", "phones": ["l", "iy1", "s", "t"]}
+{"w": "leave", "phones": ["l", "iy1", "v"]}
+{"w": "leaves", "phones": ["l", "iy1", "v", "z"]}
+{"w": "leaving", "phones": ["l", "iy1", "-", "v", "ih", "ng"]}
+{"w": "led", "phones": ["l", "eh1", "d"]}
+{"w": "left", "phones": ["l", "eh1", "f", "t"]}
+{"w": "length", "phones": ["l", "eh1", "ng", "th"]}
+{"w": "less", "phones": ["l", "eh1", "s"]}
+{"w": "lessons", "phones": ["l", "eh1", "-", "s", "ax", "n", "z"]}
+{"w": "let", "phones": ["l", "eh1", "t"]}
+{"w": "letter", "phones": ["l", "eh1", "-", "t", "ax", "r"]}
+{"w": "letters", "phones": ["l", "eh1", "-", "t", "ax", "r", "z"]}
+{"w": "library", "phones": ["l", "ay1", "-", "b", "r", "eh2", "r", "-", "iy"]}
+{"w": "life", "phones": ["l", "ay1", "f"]}
+{"w": "like", "phones": ["l", "ay1", "k"]}
+{"w": "liked", "phones": ["l", "ay1", "k", "t"]}
+{"w": "limit", "phones": ["l", "ih1", "-", "m", "ih", "t"]}
+{"w": "lines", "phones": ["l", "ay1", "n", "z"]}
+{"w": "list", "phones": ["l", "ih1", "s", "t"]}
+{"w": "listen", "phones": ["l", "ih1", "-", "s", "ax", "n"]}
+{"w": "listening", "phones": ["l", "ih1", "-", "s", "ax", "-", "n", "ih", "ng"]}
+{"w": "little", "phones": ["l", "ih1", "-", "t", "ax", "l"]}
+{"w": "littleness", "phones": ["l", "ih1", "-", "t", "ax", "l", "-", "n", "ih", "s"]}
+{"w": "lived", "phones": ["l", "ih1", "v", "d"]}
+{"w": "lively", "phones": ["l", "ay1", "v", "-", "l", "iy"]}
+{"w": "lizard", "phones": ["l", "ih1", "-", "z", "ax", "r", "d"]}
+{"w": "lizzy", "phones": ["l", "ih1", "-", "z", "iy"]}
+{"w": "lobster", "phones": ["l", "aa1", "b", "-", "s", "t", "ax", "r"]}
+{"w": "lobsters", "phones": ["l", "aa1", "b", "-", "s", "t", "ax", "r", "z"]}
+{"w": "locks", "phones": ["l", "aa1", "k", "s"]}
+{"w": "lodgings", "phones": ["l", "aa1", "-", "jh", "ih", "ng", "z"]}
+{"w": "london", "phones": ["l", "ah1", "n", "-", "d", "ax", "n"]}
+{"w": "long", "phones": ["l", "ao1", "ng"]}
+{"w": "longbourn", "phones": ["l", "ao1", "ng", "-", "b", "ao1", "r", "n"]}
+{"w": "longed", "phones": ["l", "ao1", "ng", "d"]}
+{"w": "loo", "phones": ["l", "uw1"]}
+{"w": "look", "phones": ["l", "uh1", "k"]}
+{"w": "looked", "phones": ["l", "uh1", "k", "t"]}
+{"w": "looking", "phones": ["l", "uh1", "-", "k", "ih", "ng"]}
+{"w": "losing", "phones": ["l", "uw1", "-", "z", "ih", "ng"]}
+{"w": "love", "phones": ["l", "ah1", "v"]}
+{"w": "loved", "phones": ["l", "ah1", "v", "d"]}
+{"w": "loves", "phones": ["l", "ah1", "v", "z"]}
+{"w": "low", "phones": ["l", "ow1"]}
+{"w": "lucas", "phones": ["l", "uw1", "-", "k", "ax", "s"]}
+{"w": "lucases", "phones": ["l", "uw1", "-", "k", "ax", "-", "s", "ax", "z"]}
+{"w": "lucky", "phones": ["l", "ah1", "-", "k", "iy"]}
+{"w": "lydia", "phones": ["l", "ih1", "-", "d", "iy", "-", "ax"]}
+{"w": "lying", "phones": ["l", "ay1", "-", "ih", "ng"]}
+{"w": "m", "phones": ["eh1", "m"]}
+{"w": "mabel", "phones": ["m", "ey1", "-", "b", "ax", "l"]}
+{"w": "mad", "phones": ["m", "ae1", "d"]}
+{"w": "made", "phones": ["m", "ey1", "d"]}
+{"w": "magic", "phones": ["m", "ae1", "-", "jh", "ih", "k"]}
+{"w": "make", "phones": ["m", "ey1", "k"]}
+{"w": "making", "phones": ["m", "ey1", "-", "k", "ih", "ng"]}
+{"w": "man", "phones": ["m", "ae1", "n"]}
+{"w": "manner", "phones": ["m", "ae1", "-", "n", "ax", "r"]}
+{"w": "manners", "phones": ["m", "ae1", "-", "n", "ax", "r", "z"]}
+{"w": "many", "phones": ["m", "eh1", "-", "n", "iy"]}
+{"w": "march", "phones": ["m", "aa1", "r", "ch"]}
+{"w": "marched", "phones": ["m", "aa1", "r", "ch", "t"]}
+{"w": "marriage", "phones": ["m", "eh1", "-", "r", "ih", "jh"]}
+{"w": "married", "phones": ["m", "ae1", "r", "-", "iy", "d"]}
+{"w": "marry", "phones": ["m", "eh1", "-", "r", "iy"]}
+{"w": "mary", "phones": ["m", "eh1", "r", "-", "iy"]}
+{"w": "masterly", "phones": ["m", "ae1", "-", "s", "t", "ax", "r", "-", "l", "iy"]}
+{"w": "matter", "phones": ["m", "ae1", "-", "t", "ax", "r"]}
+{"w": "maupassant", "phones": ["m", "ow1", "-", "p", "ax", "-", "s", "aa2", "n", "t"]}
+{"w": "may", "phones": ["m", "ey1"]}
+{"w": "mb", "phones": ["eh1", "m", "-", "b", "iy1"]}
+{"w": "me", "phones": ["m", "iy1"]}
+{"w": "mean", "phones": ["m", "iy1", "n"]}
+{"w": "meaning", "phones": ["m", "iy1", "-", "n", "ih", "ng"]}
+{"w": "meanness", "phones": ["m", "iy1", "n", "-", "n", "ih", "s"]}
+{"w": "means", "phones": ["m", "iy1", "n", "z"]}
+{"w": "measure", "phones": ["m", "eh1", "-", "zh", "ax", "r"]}
+{"w": "mechanic", "phones": ["m", "ax", "-", "k", "ae1", "-", "n", "ih", "k"]}
+{"w": "meet", "phones": ["m", "iy1", "t"]}
+{"w": "meeting", "phones": ["m", "iy1", "-", "t", "ih", "ng"]}
+{"w": "meets", "phones": ["m", "iy1", "t", "s"]}
+{"w": "mend", "phones": ["m", "eh1", "n", "d"]}
+{"w": "mention", "phones": ["m", "eh1", "n", "-", "sh", "ax", "n"]}
+{"w": "mentioned", "phones": ["m", "eh1", "n", "-", "sh", "ax", "n", "d"]}
+{"w": "mentioning", "phones": ["m", "eh1", "n", "-", "sh", "ax", "-", "n", "ih", "ng"]}
+{"w": "merely", "phones": ["m", "iy1", "r", "-", "l", "iy"]}
+{"w": "meryton", "phones": ["m", "eh1", "-", "r", "ih", "-", "t", "ax", "n"]}
+{"w": "met", "phones": ["m", "eh1", "t"]}
+{"w": "metaphysics", "phones": ["m", "eh2", "-", "t", "ax", "-", "f", "ih1", "-", "z", "ih", "k", "s"]}
+{"w": "microcosm", "phones": ["m", "ay1", "-", "k", "r", "ax", "-", "k", "aa2", "-", "z", "ax", "m"]}
+{"w": "middle", "phones": ["m", "ih1", "-", "d", "ax", "l"]}
+{"w": "might", "phones": ["m", "ay1", "t"]}
+{"w": "miles", "phones": ["m", "ay1", "l", "z"]}
+{"w": "million", "phones": ["m", "ih1", "-", "l", "y", "ax", "n"]}
+{"w": "mince-pies", "phones": ["m", "ih1", "n", "s", "-", "p", "ay1", "z"]}
+{"w": "mind", "phones": ["m", "ay1", "n", "d"]}
+{"w": "mine", "phones": ["m", "ay1", "n"]}
+{"w": "minor", "phones": ["m", "ay1", "-", "n", "ax", "r"]}
+{"w": "minute", "phones": ["m", "ih1", "-", "n", "ih", "t"]}
+{"w": "minutes", "phones": ["m", "ih1", "-", "n", "ih", "t", "s"]}
+{"w": "miserable", "phones": ["m", "ih1", "z", "-", "r", "ax", "-", "b", "ax", "l"]}
+{"w": "miss", "phones": ["m", "ih1", "s"]}
+{"w": "missed", "phones": ["m", "ih1", "s", "t"]}
+{"w": "missing", "phones": ["m", "ih1", "-", "s", "ih", "ng"]}
+{"w": "mix", "phones": ["m", "ih1", "k", "s"]}
+{"w": "mock", "phones": ["m", "aa1", "k"]}
+{"w": "moment", "phones": ["m", "ow1", "-", "m", "ax", "n", "t"]}
+{"w": "monday", "phones": ["m", "ah1", "n", "-", "d", "ey"]}
+{"w": "month", "phones": ["m", "ah1", "n", "th"]}
+{"w": "more", "phones": ["m", "ao1", "r"]}
+{"w": "morning", "phones": ["m", "ao1", "r", "-", "n", "ih", "ng"]}
+{"w": "mortifying", "phones": ["m", "ao1", "r", "-", "t", "ax", "-", "f", "ay2", "-", "ih", "ng"]}
+{"w": "most", "phones": ["m", "ow1", "s", "t"]}
+{"w": "mother", "phones": ["m", "ah1", "-", "dh", "ax", "r"]}
+{"w": "motive", "phones": ["m", "ow1", "-", "t", "ih", "v"]}
+{"w": "motives", "phones": ["m", "ow1", "-", "t", "ih", "v", "z"]}
+{"w": "mountain", "phones": ["m", "aw1", "n", "-", "t", "ax", "n"]}
+{"w": "mournfully", "phones": ["m", "ao1", "r", "n", "-", "f", "ax", "-", "l", "iy"]}
+{"w": "mouse", "phones": ["m", "aw1", "s"]}
+{"w": "mouth", "phones": ["m", "aw1", "th"]}
+{"w": "mouths", "phones": ["m", "aw1", "th", "s"]}
+{"w": "moving", "phones": ["m", "uw1", "-", "v", "ih", "ng"]}
+{"w": "mph", "phones": ["eh1", "m", "-", "p", "iy1", "-", "ey1", "ch"]}
+{"w": "mr", "phones": ["m", "ih1", "-", "s", "t", "ax", "r"]}
+{"w": "mrs", "phones": ["m", "ih1", "-", "s", "ih", "z"]}
+{"w": "ms", "phones": ["eh1", "m", "-", "eh1", "s"]}
+{"w": "much", "phones": ["m", "ah1", "ch"]}
+{"w": "multiply", "phones": ["m", "ah1", "l", "-", "t", "ax", "-", "p", "l", "ay"]}
+{"w": "music", "phones": ["m", "y", "uw1", "-", "z", "ih", "k"]}
+{"w": "must", "phones": ["m", "ah1", "s", "t"]}
+{"w": "my", "phones": ["m", "ay1"]}
+{"w": "myriad", "phones": ["m", "ih1", "-", "r", "iy", "-", "ax", "d"]}
+{"w": "myself", "phones": ["m", "ay", "-", "s", "eh1", "l", "f"]}
+{"w": "n", "phones": ["eh1", "n"]}
+{"w": "names", "phones": ["n", "ey1", "m", "z"]}
+{"w": "nasa", "phones": ["n", "ae1", "-", "s", "ax"]}
+{"w": "nasty", "phones": ["n", "ae1", "-", "s", "t", "iy"]}
+{"w": "natural", "phones": ["n", "ae1", "-", "ch", "ax", "-", "r", "ax", "l"]}
+{"w": "nature", "phones": ["n", "ey1", "-", "ch", "ax", "r"]}
+{"w": "nd", "phones": ["eh1", "n", "-", "d", "iy1"]}
+{"w": "near", "phones": ["n", "iy1", "r"]}
+{"w": "needlework", "phones": ["n", "iy1", "-", "d", "ax", "l", "-", "w", "er", "r", "k"]}
+{"w": "neglect", "phones": ["n", "ih", "-", "g", "l", "eh1", "k", "t"]}
+{"w": "neighbour", "phones": ["n", "ey1", "-", "b", "ax", "r"]}
+{"w": "neighbourhood", "phones": ["n", "ey1", "-", "b", "ax", "r", "-", "h", "uh2", "d"]}
+{"w": "nerves", "phones": ["n", "er1", "r", "v", "z"]}
+{"w": "nervous", "phones": ["n", "er1", "r", "-", "v", "ax", "s"]}
+{"w": "net", "phones": ["n", "eh1", "t"]}
+{"w": "netherfield", "phones": ["n", "eh1", "-", "dh", "er", "-", "f", "iy", "l", "d"]}
+{"w": "network", "phones": ["n", "eh1", "t", "-", "w", "er2", "r", "k"]}
+{"w": "never", "phones": ["n", "eh1", "-", "v", "ax", "r"]}
+{"w": "new", "phones": ["n", "uw1"]}
+{"w": "news", "phones": ["n", "uw1", "z"]}
+{"w": "next", "phones": ["n", "eh1", "k", "s", "t"]}
+{"w": "nieces", "phones": ["n", "iy1", "-", "s", "ih", "z"]}
+{"w": "nine", "phones": ["n", "ay1", "n"]}
+{"w": "nineteen", "phones": ["n", "ay", "n", "-", "t", "iy1", "n"]}
+{"w": "nineteenth", "phones": ["n", "ay", "n", "-", "t", "iy1", "n", "th"]}
+{"w": "ninetieth", "phones": ["n", "ay1", "n", "-", "t", "iy", "-", "ax", "th"]}
+{"w": "ninety", "phones": ["n", "ay1", "n", "-", "t", "iy"]}
+{"w": "ninth", "phones": ["n", "ay1", "n", "th"]}
+{"w": "no", "phones": ["n", "ow1"]}
+{"w": "noble", "phones": ["n", "ow1", "-", "b", "ax", "l"]}
+{"w": "nodded", "phones": ["n", "aa1", "-", "d", "ih", "d"]}
+{"w": "noise", "phones": ["n", "oy1", "z"]}
+{"w": "non-existent", "phones": ["n", "aa1", "n", "-", "ih", "g", "-", "z", "ih1", "-", "s", "t", "ax", "n", "t"]}
+{"w": "none", "phones": ["n", "ah1", "n"]}
+{"w": "nonsense", "phones": ["n", "aa1", "n", "-", "s", "eh", "n", "s"]}
+{"w": "nonsensical", "phones": ["n", "aa", "n", "-", "s", "eh1", "n", "-", "s", "ih", "-", "k", "ax", "l"]}
+{"w": "nor", "phones": ["n", "ao1", "r"]}
+{"w": "not", "phones": ["n", "aa1", "t"]}
+{"w": "note", "phones": ["n", "ow1", "t"]}
+{"w": "note-book", "phones": ["n", "ow1", "t", "-", "b", "uh1", "k"]}
+{"w": "nothing", "phones": ["n", "ah1", "-", "th", "ih", "ng"]}
+{"w": "nothingness", "phones": ["n", "ah1", "-", "th", "ih", "ng", "-", "n", "ih", "s"]}
+{"w": "notice", "phones": ["n", "ow1", "-", "t", "ih", "s"]}
+{"w": "notion", "phones": ["n", "ow1", "-", "sh", "ax", "n"]}
+{"w": "nourishes", "phones": ["n", "er1", "r", "-", "ih", "-", "sh", "ih", "z"]}
+{"w": "novelty", "phones": ["n", "aa1", "-", "v", "ax", "l", "-", "t", "iy"]}
+{"w": "november", "phones": ["n", "ow", "-", "v", "eh1", "m", "-", "b", "ax", "r"]}
+{"w": "now", "phones": ["n", "aw1"]}
+{"w": "number", "phones": ["n", "ah1", "m", "-", "b", "ax", "r"]}
+{"w": "o", "phones": ["ow1"]}
+{"w": "object", "phones": ["ax", "b", "-", "jh", "eh1", "k", "t"]}
+{"w": "objectors", "phones": ["ax", "b", "-", "jh", "eh1", "k", "-", "t", "ax", "r", "z"]}
+{"w": "obliged", "phones": ["ax", "-", "b", "l", "ay1", "jh", "d"]}
+{"w": "obliging", "phones": ["ax", "-", "b", "l", "ay1", "-", "jh", "ih", "ng"]}
+{"w": "observe", "phones": ["ax", "b", "-", "z", "er1", "r", "v"]}
+{"w": "observing", "phones": ["ax", "b", "-", "z", "er1", "r", "-", "v", "ih", "ng"]}
+{"w": "obstacle", "phones": ["aa1", "b", "-", "s", "t", "ax", "-", "k", "ax", "l"]}
+{"w": "obtained", "phones": ["ax", "b", "-", "t", "ey1", "n", "d"]}
+{"w": "occasion", "phones": ["ax", "-", "k", "ey1", "-", "zh", "ax", "n"]}
+{"w": "occurs", "phones": ["ax", "-", "k", "er1", "r", "z"]}
+{"w": "october", "phones": ["aa", "k", "-", "t", "ow1", "-", "b", "ax", "r"]}
+{"w": "odd", "phones": ["aa1", "d"]}
+{"w": "of", "phones": ["ah1", "v"]}
+{"w": "off", "phones": ["ao1", "f"]}
+{"w": "offence", "phones": ["ax", "-", "f", "eh1", "n", "s"]}
+{"w": "offended", "phones": ["ax", "-", "f", "eh1", "n", "-", "d", "ih", "d"]}
+{"w": "offered", "phones": ["ao1", "-", "f", "ax", "r", "d"]}
+{"w": "officers", "phones": ["ao1", "-", "f", "ih", "-", "s", "ax", "r", "z"]}
+{"w": "often", "phones": ["ao1", "-", "f", "ax", "n"]}
+{"w": "oh", "phones": ["ow1"]}
+{"w": "ok", "phones": ["ow2", "-", "k", "ey1"]}
+{"w": "okay", "phones": ["ow2", "-", "k", "ey1"]}
+{"w": "old", "phones": ["ow1", "l", "d"]}
+{"w": "on", "phones": ["aa1", "n"]}
+{"w": "once", "phones": ["w", "ah1", "n", "s"]}
+{"w": "one", "phones": ["w", "ah1", "n"]}
+{"w": "online", "phones": ["aa1", "n", "-", "l", "ay1", "n"]}
+{"w": "only", "phones": ["ow1", "n", "-", "l", "iy"]}
+{"w": "onto", "phones": ["aa1", "n", "-", "t", "uw"]}
+{"w": "open", "phones": ["ow1", "-", "p", "ax", "n"]}
+{"w": "opened", "phones": ["ow1", "-", "p", "ax", "n", "d"]}
+{"w": "opening", "phones": ["ow1", "-", "p", "ax", "-", "n", "ih", "ng"]}
+{"w": "opposite", "phones": ["aa1", "-", "p", "ax", "-", "z", "ih", "t"]}
+{"w": "opposition", "phones": ["aa2", "-", "p", "ax", "-", "z", "ih1", "-", "sh", "ax", "n"]}
+{"w": "or", "phones": ["ao1", "r"]}
+{"w": "order", "phones": ["ao1", "r", "-", "d", "ax", "r"]}
+{"w": "ordered", "phones": ["ao1", "r", "-", "d", "ax", "r", "d"]}
+{"w": "other", "phones": ["ah1", "-", "dh", "ax", "r"]}
+{"w": "others", "phones": ["ah1", "-", "dh", "ax", "r", "z"]}
+{"w": "ought", "phones": ["ao1", "t"]}
+{"w": "our", "phones": ["aw1", "r"]}
+{"w": "ourselves", "phones": ["aa", "r", "-", "s", "eh1", "l", "v", "z"]}
+{"w": "out", "phones": ["aw1", "t"]}
+{"w": "over", "phones": ["ow1", "-", "v", "ax", "r"]}
+{"w": "overhear", "phones": ["ow", "-", "v", "ax", "r", "-", "h", "iy1", "r"]}
+{"w": "own", "phones": ["ow1", "n"]}
+{"w": "p", "phones": ["p", "iy1"]}
+{"w": "p.m.", "phones": ["p", "iy1", "-", "eh1", "m"]}
+{"w": "package", "phones": ["p", "ae1", "-", "k", "ih", "jh"]}
+{"w": "pages", "phones": ["p", "ey1", "-", "jh", "ih", "z"]}
+{"w": "pain", "phones": ["p", "ey1", "n"]}
+{"w": "paint", "phones": ["p", "ey1", "n", "t"]}
+{"w": "pair", "phones": ["p", "eh1", "r"]}
+{"w": "pale", "phones": ["p", "ey1", "l"]}
+{"w": "paper", "phones": ["p", "ey1", "-", "p", "ax", "r"]}
+{"w": "parlour", "phones": ["p", "aa1", "r", "-", "l", "ax", "r"]}
+{"w": "part", "phones": ["p", "aa1", "r", "t"]}
+{"w": "partiality", "phones": ["p", "aa", "r", "-", "sh", "ae1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "particular", "phones": ["p", "aa", "r", "-", "t", "ih1", "-", "k", "y", "ax", "-", "l", "ax", "r"]}
+{"w": "particularly", "phones": ["p", "ax", "r", "-", "t", "ih1", "-", "k", "y", "ax", "-", "l", "ax", "r", "-", "l", "iy"]}
+{"w": "partner", "phones": ["p", "aa1", "r", "t", "-", "n", "ax", "r"]}
+{"w": "party", "phones": ["p", "aa1", "r", "-", "t", "iy"]}
+{"w": "passages", "phones": ["p", "ae1", "-", "s", "ih", "-", "jh", "ih", "z"]}
+{"w": "passed", "phones": ["p", "ae1", "s", "t"]}
+{"w": "path", "phones": ["p", "ae1", "th"]}
+{"w": "patiently", "phones": ["p", "ey1", "-", "sh", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "pattering", "phones": ["p", "ae1", "-", "t", "ax", "-", "r", "ih", "ng"]}
+{"w": "paw", "phones": ["p", "ao1"]}
+{"w": "paws", "phones": ["p", "ao1", "z"]}
+{"w": "pay", "phones": ["p", "ey1"]}
+{"w": "pdf", "phones": ["p", "iy1", "-", "d", "iy2", "-", "eh1", "f"]}
+{"w": "peeping", "phones": ["p", "iy1", "-", "p", "ih", "ng"]}
+{"w": "pemberley", "phones": ["p", "eh1", "m", "-", "b", "er", "-", "l", "iy"]}
+{"w": "pencil", "phones": ["p", "eh1", "n", "-", "s", "ax", "l"]}
+{"w": "pennyworth", "phones": ["p", "eh1", "-", "n", "iy", "-", "w", "er1", "r", "th"]}
+{"w": "pens", "phones": ["p", "eh1", "n", "z"]}
+{"w": "people", "phones": ["p", "iy1", "-", "p", "ax", "l"]}
+{"w": "pepper", "phones": ["p", "eh1", "-", "p", "ax", "r"]}
+{"w": "perceive", "phones": ["p", "ax", "r", "-", "s", "iy1", "v"]}
+{"w": "percent", "phones": ["p", "ax", "r", "-", "s", "eh1", "n", "t"]}
+{"w": "perfectly", "phones": ["p", "er1", "r", "-", "f", "ih", "k", "t", "-", "l", "iy"]}
+{"w": "performed", "phones": ["p", "ax", "r", "-", "f", "ao1", "r", "m", "d"]}
+{"w": "perhaps", "phones": ["p", "ax", "r", "-", "h", "ae1", "p", "s"]}
+{"w": "persevered", "phones": ["p", "er2", "r", "-", "s", "ax", "-", "v", "iy1", "r", "d"]}
+{"w": "person", "phones": ["p", "er1", "r", "-", "s", "ax", "n"]}
+{"w": "persons", "phones": ["p", "er1", "r", "-", "s", "ax", "n", "z"]}
+{"w": "persuade", "phones": ["p", "ax", "r", "-", "s", "w", "ey1", "d"]}
+{"w": "persuasion", "phones": ["p", "ax", "r", "-", "s", "w", "ey1", "-", "zh", "ax", "n"]}
+{"w": "petition", "phones": ["p", "ax", "-", "t", "ih1", "-", "sh", "ax", "n"]}
+{"w": "philips", "phones": ["f", "ih1", "l", "-", "ax", "p", "s"]}
+{"w": "phone", "phones": ["f", "ow1", "n"]}
+{"w": "picture", "phones": ["p", "ih1", "k", "-", "ch", "ax", "r"]}
+{"w": "picturesque", "phones": ["p", "ih2", "k", "-", "ch", "ax", "-", "r", "eh1", "s", "k"]}
+{"w": "pie", "phones": ["p", "ay1"]}
+{"w": "piece", "phones": ["p", "iy1", "s"]}
+{"w": "pig", "phones": ["p", "ih1", "g"]}
+{"w": "piling", "phones": ["p", "ay1", "-", "l", "ih", "ng"]}
+{"w": "piquet", "phones": ["p", "ih", "-", "k", "eh1", "t"]}
+{"w": "pitied", "phones": ["p", "ih1", "-", "t", "ih", "d"]}
+{"w": "pity", "phones": ["p", "ih1", "-", "t", "iy"]}
+{"w": "place", "phones": ["p", "l", "ey1", "s"]}
+{"w": "placed", "phones": ["p", "l", "ey1", "s", "t"]}
+{"w": "planned", "phones": ["p", "l", "ae1", "n", "d"]}
+{"w": "play", "phones": ["p", "l", "ey1"]}
+{"w": "playing", "phones": ["p", "l", "ey1", "-", "ih", "ng"]}
+{"w": "pleasant", "phones": ["p", "l", "eh1", "-", "z", "ax", "n", "t"]}
+{"w": "pleasanter", "phones": ["p", "l", "eh1", "-", "z", "ax", "n", "-", "t", "er"]}
+{"w": "pleasantly", "phones": ["p", "l", "eh1", "-", "z", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "please", "phones": ["p", "l", "iy1", "z"]}
+{"w": "pleased", "phones": ["p", "l", "iy1", "z", "d"]}
+{"w": "pleasure", "phones": ["p", "l", "eh1", "-", "zh", "ax", "r"]}
+{"w": "pm", "phones": ["p", "iy1", "-", "eh1", "m"]}
+{"w": "point", "phones": ["p", "oy1", "n", "t"]}
+{"w": "points", "phones": ["p", "oy1", "n", "t", "s"]}
+{"w": "polite", "phones": ["p", "ax", "-", "l", "ay1", "t"]}
+{"w": "pool", "phones": ["p", "uw1", "l"]}
+{"w": "poor", "phones": ["p", "uh1", "r"]}
+{"w": "portrait", "phones": ["p", "ao1", "r", "-", "t", "r", "ax", "t"]}
+{"w": "portraits", "phones": ["p", "ao1", "r", "-", "t", "r", "ih", "t", "s"]}
+{"w": "pound", "phones": ["p", "aw1", "n", "d"]}
+{"w": "pounds", "phones": ["p", "aw1", "n", "d", "z"]}
+{"w": "poured", "phones": ["p", "ao1", "r", "d"]}
+{"w": "powers", "phones": ["p", "aw1", "-", "ax", "r", "z"]}
+{"w": "praise", "phones": ["p", "r", "ey1", "z"]}
+{"w": "preface", "phones": ["p", "r", "eh1", "-", "f", "ih", "s"]}
+{"w": "prejudice", "phones": ["p", "r", "eh1", "-", "jh", "ax", "-", "d", "ih", "s"]}
+{"w": "presence", "phones": ["p", "r", "eh1", "-", "z", "ax", "n", "s"]}
+{"w": "present", "phones": ["p", "r", "eh1", "-", "z", "ax", "n", "t"]}
+{"w": "presentation", "phones": ["p", "r", "eh2", "-", "z", "ax", "n", "-", "t", "ey1", "-", "sh", "ax", "n"]}
+{"w": "press", "phones": ["p", "r", "eh1", "s"]}
+{"w": "pretend", "phones": ["p", "r", "ih", "-", "t", "eh1", "n", "d"]}
+{"w": "pretty", "phones": ["p", "r", "ih1", "-", "t", "iy"]}
+{"w": "price", "phones": ["p", "r", "ay1", "s"]}
+{"w": "pride", "phones": ["p", "r", "ay1", "d"]}
+{"w": "principal", "phones": ["p", "r", "ih1", "n", "-", "s", "ax", "-", "p", "ax", "l"]}
+{"w": "private", "phones": ["p", "r", "ay1", "-", "v", "ax", "t"]}
+{"w": "productive", "phones": ["p", "r", "ax", "-", "d", "ah1", "k", "-", "t", "ih", "v"]}
+{"w": "profession", "phones": ["p", "r", "ax", "-", "f", "eh1", "-", "sh", "ax", "n"]}
+{"w": "profuse", "phones": ["p", "r", "ax", "-", "f", "y", "uw1", "s"]}
+{"w": "promised", "phones": ["p", "r", "aa1", "-", "m", "ih", "s", "t"]}
+{"w": "pronounced", "phones": ["p", "r", "ax", "-", "n", "aw1", "n", "s", "t"]}
+{"w": "propriety", "phones": ["p", "r", "ax", "-", "p", "r", "ay1", "-", "ax", "-", "t", "iy"]}
+{"w": "prospect", "phones": ["p", "r", "aa1", "-", "s", "p", "eh", "k", "t"]}
+{"w": "protested", "phones": ["p", "r", "ow1", "-", "t", "eh2", "-", "s", "t", "ax", "d"]}
+{"w": "proud", "phones": ["p", "r", "aw1", "d"]}
+{"w": "proudest", "phones": ["p", "r", "aw1", "-", "d", "ax", "s", "t"]}
+{"w": "puppy", "phones": ["p", "ah1", "-", "p", "iy"]}
+{"w": "purpose", "phones": ["p", "er1", "r", "-", "p", "ax", "s"]}
+{"w": "purses", "phones": ["p", "er1", "r", "-", "s", "ih", "z"]}
+{"w": "push", "phones": ["p", "uh1", "sh"]}
+{"w": "put", "phones": ["p", "uh1", "t"]}
+{"w": "putting", "phones": ["p", "ah1", "-", "t", "ih", "ng"]}
+{"w": "puzzled", "phones": ["p", "ah1", "-", "z", "ax", "l", "d"]}
+{"w": "puzzling", "phones": ["p", "ah1", "-", "z", "ax", "l", "-", "ih", "ng"]}
+{"w": "q", "phones": ["k", "y", "uw1"]}
+{"w": "quadrille", "phones": ["k", "w", "ax", "-", "d", "r", "ih1", "l"]}
+{"w": "qualities", "phones": ["k", "w", "aa1", "-", "l", "ax", "-", "t", "iy", "z"]}
+{"w": "quality", "phones": ["k", "w", "aa1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "quarter", "phones": ["k", "w", "ao1", "r", "-", "t", "ax", "r"]}
+{"w": "queen", "phones": ["k", "w", "iy1", "n"]}
+{"w": "queer", "phones": ["k", "w", "iy1", "r"]}
+{"w": "question", "phones": ["k", "w", "eh1", "s", "-", "ch", "ax", "n"]}
+{"w": "quickly", "phones": ["k", "w", "ih1", "-", "k", "l", "iy"]}
+{"w": "quieter", "phones": ["k", "w", "ay1", "-", "ax", "-", "t", "ax", "r"]}
+{"w": "quietly", "phones": ["k", "w", "ay1", "-", "ax", "t", "-", "l", "iy"]}
+{"w": "quite", "phones": ["k", "w", "ay1", "t"]}
+{"w": "quiver", "phones": ["k", "w", "ih1", "-", "v", "ax", "r"]}
+{"w": "r", "phones": ["aa1", "r"]}
+{"w": "rabbit", "phones": ["r", "ae1", "-", "b", "ih", "t"]}
+{"w": "rabbit-hole", "phones": ["r", "ae1", "-", "b", "ih", "t", "-", "h", "ow1", "l"]}
+{"w": "rain", "phones": ["r", "ey1", "n"]}
+{"w": "rained", "phones": ["r", "ey1", "n", "d"]}
+{"w": "range", "phones": ["r", "ey1", "n", "jh"]}
+{"w": "rank", "phones": ["r", "ae1", "ng", "k"]}
+{"w": "raptures", "phones": ["r", "ae1", "p", "-", "ch", "ax", "r", "z"]}
+{"w": "rate", "phones": ["r", "ey1", "t"]}
+{"w": "rather", "phones": ["r", "ae1", "-", "dh", "ax", "r"]}
+{"w": "ratio", "phones": ["r", "ey1", "-", "sh", "iy", "-", "ow"]}
+{"w": "rd", "phones": ["aa1", "r", "-", "d", "iy1"]}
+{"w": "reached", "phones": ["r", "iy1", "ch", "t"]}
+{"w": "read", "phones": ["r", "iy1", "d"]}
+{"w": "readily", "phones": ["r", "eh1", "-", "d", "ih", "-", "l", "iy"]}
+{"w": "reading", "phones": ["r", "iy1", "-", "d", "ih", "ng"]}
+{"w": "ready", "phones": ["r", "eh1", "-", "d", "iy"]}
+{"w": "real", "phones": ["r", "iy1", "l"]}
+{"w": "really", "phones": ["r", "iy1", "-", "l", "iy"]}
+{"w": "reason", "phones": ["r", "iy1", "-", "z", "ax", "n"]}
+{"w": "reasonableness", "phones": ["r", "iy1", "z", "-", "n", "ax", "-", "b", "ax", "l", "-", "n", "ih", "s"]}
+{"w": "receipt", "phones": ["r", "ih", "-", "s", "iy1", "t"]}
+{"w": "received", "phones": ["r", "ih", "-", "s", "iy1", "v", "d"]}
+{"w": "recommendation", "phones": ["r", "eh2", "-", "k", "ax", "-", "m", "eh", "n", "-", "d", "ey1", "-", "sh", "ax", "n"]}
+{"w": "recovered", "phones": ["r", "ih", "-", "k", "ah1", "-", "v", "ax", "r", "d"]}
+{"w": "regard", "phones": ["r", "ih", "-", "g", "aa1", "r", "d"]}
+{"w": "rejected", "phones": ["r", "ih", "-", "jh", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "relate", "phones": ["r", "ih", "-", "l", "ey1", "t"]}
+{"w": "relieved", "phones": ["r", "ih", "-", "l", "iy1", "v", "d"]}
+{"w": "remained", "phones": ["r", "ih", "-", "m", "ey1", "n", "d"]}
+{"w": "remarkably", "phones": ["r", "ax", "-", "m", "aa1", "r", "-", "k", "ax", "b", "-", "l", "iy"]}
+{"w": "remember", "phones": ["r", "ih", "-", "m", "eh1", "m", "-", "b", "ax", "r"]}
+{"w": "reminded", "phones": ["r", "ih", "-", "m", "ay1", "n", "-", "d", "ih", "d"]}
+{"w": "render", "phones": ["r", "eh1", "n", "-", "d", "ax", "r"]}
+{"w": "renewal", "phones": ["r", "ih", "-", "n", "uw1", "-", "ax", "l"]}
+{"w": "repaired", "phones": ["r", "ih", "-", "p", "eh1", "r", "d"]}
+{"w": "repeated", "phones": ["r", "ih", "-", "p", "iy1", "-", "t", "ih", "d"]}
+{"w": "repeating", "phones": ["r", "ih", "-", "p", "iy1", "-", "t", "ih", "ng"]}
+{"w": "replied", "phones": ["r", "ih", "-", "p", "l", "ay1", "d"]}
+{"w": "reply", "phones": ["r", "ih", "-", "p", "l", "ay1"]}
+{"w": "report", "phones": ["r", "ih", "-", "p", "ao1", "r", "t"]}
+{"w": "request", "phones": ["r", "ih", "-", "k", "w", "eh1", "s", "t"]}
+{"w": "requested", "phones": ["r", "ih", "-", "k", "w", "eh1", "-", "s", "t", "ih", "d"]}
+{"w": "requester", "phones": ["r", "ax", "-", "k", "w", "eh1", "-", "s", "t", "ax", "r"]}
+{"w": "required", "phones": ["r", "ih", "-", "k", "w", "ay1", "-", "ax", "r", "d"]}
+{"w": "requiring", "phones": ["r", "ih", "-", "k", "w", "ay1", "-", "r", "ih", "ng"]}
+{"w": "resented", "phones": ["r", "ih", "-", "z", "eh1", "n", "-", "t", "ih", "d"]}
+{"w": "resentment", "phones": ["r", "ih", "-", "z", "eh1", "n", "t", "-", "m", "ax", "n", "t"]}
+{"w": "reserved", "phones": ["r", "ih", "-", "z", "er1", "r", "v", "d"]}
+{"w": "resolution", "phones": ["r", "eh2", "-", "z", "ax", "-", "l", "uw1", "-", "sh", "ax", "n"]}
+{"w": "respect", "phones": ["r", "ih", "-", "s", "p", "eh1", "k", "t"]}
+{"w": "rest", "phones": ["r", "eh1", "s", "t"]}
+{"w": "result", "phones": ["r", "ih", "-", "z", "ah1", "l", "t"]}
+{"w": "returned", "phones": ["r", "ih", "-", "t", "er1", "r", "n", "d"]}
+{"w": "returning", "phones": ["r", "ih", "-", "t", "er1", "r", "-", "n", "ih", "ng"]}
+{"w": "rice", "phones": ["r", "ay1", "s"]}
+{"w": "ridicule", "phones": ["r", "ih1", "-", "d", "ih", "-", "k", "y", "uw2", "l"]}
+{"w": "ring", "phones": ["r", "ih1", "ng"]}
+{"w": "robinson", "phones": ["r", "aa1", "-", "b", "ih", "n", "-", "s", "ax", "n"]}
+{"w": "room", "phones": ["r", "uw1", "m"]}
+{"w": "rope", "phones": ["r", "ow1", "p"]}
+{"w": "rose", "phones": ["r", "ow1", "z"]}
+{"w": "round", "phones": ["r", "aw1", "n", "d"]}
+{"w": "rs", "phones": ["aa1", "r", "-", "eh1", "s"]}
+{"w": "rubbed", "phones": ["r", "ah1", "b", "d"]}
+{"w": "rude", "phones": ["r", "uw1", "d"]}
+{"w": "rule", "phones": ["r", "uw1", "l"]}
+{"w": "run", "phones": ["r", "ah1", "n"]}
+{"w": "ruskin", "phones": ["r", "ah1", "-", "s", "k", "ih", "n"]}
+{"w": "s", "phones": ["eh1", "s"]}
+{"w": "sad", "phones": ["s", "ae1", "d"]}
+{"w": "sadly", "phones": ["s", "ae1", "d", "-", "l", "iy"]}
+{"w": "safe", "phones": ["s", "ey1", "f"]}
+{"w": "said", "phones": ["s", "eh1", "d"]}
+{"w": "saintsbury", "phones": ["s", "ey1", "n", "t", "s", "-", "b", "eh2", "r", "-", "b", "r", "iy"]}
+{"w": "salt", "phones": ["s", "ao1", "l", "t"]}
+{"w": "same", "phones": ["s", "ey1", "m"]}
+{"w": "sat", "phones": ["s", "ae1", "t"]}
+{"w": "satisfactorily", "phones": ["s", "ae", "-", "t", "ax", "s", "-", "f", "ae1", "k", "-", "t", "r", "ax", "-", "l", "iy"]}
+{"w": "satisfied", "phones": ["s", "ae1", "-", "t", "ih", "s", "-", "f", "ay2", "d"]}
+{"w": "saturday", "phones": ["s", "ae1", "-", "t", "ax", "r", "-", "d", "ey"]}
+{"w": "save", "phones": ["s", "ey1", "v"]}
+{"w": "saw", "phones": ["s", "ao1"]}
+{"w": "say", "phones": ["s", "ey1"]}
+{"w": "says", "phones": ["s", "eh1", "z"]}
+{"w": "scampering", "phones": ["s", "k", "ae1", "m", "-", "p", "ax", "-", "r", "ih", "ng"]}
+{"w": "scarcely", "phones": ["s", "k", "eh1", "r", "-", "s", "l", "iy"]}
+{"w": "scarcity", "phones": ["s", "k", "eh1", "r", "-", "s", "ax", "-", "t", "iy"]}
+{"w": "schedule", "phones": ["s", "k", "eh1", "-", "jh", "uh", "l"]}
+{"w": "scolding", "phones": ["s", "k", "ow1", "l", "-", "d", "ih", "ng"]}
+{"w": "score", "phones": ["s", "k", "ao1", "r"]}
+{"w": "scored", "phones": ["s", "k", "ao1", "r", "d"]}
+{"w": "scotch", "phones": ["s", "k", "aa1", "ch"]}
+{"w": "scott", "phones": ["s", "k", "aa1", "t"]}
+{"w": "scream", "phones": ["s", "k", "r", "iy1", "m"]}
+{"w": "screens", "phones": ["s", "k", "r", "iy1", "n", "z"]}
+{"w": "sea", "phones": ["s", "iy1"]}
+{"w": "search", "phones": ["s", "er1", "r", "ch"]}
+{"w": "second", "phones": ["s", "eh1", "-", "k", "ax", "n", "d"]}
+{"w": "secret", "phones": ["s", "iy1", "-", "k", "r", "ih", "t"]}
+{"w": "see", "phones": ["s", "iy1"]}
+{"w": "seeing", "phones": ["s", "iy1", "-", "ih", "ng"]}
+{"w": "seemed", "phones": ["s", "iy1", "m", "d"]}
+{"w": "seems", "phones": ["s", "iy1", "m", "z"]}
+{"w": "seen", "phones": ["s", "iy1", "n"]}
+{"w": "self-command", "phones": ["s", "eh1", "l", "f", "-", "k", "ax", "-", "m", "ae1", "n", "d"]}
+{"w": "self-importance", "phones": ["s", "eh1", "l", "f", "-", "ih", "m", "-", "p", "ao1", "r", "-", "t", "ax", "n", "s"]}
+{"w": "sends", "phones": ["s", "eh1", "n", "d", "z"]}
+{"w": "sense", "phones": ["s", "eh1", "n", "s"]}
+{"w": "sent", "phones": ["s", "eh1", "n", "t"]}
+{"w": "september", "phones": ["s", "eh", "p", "-", "t", "eh1", "m", "-", "b", "ax", "r"]}
+{"w": "servants", "phones": ["s", "er1", "r", "-", "v", "ax", "n", "t", "s"]}
+{"w": "set", "phones": ["s", "eh1", "t"]}
+{"w": "set-downs", "phones": ["s", "eh1", "t", "-", "d", "aw1", "n", "z"]}
+{"w": "setting", "phones": ["s", "eh1", "-", "t", "ih", "ng"]}
+{"w": "settings", "phones": ["s", "eh1", "-", "t", "ih", "ng", "z"]}
+{"w": "seven", "phones": ["s", "eh1", "-", "v", "ax", "n"]}
+{"w": "seventeen", "phones": ["s", "eh2", "-", "v", "ax", "n", "-", "t", "iy1", "n"]}
+{"w": "seventeenth", "phones": ["s", "eh2", "-", "v", "ax", "n", "-", "t", "iy1", "n", "th"]}
+{"w": "seventh", "phones": ["s", "eh1", "-", "v", "ax", "n", "th"]}
+{"w": "seventieth", "phones": ["s", "eh1", "-", "v", "ax", "n", "-", "t", "iy", "-", "ax", "th"]}
+{"w": "seventy", "phones": ["s", "eh1", "-", "v", "ax", "n", "-", "t", "iy"]}
+{"w": "several", "phones": ["s", "eh1", "-", "v", "r", "ax", "l"]}
+{"w": "shade", "phones": ["sh", "ey1", "d"]}
+{"w": "shake", "phones": ["sh", "ey1", "k"]}
+{"w": "shall", "phones": ["sh", "ae1", "l"]}
+{"w": "shape", "phones": ["sh", "ey1", "p"]}
+{"w": "share", "phones": ["sh", "eh1", "r"]}
+{"w": "sharp", "phones": ["sh", "aa1", "r", "p"]}
+{"w": "sharpened", "phones": ["sh", "aa1", "r", "-", "p", "ax", "n", "d"]}
+{"w": "she", "phones": ["sh", "iy1"]}
+{"w": "shell", "phones": ["sh", "eh1", "l"]}
+{"w": "shipped", "phones": ["sh", "ih1", "p", "t"]}
+{"w": "shook", "phones": ["sh", "uh1", "k"]}
+{"w": "shore", "phones": ["sh", "ao1", "r"]}
+{"w": "short", "phones": ["sh", "ao1", "r", "t"]}
+{"w": "shortcut", "phones": ["sh", "ao1", "r", "t", "-", "k", "ah2", "t"]}
+{"w": "should", "phones": ["sh", "uh1", "d"]}
+{"w": "show", "phones": ["sh", "ow1"]}
+{"w": "shown", "phones": ["sh", "ow1", "n"]}
+{"w": "shrieks", "phones": ["sh", "r", "iy1", "k", "s"]}
+{"w": "shut", "phones": ["sh", "ah1", "t"]}
+{"w": "sighed", "phones": ["s", "ay1", "d"]}
+{"w": "sight", "phones": ["s", "ay1", "t"]}
+{"w": "signal", "phones": ["s", "ih1", "g", "-", "n", "ax", "l"]}
+{"w": "silence", "phones": ["s", "ay1", "-", "l", "ax", "n", "s"]}
+{"w": "silently", "phones": ["s", "ay1", "-", "l", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "since", "phones": ["s", "ih1", "n", "s"]}
+{"w": "single", "phones": ["s", "ih1", "ng", "-", "g", "ax", "l"]}
+{"w": "sir", "phones": ["s", "er1", "r"]}
+{"w": "sister", "phones": ["s", "ih1", "-", "s", "t", "ax", "r"]}
+{"w": "sister-in-law", "phones": ["s", "ih1", "-", "s", "t", "ax", "r", "-", "ih1", "n", "-", "l", "ao1"]}
+{"w": "sisters", "phones": ["s", "ih1", "-", "s", "t", "ax", "r", "z"]}
+{"w": "sit", "phones": ["s", "ih1", "t"]}
+{"w": "sitting", "phones": ["s", "ih1", "-", "t", "ih", "ng"]}
+{"w": "six", "phones": ["s", "ih1", "k", "s"]}
+{"w": "sixteen", "phones": ["s", "ih", "k", "-", "s", "t", "iy1", "n"]}
+{"w": "sixteenth", "phones": ["s", "ih", "k", "-", "s", "t", "iy1", "n", "th"]}
+{"w": "sixth", "phones": ["s", "ih1", "k", "s", "th"]}
+{"w": "sixtieth", "phones": ["s", "ih1", "k", "-", "s", "t", "iy", "-", "ax", "th"]}
+{"w": "sixty", "phones": ["s", "ih1", "k", "-", "s", "t", "iy"]}
+{"w": "size", "phones": ["s", "ay1", "z"]}
+{"w": "slates", "phones": ["s", "l", "ey1", "t", "s"]}
+{"w": "sleep", "phones": ["s", "l", "iy1", "p"]}
+{"w": "slept", "phones": ["s", "l", "eh1", "p", "t"]}
+{"w": "slighted", "phones": ["s", "l", "ay1", "-", "t", "ih", "d"]}
+{"w": "slowly", "phones": ["s", "l", "ow1", "-", "l", "iy"]}
+{"w": "small", "phones": ["s", "m", "ao1", "l"]}
+{"w": "smile", "phones": ["s", "m", "ay1", "l"]}
+{"w": "smiled", "phones": ["s", "m", "ay1", "l", "d"]}
+{"w": "smith", "phones": ["s", "m", "ih1", "th"]}
+{"w": "so", "phones": ["s", "ow1"]}
+{"w": "sobs", "phones": ["s", "aa1", "b", "z"]}
+{"w": "sofas", "phones": ["s", "ow1", "-", "f", "ax", "z"]}
+{"w": "solace", "phones": ["s", "aa1", "-", "l", "ih", "s"]}
+{"w": "soldiers", "phones": ["s", "ow1", "l", "-", "jh", "ax", "r", "z"]}
+{"w": "solicitude", "phones": ["s", "ax", "-", "l", "ih1", "-", "s", "ax", "-", "t", "uw2", "d"]}
+{"w": "solve", "phones": ["s", "aa1", "l", "v"]}
+{"w": "some", "phones": ["s", "ah1", "m"]}
+{"w": "somebody", "phones": ["s", "ah1", "m", "-", "b", "ah", "-", "d", "iy"]}
+{"w": "somehow", "phones": ["s", "ah1", "m", "-", "h", "aw2"]}
+{"w": "something", "phones": ["s", "ah1", "m", "-", "th", "ih", "ng"]}
+{"w": "songs", "phones": ["s", "ao1", "ng", "z"]}
+{"w": "soon", "phones": ["s", "uw1", "n"]}
+{"w": "sooner", "phones": ["s", "uw1", "-", "n", "ax", "r"]}
+{"w": "sort", "phones": ["s", "ao1", "r", "t"]}
+{"w": "sound", "phones": ["s", "aw1", "n", "d"]}
+{"w": "sounds", "phones": ["s", "aw1", "n", "d", "z"]}
+{"w": "soup", "phones": ["s", "uw1", "p"]}
+{"w": "source", "phones": ["s", "ao1", "r", "s"]}
+{"w": "speak", "phones": ["s", "p", "iy1", "k"]}
+{"w": "speaking", "phones": ["s", "p", "iy1", "-", "k", "ih", "ng"]}
+{"w": "spectacles", "phones": ["s", "p", "eh1", "k", "-", "t", "ax", "-", "k", "ax", "l", "z"]}
+{"w": "spectator", "phones": ["s", "p", "eh1", "k", "-", "t", "ey", "-", "t", "ax", "r"]}
+{"w": "speech", "phones": ["s", "p", "iy1", "ch"]}
+{"w": "speed", "phones": ["s", "p", "iy1", "d"]}
+{"w": "spirit", "phones": ["s", "p", "ih1", "-", "r", "ih", "t"]}
+{"w": "spirits", "phones": ["s", "p", "ih1", "-", "r", "ih", "t", "s"]}
+{"w": "spite", "phones": ["s", "p", "ay1", "t"]}
+{"w": "spoilt", "phones": ["s", "p", "oy1", "l", "t"]}
+{"w": "spoke", "phones": ["s", "p", "ow1", "k"]}
+{"w": "squeaked", "phones": ["s", "k", "w", "iy1", "k", "t"]}
+{"w": "st", "phones": ["eh1", "s", "-", "t", "iy1"]}
+{"w": "standing", "phones": ["s", "t", "ae1", "n", "-", "d", "ih", "ng"]}
+{"w": "stars", "phones": ["s", "t", "aa1", "r", "z"]}
+{"w": "start", "phones": ["s", "t", "aa1", "r", "t"]}
+{"w": "state-of-the-art", "phones": ["s", "t", "ey1", "t", "-", "ah1", "v", "-", "dh", "ax1", "-", "aa1", "r", "t"]}
+{"w": "stays", "phones": ["s", "t", "ey1", "z"]}
+{"w": "steady", "phones": ["s", "t", "eh1", "-", "d", "iy"]}
+{"w": "step", "phones": ["s", "t", "eh1", "p"]}
+{"w": "sticks", "phones": ["s", "t", "ih1", "k", "s"]}
+{"w": "still", "phones": ["s", "t", "ih1", "l"]}
+{"w": "stirred", "phones": ["s", "t", "er1", "r", "d"]}
+{"w": "stole", "phones": ["s", "t", "ow1", "l"]}
+{"w": "stood", "phones": ["s", "t", "uh1", "d"]}
+{"w": "stoop", "phones": ["s", "t", "uw1", "p"]}
+{"w": "stretch", "phones": ["s", "t", "r", "eh1", "ch"]}
+{"w": "stretched", "phones": ["s", "t", "r", "eh1", "ch", "t"]}
+{"w": "stretching", "phones": ["s", "t", "r", "eh1", "-", "ch", "ih", "ng"]}
+{"w": "strokes", "phones": ["s", "t", "r", "ow1", "k", "s"]}
+{"w": "strong", "phones": ["s", "t", "r", "ao1", "ng"]}
+{"w": "strongly", "phones": ["s", "t", "r", "ao1", "ng", "-", "l", "iy"]}
+{"w": "struck", "phones": ["s", "t", "r", "ah1", "k"]}
+{"w": "studies", "phones": ["s", "t", "ah1", "-", "d", "iy", "z"]}
+{"w": "studious", "phones": ["s", "t", "uw1", "-", "d", "iy", "-", "ax", "s"]}
+{"w": "stuff", "phones": ["s", "t", "ah1", "f"]}
+{"w": "stupid", "phones": ["s", "t", "uw1", "-", "p", "ih", "d"]}
+{"w": "subject", "phones": ["s", "ah1", "b", "-", "jh", "eh", "k", "t"]}
+{"w": "succeeded", "phones": ["s", "ax", "k", "-", "s", "iy1", "-", "d", "ih", "d"]}
+{"w": "such", "phones": ["s", "ah1", "ch"]}
+{"w": "sudden", "phones": ["s", "ah1", "-", "d", "ax", "n"]}
+{"w": "suddenly", "phones": ["s", "ah1", "-", "d", "ax", "n", "-", "l", "iy"]}
+{"w": "sufficiently", "phones": ["s", "ax", "-", "f", "ih1", "-", "sh", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "suited", "phones": ["s", "uw1", "-", "t", "ih", "d"]}
+{"w": "summoned", "phones": ["s", "ah1", "-", "m", "ax", "n", "d"]}
+{"w": "sun", "phones": ["s", "ah1", "n"]}
+{"w": "sunday", "phones": ["s", "ah1", "n", "-", "d", "ey"]}
+{"w": "supercilious", "phones": ["s", "uw2", "-", "p", "ax", "r", "-", "s", "ih1", "-", "l", "iy", "-", "ax", "s"]}
+{"w": "superfluous", "phones": ["s", "uh", "-", "p", "er1", "r", "-", "f", "l", "uh", "-", "ax", "s"]}
+{"w": "superior", "phones": ["s", "ax", "-", "p", "ih1", "-", "r", "iy", "-", "ax", "r"]}
+{"w": "supposed", "phones": ["s", "ax", "-", "p", "ow1", "z", "d"]}
+{"w": "supposition", "phones": ["s", "ah", "-", "p", "ax", "-", "z", "ih1", "-", "sh", "ax", "n"]}
+{"w": "suppressed", "phones": ["s", "ax", "-", "p", "r", "eh1", "s", "t"]}
+{"w": "sure", "phones": ["sh", "uh1", "r"]}
+{"w": "surprise", "phones": ["s", "ax", "r", "-", "p", "r", "ay1", "z"]}
+{"w": "surprised", "phones": ["s", "ax", "r", "-", "p", "r", "ay1", "z", "d"]}
+{"w": "swam", "phones": ["s", "w", "ae1", "m"]}
+{"w": "sweet", "phones": ["s", "w", "iy1", "t"]}
+{"w": "swift", "phones": ["s", "w", "ih1", "f", "t"]}
+{"w": "syllables", "phones": ["s", "ih1", "-", "l", "ax", "-", "b", "ax", "l", "z"]}
+{"w": "symptoms", "phones": ["s", "ih1", "m", "p", "-", "t", "ax", "m", "z"]}
+{"w": "synonymously", "phones": ["s", "ih", "-", "n", "aa1", "-", "n", "ax", "-", "m", "ax", "-", "s", "l", "iy"]}
+{"w": "t", "phones": ["t", "iy1"]}
+{"w": "table", "phones": ["t", "ey1", "-", "b", "ax", "l"]}
+{"w": "tables", "phones": ["t", "ey1", "-", "b", "ax", "l", "z"]}
+{"w": "tails", "phones": ["t", "ey1", "l", "z"]}
+{"w": "take", "phones": ["t", "ey1", "k"]}
+{"w": "taken", "phones": ["t", "ey1", "-", "k", "ax", "n"]}
+{"w": "tale", "phones": ["t", "ey1", "l"]}
+{"w": "talk", "phones": ["t", "ao1", "k"]}
+{"w": "talked", "phones": ["t", "ao1", "k", "t"]}
+{"w": "talking", "phones": ["t", "ao1", "-", "k", "ih", "ng"]}
+{"w": "tall", "phones": ["t", "ao1", "l"]}
+{"w": "tap", "phones": ["t", "ae1", "p"]}
+{"w": "tarts", "phones": ["t", "aa1", "r", "t", "s"]}
+{"w": "task", "phones": ["t", "ae1", "s", "k"]}
+{"w": "tastes", "phones": ["t", "ey1", "s", "t", "s"]}
+{"w": "taught", "phones": ["t", "ao1", "t"]}
+{"w": "tax", "phones": ["t", "ae1", "k", "s"]}
+{"w": "tea", "phones": ["t", "iy1"]}
+{"w": "tea-party", "phones": ["t", "iy1", "-", "p", "aa1", "r", "-", "t", "iy"]}
+{"w": "teacup", "phones": ["t", "iy1", "-", "k", "ah2", "p"]}
+{"w": "tears", "phones": ["t", "iy1", "r", "z"]}
+{"w": "tease", "phones": ["t", "iy1", "z"]}
+{"w": "telescope", "phones": ["t", "eh1", "-", "l", "ax", "-", "s", "k", "ow2", "p"]}
+{"w": "tell", "phones": ["t", "eh1", "l"]}
+{"w": "temper", "phones": ["t", "eh1", "m", "-", "p", "ax", "r"]}
+{"w": "temperature", "phones": ["t", "eh1", "m", "-", "p", "r", "ax", "-", "ch", "ax", "r"]}
+{"w": "tempted", "phones": ["t", "eh1", "m", "p", "-", "t", "ih", "d"]}
+{"w": "ten", "phones": ["t", "eh1", "n"]}
+{"w": "tenderness", "phones": ["t", "eh1", "n", "-", "d", "ax", "r", "-", "n", "ih", "s"]}
+{"w": "tenth", "phones": ["t", "eh1", "n", "th"]}
+{"w": "terrier", "phones": ["t", "eh1", "-", "r", "iy", "-", "ax", "r"]}
+{"w": "test", "phones": ["t", "eh1", "s", "t"]}
+{"w": "th", "phones": ["t", "iy2", "-", "ey1", "ch"]}
+{"w": "than", "phones": ["dh", "ae1", "n"]}
+{"w": "thank", "phones": ["th", "ae1", "ng", "k"]}
+{"w": "thanks", "phones": ["th", "ae1", "ng", "k", "s"]}
+{"w": "that", "phones": ["dh", "ae1", "t"]}
+{"w": "the", "phones": ["dh", "ax1"]}
+{"w": "their", "phones": ["dh", "eh1", "r"]}
+{"w": "them", "phones": ["dh", "ax1", "m"]}
+{"w": "themselves", "phones": ["dh", "ax", "m", "-", "s", "eh1", "l", "v", "z"]}
+{"w": "then", "phones": ["dh", "eh1", "n"]}
+{"w": "there", "phones": ["dh", "eh1", "r"]}
+{"w": "thereby", "phones": ["dh", "eh", "r", "-", "b", "ay1"]}
+{"w": "therefore", "phones": ["dh", "eh1", "r", "-", "f", "ao2", "r"]}
+{"w": "thereupon", "phones": ["dh", "eh2", "-", "r", "ax", "-", "p", "aa1", "n"]}
+{"w": "these", "phones": ["dh", "iy1", "z"]}
+{"w": "they", "phones": ["dh", "ey1"]}
+{"w": "thing", "phones": ["th", "ih1", "ng"]}
+{"w": "things", "phones": ["th", "ih1", "ng", "z"]}
+{"w": "think", "phones": ["th", "ih1", "ng", "k"]}
+{"w": "thinking", "phones": ["th", "ih1", "ng", "-", "k", "ih", "ng"]}
+{"w": "third", "phones": ["th", "er1", "d"]}
+{"w": "thirteen", "phones": ["th", "er", "-", "t", "iy1", "n"]}
+{"w": "thirteenth", "phones": ["th", "er", "-", "t", "iy1", "n", "th"]}
+{"w": "thirtieth", "phones": ["th", "er1", "-", "t", "iy", "-", "ax", "th"]}
+{"w": "thirty", "phones": ["th", "er1", "-", "t", "iy"]}
+{"w": "this", "phones": ["dh", "ih1", "s"]}
+{"w": "thomson", "phones": ["t", "aa1", "m", "-", "s", "ax", "n"]}
+{"w": "thoroughly", "phones": ["th", "er1", "-", "r", "ow", "-", "l", "iy"]}
+{"w": "those", "phones": ["dh", "ow1", "z"]}
+{"w": "though", "phones": ["dh", "ow1"]}
+{"w": "thought", "phones": ["th", "ao1", "t"]}
+{"w": "thousand", "phones": ["th", "aw1", "-", "z", "ax", "n", "d"]}
+{"w": "three", "phones": ["th", "r", "iy1"]}
+{"w": "threshold", "phones": ["th", "r", "eh1", "-", "sh", "ow", "l", "d"]}
+{"w": "threw", "phones": ["th", "r", "uw1"]}
+{"w": "thrown", "phones": ["th", "r", "ow1", "n"]}
+{"w": "thunderstorm", "phones": ["th", "ah1", "n", "-", "d", "ax", "r", "-", "s", "t", "ao", "r", "m"]}
+{"w": "thursday", "phones": ["th", "er1", "r", "z", "-", "d", "ey"]}
+{"w": "till", "phones": ["t", "ih1", "l"]}
+{"w": "time", "phones": ["t", "ay1", "m"]}
+{"w": "times", "phones": ["t", "ay1", "m", "z"]}
+{"w": "timidly", "phones": ["t", "ih1", "-", "m", "ih", "d", "-", "l", "iy"]}
+{"w": "tires", "phones": ["t", "ay1", "-", "ax", "r", "z"]}
+{"w": "to", "phones": ["t", "uh"]}
+{"w": "to-day", "phones": ["t", "uh", "-", "d", "ey1"]}
+{"w": "today", "phones": ["t", "uh", "-", "d", "ey1"]}
+{"w": "together", "phones": ["t", "ax", "-", "g", "eh1", "-", "dh", "ax", "r"]}
+{"w": "told", "phones": ["t", "ow1", "l", "d"]}
+{"w": "tomorrow", "phones": ["t", "ax", "-", "m", "aa1", "-", "r", "ow"]}
+{"w": "tonight", "phones": ["t", "ax", "-", "n", "ay1", "t"]}
+{"w": "too", "phones": ["t", "uw1"]}
+{"w": "took", "phones": ["t", "uh1", "k"]}
+{"w": "tooks", "phones": ["t", "uh1", "k", "s"]}
+{"w": "top", "phones": ["t", "aa1", "p"]}
+{"w": "total", "phones": ["t", "ow1", "-", "t", "ax", "l"]}
+{"w": "touch", "phones": ["t", "ah1", "ch"]}
+{"w": "tour", "phones": ["t", "uh1", "r"]}
+{"w": "towards", "phones": ["t", "w", "ao1", "r", "d", "z"]}
+{"w": "town", "phones": ["t", "aw1", "n"]}
+{"w": "toys", "phones": ["t", "oy1", "z"]}
+{"w": "train", "phones": ["t", "r", "ey1", "n"]}
+{"w": "tried", "phones": ["t", "r", "ay1", "d"]}
+{"w": "trifling", "phones": ["t", "r", "ay1", "-", "f", "l", "ih", "ng"]}
+{"w": "trillion", "phones": ["t", "r", "ih1", "-", "l", "y", "ax", "n"]}
+{"w": "trivial", "phones": ["t", "r", "ih1", "v", "-", "iy", "-", "ax", "l"]}
+{"w": "trot", "phones": ["t", "r", "aa1", "t"]}
+{"w": "troubling", "phones": ["t", "r", "ah1", "-", "b", "l", "ih", "ng"]}
+{"w": "true", "phones": ["t", "r", "uw1"]}
+{"w": "trust", "phones": ["t", "r", "ah1", "s", "t"]}
+{"w": "trusts", "phones": ["t", "r", "ah1", "s", "t", "s"]}
+{"w": "trying", "phones": ["t", "r", "ay1", "-", "ih", "ng"]}
+{"w": "tuesday", "phones": ["t", "uw1", "z", "-", "d", "ey"]}
+{"w": "turn", "phones": ["t", "er1", "r", "n"]}
+{"w": "turned", "phones": ["t", "er1", "r", "n", "d"]}
+{"w": "turtle", "phones": ["t", "er1", "r", "-", "t", "ax", "l"]}
+{"w": "turtles", "phones": ["t", "er1", "r", "-", "t", "ax", "l", "z"]}
+{"w": "twelfth", "phones": ["t", "w", "eh1", "l", "f", "th"]}
+{"w": "twelve", "phones": ["t", "w", "eh1", "l", "v"]}
+{"w": "twentieth", "phones": ["t", "w", "eh1", "n", "-", "t", "iy", "-", "ax", "th"]}
+{"w": "twenty", "phones": ["t", "w", "eh1", "n", "-", "t", "iy"]}
+{"w": "twice", "phones": ["t", "w", "ay1", "s"]}
+{"w": "two", "phones": ["t", "uw1"]}
+{"w": "two-thirds", "phones": ["t", "uw1", "-", "th", "er1", "d", "z"]}
+{"w": "txt", "phones": ["t", "iy1", "-", "eh1", "k", "s", "-", "t", "iy1"]}
+{"w": "u", "phones": ["y", "uw1"]}
+{"w": "unable", "phones": ["ah", "n", "-", "ey1", "-", "b", "ax", "l"]}
+{"w": "unaffected", "phones": ["ah2", "n", "-", "ax", "-", "f", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "unaffectedly", "phones": ["ah2", "-", "n", "ax", "-", "f", "eh1", "k", "-", "t", "ih", "d", "-", "l", "iy"]}
+{"w": "unamiable", "phones": ["y", "uw", "-", "n", "aa1", "-", "m", "iy", "-", "ax", "-", "b", "ax", "l"]}
+{"w": "uncertain", "phones": ["ah", "n", "-", "s", "er1", "r", "-", "t", "ax", "n"]}
+{"w": "uncle", "phones": ["ah1", "ng", "-", "k", "ax", "l"]}
+{"w": "uncomfortable", "phones": ["ah", "n", "-", "k", "ah1", "m", "-", "f", "ax", "r", "-", "t", "ax", "-", "b", "ax", "l"]}
+{"w": "uncommon", "phones": ["ah", "n", "-", "k", "aa1", "-", "m", "ax", "n"]}
+{"w": "unconsciously", "phones": ["ah", "n", "-", "k", "aa1", "n", "-", "sh", "ax", "-", "s", "l", "iy"]}
+{"w": "under", "phones": ["ah1", "n", "-", "d", "ax", "r"]}
+{"w": "under-breeding", "phones": ["ah1", "n", "-", "d", "ax", "r", "-", "b", "r", "iy1", "-", "d", "ih", "ng"]}
+{"w": "understand", "phones": ["ah2", "n", "-", "d", "ax", "r", "-", "s", "t", "ae1", "n", "d"]}
+{"w": "understanding", "phones": ["ah2", "n", "-", "d", "ax", "r", "-", "s", "t", "ae1", "n", "-", "d", "ih", "ng"]}
+{"w": "uneasy", "phones": ["ah", "n", "-", "iy1", "-", "z", "iy"]}
+{"w": "unforced", "phones": ["ah", "n", "-", "f", "ao1", "r", "s", "t"]}
+{"w": "unhesitatingly", "phones": ["ah", "n", "-", "h", "eh1", "-", "s", "ax", "-", "t", "ey2", "-", "t", "ih", "ng", "-", "l", "iy"]}
+{"w": "units", "phones": ["y", "uw1", "-", "n", "ih", "t", "s"]}
+{"w": "unknown", "phones": ["ah", "n", "-", "n", "ow1", "n"]}
+{"w": "unless", "phones": ["ax", "n", "-", "l", "eh1", "s"]}
+{"w": "unnatural", "phones": ["ah", "n", "-", "n", "ae1", "-", "ch", "ax", "-", "r", "ax", "l"]}
+{"w": "unostentatious", "phones": ["ah1", "-", "n", "aa2", "-", "s", "t", "ax", "n", "-", "t", "ey1", "-", "sh", "ax", "s"]}
+{"w": "until", "phones": ["ax", "n", "-", "t", "ih1", "l"]}
+{"w": "unwillingly", "phones": ["ah", "n", "-", "w", "ih1", "-", "l", "ih", "ng", "-", "l", "iy"]}
+{"w": "up", "phones": ["ah1", "p"]}
+{"w": "upon", "phones": ["ax", "-", "p", "aa1", "n"]}
+{"w": "us", "phones": ["ah1", "s"]}
+{"w": "use", "phones": ["y", "uw1", "z"]}
+{"w": "used", "phones": ["y", "uw1", "s", "t"]}
+{"w": "user", "phones": ["y", "uw1", "-", "z", "ax", "r"]}
+{"w": "usual", "phones": ["y", "uw1", "-", "zh", "uh", "-", "ax", "l"]}
+{"w": "v", "phones": ["v", "iy1"]}
+{"w": "vain", "phones": ["v", "ey1", "n"]}
+{"w": "valuable", "phones": ["v", "ae1", "-", "l", "y", "ax", "-", "b", "ax", "l"]}
+{"w": "values", "phones": ["v", "ae1", "-", "l", "y", "uw", "z"]}
+{"w": "vanity", "phones": ["v", "ae1", "-", "n", "ax", "-", "t", "iy"]}
+{"w": "varied", "phones": ["v", "eh1", "-", "r", "iy", "d"]}
+{"w": "vast", "phones": ["v", "ae1", "s", "t"]}
+{"w": "venture", "phones": ["v", "eh1", "n", "-", "ch", "ax", "r"]}
+{"w": "venus", "phones": ["v", "iy1", "-", "n", "ax", "s"]}
+{"w": "vernon", "phones": ["v", "er1", "r", "-", "n", "ax", "n"]}
+{"w": "version", "phones": ["v", "er1", "r", "-", "zh", "ax", "n"]}
+{"w": "very", "phones": ["v", "eh1", "-", "r", "iy"]}
+{"w": "vexing", "phones": ["v", "eh1", "k", "-", "s", "ih", "ng"]}
+{"w": "vi", "phones": ["s", "ih1", "k", "s"]}
+{"w": "vii", "phones": ["s", "eh1", "-", "v", "ax", "n"]}
+{"w": "viii", "phones": ["ey1", "t"]}
+{"w": "village", "phones": ["v", "ih1", "-", "l", "ih", "jh"]}
+{"w": "violent", "phones": ["v", "ay1", "-", "ax", "-", "l", "ax", "n", "t"]}
+{"w": "visit", "phones": ["v", "ih1", "-", "z", "ih", "t"]}
+{"w": "visited", "phones": ["v", "ih1", "-", "z", "ih", "-", "t", "ih", "d"]}
+{"w": "visiting", "phones": ["v", "ih1", "-", "z", "ih", "-", "t", "ih", "ng"]}
+{"w": "visits", "phones": ["v", "ih1", "-", "z", "ih", "t", "s"]}
+{"w": "voice", "phones": ["v", "oy1", "s"]}
+{"w": "vulgar", "phones": ["v", "ah1", "l", "-", "g", "ax", "r"]}
+{"w": "w", "phones": ["d", "ah1", "-", "b", "ax", "l", "-", "y", "uw2"]}
+{"w": "wait", "phones": ["w", "ey1", "t"]}
+{"w": "waited", "phones": ["w", "ey1", "-", "t", "ih", "d"]}
+{"w": "waiting", "phones": ["w", "ey1", "-", "t", "ih", "ng"]}
+{"w": "walk", "phones": ["w", "ao1", "k"]}
+{"w": "walked", "phones": ["w", "ao1", "k", "t"]}
+{"w": "walking", "phones": ["w", "ao1", "-", "k", "ih", "ng"]}
+{"w": "wandered", "phones": ["w", "aa1", "n", "-", "d", "ax", "r", "d"]}
+{"w": "wanted", "phones": ["w", "aa1", "n", "-", "t", "ih", "d"]}
+{"w": "warmly", "phones": ["w", "ao1", "r", "m", "-", "l", "iy"]}
+{"w": "was", "phones": ["w", "ax1", "z"]}
+{"w": "watch", "phones": ["w", "aa1", "ch"]}
+{"w": "watched", "phones": ["w", "aa1", "ch", "t"]}
+{"w": "water", "phones": ["w", "ao1", "-", "t", "ax", "r"]}
+{"w": "way", "phones": ["w", "ey1"]}
+{"w": "we", "phones": ["w", "iy1"]}
+{"w": "weather", "phones": ["w", "eh1", "-", "dh", "ax", "r"]}
+{"w": "wednesday", "phones": ["w", "eh1", "n", "z", "-", "d", "ey"]}
+{"w": "weighs", "phones": ["w", "ey1", "z"]}
+{"w": "well", "phones": ["w", "eh1", "l"]}
+{"w": "well-known", "phones": ["w", "eh1", "l", "-", "n", "ow1", "n"]}
+{"w": "went", "phones": ["w", "eh1", "n", "t"]}
+{"w": "were", "phones": ["w", "er1", "r"]}
+{"w": "what", "phones": ["w", "aa1", "t"]}
+{"w": "when", "phones": ["w", "eh1", "n"]}
+{"w": "whenever", "phones": ["w", "eh", "-", "n", "eh1", "-", "v", "ax", "r"]}
+{"w": "where", "phones": ["w", "eh1", "r"]}
+{"w": "wherever", "phones": ["w", "eh", "-", "r", "eh1", "-", "v", "ax", "r"]}
+{"w": "whether", "phones": ["w", "eh1", "-", "dh", "ax", "r"]}
+{"w": "which", "phones": ["w", "ih1", "ch"]}
+{"w": "while", "phones": ["w", "ay1", "l"]}
+{"w": "whims", "phones": ["w", "ih1", "m", "z"]}
+{"w": "whiskers", "phones": ["w", "ih1", "-", "s", "k", "ax", "r", "z"]}
+{"w": "whispering", "phones": ["w", "ih1", "-", "s", "p", "ax", "-", "r", "ih", "ng"]}
+{"w": "white", "phones": ["w", "ay1", "t"]}
+{"w": "whittingham", "phones": ["w", "ih1", "-", "t", "ih", "ng", "-", "h", "ae2", "m"]}
+{"w": "who", "phones": ["h", "uw1"]}
+{"w": "whole", "phones": ["h", "ow1", "l"]}
+{"w": "whom", "phones": ["h", "uw1", "m"]}
+{"w": "whose", "phones": ["h", "uw1", "z"]}
+{"w": "why", "phones": ["w", "ay1"]}
+{"w": "wickham", "phones": ["w", "ih1", "-", "k", "ax", "m"]}
+{"w": "wide", "phones": ["w", "ay1", "d"]}
+{"w": "wife", "phones": ["w", "ay1", "f"]}
+{"w": "will", "phones": ["w", "ih1", "l"]}
+{"w": "william", "phones": ["w", "ih1", "l", "-", "y", "ax", "m"]}
+{"w": "win", "phones": ["w", "ih1", "n"]}
+{"w": "wise", "phones": ["w", "ay1", "z"]}
+{"w": "wish", "phones": ["w", "ih1", "sh"]}
+{"w": "wishes", "phones": ["w", "ih1", "-", "sh", "ih", "z"]}
+{"w": "with", "phones": ["w", "ih1", "th"]}
+{"w": "within", "phones": ["w", "ih", "-", "dh", "ih1", "n"]}
+{"w": "without", "phones": ["w", "ih", "-", "dh", "aw1", "t"]}
+{"w": "woman", "phones": ["w", "uh1", "-", "m", "ax", "n"]}
+{"w": "women", "phones": ["w", "ih1", "-", "m", "ih", "n"]}
+{"w": "wonder", "phones": ["w", "ah1", "n", "-", "d", "ax", "r"]}
+{"w": "wood", "phones": ["w", "uh1", "d"]}
+{"w": "word", "phones": ["w", "er1", "r", "d"]}
+{"w": "words", "phones": ["w", "er1", "r", "d", "z"]}
+{"w": "work", "phones": ["w", "er1", "r", "k"]}
+{"w": "world", "phones": ["w", "er1", "r", "l", "d"]}
+{"w": "worse", "phones": ["w", "er1", "r", "s"]}
+{"w": "worth", "phones": ["w", "er1", "r", "th"]}
+{"w": "would", "phones": ["w", "uh1", "d"]}
+{"w": "write", "phones": ["r", "ay1", "t"]}
+{"w": "writing", "phones": ["r", "ay1", "-", "t", "ih", "ng"]}
+{"w": "written", "phones": ["r", "ih1", "-", "t", "ax", "n"]}
+{"w": "www", "phones": ["d", "ah1", "-", "b", "ax", "l", "-", "y", "uw2", "-", "d", "ah1", "-", "b", "ax", "l", "-", "y", "uw2", "-", "d", "ah1", "-", "b", "ax", "l", "-", "y", "uw2"]}
+{"w": "x", "phones": ["eh1", "k", "s"]}
+{"w": "xi", "phones": ["ih", "-", "l", "eh1", "-", "v", "ax", "n"]}
+{"w": "xii", "phones": ["t", "w", "eh1", "l", "v"]}
+{"w": "xiii", "phones": ["th", "er", "-", "t", "iy1", "n"]}
+{"w": "xiv", "phones": ["f", "ao", "r", "-", "t", "iy1", "n"]}
+{"w": "xvi", "phones": ["s", "ih", "k", "-", "s", "t", "iy1", "n"]}
+{"w": "xxv", "phones": ["t", "w", "eh1", "n", "-", "t", "iy", "-", "f", "ay1", "v"]}
+{"w": "xxxii", "phones": ["th", "er1", "-", "t", "iy", "-", "t", "uw1"]}
+{"w": "y", "phones": ["w", "ay1"]}
+{"w": "yawned", "phones": ["y", "ao1", "n", "d"]}
+{"w": "year", "phones": ["y", "ih1", "r"]}
+{"w": "years", "phones": ["y", "ih1", "r", "z"]}
+{"w": "yen", "phones": ["y", "eh1", "n"]}
+{"w": "yes", "phones": ["y", "eh1", "s"]}
+{"w": "yesterday", "phones": ["y", "eh1", "-", "s", "t", "ax", "r", "-", "d", "ey"]}
+{"w": "yet", "phones": ["y", "eh1", "t"]}
+{"w": "yield", "phones": ["y", "iy1", "l", "d"]}
+{"w": "you", "phones": ["y", "uw1"]}
+{"w": "young", "phones": ["y", "ah1", "ng"]}
+{"w": "younger", "phones": ["y", "ah1", "ng", "-", "g", "ax", "r"]}
+{"w": "youngest", "phones": ["y", "ah1", "ng", "-", "g", "ax", "s", "t"]}
+{"w": "your", "phones": ["y", "ao1", "r"]}
+{"w": "yourself", "phones": ["y", "ao", "r", "-", "s", "eh1", "l", "f"]}
+{"w": "yuan", "phones": ["y", "uw", "-", "aa1", "n"]}
+{"w": "z", "phones": ["z", "iy1"]}
+{"w": "zero", "phones": ["z", "iy1", "-", "r", "ow"]}
+{"w": "ability", "phones": ["ax", "-", "b", "ih1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "able", "phones": ["ey1", "-", "b", "ax", "l"]}
+{"w": "above", "phones": ["ax", "-", "b", "ah1", "v"]}
+{"w": "absolutely", "phones": ["ae1", "b", "-", "s", "ax", "-", "l", "uw2", "t", "-", "l", "iy"]}
+{"w": "access", "phones": ["ae1", "k", "-", "s", "eh", "s"]}
+{"w": "accident", "phones": ["ae1", "k", "-", "s", "ax", "-", "d", "ax", "n", "t"]}
+{"w": "according", "phones": ["ax", "-", "k", "ao1", "r", "-", "d", "ih", "ng"]}
+{"w": "accounts", "phones": ["ax", "-", "k", "aw1", "n", "t", "s"]}
+{"w": "act", "phones": ["ae1", "k", "t"]}
+{"w": "acting", "phones": ["ae1", "k", "-", "t", "ih", "ng"]}
+{"w": "action", "phones": ["ae1", "k", "-", "sh", "ax", "n"]}
+{"w": "actions", "phones": ["ae1", "k", "-", "sh", "ax", "n", "z"]}
+{"w": "active", "phones": ["ae1", "k", "-", "t", "ih", "v"]}
+{"w": "activities", "phones": ["ae", "k", "-", "t", "ih1", "-", "v", "ax", "-", "t", "iy", "z"]}
+{"w": "activity", "phones": ["ae", "k", "-", "t", "ih1", "-", "v", "ax", "-", "t", "iy"]}
+{"w": "actor", "phones": ["ae1", "k", "-", "t", "ax", "r"]}
+{"w": "acts", "phones": ["ae1", "k", "t", "s"]}
+{"w": "actual", "phones": ["ae1", "k", "-", "ch", "uh", "-", "ax", "l"]}
+{"w": "ad", "phones": ["ae1", "d"]}
+{"w": "added", "phones": ["ae1", "-", "d", "ih", "d"]}
+{"w": "adding", "phones": ["ae1", "-", "d", "ih", "ng"]}
+{"w": "addition", "phones": ["ax", "-", "d", "ih1", "-", "sh", "ax", "n"]}
+{"w": "additional", "phones": ["ax", "-", "d", "ih1", "-", "sh", "ax", "-", "n", "ax", "l"]}
+{"w": "administration", "phones": ["ax", "d", "-", "m", "ih2", "-", "n", "ax", "-", "s", "t", "r", "ey1", "-", "sh", "ax", "n"]}
+{"w": "adult", "phones": ["ax1", "-", "d", "ah", "l", "t"]}
+{"w": "adults", "phones": ["ax", "-", "d", "ah1", "l", "t", "s"]}
+{"w": "advanced", "phones": ["ax", "d", "-", "v", "ae1", "n", "s", "t"]}
+{"w": "affairs", "phones": ["ax", "-", "f", "eh1", "r", "z"]}
+{"w": "affect", "phones": ["ax", "-", "f", "eh1", "k", "t"]}
+{"w": "affected", "phones": ["ax", "-", "f", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "afraid", "phones": ["ax", "-", "f", "r", "ey1", "d"]}
+{"w": "africa", "phones": ["ae1", "-", "f", "r", "ih", "-", "k", "ax"]}
+{"w": "african", "phones": ["ae1", "-", "f", "r", "ih", "-", "k", "ax", "n"]}
+{"w": "afternoon", "phones": ["ae2", "f", "-", "t", "ax", "r", "-", "n", "uw1", "n"]}
+{"w": "agency", "phones": ["ey1", "-", "jh", "ax", "n", "-", "s", "iy"]}
+{"w": "agent", "phones": ["ey1", "-", "jh", "ax", "n", "t"]}
+{"w": "ago", "phones": ["ax", "-", "g", "ow1"]}
+{"w": "agreed", "phones": ["ax", "-", "g", "r", "iy1", "d"]}
+{"w": "agreement", "phones": ["ax", "-", "g", "r", "iy1", "-", "m", "ax", "n", "t"]}
+{"w": "ah", "phones": ["aa1"]}
+{"w": "ahead", "phones": ["ax", "-", "h", "eh1", "d"]}
+{"w": "aid", "phones": ["ey1", "d"]}
+{"w": "aircraft", "phones": ["eh1", "r", "-", "k", "r", "ae2", "f", "t"]}
+{"w": "airport", "phones": ["eh1", "r", "-", "p", "ao2", "r", "t"]}
+{"w": "al", "phones": ["ae1", "l"]}
+{"w": "album", "phones": ["ae1", "l", "-", "b", "ax", "m"]}
+{"w": "alcohol", "phones": ["ae1", "l", "-", "k", "ax", "-", "h", "ao2", "l"]}
+{"w": "alex", "phones": ["ae1", "-", "l", "ih", "k", "s"]}
+{"w": "allowing", "phones": ["ax", "-", "l", "aw1", "-", "ih", "ng"]}
+{"w": "allows", "phones": ["ax", "-", "l", "aw1", "z"]}
+{"w": "along", "phones": ["ax", "-", "l", "ao1", "ng"]}
+{"w": "alternative", "phones": ["ao", "l", "-", "t", "er1", "r", "-", "n", "ax", "-", "t", "ih", "v"]}
+{"w": "although", "phones": ["ao", "l", "-", "dh", "ow1"]}
+{"w": "amazing", "phones": ["ax", "-", "m", "ey1", "-", "z", "ih", "ng"]}
+{"w": "america", "phones": ["ax", "-", "m", "eh1", "-", "r", "ih", "-", "k", "ax"]}
+{"w": "american", "phones": ["ax", "-", "m", "eh1", "-", "r", "ih", "-", "k", "ax", "n"]}
+{"w": "americans", "phones": ["ax", "-", "m", "eh1", "-", "r", "ax", "-", "k", "ax", "n", "z"]}
+{"w": "analysis", "phones": ["ax", "-", "n", "ae1", "-", "l", "ax", "-", "s", "ih", "s"]}
+{"w": "ancient", "phones": ["ey1", "n", "-", "sh", "ax", "n", "t"]}
+{"w": "angeles", "phones": ["ae1", "n", "-", "jh", "ax", "-", "l", "ax", "s"]}
+{"w": "angry", "phones": ["ae1", "ng", "-", "g", "r", "iy"]}
+{"w": "animal", "phones": ["ae1", "-", "n", "ax", "-", "m", "ax", "l"]}
+{"w": "animals", "phones": ["ae1", "-", "n", "ax", "-", "m", "ax", "l", "z"]}
+{"w": "announced", "phones": ["ax", "-", "n", "aw1", "n", "s", "t"]}
+{"w": "annual", "phones": ["ae1", "-", "n", "y", "uh", "-", "ax", "l"]}
+{"w": "answers", "phones": ["ae1", "n", "-", "s", "ax", "r", "z"]}
+{"w": "anti", "phones": ["ae1", "n", "-", "t", "ay"]}
+{"w": "anymore", "phones": ["eh", "-", "n", "iy", "-", "m", "ao1", "r"]}
+{"w": "anyway", "phones": ["eh1", "-", "n", "iy", "-", "w", "ey"]}
+{"w": "anywhere", "phones": ["eh1", "-", "n", "iy", "-", "w", "eh", "r"]}
+{"w": "apart", "phones": ["ax", "-", "p", "aa1", "r", "t"]}
+{"w": "apartment", "phones": ["ax", "-", "p", "aa1", "r", "t", "-", "m", "ax", "n", "t"]}
+{"w": "app", "phones": ["ae1", "p"]}
+{"w": "apparently", "phones": ["ax", "-", "p", "eh1", "-", "r", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "appeal", "phones": ["ax", "-", "p", "iy1", "l"]}
+{"w": "appears", "phones": ["ax", "-", "p", "iy1", "r", "z"]}
+{"w": "apple", "phones": ["ae1", "-", "p", "ax", "l"]}
+{"w": "application", "phones": ["ae2", "-", "p", "l", "ax", "-", "k", "ey1", "-", "sh", "ax", "n"]}
+{"w": "applications", "phones": ["ae2", "-", "p", "l", "ax", "-", "k", "ey1", "-", "sh", "ax", "n", "z"]}
+{"w": "apply", "phones": ["ax", "-", "p", "l", "ay1"]}
+{"w": "appointed", "phones": ["ax", "-", "p", "oy1", "n", "-", "t", "ih", "d"]}
+{"w": "appreciate", "phones": ["ax", "-", "p", "r", "iy1", "-", "sh", "iy", "-", "ey2", "t"]}
+{"w": "approach", "phones": ["ax", "-", "p", "r", "ow1", "ch"]}
+{"w": "appropriate", "phones": ["ax", "-", "p", "r", "ow1", "-", "p", "r", "iy", "-", "ih", "t"]}
+{"w": "approved", "phones": ["ax", "-", "p", "r", "uw1", "v", "d"]}
+{"w": "approximately", "phones": ["ax", "-", "p", "r", "aa1", "k", "-", "s", "ax", "-", "m", "ih", "t", "-", "l", "iy"]}
+{"w": "area", "phones": ["eh1", "-", "r", "iy", "-", "ax"]}
+{"w": "areas", "phones": ["eh1", "-", "r", "iy", "-", "ax", "z"]}
+{"w": "argument", "phones": ["aa1", "r", "-", "g", "y", "uw", "-", "m", "ax", "n", "t"]}
+{"w": "arm", "phones": ["aa1", "r", "m"]}
+{"w": "armed", "phones": ["aa1", "r", "m", "d"]}
+{"w": "around", "phones": ["ax", "-", "r", "aw1", "n", "d"]}
+{"w": "arrested", "phones": ["ax", "-", "r", "eh1", "-", "s", "t", "ih", "d"]}
+{"w": "article", "phones": ["aa1", "r", "-", "t", "ih", "-", "k", "ax", "l"]}
+{"w": "articles", "phones": ["aa1", "r", "-", "t", "ih", "-", "k", "ax", "l", "z"]}
+{"w": "artist", "phones": ["aa1", "r", "-", "t", "ih", "s", "t"]}
+{"w": "artists", "phones": ["aa1", "r", "-", "t", "ih", "s", "t", "s"]}
+{"w": "arts", "phones": ["aa1", "r", "t", "s"]}
+{"w": "asia", "phones": ["ey1", "-", "zh", "ax"]}
+{"w": "asian", "phones": ["ey1", "-", "zh", "ax", "n"]}
+{"w": "aside", "phones": ["ax", "-", "s", "ay1", "d"]}
+{"w": "ask", "phones": ["ae1", "s", "k"]}
+{"w": "ass", "phones": ["ae1", "s"]}
+{"w": "assistance", "phones": ["ax", "-", "s", "ih1", "-", "s", "t", "ax", "n", "s"]}
+{"w": "assistant", "phones": ["ax", "-", "s", "ih1", "-", "s", "t", "ax", "n", "t"]}
+{"w": "associated", "phones": ["ax", "-", "s", "ow1", "-", "sh", "iy", "-", "ey2", "-", "t", "ih", "d"]}
+{"w": "association", "phones": ["ax", "-", "s", "ow2", "-", "s", "iy", "-", "ey1", "-", "sh", "ax", "n"]}
+{"w": "attack", "phones": ["ax", "-", "t", "ae1", "k"]}
+{"w": "attacks", "phones": ["ax", "-", "t", "ae1", "k", "s"]}
+{"w": "audience", "phones": ["ao1", "-", "d", "iy", "-", "ax", "n", "s"]}
+{"w": "australia", "phones": ["ao", "-", "s", "t", "r", "ey1", "l", "-", "y", "ax"]}
+{"w": "australian", "phones": ["ao", "-", "s", "t", "r", "ey1", "l", "-", "y", "ax", "n"]}
+{"w": "authorities", "phones": ["ax", "-", "th", "ao1", "-", "r", "ax", "-", "t", "iy", "z"]}
+{"w": "authority", "phones": ["ax", "-", "th", "ao1", "r", "-", "ih", "-", "t", "iy"]}
+{"w": "automatic", "phones": ["ao2", "-", "t", "ax", "-", "m", "ae1", "-", "t", "ih", "k"]}
+{"w": "available", "phones": ["ax", "-", "v", "ey1", "-", "l", "ax", "-", "b", "ax", "l"]}
+{"w": "average", "phones": ["ae1", "v", "-", "r", "ih", "jh"]}
+{"w": "award", "phones": ["ax", "-", "w", "ao1", "r", "d"]}
+{"w": "awards", "phones": ["ax", "-", "w", "ao1", "r", "d", "z"]}
+{"w": "awesome", "phones": ["ao1", "-", "s", "ax", "m"]}
+{"w": "baby", "phones": ["b", "ey1", "-", "b", "iy"]}
+{"w": "background", "phones": ["b", "ae1", "k", "-", "g", "r", "aw2", "n", "d"]}
+{"w": "bag", "phones": ["b", "ae1", "g"]}
+{"w": "balance", "phones": ["b", "ae1", "-", "l", "ax", "n", "s"]}
+{"w": "band", "phones": ["b", "ae1", "n", "d"]}
+{"w": "bank", "phones": ["b", "ae1", "ng", "k"]}
+{"w": "banks", "phones": ["b", "ae1", "ng", "k", "s"]}
+{"w": "bar", "phones": ["b", "aa1", "r"]}
+{"w": "base", "phones": ["b", "ey1", "s"]}
+{"w": "based", "phones": ["b", "ey1", "s", "t"]}
+{"w": "basic", "phones": ["b", "ey1", "-", "s", "ih", "k"]}
+{"w": "basically", "phones": ["b", "ey1", "-", "s", "ih", "-", "k", "ax", "l", "-", "iy"]}
+{"w": "basis", "phones": ["b", "ey1", "-", "s", "ih", "s"]}
+{"w": "battery", "phones": ["b", "ae1", "-", "t", "ax", "-", "r", "iy"]}
+{"w": "battle", "phones": ["b", "ae1", "-", "t", "ax", "l"]}
+{"w": "bay", "phones": ["b", "ey1"]}
+{"w": "beach", "phones": ["b", "iy1", "ch"]}
+{"w": "bear", "phones": ["b", "eh1", "r"]}
+{"w": "beat", "phones": ["b", "iy1", "t"]}
+{"w": "became", "phones": ["b", "ih", "-", "k", "ey1", "m"]}
+{"w": "becomes", "phones": ["b", "ih", "-", "k", "ah1", "m", "z"]}
+{"w": "becoming", "phones": ["b", "ih", "-", "k", "ah1", "-", "m", "ih", "ng"]}
+{"w": "bed", "phones": ["b", "eh1", "d"]}
+{"w": "beer", "phones": ["b", "iy1", "r"]}
+{"w": "begin", "phones": ["b", "ih", "-", "g", "ih1", "n"]}
+{"w": "beginning", "phones": ["b", "ih", "-", "g", "ih1", "-", "n", "ih", "ng"]}
+{"w": "begins", "phones": ["b", "ih", "-", "g", "ih1", "n", "z"]}
+{"w": "behavior", "phones": ["b", "ih", "-", "h", "ey1", "-", "v", "y", "ax", "r"]}
+{"w": "bell", "phones": ["b", "eh1", "l"]}
+{"w": "below", "phones": ["b", "ih", "-", "l", "ow1"]}
+{"w": "ben", "phones": ["b", "eh1", "n"]}
+{"w": "benefit", "phones": ["b", "eh1", "-", "n", "ax", "-", "f", "ih", "t"]}
+{"w": "benefits", "phones": ["b", "eh1", "-", "n", "ax", "-", "f", "ih", "t", "s"]}
+{"w": "besides", "phones": ["b", "ih", "-", "s", "ay1", "d", "z"]}
+{"w": "best", "phones": ["b", "eh1", "s", "t"]}
+{"w": "bet", "phones": ["b", "eh1", "t"]}
+{"w": "beyond", "phones": ["b", "ih", "-", "y", "aa1", "n", "d"]}
+{"w": "big", "phones": ["b", "ih1", "g"]}
+{"w": "bigger", "phones": ["b", "ih1", "-", "g", "ax", "r"]}
+{"w": "biggest", "phones": ["b", "ih1", "-", "g", "ih", "s", "t"]}
+{"w": "bird", "phones": ["b", "er1", "r", "d"]}
+{"w": "birth", "phones": ["b", "er1", "r", "th"]}
+{"w": "birthday", "phones": ["b", "er1", "r", "th", "-", "d", "ey2"]}
+{"w": "bitch", "phones": ["b", "ih1", "ch"]}
+{"w": "black", "phones": ["b", "l", "ae1", "k"]}
+{"w": "blame", "phones": ["b", "l", "ey1", "m"]}
+{"w": "block", "phones": ["b", "l", "aa1", "k"]}
+{"w": "blog", "phones": ["b", "l", "ao1", "g"]}
+{"w": "blood", "phones": ["b", "l", "ah1", "d"]}
+{"w": "blow", "phones": ["b", "l", "ow1"]}
+{"w": "blue", "phones": ["b", "l", "uw1"]}
+{"w": "board", "phones": ["b", "ao1", "r", "d"]}
+{"w": "boat", "phones": ["b", "ow1", "t"]}
+{"w": "bob", "phones": ["b", "aa1", "b"]}
+{"w": "bodies", "phones": ["b", "aa1", "-", "d", "iy", "z"]}
+{"w": "body", "phones": ["b", "aa1", "-", "d", "iy"]}
+{"w": "bomb", "phones": ["b", "aa1", "m"]}
+{"w": "bond", "phones": ["b", "aa1", "n", "d"]}
+{"w": "books", "phones": ["b", "uh1", "k", "s"]}
+{"w": "border", "phones": ["b", "ao1", "r", "-", "d", "ax", "r"]}
+{"w": "boss", "phones": ["b", "ao1", "s"]}
+{"w": "boston", "phones": ["b", "ao1", "-", "s", "t", "ax", "n"]}
+{"w": "bottom", "phones": ["b", "aa1", "-", "t", "ax", "m"]}
+{"w": "bought", "phones": ["b", "ao1", "t"]}
+{"w": "bowl", "phones": ["b", "ow1", "l"]}
+{"w": "boy", "phones": ["b", "oy1"]}
+{"w": "boyfriend", "phones": ["b", "oy1", "-", "f", "r", "eh2", "n", "d"]}
+{"w": "boys", "phones": ["b", "oy1", "z"]}
+{"w": "brain", "phones": ["b", "r", "ey1", "n"]}
+{"w": "brand", "phones": ["b", "r", "ae1", "n", "d"]}
+{"w": "breaking", "phones": ["b", "r", "ey1", "-", "k", "ih", "ng"]}
+{"w": "bridge", "phones": ["b", "r", "ih1", "jh"]}
+{"w": "bright", "phones": ["b", "r", "ay1", "t"]}
+{"w": "bringing", "phones": ["b", "r", "ih1", "ng", "-", "ih", "ng"]}
+{"w": "brings", "phones": ["b", "r", "ih1", "ng", "z"]}
+{"w": "britain", "phones": ["b", "r", "ih1", "-", "t", "ax", "n"]}
+{"w": "british", "phones": ["b", "r", "ih1", "-", "t", "ih", "sh"]}
+{"w": "brothers", "phones": ["b", "r", "ah1", "-", "dh", "ax", "r", "z"]}
+{"w": "building", "phones": ["b", "ih1", "l", "-", "d", "ih", "ng"]}
+{"w": "buildings", "phones": ["b", "ih1", "l", "-", "d", "ih", "ng", "z"]}
+{"w": "built", "phones": ["b", "ih1", "l", "t"]}
+{"w": "bus", "phones": ["b", "ah1", "s"]}
+{"w": "businesses", "phones": ["b", "ih1", "z", "-", "n", "ih", "-", "s", "ih", "z"]}
+{"w": "busy", "phones": ["b", "ih1", "-", "z", "iy"]}
+{"w": "buy", "phones": ["b", "ay1"]}
+{"w": "buying", "phones": ["b", "ay1", "-", "ih", "ng"]}
+{"w": "ca", "phones": ["s", "iy2", "-", "ey1"]}
+{"w": "california", "phones": ["k", "ae2", "-", "l", "ih", "-", "f", "ao1", "r", "-", "n", "y", "ax"]}
+{"w": "calling", "phones": ["k", "ao1", "-", "l", "ih", "ng"]}
+{"w": "calls", "phones": ["k", "ao1", "l", "z"]}
+{"w": "camera", "phones": ["k", "ae1", "-", "m", "ax", "-", "r", "ax"]}
+{"w": "camp", "phones": ["k", "ae1", "m", "p"]}
+{"w": "campaign", "phones": ["k", "ae", "m", "-", "p", "ey1", "n"]}
+{"w": "canada", "phones": ["k", "ae1", "-", "n", "ax", "-", "d", "ax"]}
+{"w": "canadian", "phones": ["k", "ax", "-", "n", "ey1", "-", "d", "iy", "-", "ax", "n"]}
+{"w": "cancer", "phones": ["k", "ae1", "n", "-", "s", "ax", "r"]}
+{"w": "candidate", "phones": ["k", "ae1", "n", "-", "d", "ax", "-", "d", "ey2", "t"]}
+{"w": "capable", "phones": ["k", "ey1", "-", "p", "ax", "-", "b", "ax", "l"]}
+{"w": "capacity", "phones": ["k", "ax", "-", "p", "ae1", "-", "s", "ax", "-", "t", "iy"]}
+{"w": "capital", "phones": ["k", "ae1", "-", "p", "ax", "-", "t", "ax", "l"]}
+{"w": "captain", "phones": ["k", "ae1", "p", "-", "t", "ax", "n"]}
+{"w": "car", "phones": ["k", "aa1", "r"]}
+{"w": "card", "phones": ["k", "aa1", "r", "d"]}
+{"w": "career", "phones": ["k", "ax", "-", "r", "iy1", "r"]}
+{"w": "careful", "phones": ["k", "eh1", "r", "-", "f", "ax", "l"]}
+{"w": "carried", "phones": ["k", "eh1", "-", "r", "iy", "d"]}
+{"w": "carry", "phones": ["k", "eh1", "-", "r", "iy"]}
+{"w": "carrying", "phones": ["k", "eh1", "-", "r", "iy", "-", "ih", "ng"]}
+{"w": "cars", "phones": ["k", "aa1", "r", "z"]}
+{"w": "cash", "phones": ["k", "ae1", "sh"]}
+{"w": "cast", "phones": ["k", "ae1", "s", "t"]}
+{"w": "caught", "phones": ["k", "ao1", "t"]}
+{"w": "cause", "phones": ["k", "ao1", "z"]}
+{"w": "caused", "phones": ["k", "ao1", "z", "d"]}
+{"w": "causes", "phones": ["k", "ao1", "-", "z", "ih", "z"]}
+{"w": "cell", "phones": ["s", "eh1", "l"]}
+{"w": "cells", "phones": ["s", "eh1", "l", "z"]}
+{"w": "center", "phones": ["s", "eh1", "n", "-", "t", "ax", "r"]}
+{"w": "central", "phones": ["s", "eh1", "n", "-", "t", "r", "ax", "l"]}
+{"w": "centre", "phones": ["s", "eh1", "n", "-", "t", "ax", "r"]}
+{"w": "chain", "phones": ["ch", "ey1", "n"]}
+{"w": "chair", "phones": ["ch", "eh1", "r"]}
+{"w": "charging", "phones": ["ch", "aa1", "r", "-", "jh", "ih", "ng"]}
+{"w": "chairman", "phones": ["ch", "eh1", "r", "-", "m", "ax", "n"]}
+{"w": "chill", "phones": ["ch", "ih1", "l"]}
+{"w": "challenge", "phones": ["ch", "ae1", "-", "l", "ih", "n", "jh"]}
+{"w": "computer", "phones": ["k", "ax", "m", "-", "p", "y", "uw1", "-", "t", "ax", "r"]}
+{"w": "champion", "phones": ["ch", "ae1", "m", "-", "p", "iy", "-", "ax", "n"]}
+{"w": "connection", "phones": ["k", "ax", "-", "n", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "change", "phones": ["ch", "ey1", "n", "jh"]}
+{"w": "correct", "phones": ["k", "ax", "-", "r", "eh1", "k", "t"]}
+{"w": "changing", "phones": ["ch", "ey1", "n", "-", "jh", "ih", "ng"]}
+{"w": "dill", "phones": ["d", "ih1", "l"]}
+{"w": "channel", "phones": ["ch", "ae1", "-", "n", "ax", "l"]}
+{"w": "drill", "phones": ["d", "r", "ih1", "l"]}
+{"w": "characters", "phones": ["k", "ae1", "r", "-", "ax", "k", "-", "t", "er", "r", "z"]}
+{"w": "fill", "phones": ["f", "ih1", "l"]}
+{"w": "charges", "phones": ["ch", "aa1", "r", "-", "jh", "ih", "z"]}
+{"w": "gill", "phones": ["g", "ih1", "l"]}
+{"w": "charging", "phones": ["ch", "aa1", "r", "-", "jh", "ih", "ng"]}
+{"w": "grill", "phones": ["g", "r", "ih1", "l"]}
+{"w": "cheap", "phones": ["ch", "iy1", "p"]}
+{"w": "installed", "phones": ["ih", "n", "-", "s", "t", "ao1", "l", "d"]}
+{"w": "check", "phones": ["ch", "eh1", "k"]}
+{"w": "kill", "phones": ["k", "ih1", "l"]}
+{"w": "chicago", "phones": ["sh", "ax", "-", "k", "aa1", "-", "g", "ow"]}
+{"w": "lost", "phones": ["l", "ao1", "s", "t"]}
+{"w": "chicken", "phones": ["ch", "ih1", "-", "k", "ih", "n"]}
+{"w": "mill", "phones": ["m", "ih1", "l"]}
+{"w": "chief", "phones": ["ch", "iy1", "f"]}
+{"w": "password", "phones": ["p", "ae1", "s", "-", "w", "er1", "d"]}
+{"w": "china", "phones": ["ch", "ay1", "-", "n", "ax"]}
+{"w": "pill", "phones": ["p", "ih1", "l"]}
+{"w": "chinese", "phones": ["ch", "ay", "-", "n", "iy1", "z"]}
+{"w": "printer", "phones": ["p", "r", "ih1", "n", "-", "t", "ax", "r"]}
+{"w": "choice", "phones": ["ch", "oy1", "s"]}
+{"w": "responding", "phones": ["r", "ih", "-", "s", "p", "aa1", "n", "-", "d", "ih", "ng"]}
+{"w": "choose", "phones": ["ch", "uw1", "z"]}
+{"w": "restart", "phones": ["r", "iy", "-", "s", "t", "aa1", "r", "t"]}
+{"w": "chosen", "phones": ["ch", "ow1", "-", "z", "ax", "n"]}
+{"w": "running", "phones": ["r", "ah1", "-", "n", "ih", "ng"]}
+{"w": "chris", "phones": ["k", "r", "ih1", "s"]}
+{"w": "saved", "phones": ["s", "ey1", "v", "d"]}
+{"w": "christ", "phones": ["k", "r", "ay1", "s", "t"]}
+{"w": "sentence", "phones": ["s", "eh1", "n", "-", "t", "ax", "n", "s"]}
+{"w": "christian", "phones": ["k", "r", "ih1", "s", "-", "ch", "ax", "n"]}
+{"w": "skill", "phones": ["s", "k", "ih1", "l"]}
+{"w": "christmas", "phones": ["k", "r", "ih1", "-", "s", "m", "ax", "s"]}
+{"w": "spill", "phones": ["s", "p", "ih1", "l"]}
+{"w": "church", "phones": ["ch", "er1", "r", "ch"]}
+{"w": "starts", "phones": ["s", "t", "aa1", "r", "t", "s"]}
+{"w": "circumstances", "phones": ["s", "er1", "r", "-", "k", "ax", "m", "-", "s", "t", "ae2", "n", "-", "s", "ih", "z"]}
+{"w": "system", "phones": ["s", "ih1", "-", "s", "t", "ax", "m"]}
+{"w": "cities", "phones": ["s", "ih1", "-", "t", "iy", "z"]}
+{"w": "testing", "phones": ["t", "eh1", "-", "s", "t", "ih", "ng"]}
+{"w": "citizens", "phones": ["s", "ih1", "-", "t", "ih", "-", "z", "ax", "n", "z"]}
+{"w": "updates", "phones": ["ah1", "p", "-", "d", "ey2", "t", "s"]}
+{"w": "city", "phones": ["s", "ih1", "-", "t", "iy"]}
+{"w": "updating", "phones": ["ah2", "p", "-", "d", "ey1", "-", "t", "ih", "ng"]}
+{"w": "claim", "phones": ["k", "l", "ey1", "m"]}
+{"w": "claimed", "phones": ["k", "l", "ey1", "m", "d"]}
+{"w": "claims", "phones": ["k", "l", "ey1", "m", "z"]}
+{"w": "classes", "phones": ["k", "l", "ae1", "-", "s", "ih", "z"]}
+{"w": "classic", "phones": ["k", "l", "ae1", "-", "s", "ih", "k"]}
+{"w": "clean", "phones": ["k", "l", "iy1", "n"]}
+{"w": "clear", "phones": ["k", "l", "iy1", "r"]}
+{"w": "clearly", "phones": ["k", "l", "iy1", "r", "-", "l", "iy"]}
+{"w": "click", "phones": ["k", "l", "ih1", "k"]}
+{"w": "climate", "phones": ["k", "l", "ay1", "-", "m", "ax", "t"]}
+{"w": "closer", "phones": ["k", "l", "ow1", "-", "s", "ax", "r"]}
+{"w": "clothes", "phones": ["k", "l", "ow1", "dh", "z"]}
+{"w": "club", "phones": ["k", "l", "ah1", "b"]}
+{"w": "coach", "phones": ["k", "ow1", "ch"]}
+{"w": "coast", "phones": ["k", "ow1", "s", "t"]}
+{"w": "code", "phones": ["k", "ow1", "d"]}
+{"w": "collected", "phones": ["k", "ax", "-", "l", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "collection", "phones": ["k", "ax", "-", "l", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "college", "phones": ["k", "aa1", "-", "l", "ih", "jh"]}
+{"w": "color", "phones": ["k", "ah1", "-", "l", "ax", "r"]}
+{"w": "combination", "phones": ["k", "aa2", "m", "-", "b", "ax", "-", "n", "ey1", "-", "sh", "ax", "n"]}
+{"w": "combined", "phones": ["k", "ax", "m", "-", "b", "ay1", "n", "d"]}
+{"w": "comes", "phones": ["k", "ah1", "m", "z"]}
+{"w": "comfortable", "phones": ["k", "ah1", "m", "-", "f", "ax", "r", "-", "t", "ax", "-", "b", "ax", "l"]}
+{"w": "comment", "phones": ["k", "aa1", "-", "m", "eh", "n", "t"]}
+{"w": "comments", "phones": ["k", "aa1", "-", "m", "eh", "n", "t", "s"]}
+{"w": "commercial", "phones": ["k", "ax", "-", "m", "er1", "r", "-", "sh", "ax", "l"]}
+{"w": "commission", "phones": ["k", "ax", "-", "m", "ih1", "-", "sh", "ax", "n"]}
+{"w": "committed", "phones": ["k", "ax", "-", "m", "ih1", "-", "t", "ih", "d"]}
+{"w": "committee", "phones": ["k", "ax", "-", "m", "ih1", "-", "t", "iy"]}
+{"w": "communication", "phones": ["k", "ax", "-", "m", "y", "uw2", "-", "n", "ax", "-", "k", "ey1", "-", "sh", "ax", "n"]}
+{"w": "communications", "phones": ["k", "ax", "-", "m", "y", "uw2", "-", "n", "ax", "-", "k", "ey1", "-", "sh", "ax", "n", "z"]}
+{"w": "communities", "phones": ["k", "ax", "-", "m", "y", "uw1", "-", "n", "ax", "-", "t", "iy", "z"]}
+{"w": "community", "phones": ["k", "ax", "-", "m", "y", "uw1", "-", "n", "ax", "-", "t", "iy"]}
+{"w": "companies", "phones": ["k", "ah1", "m", "-", "p", "ax", "-", "n", "iy", "z"]}
+{"w": "compared", "phones": ["k", "ax", "m", "-", "p", "eh1", "r", "d"]}
+{"w": "competition", "phones": ["k", "aa2", "m", "-", "p", "ax", "-", "t", "ih1", "-", "sh", "ax", "n"]}
+{"w": "completed", "phones": ["k", "ax", "m", "-", "p", "l", "iy1", "-", "t", "ih", "d"]}
+{"w": "completely", "phones": ["k", "ax", "m", "-", "p", "l", "iy1", "t", "-", "l", "iy"]}
+{"w": "complex", "phones": ["k", "ax", "m", "-", "p", "l", "eh1", "k", "s"]}
+{"w": "computer", "phones": ["k", "ax", "m", "-", "p", "y", "uw1", "-", "t", "ax", "r"]}
+{"w": "concept", "phones": ["k", "aa1", "n", "-", "s", "eh", "p", "t"]}
+{"w": "concern", "phones": ["k", "ax", "n", "-", "s", "er1", "r", "n"]}
+{"w": "concerned", "phones": ["k", "ax", "n", "-", "s", "er1", "r", "n", "d"]}
+{"w": "concerns", "phones": ["k", "ax", "n", "-", "s", "er1", "r", "n", "z"]}
+{"w": "condition", "phones": ["k", "ax", "n", "-", "d", "ih1", "-", "sh", "ax", "n"]}
+{"w": "conditions", "phones": ["k", "ax", "n", "-", "d", "ih1", "-", "sh", "ax", "n", "z"]}
+{"w": "conference", "phones": ["k", "aa1", "n", "-", "f", "ax", "-", "r", "ax", "n", "s"]}
+{"w": "confidence", "phones": ["k", "aa1", "n", "-", "f", "ax", "-", "d", "ax", "n", "s"]}
+{"w": "confirmed", "phones": ["k", "ax", "n", "-", "f", "er1", "r", "m", "d"]}
+{"w": "conflict", "phones": ["k", "aa1", "n", "-", "f", "l", "ih", "k", "t"]}
+{"w": "congress", "phones": ["k", "aa1", "ng", "-", "g", "r", "ax", "s"]}
+{"w": "connected", "phones": ["k", "ax", "-", "n", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "connection", "phones": ["k", "ax", "-", "n", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "conservative", "phones": ["k", "ax", "n", "-", "s", "er1", "r", "-", "v", "ax", "-", "t", "ih", "v"]}
+{"w": "considered", "phones": ["k", "ax", "n", "-", "s", "ih1", "-", "d", "ax", "r", "d"]}
+{"w": "construction", "phones": ["k", "ax", "n", "-", "s", "t", "r", "ah1", "k", "-", "sh", "ax", "n"]}
+{"w": "contact", "phones": ["k", "aa1", "n", "-", "t", "ae", "k", "t"]}
+{"w": "contains", "phones": ["k", "ax", "n", "-", "t", "ey1", "n", "z"]}
+{"w": "content", "phones": ["k", "aa1", "n", "-", "t", "eh", "n", "t"]}
+{"w": "context", "phones": ["k", "aa1", "n", "-", "t", "eh", "k", "s", "t"]}
+{"w": "continues", "phones": ["k", "ax", "n", "-", "t", "ih1", "-", "n", "y", "uw", "z"]}
+{"w": "contract", "phones": ["k", "aa1", "n", "-", "t", "r", "ae", "k", "t"]}
+{"w": "control", "phones": ["k", "ax", "n", "-", "t", "r", "ow1", "l"]}
+{"w": "controlled", "phones": ["k", "ax", "n", "-", "t", "r", "ow1", "l", "d"]}
+{"w": "cool", "phones": ["k", "uw1", "l"]}
+{"w": "core", "phones": ["k", "ao1", "r"]}
+{"w": "corporate", "phones": ["k", "ao1", "r", "-", "p", "ax", "-", "r", "ih", "t"]}
+{"w": "corporation", "phones": ["k", "ao2", "r", "-", "p", "ax", "-", "r", "ey1", "-", "sh", "ax", "n"]}
+{"w": "correct", "phones": ["k", "ax", "-", "r", "eh1", "k", "t"]}
+{"w": "cost", "phones": ["k", "ao1", "s", "t"]}
+{"w": "council", "phones": ["k", "aw1", "n", "-", "s", "ax", "l"]}
+{"w": "count", "phones": ["k", "aw1", "n", "t"]}
+{"w": "countries", "phones": ["k", "ah1", "n", "-", "t", "r", "iy", "z"]}
+{"w": "county", "phones": ["k", "aw1", "n", "-", "t", "iy"]}
+{"w": "coverage", "phones": ["k", "ah1", "-", "v", "ax", "-", "r", "ih", "jh"]}
+{"w": "covered", "phones": ["k", "ah1", "-", "v", "ax", "r", "d"]}
+{"w": "covers", "phones": ["k", "ah1", "-", "v", "ax", "r", "z"]}
+{"w": "crazy", "phones": ["k", "r", "ey1", "-", "z", "iy"]}
+{"w": "cream", "phones": ["k", "r", "iy1", "m"]}
+{"w": "create", "phones": ["k", "r", "iy", "-", "ey1", "t"]}
+{"w": "creating", "phones": ["k", "r", "iy", "-", "ey1", "-", "t", "ih", "ng"]}
+{"w": "creative", "phones": ["k", "r", "iy", "-", "ey1", "-", "t", "ih", "v"]}
+{"w": "crew", "phones": ["k", "r", "uw1"]}
+{"w": "crime", "phones": ["k", "r", "ay1", "m"]}
+{"w": "criminal", "phones": ["k", "r", "ih1", "-", "m", "ax", "-", "n", "ax", "l"]}
+{"w": "crisis", "phones": ["k", "r", "ay1", "-", "s", "ih", "s"]}
+{"w": "critical", "phones": ["k", "r", "ih1", "-", "t", "ih", "-", "k", "ax", "l"]}
+{"w": "cross", "phones": ["k", "r", "ao1", "s"]}
+{"w": "crowd", "phones": ["k", "r", "aw1", "d"]}
+{"w": "cry", "phones": ["k", "r", "ay1"]}
+{"w": "cultural", "phones": ["k", "ah1", "l", "-", "ch", "ax", "-", "r", "ax", "l"]}
+{"w": "culture", "phones": ["k", "ah1", "l", "-", "ch", "ax", "r"]}
+{"w": "cup", "phones": ["k", "ah1", "p"]}
+{"w": "current", "phones": ["k", "er1", "-", "r", "ax", "n", "t"]}
+{"w": "currently", "phones": ["k", "er1", "-", "r", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "customer", "phones": ["k", "ah1", "-", "s", "t", "ax", "-", "m", "ax", "r"]}
+{"w": "customers", "phones": ["k", "ah1", "-", "s", "t", "ax", "-", "m", "ax", "r", "z"]}
+{"w": "cut", "phones": ["k", "ah1", "t"]}
+{"w": "cute", "phones": ["k", "y", "uw1", "t"]}
+{"w": "cutting", "phones": ["k", "ah1", "-", "t", "ih", "ng"]}
+{"w": "cycle", "phones": ["s", "ay1", "-", "k", "ax", "l"]}
+{"w": "dad", "phones": ["d", "ae1", "d"]}
+{"w": "daily", "phones": ["d", "ey1", "-", "l", "iy"]}
+{"w": "damage", "phones": ["d", "ae1", "-", "m", "ih", "jh"]}
+{"w": "damn", "phones": ["d", "ae1", "m"]}
+{"w": "dangerous", "phones": ["d", "ey1", "n", "-", "jh", "ax", "-", "r", "ax", "s"]}
+{"w": "daniel", "phones": ["d", "ae1", "n", "-", "y", "ax", "l"]}
+{"w": "dark", "phones": ["d", "aa1", "r", "k"]}
+{"w": "data", "phones": ["d", "ey1", "-", "t", "ax"]}
+{"w": "date", "phones": ["d", "ey1", "t"]}
+{"w": "dating", "phones": ["d", "ey1", "-", "t", "ih", "ng"]}
+{"w": "david", "phones": ["d", "ey1", "-", "v", "ih", "d"]}
+{"w": "days", "phones": ["d", "ey1", "z"]}
+{"w": "dealing", "phones": ["d", "iy1", "-", "l", "ih", "ng"]}
+{"w": "deals", "phones": ["d", "iy1", "l", "z"]}
+{"w": "death", "phones": ["d", "eh1", "th"]}
+{"w": "debate", "phones": ["d", "ih", "-", "b", "ey1", "t"]}
+{"w": "debt", "phones": ["d", "eh1", "t"]}
+{"w": "decide", "phones": ["d", "ih", "-", "s", "ay1", "d"]}
+{"w": "decision", "phones": ["d", "ih", "-", "s", "ih1", "-", "zh", "ax", "n"]}
+{"w": "decisions", "phones": ["d", "ih", "-", "s", "ih1", "-", "zh", "ax", "n", "z"]}
+{"w": "deep", "phones": ["d", "iy1", "p"]}
+{"w": "defense", "phones": ["d", "ih", "-", "f", "eh1", "n", "s"]}
+{"w": "definitely", "phones": ["d", "eh1", "-", "f", "ax", "-", "n", "ih", "t", "-", "l", "iy"]}
+{"w": "delivered", "phones": ["d", "ih", "-", "l", "ih1", "-", "v", "ax", "r", "d"]}
+{"w": "delivery", "phones": ["d", "ih", "-", "l", "ih1", "-", "v", "ax", "-", "r", "iy"]}
+{"w": "demand", "phones": ["d", "ih", "-", "m", "ae1", "n", "d"]}
+{"w": "democratic", "phones": ["d", "eh2", "-", "m", "ax", "-", "k", "r", "ae1", "-", "t", "ih", "k"]}
+{"w": "department", "phones": ["d", "ih", "-", "p", "aa1", "r", "t", "-", "m", "ax", "n", "t"]}
+{"w": "described", "phones": ["d", "ih", "-", "s", "k", "r", "ay1", "b", "d"]}
+{"w": "deserve", "phones": ["d", "ih", "-", "z", "er1", "r", "v"]}
+{"w": "design", "phones": ["d", "ih", "-", "z", "ay1", "n"]}
+{"w": "designed", "phones": ["d", "ih", "-", "z", "ay1", "n", "d"]}
+{"w": "desire", "phones": ["d", "ih", "-", "z", "ay1", "-", "ax", "r"]}
+{"w": "despite", "phones": ["d", "ih", "-", "s", "p", "ay1", "t"]}
+{"w": "destroyed", "phones": ["d", "ih", "-", "s", "t", "r", "oy1", "d"]}
+{"w": "determine", "phones": ["d", "ih", "-", "t", "er1", "r", "-", "m", "ih", "n"]}
+{"w": "develop", "phones": ["d", "ih", "-", "v", "eh1", "-", "l", "ax", "p"]}
+{"w": "developed", "phones": ["d", "ih", "-", "v", "eh1", "-", "l", "ax", "p", "t"]}
+{"w": "developing", "phones": ["d", "ih", "-", "v", "eh1", "-", "l", "ax", "-", "p", "ih", "ng"]}
+{"w": "development", "phones": ["d", "ih", "-", "v", "eh1", "-", "l", "ax", "p", "-", "m", "ax", "n", "t"]}
+{"w": "devices", "phones": ["d", "ih", "-", "v", "ay1", "-", "s", "ih", "z"]}
+{"w": "dick", "phones": ["d", "ih1", "k"]}
+{"w": "died", "phones": ["d", "ay1", "d"]}
+{"w": "digital", "phones": ["d", "ih1", "-", "jh", "ih", "-", "t", "ax", "l"]}
+{"w": "direct", "phones": ["d", "ih", "-", "r", "eh1", "k", "t"]}
+{"w": "direction", "phones": ["d", "ih", "-", "r", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "director", "phones": ["d", "ih", "-", "r", "eh1", "k", "-", "t", "ax", "r"]}
+{"w": "discovered", "phones": ["d", "ih", "-", "s", "k", "ah1", "-", "v", "ax", "r", "d"]}
+{"w": "discussion", "phones": ["d", "ih", "-", "s", "k", "ah1", "-", "sh", "ax", "n"]}
+{"w": "disease", "phones": ["d", "ih", "-", "z", "iy1", "z"]}
+{"w": "display", "phones": ["d", "ih", "-", "s", "p", "l", "ey1"]}
+{"w": "distribution", "phones": ["d", "ih2", "-", "s", "t", "r", "ax", "-", "b", "y", "uw1", "-", "sh", "ax", "n"]}
+{"w": "district", "phones": ["d", "ih1", "s", "-", "t", "r", "ih", "k", "t"]}
+{"w": "doctor", "phones": ["d", "aa1", "k", "-", "t", "ax", "r"]}
+{"w": "documents", "phones": ["d", "aa1", "-", "k", "y", "ax", "-", "m", "ax", "n", "t", "s"]}
+{"w": "dog", "phones": ["d", "ao1", "g"]}
+{"w": "domestic", "phones": ["d", "ax", "-", "m", "eh1", "-", "s", "t", "ih", "k"]}
+{"w": "don", "phones": ["d", "aa1", "n"]}
+{"w": "dont", "phones": ["d", "ow1", "n", "t"]}
+{"w": "double", "phones": ["d", "ah1", "-", "b", "ax", "l"]}
+{"w": "doubt", "phones": ["d", "aw1", "t"]}
+{"w": "download", "phones": ["d", "aw1", "n", "-", "l", "ow2", "d"]}
+{"w": "draft", "phones": ["d", "r", "ae1", "f", "t"]}
+{"w": "drama", "phones": ["d", "r", "aa1", "-", "m", "ax"]}
+{"w": "draw", "phones": ["d", "r", "ao1"]}
+{"w": "dream", "phones": ["d", "r", "iy1", "m"]}
+{"w": "dreams", "phones": ["d", "r", "iy1", "m", "z"]}
+{"w": "dress", "phones": ["d", "r", "eh1", "s"]}
+{"w": "drink", "phones": ["d", "r", "ih1", "ng", "k"]}
+{"w": "drinking", "phones": ["d", "r", "ih1", "ng", "-", "k", "ih", "ng"]}
+{"w": "drive", "phones": ["d", "r", "ay1", "v"]}
+{"w": "driver", "phones": ["d", "r", "ay1", "-", "v", "ax", "r"]}
+{"w": "driving", "phones": ["d", "r", "ay1", "-", "v", "ih", "ng"]}
+{"w": "drop", "phones": ["d", "r", "aa1", "p"]}
+{"w": "dropped", "phones": ["d", "r", "aa1", "p", "t"]}
+{"w": "drug", "phones": ["d", "r", "ah1", "g"]}
+{"w": "drugs", "phones": ["d", "r", "ah1", "g", "z"]}
+{"w": "drunk", "phones": ["d", "r", "ah1", "ng", "k"]}
+{"w": "dude", "phones": ["d", "uw1", "d"]}
+{"w": "duty", "phones": ["d", "uw1", "-", "t", "iy"]}
+{"w": "earlier", "phones": ["er1", "r", "-", "l", "iy", "-", "ax", "r"]}
+{"w": "earth", "phones": ["er1", "r", "th"]}
+{"w": "easier", "phones": ["iy1", "-", "z", "iy", "-", "ax", "r"]}
+{"w": "easily", "phones": ["iy1", "-", "z", "ax", "l", "-", "iy"]}
+{"w": "east", "phones": ["iy1", "s", "t"]}
+{"w": "eastern", "phones": ["iy1", "-", "s", "t", "ax", "r", "n"]}
+{"w": "eating", "phones": ["iy1", "-", "t", "ih", "ng"]}
+{"w": "economic", "phones": ["eh2", "-", "k", "ax", "-", "n", "aa1", "-", "m", "ih", "k"]}
+{"w": "economy", "phones": ["ih", "-", "k", "aa1", "-", "n", "ax", "-", "m", "iy"]}
+{"w": "ed", "phones": ["eh1", "d"]}
+{"w": "edition", "phones": ["ih", "-", "d", "ih1", "-", "sh", "ax", "n"]}
+{"w": "editor", "phones": ["eh1", "-", "d", "ih", "-", "t", "ax", "r"]}
+{"w": "education", "phones": ["eh2", "-", "jh", "ax", "-", "k", "ey1", "-", "sh", "ax", "n"]}
+{"w": "educational", "phones": ["eh2", "-", "jh", "ax", "-", "k", "ey1", "-", "sh", "ax", "-", "n", "ax", "l"]}
+{"w": "effect", "phones": ["ih", "-", "f", "eh1", "k", "t"]}
+{"w": "effective", "phones": ["ax", "-", "f", "eh1", "k", "-", "t", "ih", "v"]}
+{"w": "effects", "phones": ["ax", "-", "f", "eh1", "k", "t", "s"]}
+{"w": "effort", "phones": ["eh1", "-", "f", "ax", "r", "t"]}
+{"w": "efforts", "phones": ["eh1", "-", "f", "ax", "r", "t", "s"]}
+{"w": "elected", "phones": ["ih", "-", "l", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "election", "phones": ["ih", "-", "l", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "elections", "phones": ["ih", "-", "l", "eh1", "k", "-", "sh", "ax", "n", "z"]}
+{"w": "electric", "phones": ["ih", "-", "l", "eh1", "k", "-", "t", "r", "ih", "k"]}
+{"w": "elements", "phones": ["eh1", "-", "l", "ax", "-", "m", "ax", "n", "t", "s"]}
+{"w": "emergency", "phones": ["ih", "-", "m", "er1", "r", "-", "jh", "ax", "n", "-", "s", "iy"]}
+{"w": "emotional", "phones": ["ih", "-", "m", "ow1", "-", "sh", "ax", "-", "n", "ax", "l"]}
+{"w": "employees", "phones": ["eh2", "m", "-", "p", "l", "oy", "-", "iy1", "z"]}
+{"w": "empty", "phones": ["eh1", "m", "p", "-", "t", "iy"]}
+{"w": "ended", "phones": ["eh1", "n", "-", "d", "ih", "d"]}
+{"w": "ending", "phones": ["eh1", "n", "-", "d", "ih", "ng"]}
+{"w": "ends", "phones": ["eh1", "n", "d", "z"]}
+{"w": "enemy", "phones": ["eh1", "-", "n", "ax", "-", "m", "iy"]}
+{"w": "energy", "phones": ["eh1", "-", "n", "ax", "r", "-", "jh", "iy"]}
+{"w": "engine", "phones": ["eh1", "n", "-", "jh", "ax", "n"]}
+{"w": "engineering", "phones": ["eh2", "n", "-", "jh", "ax", "-", "n", "ih1", "-", "r", "ih", "ng"]}
+{"w": "england", "phones": ["ih1", "ng", "-", "g", "l", "ax", "n", "d"]}
+{"w": "english", "phones": ["ih1", "ng", "-", "g", "l", "ih", "sh"]}
+{"w": "enjoy", "phones": ["ih", "n", "-", "jh", "oy1"]}
+{"w": "enjoyed", "phones": ["ih", "n", "-", "jh", "oy1", "d"]}
+{"w": "ensure", "phones": ["ih", "n", "-", "sh", "uh1", "r"]}
+{"w": "entire", "phones": ["ih", "n", "-", "t", "ay1", "-", "ax", "r"]}
+{"w": "entry", "phones": ["eh1", "n", "-", "t", "r", "iy"]}
+{"w": "environment", "phones": ["ih", "n", "-", "v", "ay1", "-", "r", "ax", "n", "-", "m", "ax", "n", "t"]}
+{"w": "environmental", "phones": ["ih", "n", "-", "v", "ay", "-", "r", "ax", "n", "-", "m", "eh1", "n", "-", "t", "ax", "l"]}
+{"w": "episode", "phones": ["eh1", "-", "p", "ax", "-", "s", "ow2", "d"]}
+{"w": "equipment", "phones": ["ih", "-", "k", "w", "ih1", "p", "-", "m", "ax", "n", "t"]}
+{"w": "era", "phones": ["eh1", "-", "r", "ax"]}
+{"w": "escape", "phones": ["ax", "-", "s", "k", "ey1", "p"]}
+{"w": "especially", "phones": ["ax", "-", "s", "p", "eh1", "-", "sh", "ax", "-", "l", "iy"]}
+{"w": "essential", "phones": ["ih", "-", "s", "eh1", "n", "-", "sh", "ax", "l"]}
+{"w": "estate", "phones": ["ih", "-", "s", "t", "ey1", "t"]}
+{"w": "estimated", "phones": ["eh1", "-", "s", "t", "ax", "-", "m", "ey2", "-", "t", "ih", "d"]}
+{"w": "et", "phones": ["iy1", "-", "t", "iy1"]}
+{"w": "eu", "phones": ["iy1", "-", "y", "uw1"]}
+{"w": "europe", "phones": ["y", "uh1", "-", "r", "ax", "p"]}
+{"w": "european", "phones": ["y", "uh2", "-", "r", "ax", "-", "p", "iy1", "-", "ax", "n"]}
+{"w": "event", "phones": ["ih", "-", "v", "eh1", "n", "t"]}
+{"w": "events", "phones": ["ih", "-", "v", "eh1", "n", "t", "s"]}
+{"w": "eventually", "phones": ["ih", "-", "v", "eh1", "n", "-", "ch", "uw", "-", "ax", "-", "l", "iy"]}
+{"w": "everyone", "phones": ["eh1", "-", "v", "r", "iy", "-", "w", "ah", "n"]}
+{"w": "evidence", "phones": ["eh1", "-", "v", "ax", "-", "d", "ax", "n", "s"]}
+{"w": "evil", "phones": ["iy1", "-", "v", "ax", "l"]}
+{"w": "ex", "phones": ["eh1", "k", "s"]}
+{"w": "examples", "phones": ["ih", "g", "-", "z", "ae1", "m", "-", "p", "ax", "l", "z"]}
+{"w": "excellent", "phones": ["eh1", "k", "-", "s", "ax", "-", "l", "ax", "n", "t"]}
+{"w": "exchange", "phones": ["ih", "k", "s", "-", "ch", "ey1", "n", "jh"]}
+{"w": "excited", "phones": ["ih", "k", "-", "s", "ay1", "-", "t", "ih", "d"]}
+{"w": "executive", "phones": ["ih", "g", "-", "z", "eh1", "-", "k", "y", "ax", "-", "t", "ih", "v"]}
+{"w": "exist", "phones": ["ih", "g", "-", "z", "ih1", "s", "t"]}
+{"w": "existing", "phones": ["ih", "g", "-", "z", "ih1", "-", "s", "t", "ih", "ng"]}
+{"w": "expensive", "phones": ["ih", "k", "-", "s", "p", "eh1", "n", "-", "s", "ih", "v"]}
+{"w": "experience", "phones": ["ih", "k", "-", "s", "p", "iy1", "-", "r", "iy", "-", "ax", "n", "s"]}
+{"w": "experienced", "phones": ["ih", "k", "-", "s", "p", "iy1", "-", "r", "iy", "-", "ax", "n", "s", "t"]}
+{"w": "explained", "phones": ["ih", "k", "-", "s", "p", "l", "ey1", "n", "d"]}
+{"w": "express", "phones": ["ih", "k", "-", "s", "p", "r", "eh1", "s"]}
+{"w": "extended", "phones": ["ih", "k", "-", "s", "t", "eh1", "n", "-", "d", "ih", "d"]}
+{"w": "extra", "phones": ["eh1", "k", "-", "s", "t", "r", "ax"]}
+{"w": "extreme", "phones": ["ih", "k", "-", "s", "t", "r", "iy1", "m"]}
+{"w": "facebook", "phones": ["f", "ey1", "s", "-", "b", "uh1", "k"]}
+{"w": "faces", "phones": ["f", "ey1", "-", "s", "ih", "z"]}
+{"w": "facilities", "phones": ["f", "ax", "-", "s", "ih1", "-", "l", "ax", "-", "t", "iy", "z"]}
+{"w": "facility", "phones": ["f", "ax", "-", "s", "ih1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "fact", "phones": ["f", "ae1", "k", "t"]}
+{"w": "factor", "phones": ["f", "ae1", "k", "-", "t", "ax", "r"]}
+{"w": "factors", "phones": ["f", "ae1", "k", "-", "t", "ax", "r", "z"]}
+{"w": "facts", "phones": ["f", "ae1", "k", "t", "s"]}
+{"w": "fail", "phones": ["f", "ey1", "l"]}
+{"w": "failed", "phones": ["f", "ey1", "l", "d"]}
+{"w": "failure", "phones": ["f", "ey1", "-", "l", "y", "ax", "r"]}
+{"w": "fair", "phones": ["f", "eh1", "r"]}
+{"w": "faith", "phones": ["f", "ey1", "th"]}
+{"w": "fake", "phones": ["f", "ey1", "k"]}
+{"w": "falls", "phones": ["f", "ao1", "l", "z"]}
+{"w": "familiar", "phones": ["f", "ax", "-", "m", "ih1", "-", "l", "y", "ax", "r"]}
+{"w": "families", "phones": ["f", "ae1", "m", "-", "l", "iy", "z"]}
+{"w": "fans", "phones": ["f", "ae1", "n", "z"]}
+{"w": "fantastic", "phones": ["f", "ae", "n", "-", "t", "ae1", "-", "s", "t", "ih", "k"]}
+{"w": "faster", "phones": ["f", "ae1", "-", "s", "t", "ax", "r"]}
+{"w": "fat", "phones": ["f", "ae1", "t"]}
+{"w": "favorite", "phones": ["f", "ey1", "-", "v", "r", "ih", "t"]}
+{"w": "fear", "phones": ["f", "iy1", "r"]}
+{"w": "feature", "phones": ["f", "iy1", "-", "ch", "ax", "r"]}
+{"w": "features", "phones": ["f", "iy1", "-", "ch", "ax", "r", "z"]}
+{"w": "federal", "phones": ["f", "eh1", "-", "d", "ax", "-", "r", "ax", "l"]}
+{"w": "feed", "phones": ["f", "iy1", "d"]}
+{"w": "fell", "phones": ["f", "eh1", "l"]}
+{"w": "female", "phones": ["f", "iy1", "-", "m", "ey", "l"]}
+{"w": "festival", "phones": ["f", "eh1", "s", "-", "t", "ax", "-", "v", "ax", "l"]}
+{"w": "field", "phones": ["f", "iy1", "l", "d"]}
+{"w": "fields", "phones": ["f", "iy1", "l", "d", "z"]}
+{"w": "fight", "phones": ["f", "ay1", "t"]}
+{"w": "fighting", "phones": ["f", "ay1", "-", "t", "ih", "ng"]}
+{"w": "fill", "phones": ["f", "ih1", "l"]}
+{"w": "filled", "phones": ["f", "ih1", "l", "d"]}
+{"w": "film", "phones": ["f", "ih1", "l", "m"]}
+{"w": "films", "phones": ["f", "ih1", "l", "m", "z"]}
+{"w": "final", "phones": ["f", "ay1", "-", "n", "ax", "l"]}
+{"w": "finally", "phones": ["f", "ay1", "-", "n", "ax", "l", "-", "iy"]}
+{"w": "finance", "phones": ["f", "ay1", "-", "n", "ae", "n", "s"]}
+{"w": "financial", "phones": ["f", "ay", "-", "n", "ae", "n", "-", "sh", "ax", "l"]}
+{"w": "find", "phones": ["f", "ay1", "n", "d"]}
+{"w": "finds", "phones": ["f", "ay1", "n", "d", "z"]}
+{"w": "fired", "phones": ["f", "ay1", "-", "ax", "r", "d"]}
+{"w": "firm", "phones": ["f", "er1", "r", "m"]}
+{"w": "fix", "phones": ["f", "ih1", "k", "s"]}
+{"w": "flat", "phones": ["f", "l", "ae1", "t"]}
+{"w": "florida", "phones": ["f", "l", "ao1", "-", "r", "ih", "-", "d", "ax"]}
+{"w": "flow", "phones": ["f", "l", "ow1"]}
+{"w": "flowers", "phones": ["f", "l", "aw1", "-", "ax", "r", "z"]}
+{"w": "fly", "phones": ["f", "l", "ay1"]}
+{"w": "flying", "phones": ["f", "l", "ay1", "-", "ih", "ng"]}
+{"w": "focus", "phones": ["f", "ow1", "-", "k", "ax", "s"]}
+{"w": "focused", "phones": ["f", "ow1", "-", "k", "ax", "s", "t"]}
+{"w": "folks", "phones": ["f", "ow1", "k", "s"]}
+{"w": "follow", "phones": ["f", "aa1", "-", "l", "ow"]}
+{"w": "follows", "phones": ["f", "aa1", "-", "l", "ow", "z"]}
+{"w": "food", "phones": ["f", "uw1", "d"]}
+{"w": "foot", "phones": ["f", "uh1", "t"]}
+{"w": "football", "phones": ["f", "uh1", "t", "-", "b", "ao2", "l"]}
+{"w": "force", "phones": ["f", "ao1", "r", "s"]}
+{"w": "forces", "phones": ["f", "ao1", "r", "-", "s", "ih", "z"]}
+{"w": "foreign", "phones": ["f", "ao1", "-", "r", "ih", "n"]}
+{"w": "forest", "phones": ["f", "ao1", "-", "r", "ih", "s", "t"]}
+{"w": "forever", "phones": ["f", "ao", "-", "r", "eh1", "-", "v", "ax", "r"]}
+{"w": "forgot", "phones": ["f", "ax", "r", "-", "g", "aa1", "t"]}
+{"w": "formed", "phones": ["f", "ao1", "r", "m", "d"]}
+{"w": "forms", "phones": ["f", "ao1", "r", "m", "z"]}
+{"w": "foundation", "phones": ["f", "aw", "n", "-", "d", "ey1", "-", "sh", "ax", "n"]}
+{"w": "fox", "phones": ["f", "aa1", "k", "s"]}
+{"w": "france", "phones": ["f", "r", "ae1", "n", "s"]}
+{"w": "frank", "phones": ["f", "r", "ae1", "ng", "k"]}
+{"w": "freedom", "phones": ["f", "r", "iy1", "-", "d", "ax", "m"]}
+{"w": "french", "phones": ["f", "r", "eh1", "n", "ch"]}
+{"w": "fresh", "phones": ["f", "r", "eh1", "sh"]}
+{"w": "fuck", "phones": ["f", "ah1", "k"]}
+{"w": "fucked", "phones": ["f", "ah1", "k", "t"]}
+{"w": "fucking", "phones": ["f", "ah1", "-", "k", "ih", "ng"]}
+{"w": "fuel", "phones": ["f", "y", "uw1", "l"]}
+{"w": "fully", "phones": ["f", "uh1", "-", "l", "iy"]}
+{"w": "fun", "phones": ["f", "ah1", "n"]}
+{"w": "function", "phones": ["f", "ah1", "ng", "k", "-", "sh", "ax", "n"]}
+{"w": "fund", "phones": ["f", "ah1", "n", "d"]}
+{"w": "funding", "phones": ["f", "ah1", "n", "-", "d", "ih", "ng"]}
+{"w": "funds", "phones": ["f", "ah1", "n", "d", "z"]}
+{"w": "funny", "phones": ["f", "ah1", "-", "n", "iy"]}
+{"w": "future", "phones": ["f", "y", "uw1", "-", "ch", "ax", "r"]}
+{"w": "gain", "phones": ["g", "ey1", "n"]}
+{"w": "games", "phones": ["g", "ey1", "m", "z"]}
+{"w": "gas", "phones": ["g", "ae1", "s"]}
+{"w": "gay", "phones": ["g", "ey1"]}
+{"w": "gender", "phones": ["jh", "eh1", "n", "-", "d", "ax", "r"]}
+{"w": "generally", "phones": ["jh", "eh1", "-", "n", "ax", "-", "r", "ax", "-", "l", "iy"]}
+{"w": "generation", "phones": ["jh", "eh2", "-", "n", "ax", "-", "r", "ey1", "-", "sh", "ax", "n"]}
+{"w": "germany", "phones": ["jh", "er1", "r", "-", "m", "ax", "-", "n", "iy"]}
+{"w": "gets", "phones": ["g", "eh1", "t", "s"]}
+{"w": "giant", "phones": ["jh", "ay1", "-", "ax", "n", "t"]}
+{"w": "gift", "phones": ["g", "ih1", "f", "t"]}
+{"w": "girlfriend", "phones": ["g", "er1", "r", "l", "-", "f", "r", "eh", "n", "d"]}
+{"w": "glad", "phones": ["g", "l", "ae1", "d"]}
+{"w": "global", "phones": ["g", "l", "ow1", "-", "b", "ax", "l"]}
+{"w": "goal", "phones": ["g", "ow1", "l"]}
+{"w": "goals", "phones": ["g", "ow1", "l", "z"]}
+{"w": "god", "phones": ["g", "aa1", "d"]}
+{"w": "goes", "phones": ["g", "ow1", "z"]}
+{"w": "gold", "phones": ["g", "ow1", "l", "d"]}
+{"w": "golden", "phones": ["g", "ow1", "l", "-", "d", "ax", "n"]}
+{"w": "gonna", "phones": ["g", "ah1", "-", "n", "ax"]}
+{"w": "goods", "phones": ["g", "uh1", "d", "z"]}
+{"w": "google", "phones": ["g", "uw1", "-", "g", "ax", "l"]}
+{"w": "gotta", "phones": ["g", "aa1", "-", "t", "ax"]}
+{"w": "government", "phones": ["g", "ah1", "-", "v", "ax", "r", "-", "m", "ax", "n", "t"]}
+{"w": "governor", "phones": ["g", "ah1", "-", "v", "ax", "r", "-", "n", "ax", "r"]}
+{"w": "grade", "phones": ["g", "r", "ey1", "d"]}
+{"w": "grand", "phones": ["g", "r", "ae1", "n", "d"]}
+{"w": "granted", "phones": ["g", "r", "ae1", "n", "-", "t", "ih", "d"]}
+{"w": "greatest", "phones": ["g", "r", "ey1", "-", "t", "ax", "s", "t"]}
+{"w": "green", "phones": ["g", "r", "iy1", "n"]}
+{"w": "ground", "phones": ["g", "r", "aw1", "n", "d"]}
+{"w": "group", "phones": ["g", "r", "uw1", "p"]}
+{"w": "groups", "phones": ["g", "r", "uw1", "p", "s"]}
+{"w": "grow", "phones": ["g", "r", "ow1"]}
+{"w": "growing", "phones": ["g", "r", "ow1", "-", "ih", "ng"]}
+{"w": "grown", "phones": ["g", "r", "ow1", "n"]}
+{"w": "growth", "phones": ["g", "r", "ow1", "th"]}
+{"w": "guard", "phones": ["g", "aa1", "r", "d"]}
+{"w": "guide", "phones": ["g", "ay1", "d"]}
+{"w": "guilty", "phones": ["g", "ih1", "l", "-", "t", "iy"]}
+{"w": "gun", "phones": ["g", "ah1", "n"]}
+{"w": "guns", "phones": ["g", "ah1", "n", "z"]}
+{"w": "guy", "phones": ["g", "ay1"]}
+{"w": "guys", "phones": ["g", "ay1", "z"]}
+{"w": "handle", "phones": ["h", "ae1", "n", "-", "d", "ax", "l"]}
+{"w": "hands", "phones": ["h", "ae1", "n", "d", "z"]}
+{"w": "hang", "phones": ["h", "ae1", "ng"]}
+{"w": "happen", "phones": ["h", "ae1", "-", "p", "ax", "n"]}
+{"w": "happens", "phones": ["h", "ae1", "-", "p", "ax", "n", "z"]}
+{"w": "happy", "phones": ["h", "ae1", "-", "p", "iy"]}
+{"w": "harry", "phones": ["h", "eh1", "-", "r", "iy"]}
+{"w": "heads", "phones": ["h", "eh1", "d", "z"]}
+{"w": "health", "phones": ["h", "eh1", "l", "th"]}
+{"w": "healthy", "phones": ["h", "eh1", "l", "-", "th", "iy"]}
+{"w": "heart", "phones": ["h", "aa1", "r", "t"]}
+{"w": "heat", "phones": ["h", "iy1", "t"]}
+{"w": "heavy", "phones": ["h", "eh1", "-", "v", "iy"]}
+{"w": "hell", "phones": ["h", "eh1", "l"]}
+{"w": "helped", "phones": ["h", "eh1", "l", "p", "t"]}
+{"w": "helping", "phones": ["h", "eh1", "l", "-", "p", "ih", "ng"]}
+{"w": "helps", "phones": ["h", "eh1", "l", "p", "s"]}
+{"w": "hero", "phones": ["h", "iy1", "-", "r", "ow"]}
+{"w": "hey", "phones": ["h", "ey1"]}
+{"w": "hi", "phones": ["h", "ay1"]}
+{"w": "higher", "phones": ["h", "ay1", "-", "ax", "r"]}
+{"w": "highest", "phones": ["h", "ay1", "-", "ax", "s", "t"]}
+{"w": "historical", "phones": ["h", "ih", "-", "s", "t", "ao1", "-", "r", "ih", "-", "k", "ax", "l"]}
+{"w": "history", "phones": ["h", "ih1", "-", "s", "t", "r", "iy"]}
+{"w": "hit", "phones": ["h", "ih1", "t"]}
+{"w": "hits", "phones": ["h", "ih1", "t", "s"]}
+{"w": "hold", "phones": ["h", "ow1", "l", "d"]}
+{"w": "holding", "phones": ["h", "ow1", "l", "-", "d", "ih", "ng"]}
+{"w": "holds", "phones": ["h", "ow1", "l", "d", "z"]}
+{"w": "hole", "phones": ["h", "ow1", "l"]}
+{"w": "holiday", "phones": ["h", "aa1", "-", "l", "ax", "-", "d", "ey2"]}
+{"w": "holy", "phones": ["h", "ow1", "-", "l", "iy"]}
+{"w": "homes", "phones": ["h", "ow1", "m", "z"]}
+{"w": "honest", "phones": ["aa1", "-", "n", "ih", "s", "t"]}
+{"w": "honor", "phones": ["aa1", "-", "n", "ax", "r"]}
+{"w": "hoping", "phones": ["h", "ow1", "-", "p", "ih", "ng"]}
+{"w": "horse", "phones": ["h", "ao1", "r", "s"]}
+{"w": "hospital", "phones": ["h", "aa1", "s", "-", "p", "ih", "-", "t", "ax", "l"]}
+{"w": "host", "phones": ["h", "ow1", "s", "t"]}
+{"w": "hot", "phones": ["h", "aa1", "t"]}
+{"w": "hotel", "phones": ["h", "ow", "-", "t", "eh1", "l"]}
+{"w": "houses", "phones": ["h", "aw1", "-", "z", "ih", "z"]}
+{"w": "housing", "phones": ["h", "aw1", "-", "z", "ih", "ng"]}
+{"w": "http", "phones": ["ey1", "ch", "-", "t", "iy2", "-", "t", "iy2", "-", "p", "iy1"]}
+{"w": "huge", "phones": ["h", "y", "uw1", "jh"]}
+{"w": "human", "phones": ["h", "y", "uw1", "-", "m", "ax", "n"]}
+{"w": "humans", "phones": ["h", "y", "uw1", "-", "m", "ax", "n", "z"]}
+{"w": "hundreds", "phones": ["h", "ah1", "n", "-", "d", "r", "ax", "d", "z"]}
+{"w": "hurt", "phones": ["h", "er1", "t"]}
+{"w": "ice", "phones": ["ay1", "s"]}
+{"w": "id", "phones": ["ay2", "-", "d", "iy1"]}
+{"w": "idea", "phones": ["ay", "-", "d", "iy1", "-", "ax"]}
+{"w": "ideas", "phones": ["ay", "-", "d", "iy1", "-", "ax", "z"]}
+{"w": "identified", "phones": ["ay", "-", "d", "eh1", "n", "-", "t", "ax", "-", "f", "ay2", "d"]}
+{"w": "identity", "phones": ["ay", "-", "d", "eh1", "n", "-", "t", "ax", "-", "t", "iy"]}
+{"w": "illegal", "phones": ["ih", "-", "l", "iy1", "-", "g", "ax", "l"]}
+{"w": "im", "phones": ["ay1", "m"]}
+{"w": "image", "phones": ["ih1", "-", "m", "ih", "jh"]}
+{"w": "images", "phones": ["ih1", "-", "m", "ih", "-", "jh", "ih", "z"]}
+{"w": "imagine", "phones": ["ih", "-", "m", "ae1", "-", "jh", "ih", "n"]}
+{"w": "impact", "phones": ["ih1", "m", "-", "p", "ae", "k", "t"]}
+{"w": "improve", "phones": ["ih", "m", "-", "p", "r", "uw1", "v"]}
+{"w": "improved", "phones": ["ih", "m", "-", "p", "r", "uw1", "v", "d"]}
+{"w": "inc", "phones": ["ih", "ng", "k"]}
+{"w": "include", "phones": ["ih", "n", "-", "k", "l", "uw1", "d"]}
+{"w": "included", "phones": ["ih", "n", "-", "k", "l", "uw1", "-", "d", "ih", "d"]}
+{"w": "includes", "phones": ["ih", "n", "-", "k", "l", "uw1", "d", "z"]}
+{"w": "including", "phones": ["ih", "n", "-", "k", "l", "uw1", "-", "d", "ih", "ng"]}
+{"w": "income", "phones": ["ih1", "n", "-", "k", "ah2", "m"]}
+{"w": "increase", "phones": ["ih1", "n", "-", "k", "r", "iy", "s"]}
+{"w": "increasing", "phones": ["ih", "n", "-", "k", "r", "iy1", "-", "s", "ih", "ng"]}
+{"w": "independent", "phones": ["ih2", "n", "-", "d", "ih", "-", "p", "eh1", "n", "-", "d", "ax", "n", "t"]}
+{"w": "india", "phones": ["ih1", "n", "-", "d", "iy", "-", "ax"]}
+{"w": "indian", "phones": ["ih1", "n", "-", "d", "iy", "-", "ax", "n"]}
+{"w": "individual", "phones": ["ih2", "n", "-", "d", "ax", "-", "v", "ih1", "-", "jh", "uh", "-", "ax", "l"]}
+{"w": "individuals", "phones": ["ih2", "n", "-", "d", "ax", "-", "v", "ih1", "-", "jh", "uh", "-", "ax", "l", "z"]}
+{"w": "industrial", "phones": ["ih", "n", "-", "d", "ah1", "-", "s", "t", "r", "iy", "-", "ax", "l"]}
+{"w": "industry", "phones": ["ih1", "n", "-", "d", "ax", "-", "s", "t", "r", "iy"]}
+{"w": "info", "phones": ["ih1", "n", "-", "f", "ow"]}
+{"w": "initial", "phones": ["ih", "-", "n", "ih1", "-", "sh", "ax", "l"]}
+{"w": "injury", "phones": ["ih1", "n", "-", "jh", "ax", "-", "r", "iy"]}
+{"w": "inside", "phones": ["ih", "n", "-", "s", "ay1", "d"]}
+{"w": "inspired", "phones": ["ih", "n", "-", "s", "p", "ay1", "-", "ax", "r", "d"]}
+{"w": "installed", "phones": ["ih", "n", "-", "s", "t", "ao1", "l", "d"]}
+{"w": "instance", "phones": ["ih1", "n", "-", "s", "t", "ax", "n", "s"]}
+{"w": "instead", "phones": ["ih", "n", "-", "s", "t", "eh1", "d"]}
+{"w": "institute", "phones": ["ih1", "n", "-", "s", "t", "ih", "-", "t", "uw", "t"]}
+{"w": "insurance", "phones": ["ih", "n", "-", "sh", "uh1", "-", "r", "ax", "n", "s"]}
+{"w": "interest", "phones": ["ih1", "n", "-", "t", "r", "ax", "s", "t"]}
+{"w": "interested", "phones": ["ih1", "n", "-", "t", "r", "ax", "-", "s", "t", "ax", "d"]}
+{"w": "interests", "phones": ["ih1", "n", "-", "t", "ax", "-", "r", "ax", "s", "t", "s"]}
+{"w": "internal", "phones": ["ih", "n", "-", "t", "er1", "r", "-", "n", "ax", "l"]}
+{"w": "international", "phones": ["ih2", "n", "-", "t", "ax", "r", "-", "n", "ae1", "-", "sh", "ax", "-", "n", "ax", "l"]}
+{"w": "internet", "phones": ["ih1", "n", "-", "t", "er", "r", "-", "n", "eh2", "t"]}
+{"w": "interview", "phones": ["ih1", "n", "-", "t", "ax", "r", "-", "v", "y", "uw"]}
+{"w": "investigation", "phones": ["ih", "n", "-", "v", "eh2", "-", "s", "t", "ax", "-", "g", "ey1", "-", "sh", "ax", "n"]}
+{"w": "investment", "phones": ["ih", "n", "-", "v", "eh1", "s", "t", "-", "m", "ax", "n", "t"]}
+{"w": "iran", "phones": ["ih", "-", "r", "aa1", "n"]}
+{"w": "ireland", "phones": ["ay1", "-", "ax", "r", "-", "l", "ax", "n", "d"]}
+{"w": "iron", "phones": ["ay1", "-", "ax", "r", "n"]}
+{"w": "island", "phones": ["ay1", "-", "l", "ax", "n", "d"]}
+{"w": "israel", "phones": ["ih1", "z", "-", "r", "iy", "-", "ax", "l"]}
+{"w": "issue", "phones": ["ih1", "-", "sh", "uw"]}
+{"w": "issued", "phones": ["ih1", "-", "sh", "uw", "d"]}
+{"w": "issues", "phones": ["ih1", "-", "sh", "uw", "z"]}
+{"w": "italy", "phones": ["ih1", "-", "t", "ax", "l", "-", "iy"]}
+{"w": "items", "phones": ["ay1", "-", "t", "ax", "m", "z"]}
+{"w": "jack", "phones": ["jh", "ae1", "k"]}
+{"w": "jail", "phones": ["jh", "ey1", "l"]}
+{"w": "james", "phones": ["jh", "ey1", "m", "z"]}
+{"w": "japan", "phones": ["jh", "ax", "-", "p", "ae1", "n"]}
+{"w": "japanese", "phones": ["jh", "ae2", "-", "p", "ax", "-", "n", "iy1", "z"]}
+{"w": "jersey", "phones": ["jh", "er1", "r", "-", "z", "iy"]}
+{"w": "jesus", "phones": ["jh", "iy1", "-", "z", "ax", "s"]}
+{"w": "jewish", "phones": ["jh", "uw1", "-", "ih", "sh"]}
+{"w": "jim", "phones": ["jh", "ih1", "m"]}
+{"w": "job", "phones": ["jh", "aa1", "b"]}
+{"w": "jobs", "phones": ["jh", "aa1", "b", "z"]}
+{"w": "joe", "phones": ["jh", "ow1"]}
+{"w": "john", "phones": ["jh", "aa1", "n"]}
+{"w": "johnson", "phones": ["jh", "aa1", "n", "-", "s", "ax", "n"]}
+{"w": "joint", "phones": ["jh", "oy1", "n", "t"]}
+{"w": "joke", "phones": ["jh", "ow1", "k"]}
+{"w": "journal", "phones": ["jh", "er1", "r", "-", "n", "ax", "l"]}
+{"w": "journey", "phones": ["jh", "er1", "r", "-", "n", "iy"]}
+{"w": "jump", "phones": ["jh", "ah1", "m", "p"]}
+{"w": "keeping", "phones": ["k", "iy1", "-", "p", "ih", "ng"]}
+{"w": "keeps", "phones": ["k", "iy1", "p", "s"]}
+{"w": "kick", "phones": ["k", "ih1", "k"]}
+{"w": "kid", "phones": ["k", "ih1", "d"]}
+{"w": "kids", "phones": ["k", "ih1", "d", "z"]}
+{"w": "kill", "phones": ["k", "ih1", "l"]}
+{"w": "killed", "phones": ["k", "ih1", "l", "d"]}
+{"w": "killing", "phones": ["k", "ih1", "-", "l", "ih", "ng"]}
+{"w": "kim", "phones": ["k", "ih1", "m"]}
+{"w": "kinda", "phones": ["k", "ay1", "n", "-", "d", "ax"]}
+{"w": "kingdom", "phones": ["k", "ih1", "ng", "-", "d", "ax", "m"]}
+{"w": "kitchen", "phones": ["k", "ih1", "-", "ch", "ax", "n"]}
+{"w": "knowing", "phones": ["n", "ow1", "-", "ih", "ng"]}
+{"w": "knowledge", "phones": ["n", "aa1", "-", "l", "ih", "jh"]}
+{"w": "korea", "phones": ["k", "ax", "-", "r", "iy1", "-", "ax"]}
+{"w": "la", "phones": ["l", "aa1"]}
+{"w": "labor", "phones": ["l", "ey1", "-", "b", "ax", "r"]}
+{"w": "labour", "phones": ["l", "ey1", "-", "b", "ax", "r"]}
+{"w": "lack", "phones": ["l", "ae1", "k"]}
+{"w": "lake", "phones": ["l", "ey1", "k"]}
+{"w": "land", "phones": ["l", "ae1", "n", "d"]}
+{"w": "language", "phones": ["l", "ae1", "ng", "-", "g", "w", "ih", "jh"]}
+{"w": "largely", "phones": ["l", "aa1", "r", "jh", "-", "l", "iy"]}
+{"w": "larger", "phones": ["l", "aa1", "r", "-", "jh", "ax", "r"]}
+{"w": "largest", "phones": ["l", "aa1", "r", "-", "jh", "ih", "s", "t"]}
+{"w": "later", "phones": ["l", "ey1", "-", "t", "ax", "r"]}
+{"w": "latest", "phones": ["l", "ey1", "-", "t", "ax", "s", "t"]}
+{"w": "laughing", "phones": ["l", "ae1", "-", "f", "ih", "ng"]}
+{"w": "launch", "phones": ["l", "ao1", "n", "ch"]}
+{"w": "launched", "phones": ["l", "ao1", "n", "ch", "t"]}
+{"w": "law", "phones": ["l", "ao1"]}
+{"w": "laws", "phones": ["l", "ao1", "z"]}
+{"w": "lawyer", "phones": ["l", "ao1", "-", "y", "ax", "r"]}
+{"w": "lay", "phones": ["l", "ey1"]}
+{"w": "lead", "phones": ["l", "iy1", "d"]}
+{"w": "leader", "phones": ["l", "iy1", "-", "d", "ax", "r"]}
+{"w": "leaders", "phones": ["l", "iy1", "-", "d", "ax", "r", "z"]}
+{"w": "leadership", "phones": ["l", "iy1", "-", "d", "ax", "r", "-", "sh", "ih", "p"]}
+{"w": "leading", "phones": ["l", "iy1", "-", "d", "ih", "ng"]}
+{"w": "leads", "phones": ["l", "iy1", "d", "z"]}
+{"w": "league", "phones": ["l", "iy1", "g"]}
+{"w": "learned", "phones": ["l", "er1", "r", "n", "d"]}
+{"w": "learning", "phones": ["l", "er1", "r", "-", "n", "ih", "ng"]}
+{"w": "lee", "phones": ["l", "iy1"]}
+{"w": "leg", "phones": ["l", "eh1", "g"]}
+{"w": "legal", "phones": ["l", "iy1", "-", "g", "ax", "l"]}
+{"w": "legs", "phones": ["l", "eh1", "g", "z"]}
+{"w": "level", "phones": ["l", "eh1", "-", "v", "ax", "l"]}
+{"w": "levels", "phones": ["l", "eh1", "-", "v", "ax", "l", "z"]}
+{"w": "liberal", "phones": ["l", "ih1", "-", "b", "ax", "-", "r", "ax", "l"]}
+{"w": "lie", "phones": ["l", "ay1"]}
+{"w": "lies", "phones": ["l", "ay1", "z"]}
+{"w": "light", "phones": ["l", "ay1", "t"]}
+{"w": "lights", "phones": ["l", "ay1", "t", "s"]}
+{"w": "likely", "phones": ["l", "ay1", "-", "k", "l", "iy"]}
+{"w": "likes", "phones": ["l", "ay1", "k", "s"]}
+{"w": "limited", "phones": ["l", "ih1", "-", "m", "ih", "-", "t", "ih", "d"]}
+{"w": "line", "phones": ["l", "ay1", "n"]}
+{"w": "link", "phones": ["l", "ih1", "ng", "k"]}
+{"w": "links", "phones": ["l", "ih1", "ng", "k", "s"]}
+{"w": "listed", "phones": ["l", "ih1", "-", "s", "t", "ih", "d"]}
+{"w": "literally", "phones": ["l", "ih1", "-", "t", "ax", "-", "r", "ax", "-", "l", "iy"]}
+{"w": "literature", "phones": ["l", "ih1", "-", "t", "ax", "-", "r", "ax", "-", "ch", "uh2", "r"]}
+{"w": "live", "phones": ["l", "ay1", "v"]}
+{"w": "lives", "phones": ["l", "ay1", "v", "z"]}
+{"w": "living", "phones": ["l", "ih1", "-", "v", "ih", "ng"]}
+{"w": "ll", "phones": ["eh1", "l", "-", "eh1", "l"]}
+{"w": "loan", "phones": ["l", "ow1", "n"]}
+{"w": "local", "phones": ["l", "ow1", "-", "k", "ax", "l"]}
+{"w": "located", "phones": ["l", "ow1", "-", "k", "ey", "-", "t", "ih", "d"]}
+{"w": "location", "phones": ["l", "ow", "-", "k", "ey1", "-", "sh", "ax", "n"]}
+{"w": "lol", "phones": ["eh1", "l", "-", "ow1", "-", "eh1", "l"]}
+{"w": "longer", "phones": ["l", "ao1", "ng", "-", "g", "ax", "r"]}
+{"w": "looks", "phones": ["l", "uh1", "k", "s"]}
+{"w": "lord", "phones": ["l", "ao1", "r", "d"]}
+{"w": "los", "phones": ["l", "ow1", "s"]}
+{"w": "lose", "phones": ["l", "uw1", "z"]}
+{"w": "loss", "phones": ["l", "ao1", "s"]}
+{"w": "lost", "phones": ["l", "ao1", "s", "t"]}
+{"w": "lot", "phones": ["l", "aa1", "t"]}
+{"w": "lots", "phones": ["l", "aa1", "t", "s"]}
+{"w": "louis", "phones": ["l", "uw1", "-", "ih", "s"]}
+{"w": "lovely", "phones": ["l", "ah1", "v", "-", "l", "iy"]}
+{"w": "lower", "phones": ["l", "ow1", "-", "ax", "r"]}
+{"w": "luck", "phones": ["l", "ah1", "k"]}
+{"w": "lunch", "phones": ["l", "ah1", "n", "ch"]}
+{"w": "ma", "phones": ["m", "aa1"]}
+{"w": "machine", "phones": ["m", "ax", "-", "sh", "iy1", "n"]}
+{"w": "magazine", "phones": ["m", "ae2", "-", "g", "ax", "-", "z", "iy1", "n"]}
+{"w": "mail", "phones": ["m", "ey1", "l"]}
+{"w": "main", "phones": ["m", "ey1", "n"]}
+{"w": "mainly", "phones": ["m", "ey1", "n", "-", "l", "iy"]}
+{"w": "maintain", "phones": ["m", "ey", "n", "-", "t", "ey1", "n"]}
+{"w": "major", "phones": ["m", "ey1", "-", "jh", "ax", "r"]}
+{"w": "majority", "phones": ["m", "ax", "-", "jh", "ao1", "-", "r", "ax", "-", "t", "iy"]}
+{"w": "makes", "phones": ["m", "ey1", "k", "s"]}
+{"w": "male", "phones": ["m", "ey1", "l"]}
+{"w": "managed", "phones": ["m", "ae1", "-", "n", "ih", "jh", "d"]}
+{"w": "management", "phones": ["m", "ae1", "-", "n", "ih", "jh", "-", "m", "ax", "n", "t"]}
+{"w": "manager", "phones": ["m", "ae1", "-", "n", "ih", "-", "jh", "ax", "r"]}
+{"w": "map", "phones": ["m", "ae1", "p"]}
+{"w": "mark", "phones": ["m", "aa1", "r", "k"]}
+{"w": "market", "phones": ["m", "aa1", "r", "-", "k", "ih", "t"]}
+{"w": "marketing", "phones": ["m", "aa1", "r", "-", "k", "ih", "-", "t", "ih", "ng"]}
+{"w": "markets", "phones": ["m", "aa1", "r", "-", "k", "ih", "t", "s"]}
+{"w": "martin", "phones": ["m", "aa1", "r", "-", "t", "ax", "n"]}
+{"w": "mass", "phones": ["m", "ae1", "s"]}
+{"w": "massive", "phones": ["m", "ae1", "-", "s", "ih", "v"]}
+{"w": "master", "phones": ["m", "ae1", "-", "s", "t", "ax", "r"]}
+{"w": "match", "phones": ["m", "ae1", "ch"]}
+{"w": "matches", "phones": ["m", "ae1", "-", "ch", "ih", "z"]}
+{"w": "material", "phones": ["m", "ax", "-", "t", "iy1", "-", "r", "iy", "-", "ax", "l"]}
+{"w": "materials", "phones": ["m", "ax", "-", "t", "iy1", "-", "r", "iy", "-", "ax", "l", "z"]}
+{"w": "matters", "phones": ["m", "ae1", "-", "t", "ax", "r", "z"]}
+{"w": "max", "phones": ["m", "ae1", "k", "s"]}
+{"w": "maximum", "phones": ["m", "ae1", "k", "-", "s", "ih", "-", "m", "ax", "m"]}
+{"w": "maybe", "phones": ["m", "ey1", "-", "b", "iy"]}
+{"w": "mayor", "phones": ["m", "ey1", "-", "ax", "r"]}
+{"w": "meant", "phones": ["m", "eh1", "n", "t"]}
+{"w": "measures", "phones": ["m", "eh1", "-", "zh", "ax", "r", "z"]}
+{"w": "meat", "phones": ["m", "iy1", "t"]}
+{"w": "media", "phones": ["m", "iy1", "-", "d", "iy", "-", "ax"]}
+{"w": "medical", "phones": ["m", "eh1", "-", "d", "ih", "-", "k", "ax", "l"]}
+{"w": "medicine", "phones": ["m", "eh1", "-", "d", "ax", "-", "s", "ax", "n"]}
+{"w": "medium", "phones": ["m", "iy1", "-", "d", "iy", "-", "ax", "m"]}
+{"w": "member", "phones": ["m", "eh1", "m", "-", "b", "ax", "r"]}
+{"w": "members", "phones": ["m", "eh1", "m", "-", "b", "ax", "r", "z"]}
+{"w": "memory", "phones": ["m", "eh1", "-", "m", "ax", "-", "r", "iy"]}
+{"w": "men", "phones": ["m", "eh1", "n"]}
+{"w": "mental", "phones": ["m", "eh1", "n", "-", "t", "ax", "l"]}
+{"w": "message", "phones": ["m", "eh1", "-", "s", "ih", "jh"]}
+{"w": "metal", "phones": ["m", "eh1", "-", "t", "ax", "l"]}
+{"w": "method", "phones": ["m", "eh1", "-", "th", "ax", "d"]}
+{"w": "methods", "phones": ["m", "eh1", "-", "th", "ax", "d", "z"]}
+{"w": "mexico", "phones": ["m", "eh1", "k", "-", "s", "ih", "-", "k", "ow2"]}
+{"w": "michael", "phones": ["m", "ay1", "-", "k", "ax", "l"]}
+{"w": "mid", "phones": ["m", "ih1", "d"]}
+{"w": "mike", "phones": ["m", "ay1", "k"]}
+{"w": "mile", "phones": ["m", "ay1", "l"]}
+{"w": "military", "phones": ["m", "ih1", "-", "l", "ax", "-", "t", "eh2", "-", "r", "iy"]}
+{"w": "milk", "phones": ["m", "ih1", "l", "k"]}
+{"w": "millions", "phones": ["m", "ih1", "-", "l", "y", "ax", "n", "z"]}
+{"w": "minimum", "phones": ["m", "ih1", "-", "n", "ax", "-", "m", "ax", "m"]}
+{"w": "minister", "phones": ["m", "ih1", "-", "n", "ih", "-", "s", "t", "ax", "r"]}
+{"w": "ministry", "phones": ["m", "ih1", "-", "n", "ih", "-", "s", "t", "r", "iy"]}
+{"w": "mission", "phones": ["m", "ih1", "-", "sh", "ax", "n"]}
+{"w": "mistake", "phones": ["m", "ih", "-", "s", "t", "ey1", "k"]}
+{"w": "mixed", "phones": ["m", "ih1", "k", "s", "t"]}
+{"w": "mm", "phones": ["eh1", "m", "-", "eh1", "m"]}
+{"w": "mobile", "phones": ["m", "ow1", "-", "b", "ax", "l"]}
+{"w": "mode", "phones": ["m", "ow1", "d"]}
+{"w": "model", "phones": ["m", "aa1", "-", "d", "ax", "l"]}
+{"w": "models", "phones": ["m", "aa1", "-", "d", "ax", "l", "z"]}
+{"w": "modern", "phones": ["m", "aa1", "-", "d", "ax", "r", "n"]}
+{"w": "mom", "phones": ["m", "aa1", "m"]}
+{"w": "moments", "phones": ["m", "ow1", "-", "m", "ax", "n", "t", "s"]}
+{"w": "money", "phones": ["m", "ah1", "-", "n", "iy"]}
+{"w": "months", "phones": ["m", "ah1", "n", "th", "s"]}
+{"w": "moon", "phones": ["m", "uw1", "n"]}
+{"w": "mostly", "phones": ["m", "ow1", "s", "t", "-", "l", "iy"]}
+{"w": "motion", "phones": ["m", "ow1", "-", "sh", "ax", "n"]}
+{"w": "move", "phones": ["m", "uw1", "v"]}
+{"w": "moved", "phones": ["m", "uw1", "v", "d"]}
+{"w": "movement", "phones": ["m", "uw1", "v", "-", "m", "ax", "n", "t"]}
+{"w": "moves", "phones": ["m", "uw1", "v", "z"]}
+{"w": "movie", "phones": ["m", "uw1", "-", "v", "iy"]}
+{"w": "movies", "phones": ["m", "uw1", "-", "v", "iy", "z"]}
+{"w": "multiple", "phones": ["m", "ah1", "l", "-", "t", "ax", "-", "p", "ax", "l"]}
+{"w": "murder", "phones": ["m", "er1", "r", "-", "d", "ax", "r"]}
+{"w": "museum", "phones": ["m", "y", "uw", "-", "z", "iy1", "-", "ax", "m"]}
+{"w": "muslim", "phones": ["m", "ah1", "z", "-", "l", "ih", "m"]}
+{"w": "name", "phones": ["n", "ey1", "m"]}
+{"w": "named", "phones": ["n", "ey1", "m", "d"]}
+{"w": "nation", "phones": ["n", "ey1", "-", "sh", "ax", "n"]}
+{"w": "national", "phones": ["n", "ae1", "-", "sh", "ax", "-", "n", "ax", "l"]}
+{"w": "nations", "phones": ["n", "ey1", "-", "sh", "ax", "n", "z"]}
+{"w": "native", "phones": ["n", "ey1", "-", "t", "ih", "v"]}
+{"w": "nearly", "phones": ["n", "iy1", "r", "-", "l", "iy"]}
+{"w": "necessary", "phones": ["n", "eh1", "-", "s", "ax", "-", "s", "eh2", "-", "r", "iy"]}
+{"w": "neck", "phones": ["n", "eh1", "k"]}
+{"w": "need", "phones": ["n", "iy1", "d"]}
+{"w": "needed", "phones": ["n", "iy1", "-", "d", "ih", "d"]}
+{"w": "needs", "phones": ["n", "iy1", "d", "z"]}
+{"w": "negative", "phones": ["n", "eh1", "-", "g", "ax", "-", "t", "ih", "v"]}
+{"w": "neither", "phones": ["n", "iy1", "-", "dh", "ax", "r"]}
+{"w": "newspaper", "phones": ["n", "uw1", "z", "-", "p", "ey2", "-", "p", "ax", "r"]}
+{"w": "nice", "phones": ["n", "ay1", "s"]}
+{"w": "nick", "phones": ["n", "ih1", "k"]}
+{"w": "night", "phones": ["n", "ay1", "t"]}
+{"w": "nobody", "phones": ["n", "ow1", "-", "b", "ax", "-", "d", "iy"]}
+{"w": "non", "phones": ["n", "aa1", "n"]}
+{"w": "noon", "phones": ["n", "uw1", "n"]}
+{"w": "normal", "phones": ["n", "ao1", "r", "-", "m", "ax", "l"]}
+{"w": "north", "phones": ["n", "ao1", "r", "th"]}
+{"w": "northern", "phones": ["n", "ao1", "r", "-", "dh", "ax", "r", "n"]}
+{"w": "noted", "phones": ["n", "ow1", "-", "t", "ih", "d"]}
+{"w": "notes", "phones": ["n", "ow1", "t", "s"]}
+{"w": "noticed", "phones": ["n", "ow1", "-", "t", "ih", "s", "t"]}
+{"w": "novel", "phones": ["n", "aa1", "-", "v", "ax", "l"]}
+{"w": "nuclear", "phones": ["n", "uw1", "-", "k", "l", "iy", "-", "ax", "r"]}
+{"w": "numbers", "phones": ["n", "ah1", "m", "-", "b", "ax", "r", "z"]}
+{"w": "numerous", "phones": ["n", "uw1", "-", "m", "ax", "-", "r", "ax", "s"]}
+{"w": "obama", "phones": ["ow", "-", "b", "aa1", "-", "m", "ax"]}
+{"w": "obvious", "phones": ["aa1", "b", "-", "v", "iy", "-", "ax", "s"]}
+{"w": "obviously", "phones": ["aa1", "b", "-", "v", "iy", "-", "ax", "-", "s", "l", "iy"]}
+{"w": "ocean", "phones": ["ow1", "-", "sh", "ax", "n"]}
+{"w": "offer", "phones": ["ao1", "-", "f", "ax", "r"]}
+{"w": "offering", "phones": ["ao1", "-", "f", "ax", "-", "r", "ih", "ng"]}
+{"w": "offers", "phones": ["ao1", "-", "f", "ax", "r", "z"]}
+{"w": "office", "phones": ["aa1", "-", "f", "ih", "s"]}
+{"w": "officer", "phones": ["ao1", "-", "f", "ih", "-", "s", "ax", "r"]}
+{"w": "official", "phones": ["ax", "-", "f", "ih1", "-", "sh", "ax", "l"]}
+{"w": "officials", "phones": ["ax", "-", "f", "ih1", "-", "sh", "ax", "l", "z"]}
+{"w": "ohio", "phones": ["ow", "-", "h", "ay1", "-", "ow"]}
+{"w": "oil", "phones": ["oy1", "l"]}
+{"w": "older", "phones": ["ow1", "l", "-", "d", "ax", "r"]}
+{"w": "ones", "phones": ["w", "ah1", "n", "z"]}
+{"w": "operating", "phones": ["aa1", "-", "p", "ax", "-", "r", "ey2", "-", "t", "ih", "ng"]}
+{"w": "operation", "phones": ["aa2", "-", "p", "ax", "-", "r", "ey1", "-", "sh", "ax", "n"]}
+{"w": "operations", "phones": ["aa2", "-", "p", "ax", "-", "r", "ey1", "-", "sh", "ax", "n", "z"]}
+{"w": "opinion", "phones": ["ax", "-", "p", "ih1", "-", "n", "y", "ax", "n"]}
+{"w": "opportunities", "phones": ["aa2", "-", "p", "ax", "r", "-", "t", "uw1", "-", "n", "ax", "-", "t", "iy", "z"]}
+{"w": "opportunity", "phones": ["aa2", "-", "p", "ax", "r", "-", "t", "uw1", "-", "n", "ax", "-", "t", "iy"]}
+{"w": "option", "phones": ["aa1", "p", "-", "sh", "ax", "n"]}
+{"w": "options", "phones": ["aa1", "p", "-", "sh", "ax", "n", "z"]}
+{"w": "orange", "phones": ["ao1", "-", "r", "ih", "n", "jh"]}
+{"w": "orders", "phones": ["ao1", "r", "-", "d", "ax", "r", "z"]}
+{"w": "organization", "phones": ["ao2", "r", "-", "g", "ax", "-", "n", "ax", "-", "z", "ey1", "-", "sh", "ax", "n"]}
+{"w": "organizations", "phones": ["ao2", "r", "-", "g", "ax", "-", "n", "ax", "-", "z", "ey1", "-", "sh", "ax", "n", "z"]}
+{"w": "original", "phones": ["ax", "-", "r", "ih1", "-", "jh", "ax", "-", "n", "ax", "l"]}
+{"w": "originally", "phones": ["ax", "-", "r", "ih1", "-", "jh", "ax", "-", "n", "ax", "l", "-", "iy"]}
+{"w": "otherwise", "phones": ["ah1", "-", "dh", "ax", "r", "-", "w", "ay2", "z"]}
+{"w": "outside", "phones": ["aw", "t", "-", "s", "ay1", "d"]}
+{"w": "overall", "phones": ["ow2", "-", "v", "ax", "-", "r", "ao1", "l"]}
+{"w": "owned", "phones": ["ow1", "n", "d"]}
+{"w": "owner", "phones": ["ow1", "-", "n", "ax", "r"]}
+{"w": "owners", "phones": ["ow1", "-", "n", "ax", "r", "z"]}
+{"w": "pacific", "phones": ["p", "ax", "-", "s", "ih1", "-", "f", "ih", "k"]}
+{"w": "pack", "phones": ["p", "ae1", "k"]}
+{"w": "page", "phones": ["p", "ey1", "jh"]}
+{"w": "paid", "phones": ["p", "ey1", "d"]}
+{"w": "painting", "phones": ["p", "ey1", "n", "-", "t", "ih", "ng"]}
+{"w": "papers", "phones": ["p", "ey1", "-", "p", "ax", "r", "z"]}
+{"w": "parents", "phones": ["p", "eh1", "-", "r", "ax", "n", "t", "s"]}
+{"w": "paris", "phones": ["p", "eh1", "-", "r", "ih", "s"]}
+{"w": "park", "phones": ["p", "aa1", "r", "k"]}
+{"w": "parliament", "phones": ["p", "aa1", "r", "-", "l", "ax", "-", "m", "ax", "n", "t"]}
+{"w": "parties", "phones": ["p", "aa1", "r", "-", "t", "iy", "z"]}
+{"w": "parts", "phones": ["p", "aa1", "r", "t", "s"]}
+{"w": "pass", "phones": ["p", "ae1", "s"]}
+{"w": "passing", "phones": ["p", "ae1", "-", "s", "ih", "ng"]}
+{"w": "password", "phones": ["p", "ae1", "s", "-", "w", "er1", "d"]}
+{"w": "past", "phones": ["p", "ae1", "s", "t"]}
+{"w": "patient", "phones": ["p", "ey1", "-", "sh", "ax", "n", "t"]}
+{"w": "patients", "phones": ["p", "ey1", "-", "sh", "ax", "n", "t", "s"]}
+{"w": "paul", "phones": ["p", "ao1", "l"]}
+{"w": "paying", "phones": ["p", "ey1", "-", "ih", "ng"]}
+{"w": "payment", "phones": ["p", "ey1", "-", "m", "ax", "n", "t"]}
+{"w": "peace", "phones": ["p", "iy1", "s"]}
+{"w": "per", "phones": ["p", "ax1", "r"]}
+{"w": "perfect", "phones": ["p", "er1", "r", "-", "f", "ih", "k", "t"]}
+{"w": "perform", "phones": ["p", "ax", "r", "-", "f", "ao1", "r", "m"]}
+{"w": "performance", "phones": ["p", "ax", "r", "-", "f", "ao1", "r", "-", "m", "ax", "n", "s"]}
+{"w": "period", "phones": ["p", "iy1", "-", "r", "iy", "-", "ax", "d"]}
+{"w": "personal", "phones": ["p", "er1", "r", "-", "s", "ax", "n", "-", "ax", "l"]}
+{"w": "peter", "phones": ["p", "iy1", "-", "t", "ax", "r"]}
+{"w": "phase", "phones": ["f", "ey1", "z"]}
+{"w": "photo", "phones": ["f", "ow1", "-", "t", "ow"]}
+{"w": "photos", "phones": ["f", "ow1", "-", "t", "ow", "z"]}
+{"w": "physical", "phones": ["f", "ih1", "-", "z", "ih", "-", "k", "ax", "l"]}
+{"w": "pick", "phones": ["p", "ih1", "k"]}
+{"w": "picked", "phones": ["p", "ih1", "k", "t"]}
+{"w": "pictures", "phones": ["p", "ih1", "k", "-", "ch", "ax", "r", "z"]}
+{"w": "pieces", "phones": ["p", "iy1", "-", "s", "ih", "z"]}
+{"w": "places", "phones": ["p", "l", "ey1", "-", "s", "ih", "z"]}
+{"w": "plan", "phones": ["p", "l", "ae1", "n"]}
+{"w": "plane", "phones": ["p", "l", "ey1", "n"]}
+{"w": "planet", "phones": ["p", "l", "ae1", "-", "n", "ih", "t"]}
+{"w": "planning", "phones": ["p", "l", "ae1", "-", "n", "ih", "ng"]}
+{"w": "plans", "phones": ["p", "l", "ae1", "n", "z"]}
+{"w": "plant", "phones": ["p", "l", "ae1", "n", "t"]}
+{"w": "plants", "phones": ["p", "l", "ae1", "n", "t", "s"]}
+{"w": "platform", "phones": ["p", "l", "ae1", "t", "-", "f", "ao2", "r", "m"]}
+{"w": "played", "phones": ["p", "l", "ey1", "d"]}
+{"w": "player", "phones": ["p", "l", "ey1", "-", "ax", "r"]}
+{"w": "players", "phones": ["p", "l", "ey1", "-", "ax", "r", "z"]}
+{"w": "plays", "phones": ["p", "l", "ey1", "z"]}
+{"w": "plenty", "phones": ["p", "l", "eh1", "n", "-", "t", "iy"]}
+{"w": "plus", "phones": ["p", "l", "ah1", "s"]}
+{"w": "police", "phones": ["p", "ax", "-", "l", "iy1", "s"]}
+{"w": "policies", "phones": ["p", "aa1", "-", "l", "ax", "-", "s", "iy", "z"]}
+{"w": "policy", "phones": ["p", "aa1", "-", "l", "ax", "-", "s", "iy"]}
+{"w": "political", "phones": ["p", "ax", "-", "l", "ih1", "-", "t", "ih", "-", "k", "ax", "l"]}
+{"w": "politics", "phones": ["p", "aa1", "l", "-", "ax", "-", "t", "ih2", "k", "s"]}
+{"w": "pop", "phones": ["p", "aa1", "p"]}
+{"w": "popular", "phones": ["p", "aa1", "-", "p", "y", "ax", "-", "l", "ax", "r"]}
+{"w": "population", "phones": ["p", "aa2", "-", "p", "y", "ax", "-", "l", "ey1", "-", "sh", "ax", "n"]}
+{"w": "port", "phones": ["p", "ao1", "r", "t"]}
+{"w": "position", "phones": ["p", "ax", "-", "z", "ih1", "-", "sh", "ax", "n"]}
+{"w": "positions", "phones": ["p", "ax", "-", "z", "ih1", "-", "sh", "ax", "n", "z"]}
+{"w": "positive", "phones": ["p", "aa1", "-", "z", "ax", "-", "t", "ih", "v"]}
+{"w": "possible", "phones": ["p", "aa1", "-", "s", "ax", "-", "b", "ax", "l"]}
+{"w": "possibly", "phones": ["p", "aa1", "-", "s", "ax", "-", "b", "l", "iy"]}
+{"w": "post", "phones": ["p", "ow1", "s", "t"]}
+{"w": "posted", "phones": ["p", "ow1", "-", "s", "t", "ih", "d"]}
+{"w": "posts", "phones": ["p", "ow1", "s", "t", "s"]}
+{"w": "potential", "phones": ["p", "ax", "-", "t", "eh1", "n", "-", "sh", "ax", "l"]}
+{"w": "power", "phones": ["p", "aw1", "-", "ax", "r"]}
+{"w": "powerful", "phones": ["p", "aw1", "-", "ax", "r", "-", "f", "ax", "l"]}
+{"w": "practice", "phones": ["p", "r", "ae1", "k", "-", "t", "ih", "s"]}
+{"w": "pre", "phones": ["p", "r", "iy1"]}
+{"w": "prepared", "phones": ["p", "r", "ih", "-", "p", "eh1", "r", "d"]}
+{"w": "presented", "phones": ["p", "r", "ih", "-", "z", "eh1", "n", "-", "t", "ih", "d"]}
+{"w": "president", "phones": ["p", "r", "eh1", "-", "z", "ax", "-", "d", "ax", "n", "t"]}
+{"w": "pressure", "phones": ["p", "r", "eh1", "-", "sh", "ax", "r"]}
+{"w": "prevent", "phones": ["p", "r", "ih", "-", "v", "eh1", "n", "t"]}
+{"w": "previous", "phones": ["p", "r", "iy1", "-", "v", "iy", "-", "ax", "s"]}
+{"w": "previously", "phones": ["p", "r", "iy1", "-", "v", "iy", "-", "ax", "-", "s", "l", "iy"]}
+{"w": "prices", "phones": ["p", "r", "ay1", "-", "s", "ih", "z"]}
+{"w": "primary", "phones": ["p", "r", "ay1", "-", "m", "eh2", "-", "r", "iy"]}
+{"w": "prime", "phones": ["p", "r", "ay1", "m"]}
+{"w": "prince", "phones": ["p", "r", "ih1", "n", "s"]}
+{"w": "printer", "phones": ["p", "r", "ih1", "n", "-", "t", "ax", "r"]}
+{"w": "prior", "phones": ["p", "r", "ay1", "-", "ax", "r"]}
+{"w": "prison", "phones": ["p", "r", "ih1", "-", "z", "ax", "n"]}
+{"w": "prize", "phones": ["p", "r", "ay1", "z"]}
+{"w": "pro", "phones": ["p", "r", "ow1"]}
+{"w": "probably", "phones": ["p", "r", "aa1", "-", "b", "ax", "-", "b", "l", "iy"]}
+{"w": "problem", "phones": ["p", "r", "aa1", "-", "b", "l", "ax", "m"]}
+{"w": "problems", "phones": ["p", "r", "aa1", "-", "b", "l", "ax", "m", "z"]}
+{"w": "process", "phones": ["p", "r", "aa1", "-", "s", "eh", "s"]}
+{"w": "produce", "phones": ["p", "r", "ax", "-", "d", "uw1", "s"]}
+{"w": "produced", "phones": ["p", "r", "ax", "-", "d", "uw1", "s", "t"]}
+{"w": "product", "phones": ["p", "r", "aa1", "-", "d", "ax", "k", "t"]}
+{"w": "production", "phones": ["p", "r", "ax", "-", "d", "ah1", "k", "-", "sh", "ax", "n"]}
+{"w": "products", "phones": ["p", "r", "aa1", "-", "d", "ah", "k", "t", "s"]}
+{"w": "professional", "phones": ["p", "r", "ax", "-", "f", "eh1", "-", "sh", "ax", "-", "n", "ax", "l"]}
+{"w": "professor", "phones": ["p", "r", "ax", "-", "f", "eh1", "-", "s", "ax", "r"]}
+{"w": "profile", "phones": ["p", "r", "ow1", "-", "f", "ay", "l"]}
+{"w": "profit", "phones": ["p", "r", "aa1", "-", "f", "ih", "t"]}
+{"w": "program", "phones": ["p", "r", "ow1", "-", "g", "r", "ae", "m"]}
+{"w": "programs", "phones": ["p", "r", "ow1", "-", "g", "r", "ae", "m", "z"]}
+{"w": "progress", "phones": ["p", "r", "aa1", "-", "g", "r", "eh", "s"]}
+{"w": "project", "phones": ["p", "r", "aa1", "-", "jh", "eh", "k", "t"]}
+{"w": "projects", "phones": ["p", "r", "aa1", "-", "jh", "eh", "k", "t", "s"]}
+{"w": "promise", "phones": ["p", "r", "aa1", "-", "m", "ih", "s"]}
+{"w": "proof", "phones": ["p", "r", "uw1", "f"]}
+{"w": "proper", "phones": ["p", "r", "aa1", "-", "p", "ax", "r"]}
+{"w": "properly", "phones": ["p", "r", "aa1", "-", "p", "ax", "r", "-", "l", "iy"]}
+{"w": "properties", "phones": ["p", "r", "aa1", "-", "p", "ax", "r", "-", "t", "iy", "z"]}
+{"w": "property", "phones": ["p", "r", "aa1", "-", "p", "ax", "r", "-", "t", "iy"]}
+{"w": "proposed", "phones": ["p", "r", "ax", "-", "p", "ow1", "z", "d"]}
+{"w": "protect", "phones": ["p", "r", "ax", "-", "t", "eh1", "k", "t"]}
+{"w": "protection", "phones": ["p", "r", "ax", "-", "t", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "prove", "phones": ["p", "r", "uw1", "v"]}
+{"w": "provide", "phones": ["p", "r", "ax", "-", "v", "ay1", "d"]}
+{"w": "provided", "phones": ["p", "r", "ax", "-", "v", "ay1", "-", "d", "ih", "d"]}
+{"w": "provides", "phones": ["p", "r", "ax", "-", "v", "ay1", "d", "z"]}
+{"w": "providing", "phones": ["p", "r", "ax", "-", "v", "ay1", "-", "d", "ih", "ng"]}
+{"w": "public", "phones": ["p", "ah1", "-", "b", "l", "ih", "k"]}
+{"w": "published", "phones": ["p", "ah1", "-", "b", "l", "ih", "sh", "t"]}
+{"w": "pull", "phones": ["p", "uh1", "l"]}
+{"w": "pulled", "phones": ["p", "uh1", "l", "d"]}
+{"w": "purchase", "phones": ["p", "er1", "r", "-", "ch", "ax", "s"]}
+{"w": "pure", "phones": ["p", "y", "uh1", "r"]}
+{"w": "questions", "phones": ["k", "w", "eh1", "s", "-", "ch", "ax", "n", "z"]}
+{"w": "quick", "phones": ["k", "w", "ih1", "k"]}
+{"w": "quiet", "phones": ["k", "w", "ay1", "-", "ax", "t"]}
+{"w": "race", "phones": ["r", "ey1", "s"]}
+{"w": "radio", "phones": ["r", "ey1", "-", "d", "iy", "-", "ow"]}
+{"w": "raise", "phones": ["r", "ey1", "z"]}
+{"w": "raised", "phones": ["r", "ey1", "z", "d"]}
+{"w": "ran", "phones": ["r", "ae1", "n"]}
+{"w": "rare", "phones": ["r", "eh1", "r"]}
+{"w": "rates", "phones": ["r", "ey1", "t", "s"]}
+{"w": "ray", "phones": ["r", "ey1"]}
+{"w": "re", "phones": ["r", "iy1"]}
+{"w": "reach", "phones": ["r", "iy1", "ch"]}
+{"w": "reaction", "phones": ["r", "iy", "-", "ae1", "k", "-", "sh", "ax", "n"]}
+{"w": "reality", "phones": ["r", "iy", "-", "ae1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "realize", "phones": ["r", "iy1", "-", "ax", "-", "l", "ay2", "z"]}
+{"w": "realized", "phones": ["r", "iy1", "-", "ax", "-", "l", "ay2", "z", "d"]}
+{"w": "reasonable", "phones": ["r", "iy1", "-", "z", "ax", "-", "n", "ax", "-", "b", "ax", "l"]}
+{"w": "reasons", "phones": ["r", "iy1", "-", "z", "ax", "n", "z"]}
+{"w": "receive", "phones": ["r", "ih", "-", "s", "iy1", "v"]}
+{"w": "receiving", "phones": ["r", "ih", "-", "s", "iy1", "-", "v", "ih", "ng"]}
+{"w": "recent", "phones": ["r", "iy1", "-", "s", "ax", "n", "t"]}
+{"w": "recently", "phones": ["r", "iy1", "-", "s", "ax", "n", "t", "-", "l", "iy"]}
+{"w": "recommend", "phones": ["r", "eh2", "-", "k", "ax", "-", "m", "eh1", "n", "d"]}
+{"w": "record", "phones": ["r", "ih", "-", "k", "ao1", "r", "d"]}
+{"w": "recorded", "phones": ["r", "ih", "-", "k", "ao1", "r", "-", "d", "ih", "d"]}
+{"w": "records", "phones": ["r", "eh1", "-", "k", "ax", "r", "d", "z"]}
+{"w": "red", "phones": ["r", "eh1", "d"]}
+{"w": "reduce", "phones": ["r", "ih", "-", "d", "uw1", "s"]}
+{"w": "reduced", "phones": ["r", "ih", "-", "d", "uw1", "s", "t"]}
+{"w": "reference", "phones": ["r", "eh1", "-", "f", "r", "ax", "n", "s"]}
+{"w": "referred", "phones": ["r", "ih", "-", "f", "er1", "r", "d"]}
+{"w": "regarding", "phones": ["r", "ih", "-", "g", "aa1", "r", "-", "d", "ih", "ng"]}
+{"w": "region", "phones": ["r", "iy1", "-", "jh", "ax", "n"]}
+{"w": "regional", "phones": ["r", "iy1", "-", "jh", "ax", "-", "n", "ax", "l"]}
+{"w": "register", "phones": ["r", "eh1", "-", "jh", "ih", "-", "s", "t", "ax", "r"]}
+{"w": "regular", "phones": ["r", "eh1", "-", "g", "y", "uw", "-", "l", "ax", "r"]}
+{"w": "related", "phones": ["r", "ih", "-", "l", "ey1", "-", "t", "ih", "d"]}
+{"w": "relations", "phones": ["r", "ih", "-", "l", "ey1", "-", "sh", "ax", "n", "z"]}
+{"w": "relationship", "phones": ["r", "ih", "-", "l", "ey1", "-", "sh", "ax", "n", "-", "sh", "ih2", "p"]}
+{"w": "relationships", "phones": ["r", "ih", "-", "l", "ey1", "-", "sh", "ax", "n", "-", "sh", "ih", "p", "s"]}
+{"w": "relatively", "phones": ["r", "eh1", "-", "l", "ax", "-", "t", "ih", "v", "-", "l", "iy"]}
+{"w": "release", "phones": ["r", "ih", "-", "l", "iy1", "s"]}
+{"w": "released", "phones": ["r", "ih", "-", "l", "iy1", "s", "t"]}
+{"w": "relevant", "phones": ["r", "eh1", "-", "l", "ax", "-", "v", "ax", "n", "t"]}
+{"w": "religion", "phones": ["r", "ih", "-", "l", "ih1", "-", "jh", "ax", "n"]}
+{"w": "religious", "phones": ["r", "ih", "-", "l", "ih1", "-", "jh", "ax", "s"]}
+{"w": "remain", "phones": ["r", "ih", "-", "m", "ey1", "n"]}
+{"w": "remaining", "phones": ["r", "ih", "-", "m", "ey1", "-", "n", "ih", "ng"]}
+{"w": "remains", "phones": ["r", "ih", "-", "m", "ey1", "n", "z"]}
+{"w": "remove", "phones": ["r", "ih", "-", "m", "uw1", "v"]}
+{"w": "removed", "phones": ["r", "ih", "-", "m", "uw1", "v", "d"]}
+{"w": "rent", "phones": ["r", "eh1", "n", "t"]}
+{"w": "reported", "phones": ["r", "ih", "-", "p", "ao1", "r", "-", "t", "ih", "d"]}
+{"w": "reports", "phones": ["r", "ih", "-", "p", "ao1", "r", "t", "s"]}
+{"w": "republic", "phones": ["r", "ih", "-", "p", "ah1", "-", "b", "l", "ih", "k"]}
+{"w": "republican", "phones": ["r", "ih", "-", "p", "ah1", "-", "b", "l", "ih", "-", "k", "ax", "n"]}
+{"w": "require", "phones": ["r", "ih", "-", "k", "w", "ay1", "-", "ax", "r"]}
+{"w": "requirements", "phones": ["r", "ih", "-", "k", "w", "ay1", "r", "-", "m", "ax", "n", "t", "s"]}
+{"w": "requires", "phones": ["r", "ih", "-", "k", "w", "ay1", "-", "ax", "r", "z"]}
+{"w": "research", "phones": ["r", "iy1", "-", "s", "er", "ch"]}
+{"w": "reserve", "phones": ["r", "ih", "-", "z", "er1", "r", "v"]}
+{"w": "residents", "phones": ["r", "eh1", "-", "z", "ax", "-", "d", "ax", "n", "t", "s"]}
+{"w": "resources", "phones": ["r", "iy1", "-", "s", "ao", "r", "-", "s", "ih", "z"]}
+{"w": "responding", "phones": ["r", "ih", "-", "s", "p", "aa1", "n", "-", "d", "ih", "ng"]}
+{"w": "response", "phones": ["r", "ih", "-", "s", "p", "aa1", "n", "s"]}
+{"w": "responsibility", "phones": ["r", "ih", "-", "s", "p", "aa2", "n", "-", "s", "ax", "-", "b", "ih1", "-", "l", "ax", "-", "t", "iy"]}
+{"w": "responsible", "phones": ["r", "ih", "-", "s", "p", "aa1", "n", "-", "s", "ax", "-", "b", "ax", "l"]}
+{"w": "restart", "phones": ["r", "iy", "-", "s", "t", "aa1", "r", "t"]}
+{"w": "restaurant", "phones": ["r", "eh1", "-", "s", "t", "r", "aa", "n", "t"]}
+{"w": "results", "phones": ["r", "ih", "-", "z", "ah1", "l", "t", "s"]}
+{"w": "return", "phones": ["r", "ih", "-", "t", "er1", "r", "n"]}
+{"w": "returns", "phones": ["r", "ih", "-", "t", "er1", "r", "n", "z"]}
+{"w": "revealed", "phones": ["r", "ih", "-", "v", "iy1", "l", "d"]}
+{"w": "revenue", "phones": ["r", "eh1", "-", "v", "ax", "-", "n", "uw2"]}
+{"w": "review", "phones": ["r", "ih", "-", "v", "y", "uw1"]}
+{"w": "rich", "phones": ["r", "ih1", "ch"]}
+{"w": "richard", "phones": ["r", "ih1", "-", "ch", "ax", "r", "d"]}
+{"w": "ride", "phones": ["r", "ay1", "d"]}
+{"w": "right", "phones": ["r", "ay1", "t"]}
+{"w": "rights", "phones": ["r", "ay1", "t", "s"]}
+{"w": "rise", "phones": ["r", "ay1", "z"]}
+{"w": "rising", "phones": ["r", "ay1", "-", "z", "ih", "ng"]}
+{"w": "risk", "phones": ["r", "ih1", "s", "k"]}
+{"w": "river", "phones": ["r", "ih1", "-", "v", "ax", "r"]}
+{"w": "road", "phones": ["r", "ow1", "d"]}
+{"w": "robert", "phones": ["r", "aa1", "-", "b", "ax", "r", "t"]}
+{"w": "rock", "phones": ["r", "aa1", "k"]}
+{"w": "role", "phones": ["r", "ow1", "l"]}
+{"w": "roll", "phones": ["r", "ow1", "l"]}
+{"w": "route", "phones": ["r", "uw1", "t"]}
+{"w": "row", "phones": ["r", "ow1"]}
+{"w": "royal", "phones": ["r", "oy1", "-", "ax", "l"]}
+{"w": "rules", "phones": ["r", "uw1", "l", "z"]}
+{"w": "running", "phones": ["r", "ah1", "-", "n", "ih", "ng"]}
+{"w": "runs", "phones": ["r", "ah1", "n", "z"]}
+{"w": "rural", "phones": ["r", "uh1", "-", "r", "ax", "l"]}
+{"w": "russia", "phones": ["r", "ah1", "-", "sh", "ax"]}
+{"w": "russian", "phones": ["r", "ah1", "-", "sh", "ax", "n"]}
+{"w": "ryan", "phones": ["r", "ay1", "-", "ax", "n"]}
+{"w": "safety", "phones": ["s", "ey1", "f", "-", "t", "iy"]}
+{"w": "sale", "phones": ["s", "ey1", "l"]}
+{"w": "sales", "phones": ["s", "ey1", "l", "z"]}
+{"w": "sam", "phones": ["s", "ae1", "m"]}
+{"w": "san", "phones": ["s", "ae1", "n"]}
+{"w": "saved", "phones": ["s", "ey1", "v", "d"]}
+{"w": "saying", "phones": ["s", "ey1", "-", "ih", "ng"]}
+{"w": "scale", "phones": ["s", "k", "ey1", "l"]}
+{"w": "scared", "phones": ["s", "k", "eh1", "r", "d"]}
+{"w": "scene", "phones": ["s", "iy1", "n"]}
+{"w": "school", "phones": ["s", "k", "uw1", "l"]}
+{"w": "schools", "phones": ["s", "k", "uw1", "l", "z"]}
+{"w": "science", "phones": ["s", "ay1", "-", "ax", "n", "s"]}
+{"w": "scientific", "phones": ["s", "ay2", "-", "ax", "n", "-", "t", "ih1", "-", "f", "ih", "k"]}
+{"w": "scotland", "phones": ["s", "k", "aa1", "t", "-", "l", "ax", "n", "d"]}
+{"w": "scottish", "phones": ["s", "k", "aa1", "-", "t", "ih", "sh"]}
+{"w": "screen", "phones": ["s", "k", "r", "iy1", "n"]}
+{"w": "season", "phones": ["s", "iy1", "-", "z", "ax", "n"]}
+{"w": "seat", "phones": ["s", "iy1", "t"]}
+{"w": "seconds", "phones": ["s", "eh1", "-", "k", "ax", "n", "d", "z"]}
+{"w": "secretary", "phones": ["s", "eh1", "-", "k", "r", "ax", "-", "t", "eh2", "-", "r", "iy"]}
+{"w": "section", "phones": ["s", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "sector", "phones": ["s", "eh1", "k", "-", "t", "ax", "r"]}
+{"w": "secure", "phones": ["s", "ih", "-", "k", "y", "uh1", "r"]}
+{"w": "security", "phones": ["s", "ih", "-", "k", "y", "uh1", "-", "r", "ax", "-", "t", "iy"]}
+{"w": "seek", "phones": ["s", "iy1", "k"]}
+{"w": "seem", "phones": ["s", "iy1", "m"]}
+{"w": "selected", "phones": ["s", "ax", "-", "l", "eh1", "k", "-", "t", "ih", "d"]}
+{"w": "selection", "phones": ["s", "ih", "-", "l", "eh1", "k", "-", "sh", "ax", "n"]}
+{"w": "self", "phones": ["s", "eh1", "l", "f"]}
+{"w": "sell", "phones": ["s", "eh1", "l"]}
+{"w": "selling", "phones": ["s", "eh1", "-", "l", "ih", "ng"]}
+{"w": "senate", "phones": ["s", "eh1", "-", "n", "ih", "t"]}
+{"w": "send", "phones": ["s", "eh1", "n", "d"]}
+{"w": "sending", "phones": ["s", "eh1", "n", "-", "d", "ih", "ng"]}
+{"w": "senior", "phones": ["s", "iy1", "-", "n", "y", "ax", "r"]}
+{"w": "sentence", "phones": ["s", "eh1", "n", "-", "t", "ax", "n", "s"]}
+{"w": "separate", "phones": ["s", "eh1", "-", "p", "ax", "-", "r", "ax", "t"]}
+{"w": "series", "phones": ["s", "iy1", "-", "r", "iy", "z"]}
+{"w": "serious", "phones": ["s", "iy1", "-", "r", "iy", "-", "ax", "s"]}
+{"w": "seriously", "phones": ["s", "iy1", "-", "r", "iy", "-", "ax", "-", "s", "l", "iy"]}
+{"w": "serve", "phones": ["s", "er1", "r", "v"]}
+{"w": "served", "phones": ["s", "er1", "r", "v", "d"]}
+{"w": "service", "phones": ["s", "er1", "r", "-", "v", "ih", "s"]}
+{"w": "services", "phones": ["s", "er1", "r", "-", "v", "ih", "-", "s", "ih", "z"]}
+{"w": "serving", "phones": ["s", "er1", "r", "-", "v", "ih", "ng"]}
+{"w": "session", "phones": ["s", "eh1", "-", "sh", "ax", "n"]}
+{"w": "sets", "phones": ["s", "eh1", "t", "s"]}
+{"w": "sex", "phones": ["s", "eh1", "k", "s"]}
+{"w": "sexual", "phones": ["s", "eh1", "k", "-", "sh", "uh", "-", "ax", "l"]}
+{"w": "shared", "phones": ["sh", "eh1", "r", "d"]}
+{"w": "shares", "phones": ["sh", "eh1", "r", "z"]}

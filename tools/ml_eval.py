@@ -10,15 +10,17 @@
 import json
 import os
 import sys
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg, sdk_root as _sdk_root  # noqa: E402
 import time
 import urllib.request
 
 import numpy as np
-from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.abspath(HERE)
 sys.path.insert(0, ROOT)
+if _sdk_root() != ROOT and _sdk_root() != HERE:
+    sys.path.insert(0, _sdk_root())
 sys.path.insert(0, os.path.join(HERE, "tools"))
 
 PROBE = os.path.join(os.environ["TEMP"], "probe_dbg")

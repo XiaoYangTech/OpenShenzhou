@@ -1,0 +1,101 @@
+The total is 1,234,567 dollars.
+Room 101 is on floor 3.
+Call 555-1234 for help.
+The price is $5.99 today.
+It costs €12.50 or £3.20.
+The budget is ￥100 this month.
+The meeting is on January 1, 2024.
+It happened on 12/31/1999.
+She was born on the 21st of March.
+The deadline is 2024-06-01.
+Please arrive at 3:45 PM.
+The train leaves at 12:00.
+We start at 5:30am sharp.
+The top three are the 1st, 2nd, and 3rd.
+Discount is 25% off.
+Distance is 3.5 km.
+The package weighs 10 kg.
+Water boils at 100°C.
+The room is 12 ft wide.
+Speed limit is 60 mph.
+Mr. Smith met Dr. Jones yesterday.
+Use a font, e.g. Arial, for this.
+That is, i.e. the same thing.
+They visited the U.S.A. last year.
+Bring pens, paper, etc. to class.
+Read Chapter IV and Chapter XII.
+King Henry VIII was famous.
+Mix A & B together.
+If x + y = z, then solve it.
+The chance is 50/50.
+Multiply 3×4 to get twelve.
+Divide the result by ÷2.
+Back up ~5 files first.
+The temperature is -5 degrees.
+Values range from 10-20 units.
+Use .5 as a shortcut.
+The version is 1.0 today.
+The IP address is 192.168.1.1.
+We shipped version 2.0.1.
+The task took 1h 30m.
+Measure 2.5m of rope.
+Add 1/2 of the pie.
+Use 3 1/4 cups of flour.
+See item No. 5 in the list.
+Read pages 12-15 tonight.
+Phone: +1-800-123-4567.
+Visit www.example.com for details.
+Email user@example.com now.
+Dial (555) 123-4567 today.
+NASA and the FBI cooperated.
+Her essay is about HTML5 and PDF.
+He is a well-known author.
+This is a state-of-the-art device.
+Open John's book and the dogs' toys.
+Hello, world! How are you?
+SHE SAID THIS IS IMPORTANT.
+the 1st item and the 22nd item
+Add 2 to 3 and get 5.
+He scored 98 on the test.
+1 out of 3 people agree.
+33.333 percent is one third.
+The file is 2.5 MB in size.
+Save it as report_2024.pdf.
+Copy 25 files and 3 folders.
+The dates are 3/4/2024 and 7/8/2025.
+Schedule the call for 9am.
+We meet at 09:00 tomorrow.
+It is 3:00pm already.
+From 2020 to 2024 we grew.
+Chapter 7 explains the rule.
+Flight AA123 leaves at 6:45.
+Order number 123-ABC-456 is ready.
+He is 6'2" tall.
+The box is 10 x 20 x 30 cm.
+Press Ctrl+Alt+Delete to continue.
+Tap the Start button, then Settings.
+Search for "network settings" online.
+Use a 2:1 ratio of water to rice.
+The rate rose by 3.5 points.
+Score: 4/5 stars.
+Path C:	empile.txt is missing.
+Enter 0.001 as the threshold.
+Text me at 555.123.4567 tonight.
+Apply 30% discount and 5% tax.
+Deadline: March 3rd, 2024 at noon.
+Section 3.2.1 covers this case.
+The ID is 00-1A-2B-3C-4D-5E.
+Please pay $1,000 in 30 days.
+The rent is 1,200 dollars a month.
+We need 3 more days.
+Half of 10 is 5.
+Add 1, then 2, then 3.
+Call between 9-5 on weekdays.
+The count is 100 and rising.
+No. 7 is missing.
+Take 2 tablets every 6 hours.
+Use 5% of the budget.
+The year 1999 was busy.
+The rate is 1.5x higher.
+He ran 26.2 miles today.
+Put the 4th item on the 5th shelf.

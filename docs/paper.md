@@ -393,6 +393,17 @@ BR0/BR2 两个 CRF 的模板是 `Word.PrevWord.Text / Word.POS / Word.SyllableNu
 评测工具：`tools/eval_ml_offline.py`（golden 为引擎实测 encoder 输入 id，离线可复现）；中文评测：
 `tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl`。
 
+### 5.3.2 英文大规模标定（自然语料 500 句 + TN 压力集 102 句）
+
+138 句小样本之外，我们为英文单独建立了更大规模的引擎探针标注：
+从公版英文小说抽取 500 句自然句（`data/eval/en_engine_500.jsonl`），另构造 102 句 TN（数字/货币/日期/
+时间/单位/分数/缩写）压力集（`data/eval/en_engine_tn.jsonl`），全部用引擎 fast 探针抓取 encoder 输入 id。
+利用这批数据，直接从引擎句内输出标定出 1402 个高频词的**句内读音（含弱读形态）**，再用隔离探针补全
+2038 个词的单字读音，配合标点/括号/连字符复合词/罗马数字/部分 TN 规则重写英文前端。
+结果：英文自然句逐 id 一致率从 **17.8% 提升到 95.6%（478/500）**，8 语种 golden 仍保持 138/138；
+TN 压力集目前 34/102，后续继续按引擎实测规则迭代（货币/日期/时间/单位/分数/电话号码等）。
+评测工具：`tools/eval_en_corpus.py`，标定工具：`tools/capture_ml_corpus.py`、`tools/harvest_en_lexicon_engine.py`。
+
 ### 5.4 架构与公开工作的对应
 
 | 逆向观察 | 对应公开工作 |

@@ -12,15 +12,17 @@
 import json
 import os
 import sys
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg, sdk_root as _sdk_root  # noqa: E402
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = HERE
 sys.path.insert(0, ROOT)
+if _sdk_root() != ROOT and _sdk_root() != HERE:
+    sys.path.insert(0, _sdk_root())
 
 import openshenzhou.g2p_zh as gz  # noqa: E402
-from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 END = 1
 
