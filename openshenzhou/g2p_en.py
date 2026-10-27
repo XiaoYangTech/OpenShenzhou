@@ -303,12 +303,25 @@ def _load_vocab():
     return _VOCAB
 
 
+_CMU = None
+
+
+def _cmu_dict():
+    global _CMU
+    if _CMU is None:
+        _CMU = _load_json(os.path.join(ROOT, "data", "cmudict_en.json"), {})
+    return _CMU
+
+
 def _fallback_phones(word):
     w = word.lower()
-    if pronouncing is not None:
-        ph = pronouncing.phones_for_word(w)
-        if ph:
-            return [cmu_to_engine(p) for p in ph[0].split()]
+    cmu = _cmu_dict()
+    for key in (w, w.upper()):
+        v = cmu.get(key)
+        if isinstance(v, str) and v:
+            return [cmu_to_engine(p) for p in v.split()]
+        if isinstance(v, list) and v:
+            return [cmu_to_engine(p) for p in v]
     out = []
     for ch in w:
         if ch.isalpha():
@@ -334,10 +347,13 @@ def pron_word(word, next_word=""):
         return v
     if "-" in w:
         parts = [p for p in w.split("-") if p]
-        flat = []
+        out = []
         for p in parts:
-            flat.extend([x for x in pron_word(p) if x != "-"])
-        return with_syllables(flat)
+            ph = pron_word(p)
+            if out:
+                out.append("-")
+            out.extend(ph)
+        return out
     return with_syllables(_fallback_phones(w))
 
 
@@ -378,7 +394,7 @@ def _time_words(hh, mm, ampm):
     if mm:
         events += [("w", w) for w in cardinal_words(mm)]
     if ampm:
-        ap = "a" if ampm == "am" else "p"
+        ap = "a" if ampm.lower().startswith("a") else "p"
         events += [("phones", _letter_token(ap)), ("phones", _letter_token("m"))]
     elif mm == 0:
         events += [("phones", SPECIAL_PHONES["o'clock"])]
@@ -409,14 +425,13 @@ def _currency_words(sym, numstr):
 def _phone_words(pattern, text):
     groups = []
     letters = []
-    for part in re.split(r"[-.]", text):
+    clean = re.sub(r"[()]", " ", text)
+    for part in re.split(r"[-.\s]+", clean.strip()):
         part = part.strip().lstrip("+")
         if not part:
             continue
         digits_only = re.sub(r"\D", "", part)
-        if digits_only and len(digits_only) == len(part.replace("(", "").replace(")", "").replace(" ", "")):
-            groups.append(digits_only)
-        elif digits_only:
+        if digits_only:
             groups.append(digits_only)
         else:
             letters.append(part)
@@ -553,6 +568,18 @@ def _parse(text):
             if m:
                 w = m.group(0)
                 i = m.end()
+                # report_2024：下划线分段
+                if "_" in w and any(seg.isdigit() for seg in w.split("_") if seg):
+                    segs = [x for x in w.split("_") if x]
+                    for si, seg in enumerate(segs):
+                        if si:
+                            events.append(("w", "underscore"))
+                        if seg.isdigit():
+                            events.append(("number", seg))
+                        else:
+                            events.append(("word", seg))
+                    last_word = w.lower()
+                    continue
                 # HTML5 / AA123：字母串 + 数字
                 m_an = re.fullmatch(r"([A-Za-z]+)(\d+)", w)
                 if m_an:
@@ -662,13 +689,13 @@ def _parse(text):
             i += 1
             continue
         if ch == "\\":
-            events.append(("pause_plain", None))
             i += 1
             continue
         if ch == "'":
             i += 1
             continue
         if ch == '"':
+            events.append(("br2", None))
             i += 1
             continue
         if ch in SYMBOL_WORDS:
@@ -757,10 +784,11 @@ def _expand_number_token(tok, kind, next_kind):
         for gi, part in enumerate([x for x in re.split(r"-", tok) if x]):
             if gi:
                 ev.append(("w", "dash"))
-            if part.isdigit():
-                ev += [("w", w) for w in digits_words(part)]
-            else:
-                ev.append(("phones", _letter_token(part.lower())))
+            for ch2 in part:
+                if ch2.isdigit():
+                    ev.append(("w", ONES[int(ch2)]))
+                else:
+                    ev.append(("phones", _letter_token(ch2.lower())))
         return ev
     if kind == "alnum":
         parts = tok.split("-")
@@ -779,7 +807,7 @@ def _expand_number_token(tok, kind, next_kind):
         n, a, b = int(m.group(1)), int(m.group(2)), int(m.group(3))
         return [("w", w) for w in cardinal_words(n) + ["and"] + _fraction_words(a, b)]
     nn = int(t)
-    if len(t) == 4 and 1000 <= nn <= 2099 and kind in ("number", "thousands"):
+    if len(t) == 4 and 2000 <= nn <= 2099 and kind in ("number", "thousands"):
         return [("w", w) for w in year_words(nn)]
     if kind == "thousands" or len(t) > 3:
         return [("w", w) for w in cardinal_words(nn)]
@@ -873,6 +901,8 @@ def _expand(events):
             out.append(("word", val))
         elif kind == "pause_plain":
             out.append(("pause_plain", None))
+        elif kind == "br2":
+            out.append(("br2", None))
         elif kind == "pause":
             out.append(("pause", val))
         elif kind == "end":
@@ -975,9 +1005,18 @@ def text_to_ids(text, sym, lexicon=None):
                 nxt = flat[j][1]
             phones = pron_word(w, nxt)
             wl = w.lower()
-            if wl == "for" and (first or (i > 0 and flat[i - 1][0] in ("pause", "pause_plain"))):
-                phones = list(STRONG_FOR)
-            if not first:
+            after_kind = flat[i + 1][0] if i + 1 < len(flat) else "end"
+            after_w = flat[i + 1][1] if i + 1 < len(flat) and flat[i + 1][0] == "w" else ""
+            if wl == "for":
+                prev_pause = first or (i > 0 and flat[i - 1][0] in ("pause", "pause_plain"))
+                if prev_pause or after_w in ("underscore", "asterisk") or after_kind == "br2":
+                    phones = list(STRONG_FOR)
+            elif wl == "and":
+                if (after_kind in ("pause", "pause_plain", "end", "br2")
+                        or after_w in ("underscore", "asterisk")):
+                    phones = list(STRONG_AND)
+            need_br1 = (not first) and not (i > 0 and flat[i - 1][0] == "br2")
+            if need_br1:
                 ids.append(sym["br1"])
             for ph in phones:
                 if ph == "-":
@@ -1002,6 +1041,8 @@ def text_to_ids(text, sym, lexicon=None):
             ids.append(sym.get(item[1], sym.get("punc.", 0)))
             ended = True
             first = True
+        elif kind == "br2":
+            ids.append(sym.get("br2", sym["br1"]))
         elif kind == "phones":
             if not first:
                 ids.append(sym["br1"])
