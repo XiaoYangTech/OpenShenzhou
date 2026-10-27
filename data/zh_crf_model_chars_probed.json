@@ -1,0 +1,350 @@
+{
+ "0": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "1": {
+  "char": "背",
+  "reason": ""
+ },
+ "2": {
+  "char": "奔",
+  "reason": ""
+ },
+ "3": {
+  "char": "藏",
+  "reason": ""
+ },
+ "4": {
+  "char": "差",
+  "reason": ""
+ },
+ "5": {
+  "char": "叉",
+  "reason": ""
+ },
+ "6": {
+  "char": "查",
+  "reason": ""
+ },
+ "7": {
+  "char": "长",
+  "reason": ""
+ },
+ "8": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "9": {
+  "char": "传",
+  "reason": ""
+ },
+ "10": {
+  "char": "待",
+  "reason": ""
+ },
+ "11": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "12": {
+  "char": "当",
+  "reason": ""
+ },
+ "13": {
+  "char": "地",
+  "reason": ""
+ },
+ "14": {
+  "char": "得",
+  "reason": ""
+ },
+ "15": {
+  "char": "调",
+  "reason": ""
+ },
+ "16": {
+  "char": "钉",
+  "reason": ""
+ },
+ "17": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "18": {
+  "char": "度",
+  "reason": ""
+ },
+ "19": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "20": {
+  "char": "分",
+  "reason": ""
+ },
+ "21": {
+  "char": "缝",
+  "reason": ""
+ },
+ "22": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "23": {
+  "char": "岗",
+  "reason": ""
+ },
+ "24": {
+  "char": "咯",
+  "reason": ""
+ },
+ "25": {
+  "char": "观",
+  "reason": ""
+ },
+ "26": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "27": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "28": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "29": {
+  "char": "横",
+  "reason": ""
+ },
+ "30": {
+  "char": "哄",
+  "reason": ""
+ },
+ "31": {
+  "char": "划",
+  "reason": ""
+ },
+ "32": {
+  "char": "晃",
+  "reason": ""
+ },
+ "33": {
+  "char": "假",
+  "reason": ""
+ },
+ "34": {
+  "char": "将",
+  "reason": ""
+ },
+ "35": {
+  "char": "觉",
+  "reason": ""
+ },
+ "36": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "37": {
+  "char": "禁",
+  "reason": ""
+ },
+ "38": {
+  "char": "卷",
+  "reason": ""
+ },
+ "39": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "40": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "41": {
+  "char": "量",
+  "reason": ""
+ },
+ "42": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "43": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "44": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "45": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "46": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "47": {
+  "char": "哪",
+  "reason": ""
+ },
+ "48": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "49": {
+  "char": "拧",
+  "reason": ""
+ },
+ "50": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "51": {
+  "char": "漂",
+  "reason": ""
+ },
+ "52": {
+  "char": "铺",
+  "reason": ""
+ },
+ "53": {
+  "char": "翘",
+  "reason": ""
+ },
+ "54": {
+  "char": "曲",
+  "reason": ""
+ },
+ "55": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "56": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "57": {
+  "char": "撒",
+  "reason": ""
+ },
+ "58": {
+  "char": "散",
+  "reason": ""
+ },
+ "59": {
+  "char": "丧",
+  "reason": ""
+ },
+ "60": {
+  "char": "扇",
+  "reason": ""
+ },
+ "61": {
+  "char": "少",
+  "reason": ""
+ },
+ "62": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "63": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "64": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "65": {
+  "char": "数",
+  "reason": ""
+ },
+ "66": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "67": {
+  "char": "弹",
+  "reason": ""
+ },
+ "68": {
+  "char": "挑",
+  "reason": ""
+ },
+ "69": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "70": {
+  "char": "吐",
+  "reason": ""
+ },
+ "71": {
+  "char": "为",
+  "reason": ""
+ },
+ "72": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "73": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "74": {
+  "char": "相",
+  "reason": ""
+ },
+ "75": {
+  "char": "校",
+  "reason": ""
+ },
+ "76": {
+  "char": "旋",
+  "reason": ""
+ },
+ "77": {
+  "char": "血",
+  "reason": ""
+ },
+ "78": {
+  "char": null,
+  "reason": "unprobed"
+ },
+ "79": {
+  "char": "应",
+  "reason": ""
+ },
+ "80": {
+  "char": "载",
+  "reason": ""
+ },
+ "81": {
+  "char": "仔",
+  "reason": ""
+ },
+ "82": {
+  "char": "炸",
+  "reason": ""
+ },
+ "83": {
+  "char": "只",
+  "reason": ""
+ },
+ "84": {
+  "char": "重",
+  "reason": ""
+ },
+ "85": {
+  "char": "中",
+  "reason": ""
+ },
+ "86": {
+  "char": null,
+  "reason": "unprobed"
+ }
+}

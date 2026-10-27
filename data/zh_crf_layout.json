@@ -1,0 +1,178 @@
+{
+ "5": {
+  "n": 13,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "char": "叉"
+ },
+ "9": {
+  "n": 12,
+  "acc": 0.8333,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "传"
+ },
+ "12": {
+  "n": 11,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "当"
+ },
+ "13": {
+  "n": 17,
+  "acc": 0.7647,
+  "layout": "feature",
+  "perm": [
+   0,
+   1,
+   2
+  ],
+  "char": "地"
+ },
+ "15": {
+  "n": 7,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1,
+   2
+  ],
+  "char": "调"
+ },
+ "18": {
+  "n": 15,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "度"
+ },
+ "20": {
+  "n": 18,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "分"
+ },
+ "34": {
+  "n": 746,
+  "acc": 0.9946,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "将"
+ },
+ "40": {
+  "n": 8,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "勒"
+ },
+ "55": {
+  "n": 7,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1,
+   2
+  ],
+  "char": "圈"
+ },
+ "58": {
+  "n": 20,
+  "acc": 0.95,
+  "layout": "feature",
+  "perm": [
+   1,
+   0
+  ],
+  "char": "散"
+ },
+ "67": {
+  "n": 5,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "弹"
+ },
+ "71": {
+  "n": 610,
+  "acc": 0.9361,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "为"
+ },
+ "74": {
+  "n": 8,
+  "acc": 1.0,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "相"
+ },
+ "79": {
+  "n": 17,
+  "acc": 0.8824,
+  "layout": "feature",
+  "perm": [
+   0,
+   1,
+   2
+  ],
+  "char": "应"
+ },
+ "83": {
+  "n": 66,
+  "acc": 0.9697,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "只"
+ },
+ "85": {
+  "n": 954,
+  "acc": 0.9969,
+  "layout": "feature",
+  "perm": [
+   0,
+   1
+  ],
+  "char": "中"
+ }
+}

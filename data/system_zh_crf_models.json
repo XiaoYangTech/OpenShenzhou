@@ -1,0 +1,333 @@
+[
+ {
+  "idx": 0,
+  "tag": "BR0",
+  "L": 2,
+  "T": 42,
+  "nfeat": 407784,
+  "labels": [
+   "#0",
+   "#1"
+  ]
+ },
+ {
+  "idx": 1,
+  "tag": "BR2",
+  "L": 2,
+  "T": 47,
+  "nfeat": 145177,
+  "labels": [
+   "#1",
+   "#2"
+  ]
+ },
+ {
+  "idx": 2,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 14503,
+  "labels": [
+   "B%EH_H%I_H",
+   "B%EH_H%I_L"
+  ]
+ },
+ {
+  "idx": 3,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 3142,
+  "labels": [
+   "C%AA_L%NG_H",
+   "Z%AA_H%NG_L"
+  ]
+ },
+ {
+  "idx": 4,
+  "tag": "TD",
+  "L": 4,
+  "T": 24,
+  "nfeat": 13397,
+  "labels": [
+   "C%IF_H%IF_H",
+   "CH%A_H%A_H",
+   "CH%A_H%A_L",
+   "CH%A_H%EH_H"
+  ]
+ },
+ {
+  "idx": 5,
+  "tag": "TD",
+  "L": 4,
+  "T": 24,
+  "nfeat": 255557,
+  "labels": [
+   "CH%AA_L%NG_H",
+   "ZH%AA_H%NG_L",
+   "ZH%AA_L%NG_H",
+   "ZH%AA_L%NG_L"
+  ]
+ },
+ {
+  "idx": 6,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 14617,
+  "labels": [
+   "CHU%A_L%NN_H",
+   "ZHU%A_H%NN_L"
+  ]
+ },
+ {
+  "idx": 7,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 13248,
+  "labels": [
+   "D%AA_H%NG_H",
+   "D%AA_H%NG_L"
+  ]
+ },
+ {
+  "idx": 8,
+  "tag": "TD",
+  "L": 3,
+  "T": 24,
+  "nfeat": 13646,
+  "labels": [
+   "D%EL_M%EL_M",
+   "DI%I_H%I_L",
+   "DI%I_M%I_M"
+  ]
+ },
+ {
+  "idx": 9,
+  "tag": "TD",
+  "L": 3,
+  "T": 24,
+  "nfeat": 5654,
+  "labels": [
+   "D%EH_L%I_L",
+   "D%EL_L%EL_H",
+   "D%EL_M%EL_M"
+  ]
+ },
+ {
+  "idx": 10,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 3186,
+  "labels": [
+   "F%EL_H%NG_L",
+   "F%EL_L%NG_H"
+  ]
+ },
+ {
+  "idx": 11,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2337,
+  "labels": [
+   "H%AA_L%NG_H",
+   "XI%EL_L%NG_H"
+  ]
+ },
+ {
+  "idx": 12,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2720,
+  "labels": [
+   "HU%AA_H%NG_L",
+   "HU%AA_L%NG_L"
+  ]
+ },
+ {
+  "idx": 13,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 8001,
+  "labels": [
+   "JI%AA_H%O_L",
+   "JV%EH_L%EH_H"
+  ]
+ },
+ {
+  "idx": 14,
+  "tag": "TD",
+  "L": 3,
+  "T": 24,
+  "nfeat": 3045,
+  "labels": [
+   "JV%A_H%NN_L",
+   "JV%A_L%NN_L",
+   "QV%A_L%NN_H"
+  ]
+ },
+ {
+  "idx": 15,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2242,
+  "labels": [
+   "L%EL_H%EL_L",
+   "YV%EH_H%EH_L"
+  ]
+ },
+ {
+  "idx": 16,
+  "tag": "TD",
+  "L": 4,
+  "T": 24,
+  "nfeat": 2240,
+  "labels": [
+   "N%A_L%A_L",
+   "N%A_M%A_M",
+   "N%EH_L%I_L",
+   "N%EL_L%EL_H"
+  ]
+ },
+ {
+  "idx": 17,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2048,
+  "labels": [
+   "N%A_H%NN_L",
+   "N%A_L%NN_H"
+  ]
+ },
+ {
+  "idx": 18,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 3565,
+  "labels": [
+   "PU%U_H%U_H",
+   "PU%U_H%U_L"
+  ]
+ },
+ {
+  "idx": 19,
+  "tag": "TD",
+  "L": 3,
+  "T": 24,
+  "nfeat": 3180,
+  "labels": [
+   "S%A_H%A_H",
+   "S%A_H%A_L",
+   "S%A_L%A_L"
+  ]
+ },
+ {
+  "idx": 20,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 3166,
+  "labels": [
+   "CH%EL_L%NG_H",
+   "SH%EL_H%NG_L"
+  ]
+ },
+ {
+  "idx": 21,
+  "tag": "TD",
+  "L": 3,
+  "T": 24,
+  "nfeat": 3152,
+  "labels": [
+   "SHU%O_H%O_L",
+   "SHU%U_H%U_L",
+   "SHU%U_L%U_L"
+  ]
+ },
+ {
+  "idx": 22,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2097,
+  "labels": [
+   "D%A_H%NN_L",
+   "T%A_L%NN_H"
+  ]
+ },
+ {
+  "idx": 23,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 17426,
+  "labels": [
+   "WU%EH_H%I_L",
+   "WU%EH_L%I_H"
+  ]
+ },
+ {
+  "idx": 24,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2248,
+  "labels": [
+   "XI%EH_L%EH_L",
+   "XV%EH_H%EH_L"
+  ]
+ },
+ {
+  "idx": 25,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2412,
+  "labels": [
+   "YI%EL_H%NG_H",
+   "YI%EL_H%NG_L"
+  ]
+ },
+ {
+  "idx": 26,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 2082,
+  "labels": [
+   "ZH%IB_H%IB_H",
+   "ZH%IB_L%IB_L"
+  ]
+ },
+ {
+  "idx": 27,
+  "tag": "TD",
+  "L": 3,
+  "T": 24,
+  "nfeat": 14013,
+  "labels": [
+   "CHU%U_H%NG_L",
+   "CHU%U_L%NG_H",
+   "ZHU%U_H%NG_L"
+  ]
+ },
+ {
+  "idx": 28,
+  "tag": "TD",
+  "L": 2,
+  "T": 24,
+  "nfeat": 10808,
+  "labels": [
+   "ZHU%U_H%NG_H",
+   "ZHU%U_H%NG_L"
+  ]
+ }
+]

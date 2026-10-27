@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.wav
+test.wav
+models/
+node/node_modules/
+*.onnx
+data/intermediate/

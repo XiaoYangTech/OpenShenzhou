@@ -1,0 +1,1634 @@
+{
+ "0": {
+  "labels": [
+   [
+    "ga",
+    "a_h",
+    "eh_h"
+   ],
+   [
+    "ga",
+    "a_l",
+    "eh_h"
+   ]
+  ],
+  "char": "挨",
+  "reason": "manual"
+ },
+ "1": {
+  "labels": [
+   [
+    "b",
+    "eh_h",
+    "i_h"
+   ],
+   [
+    "b",
+    "eh_h",
+    "i_l"
+   ]
+  ],
+  "char": "背",
+  "reason": "probed"
+ },
+ "2": {
+  "labels": [
+   [
+    "b",
+    "el_h",
+    "nn_h"
+   ],
+   [
+    "b",
+    "el_h",
+    "nn_l"
+   ]
+  ],
+  "char": "奔",
+  "reason": "probed"
+ },
+ "3": {
+  "labels": [
+   [
+    "c",
+    "aa_l",
+    "ng_h"
+   ],
+   [
+    "z",
+    "aa_h",
+    "ng_l"
+   ]
+  ],
+  "char": "藏",
+  "reason": "probed"
+ },
+ "4": {
+  "labels": [
+   [
+    "c",
+    "if_h",
+    "if_h"
+   ],
+   [
+    "ch",
+    "a_h",
+    "a_h"
+   ],
+   [
+    "ch",
+    "a_h",
+    "a_l"
+   ],
+   [
+    "ch",
+    "a_h",
+    "eh_h"
+   ]
+  ],
+  "char": "差",
+  "reason": "probed"
+ },
+ "5": {
+  "labels": [
+   [
+    "ch",
+    "a_h",
+    "a_h"
+   ],
+   [
+    "ch",
+    "a_h",
+    "a_l"
+   ],
+   [
+    "ch",
+    "a_l",
+    "a_h"
+   ],
+   [
+    "ch",
+    "a_l",
+    "a_l"
+   ]
+  ],
+  "char": "叉",
+  "reason": "probed"
+ },
+ "6": {
+  "labels": [
+   [
+    "ch",
+    "a_l",
+    "a_h"
+   ],
+   [
+    "zh",
+    "a_h",
+    "a_h"
+   ]
+  ],
+  "char": "查",
+  "reason": "probed"
+ },
+ "7": {
+  "labels": [
+   [
+    "ch",
+    "aa_l",
+    "ng_h"
+   ],
+   [
+    "zh",
+    "aa_h",
+    "ng_l"
+   ],
+   [
+    "zh",
+    "aa_l",
+    "ng_h"
+   ],
+   [
+    "zh",
+    "aa_l",
+    "ng_l"
+   ]
+  ],
+  "char": "长",
+  "reason": "probed"
+ },
+ "8": {
+  "labels": [
+   [
+    "chu",
+    "u_l",
+    "ng_h",
+    "-",
+    "chu",
+    "u_l",
+    "ng_h"
+   ],
+   [
+    "zhu",
+    "u_h",
+    "ng_l",
+    "-",
+    "zhu",
+    "u_h",
+    "ng_l"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "9": {
+  "labels": [
+   [
+    "chu",
+    "a_l",
+    "nn_h"
+   ],
+   [
+    "zhu",
+    "a_h",
+    "nn_l"
+   ]
+  ],
+  "char": "传",
+  "reason": "probed"
+ },
+ "10": {
+  "labels": [
+   [
+    "d",
+    "a_h",
+    "eh_h"
+   ],
+   [
+    "d",
+    "a_h",
+    "eh_l"
+   ]
+  ],
+  "char": "待",
+  "reason": "probed"
+ },
+ "11": {
+  "labels": [
+   [
+    "d",
+    "a_h",
+    "nn_h"
+   ],
+   [
+    "d",
+    "a_h",
+    "nn_l"
+   ]
+  ],
+  "char": "担",
+  "reason": "manual"
+ },
+ "12": {
+  "labels": [
+   [
+    "d",
+    "aa_h",
+    "ng_h"
+   ],
+   [
+    "d",
+    "aa_h",
+    "ng_l"
+   ]
+  ],
+  "char": "当",
+  "reason": "probed"
+ },
+ "13": {
+  "labels": [
+   [
+    "d",
+    "el_m",
+    "el_m"
+   ],
+   [
+    "di",
+    "i_h",
+    "i_l"
+   ],
+   [
+    "di",
+    "i_m",
+    "i_m"
+   ]
+  ],
+  "char": "地",
+  "reason": "probed"
+ },
+ "14": {
+  "labels": [
+   [
+    "d",
+    "eh_l",
+    "i_l"
+   ],
+   [
+    "d",
+    "el_l",
+    "el_h"
+   ],
+   [
+    "d",
+    "el_m",
+    "el_m"
+   ]
+  ],
+  "char": "得",
+  "reason": "probed"
+ },
+ "15": {
+  "labels": [
+   [
+    "di",
+    "aa_h",
+    "o_l"
+   ],
+   [
+    "ti",
+    "aa_h",
+    "o_l"
+   ],
+   [
+    "ti",
+    "aa_l",
+    "o_h"
+   ]
+  ],
+  "char": "调",
+  "reason": "probed"
+ },
+ "16": {
+  "labels": [
+   [
+    "di",
+    "el_h",
+    "ng_h"
+   ],
+   [
+    "di",
+    "el_h",
+    "ng_l"
+   ]
+  ],
+  "char": "钉",
+  "reason": "probed"
+ },
+ "17": {
+  "labels": [
+   [
+    "d",
+    "o_h",
+    "u_l"
+   ],
+   [
+    "d",
+    "o_l",
+    "u_l"
+   ]
+  ],
+  "char": "都",
+  "reason": "manual"
+ },
+ "18": {
+  "labels": [
+   [
+    "du",
+    "o_l",
+    "o_h"
+   ],
+   [
+    "du",
+    "u_h",
+    "u_l"
+   ]
+  ],
+  "char": "度",
+  "reason": "probed"
+ },
+ "19": {
+  "labels": [
+   [
+    "f",
+    "el_h",
+    "nn_h",
+    "-",
+    "z",
+    "if_l",
+    "if_l"
+   ],
+   [
+    "f",
+    "el_h",
+    "nn_l",
+    "-",
+    "z",
+    "if_l",
+    "if_l"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "20": {
+  "labels": [
+   [
+    "f",
+    "el_h",
+    "nn_h"
+   ],
+   [
+    "f",
+    "el_h",
+    "nn_l"
+   ]
+  ],
+  "char": "分",
+  "reason": "probed"
+ },
+ "21": {
+  "labels": [
+   [
+    "f",
+    "el_h",
+    "ng_l"
+   ],
+   [
+    "f",
+    "el_l",
+    "ng_h"
+   ]
+  ],
+  "char": "缝",
+  "reason": "probed"
+ },
+ "22": {
+  "labels": [
+   [
+    "g",
+    "a_h",
+    "nn_h"
+   ],
+   [
+    "g",
+    "a_l",
+    "nn_l"
+   ]
+  ],
+  "char": "干",
+  "reason": "manual"
+ },
+ "23": {
+  "labels": [
+   [
+    "g",
+    "aa_h",
+    "ng_h"
+   ],
+   [
+    "g",
+    "aa_l",
+    "ng_l"
+   ]
+  ],
+  "char": "岗",
+  "reason": "probed"
+ },
+ "24": {
+  "labels": [
+   [
+    "g",
+    "el_h",
+    "el_h"
+   ],
+   [
+    "k",
+    "a_l",
+    "a_l"
+   ],
+   [
+    "l",
+    "o_m",
+    "u_m"
+   ]
+  ],
+  "char": "咯",
+  "reason": "probed"
+ },
+ "25": {
+  "labels": [
+   [
+    "gu",
+    "a_h",
+    "nn_h"
+   ],
+   [
+    "gu",
+    "a_h",
+    "nn_l"
+   ]
+  ],
+  "char": "观",
+  "reason": "probed"
+ },
+ "26": {
+  "labels": [
+   [
+    "gu",
+    "a_h",
+    "nn_h"
+   ],
+   [
+    "gu",
+    "a_h",
+    "nn_l"
+   ]
+  ],
+  "char": "冠",
+  "reason": "manual"
+ },
+ "27": {
+  "labels": [
+   [
+    "h",
+    "aa_l",
+    "ng_h"
+   ],
+   [
+    "xi",
+    "el_l",
+    "ng_h"
+   ]
+  ],
+  "char": "行",
+  "reason": "manual"
+ },
+ "28": {
+  "labels": [
+   [
+    "h",
+    "aa_h",
+    "o_l",
+    "-",
+    "sh",
+    "ib_h",
+    "ib_l"
+   ],
+   [
+    "h",
+    "aa_l",
+    "o_l",
+    "-",
+    "sh",
+    "el_h",
+    "zzzer_l"
+   ],
+   [
+    "h",
+    "aa_l",
+    "o_l",
+    "-",
+    "sh",
+    "ib_h",
+    "ib_l"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "29": {
+  "labels": [
+   [
+    "h",
+    "el_h",
+    "ng_l"
+   ],
+   [
+    "h",
+    "el_l",
+    "ng_h"
+   ]
+  ],
+  "char": "横",
+  "reason": "probed"
+ },
+ "30": {
+  "labels": [
+   [
+    "hu",
+    "u_h",
+    "ng_h"
+   ],
+   [
+    "hu",
+    "u_h",
+    "ng_l"
+   ],
+   [
+    "hu",
+    "u_l",
+    "ng_l"
+   ]
+  ],
+  "char": "哄",
+  "reason": "probed"
+ },
+ "31": {
+  "labels": [
+   [
+    "hu",
+    "a_h",
+    "a_l"
+   ],
+   [
+    "hu",
+    "a_l",
+    "a_h"
+   ],
+   [
+    "hu",
+    "a_m",
+    "a_m"
+   ]
+  ],
+  "char": "划",
+  "reason": "probed"
+ },
+ "32": {
+  "labels": [
+   [
+    "hu",
+    "aa_h",
+    "ng_l"
+   ],
+   [
+    "hu",
+    "aa_l",
+    "ng_l"
+   ]
+  ],
+  "char": "晃",
+  "reason": "probed"
+ },
+ "33": {
+  "labels": [
+   [
+    "ji",
+    "a_h",
+    "a_l"
+   ],
+   [
+    "ji",
+    "a_l",
+    "a_l"
+   ]
+  ],
+  "char": "假",
+  "reason": "probed"
+ },
+ "34": {
+  "labels": [
+   [
+    "ji",
+    "aa_h",
+    "ng_h"
+   ],
+   [
+    "ji",
+    "aa_h",
+    "ng_l"
+   ]
+  ],
+  "char": "将",
+  "reason": "probed"
+ },
+ "35": {
+  "labels": [
+   [
+    "ji",
+    "aa_h",
+    "o_l"
+   ],
+   [
+    "jv",
+    "eh_l",
+    "eh_h"
+   ]
+  ],
+  "char": "觉",
+  "reason": "probed"
+ },
+ "36": {
+  "labels": [
+   [
+    "ji",
+    "aa_h",
+    "o_h"
+   ],
+   [
+    "ji",
+    "aa_h",
+    "o_l"
+   ]
+  ],
+  "char": "教",
+  "reason": "manual"
+ },
+ "37": {
+  "labels": [
+   [
+    "ji",
+    "i_h",
+    "nn_h"
+   ],
+   [
+    "ji",
+    "i_h",
+    "nn_l"
+   ]
+  ],
+  "char": "禁",
+  "reason": "probed"
+ },
+ "38": {
+  "labels": [
+   [
+    "jv",
+    "a_h",
+    "nn_l"
+   ],
+   [
+    "jv",
+    "a_l",
+    "nn_l"
+   ],
+   [
+    "qv",
+    "a_l",
+    "nn_h"
+   ]
+  ],
+  "char": "卷",
+  "reason": "probed"
+ },
+ "39": {
+  "labels": [
+   [
+    "l",
+    "el_h",
+    "el_l"
+   ],
+   [
+    "yv",
+    "eh_h",
+    "eh_l"
+   ]
+  ],
+  "char": "乐",
+  "reason": "manual"
+ },
+ "40": {
+  "labels": [
+   [
+    "l",
+    "eh_h",
+    "i_h"
+   ],
+   [
+    "l",
+    "el_h",
+    "el_l"
+   ]
+  ],
+  "char": "勒",
+  "reason": "manual"
+ },
+ "41": {
+  "labels": [
+   [
+    "li",
+    "aa_h",
+    "ng_l"
+   ],
+   [
+    "li",
+    "aa_l",
+    "ng_h"
+   ],
+   [
+    "li",
+    "aa_m",
+    "ng_m"
+   ]
+  ],
+  "char": "量",
+  "reason": "probed"
+ },
+ "42": {
+  "labels": [
+   [
+    "li",
+    "o_h",
+    "u_h"
+   ],
+   [
+    "li",
+    "o_h",
+    "u_l"
+   ]
+  ],
+  "char": "溜",
+  "reason": "manual"
+ },
+ "43": {
+  "labels": [
+   [
+    "l",
+    "o_h",
+    "u_l"
+   ],
+   [
+    "lu",
+    "u_h",
+    "u_l"
+   ]
+  ],
+  "char": "露",
+  "reason": "manual"
+ },
+ "44": {
+  "labels": [
+   [
+    "m",
+    "eh_l",
+    "i_l",
+    "-",
+    "d",
+    "el_m",
+    "el_m"
+   ],
+   [
+    "m",
+    "eh_l",
+    "i_l",
+    "-",
+    "di",
+    "i_h",
+    "i_l"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "45": {
+  "labels": [
+   [
+    "m",
+    "el_h",
+    "ng_h"
+   ],
+   [
+    "m",
+    "el_l",
+    "ng_h"
+   ],
+   [
+    "m",
+    "el_l",
+    "ng_l"
+   ]
+  ],
+  "char": "蒙",
+  "reason": "manual"
+ },
+ "46": {
+  "labels": [
+   [
+    "mu",
+    "o_l",
+    "o_h"
+   ],
+   [
+    "mu",
+    "u_l",
+    "u_h"
+   ]
+  ],
+  "char": "模",
+  "reason": "manual"
+ },
+ "47": {
+  "labels": [
+   [
+    "n",
+    "a_l",
+    "a_l"
+   ],
+   [
+    "n",
+    "a_m",
+    "a_m"
+   ],
+   [
+    "n",
+    "eh_l",
+    "i_l"
+   ],
+   [
+    "n",
+    "el_l",
+    "el_h"
+   ]
+  ],
+  "char": "哪",
+  "reason": "probed"
+ },
+ "48": {
+  "labels": [
+   [
+    "n",
+    "a_h",
+    "nn_l"
+   ],
+   [
+    "n",
+    "a_l",
+    "nn_h"
+   ]
+  ],
+  "char": "难",
+  "reason": "manual"
+ },
+ "49": {
+  "labels": [
+   [
+    "ni",
+    "el_h",
+    "ng_l"
+   ],
+   [
+    "ni",
+    "el_l",
+    "ng_h"
+   ],
+   [
+    "ni",
+    "el_l",
+    "ng_l"
+   ]
+  ],
+  "char": "拧",
+  "reason": "probed"
+ },
+ "50": {
+  "labels": [
+   [
+    "ni",
+    "el_h",
+    "ng_l"
+   ],
+   [
+    "ni",
+    "el_l",
+    "ng_h"
+   ]
+  ],
+  "char": "宁",
+  "reason": "manual"
+ },
+ "51": {
+  "labels": [
+   [
+    "pi",
+    "aa_h",
+    "o_h"
+   ],
+   [
+    "pi",
+    "aa_h",
+    "o_l"
+   ],
+   [
+    "pi",
+    "aa_l",
+    "o_l"
+   ]
+  ],
+  "char": "漂",
+  "reason": "probed"
+ },
+ "52": {
+  "labels": [
+   [
+    "pu",
+    "u_h",
+    "u_h"
+   ],
+   [
+    "pu",
+    "u_h",
+    "u_l"
+   ]
+  ],
+  "char": "铺",
+  "reason": "probed"
+ },
+ "53": {
+  "labels": [
+   [
+    "qi",
+    "aa_h",
+    "o_l"
+   ],
+   [
+    "qi",
+    "aa_l",
+    "o_h"
+   ]
+  ],
+  "char": "翘",
+  "reason": "probed"
+ },
+ "54": {
+  "labels": [
+   [
+    "qv",
+    "v_h",
+    "v_h"
+   ],
+   [
+    "qv",
+    "v_l",
+    "v_l"
+   ]
+  ],
+  "char": "曲",
+  "reason": "probed"
+ },
+ "55": {
+  "labels": [
+   [
+    "jv",
+    "a_h",
+    "nn_h"
+   ],
+   [
+    "jv",
+    "a_h",
+    "nn_l"
+   ],
+   [
+    "qv",
+    "a_h",
+    "nn_h"
+   ]
+  ],
+  "char": "圈",
+  "reason": "manual"
+ },
+ "56": {
+  "labels": [
+   [
+    "r",
+    "el_l",
+    "nn_h",
+    "-",
+    "h",
+    "aa_l",
+    "ng_h"
+   ],
+   [
+    "r",
+    "el_l",
+    "nn_h",
+    "-",
+    "xi",
+    "el_l",
+    "ng_h"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "57": {
+  "labels": [
+   [
+    "s",
+    "a_h",
+    "a_h"
+   ],
+   [
+    "s",
+    "a_h",
+    "a_l"
+   ],
+   [
+    "s",
+    "a_l",
+    "a_l"
+   ]
+  ],
+  "char": "撒",
+  "reason": "probed"
+ },
+ "58": {
+  "labels": [
+   [
+    "s",
+    "a_h",
+    "nn_l"
+   ],
+   [
+    "s",
+    "a_l",
+    "nn_l"
+   ]
+  ],
+  "char": "散",
+  "reason": "probed"
+ },
+ "59": {
+  "labels": [
+   [
+    "s",
+    "aa_h",
+    "ng_h"
+   ],
+   [
+    "s",
+    "aa_h",
+    "ng_l"
+   ]
+  ],
+  "char": "丧",
+  "reason": "probed"
+ },
+ "60": {
+  "labels": [
+   [
+    "sh",
+    "a_h",
+    "nn_h"
+   ],
+   [
+    "sh",
+    "a_h",
+    "nn_l"
+   ]
+  ],
+  "char": "扇",
+  "reason": "probed"
+ },
+ "61": {
+  "labels": [
+   [
+    "sh",
+    "aa_h",
+    "o_l"
+   ],
+   [
+    "sh",
+    "aa_l",
+    "o_h"
+   ],
+   [
+    "sh",
+    "aa_l",
+    "o_l"
+   ]
+  ],
+  "char": "少",
+  "reason": "probed"
+ },
+ "62": {
+  "labels": [
+   [
+    "sh",
+    "el_h",
+    "el_l"
+   ],
+   [
+    "sh",
+    "el_l",
+    "el_l"
+   ]
+  ],
+  "char": "舍",
+  "reason": "manual"
+ },
+ "63": {
+  "labels": [
+   [
+    "sh",
+    "el_l",
+    "nn_h"
+   ],
+   [
+    "sh",
+    "ib_l",
+    "ib_h"
+   ]
+  ],
+  "char": "什",
+  "reason": "manual"
+ },
+ "64": {
+  "labels": [
+   [
+    "ch",
+    "el_l",
+    "ng_h"
+   ],
+   [
+    "sh",
+    "el_h",
+    "ng_l"
+   ]
+  ],
+  "char": "乘",
+  "reason": "manual"
+ },
+ "65": {
+  "labels": [
+   [
+    "shu",
+    "o_h",
+    "o_l"
+   ],
+   [
+    "shu",
+    "u_h",
+    "u_l"
+   ],
+   [
+    "shu",
+    "u_l",
+    "u_l"
+   ]
+  ],
+  "char": "数",
+  "reason": "probed"
+ },
+ "66": {
+  "labels": [
+   [
+    "shu",
+    "o_h",
+    "o_l",
+    "-",
+    "shu",
+    "o_h",
+    "o_l"
+   ],
+   [
+    "shu",
+    "u_h",
+    "u_l",
+    "-",
+    "shu",
+    "u_h",
+    "u_l"
+   ],
+   [
+    "shu",
+    "u_h",
+    "u_l",
+    "-",
+    "shu",
+    "u_l",
+    "u_l"
+   ],
+   [
+    "shu",
+    "u_l",
+    "u_l",
+    "-",
+    "shu",
+    "u_h",
+    "u_l"
+   ],
+   [
+    "shu",
+    "u_l",
+    "u_l",
+    "-",
+    "shu",
+    "u_l",
+    "u_l"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "67": {
+  "labels": [
+   [
+    "d",
+    "a_h",
+    "nn_l"
+   ],
+   [
+    "t",
+    "a_l",
+    "nn_h"
+   ]
+  ],
+  "char": "弹",
+  "reason": "probed"
+ },
+ "68": {
+  "labels": [
+   [
+    "ti",
+    "aa_h",
+    "o_h"
+   ],
+   [
+    "ti",
+    "aa_l",
+    "o_l"
+   ]
+  ],
+  "char": "挑",
+  "reason": "probed"
+ },
+ "69": {
+  "labels": [
+   [
+    "tu",
+    "u_l",
+    "ng_h",
+    "-",
+    "h",
+    "aa_l",
+    "ng_h"
+   ],
+   [
+    "tu",
+    "u_l",
+    "ng_h",
+    "-",
+    "xi",
+    "el_l",
+    "ng_h"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "70": {
+  "labels": [
+   [
+    "tu",
+    "u_h",
+    "u_l"
+   ],
+   [
+    "tu",
+    "u_l",
+    "u_l"
+   ]
+  ],
+  "char": "吐",
+  "reason": "probed"
+ },
+ "71": {
+  "labels": [
+   [
+    "wu",
+    "eh_h",
+    "i_l"
+   ],
+   [
+    "wu",
+    "eh_l",
+    "i_h"
+   ]
+  ],
+  "char": "为",
+  "reason": "probed"
+ },
+ "72": {
+  "labels": [
+   [
+    "xi",
+    "aa_h",
+    "ng_h",
+    "-",
+    "ch",
+    "el_h",
+    "ng_h"
+   ],
+   [
+    "xi",
+    "aa_h",
+    "ng_h",
+    "-",
+    "ch",
+    "el_h",
+    "nn_l"
+   ]
+  ],
+  "char": null,
+  "reason": "label-pair"
+ },
+ "73": {
+  "labels": [
+   [
+    "ji",
+    "aa_h",
+    "ng_l"
+   ],
+   [
+    "xi",
+    "aa_l",
+    "ng_h"
+   ]
+  ],
+  "char": "降",
+  "reason": "manual"
+ },
+ "74": {
+  "labels": [
+   [
+    "xi",
+    "aa_h",
+    "ng_h"
+   ],
+   [
+    "xi",
+    "aa_h",
+    "ng_l"
+   ]
+  ],
+  "char": "相",
+  "reason": "probed"
+ },
+ "75": {
+  "labels": [
+   [
+    "ji",
+    "aa_h",
+    "o_l"
+   ],
+   [
+    "xi",
+    "aa_h",
+    "o_l"
+   ]
+  ],
+  "char": "校",
+  "reason": "probed"
+ },
+ "76": {
+  "labels": [
+   [
+    "xv",
+    "a_h",
+    "nn_l"
+   ],
+   [
+    "xv",
+    "a_l",
+    "nn_h"
+   ]
+  ],
+  "char": "旋",
+  "reason": "probed"
+ },
+ "77": {
+  "labels": [
+   [
+    "xi",
+    "eh_l",
+    "eh_l"
+   ],
+   [
+    "xv",
+    "eh_h",
+    "eh_l"
+   ]
+  ],
+  "char": "血",
+  "reason": "probed"
+ },
+ "78": {
+  "labels": [
+   [
+    "xi",
+    "aa_h",
+    "o_h"
+   ],
+   [
+    "xv",
+    "eh_h",
+    "eh_h"
+   ]
+  ],
+  "char": "削",
+  "reason": "manual"
+ },
+ "79": {
+  "labels": [
+   [
+    "yi",
+    "el_h",
+    "ng_h"
+   ],
+   [
+    "yi",
+    "el_h",
+    "ng_l"
+   ],
+   [
+    "yi",
+    "el_m",
+    "ng_m"
+   ]
+  ],
+  "char": "应",
+  "reason": "probed"
+ },
+ "80": {
+  "labels": [
+   [
+    "z",
+    "a_h",
+    "eh_l"
+   ],
+   [
+    "z",
+    "a_l",
+    "eh_l"
+   ]
+  ],
+  "char": "载",
+  "reason": "probed"
+ },
+ "81": {
+  "labels": [
+   [
+    "z",
+    "a_l",
+    "eh_h"
+   ],
+   [
+    "z",
+    "a_l",
+    "eh_l"
+   ],
+   [
+    "z",
+    "if_h",
+    "if_h"
+   ],
+   [
+    "z",
+    "if_l",
+    "if_h"
+   ],
+   [
+    "z",
+    "if_l",
+    "if_l"
+   ]
+  ],
+  "char": "仔",
+  "reason": "probed"
+ },
+ "82": {
+  "labels": [
+   [
+    "zh",
+    "a_h",
+    "a_l"
+   ],
+   [
+    "zh",
+    "a_l",
+    "a_h"
+   ]
+  ],
+  "char": "炸",
+  "reason": "probed"
+ },
+ "83": {
+  "labels": [
+   [
+    "zh",
+    "ib_h",
+    "ib_h"
+   ],
+   [
+    "zh",
+    "ib_l",
+    "ib_l"
+   ]
+  ],
+  "char": "只",
+  "reason": "probed"
+ },
+ "84": {
+  "labels": [
+   [
+    "chu",
+    "u_h",
+    "ng_l"
+   ],
+   [
+    "chu",
+    "u_l",
+    "ng_h"
+   ],
+   [
+    "zhu",
+    "u_h",
+    "ng_l"
+   ]
+  ],
+  "char": "重",
+  "reason": "probed"
+ },
+ "85": {
+  "labels": [
+   [
+    "zhu",
+    "u_h",
+    "ng_h"
+   ],
+   [
+    "zhu",
+    "u_h",
+    "ng_l"
+   ]
+  ],
+  "char": "中",
+  "reason": "probed"
+ },
+ "86": {
+  "labels": [
+   [
+    "cu",
+    "u_h",
+    "u_l"
+   ],
+   [
+    "zu",
+    "u_l",
+    "u_h"
+   ]
+  ],
+  "char": "卒",
+  "reason": "manual"
+ }
+}
