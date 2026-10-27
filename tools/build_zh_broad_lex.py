@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.join(HERE, "tools"))
 from _paths import voice_pkg  # noqa: E402
 
 CJK = lambda c: "\u4e00" <= c <= "\u9fff"
-MIN_COUNT = 2
+MIN_COUNT = 1
 
 
 def main():
