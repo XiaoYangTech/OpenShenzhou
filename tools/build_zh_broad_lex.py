@@ -55,9 +55,9 @@ def main():
             cur = []
             for x in r["ids"]:
                 nm = rev.get(x, "?")
-                if nm in ("-bos-", "br0", "br2", "br3", "br4", "~") or nm.startswith("punc"):
+                if nm in ("-bos-", "br0", "br2", "~") or nm.startswith("punc"):
                     continue
-                if nm == "br1":
+                if nm in ("br1", "br3", "br4"):
                     if cur:
                         toks.append(cur)
                     cur = []
