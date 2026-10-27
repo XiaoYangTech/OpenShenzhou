@@ -86,6 +86,7 @@ STRONG_AND = ["ae1", "n", "d"]
 STRONG_FOR = ["f", "ao1", "r"]
 PAUSE_PUNCT = {",": "punc,", ";": "punc;", ":": None, "(": "punc,",
                ")": "punc,", "[": "punc,", "]": "punc,"}
+BQUOTE = "\"’”'"
 END_PUNCT = {".": "punc.", "?": "punc?", "!": "punc!"}
 
 
@@ -351,6 +352,14 @@ def pron_word(word, next_word="", prev_word=""):
     het = load_heteronyms().get(w)
     if het:
         pv = (prev_word or "").lower()
+        if w == "content":
+            nxt0 = (next_word or "").lower()
+            modal = pv in {"will", "would", "can", "could", "should", "must", "may", "might"}
+            pron = nxt0 in {"me", "you", "him", "her", "us", "them", "it"}
+            if modal and pron and het.get("verb"):
+                return list(het["verb"])
+            if het.get("noun"):
+                return list(het["noun"])
         if pv in VERB_PREV and het.get("verb"):
             return list(het["verb"])
         if pv in NOUN_PREV and het.get("noun"):
@@ -371,12 +380,6 @@ def pron_word(word, next_word="", prev_word=""):
     v = _engine_phones(w)
     if v:
         return v
-    if w.endswith("s") and len(w) > 2:
-        base = pron_word(w[:-1])
-        if base and len(base) > 1:
-            first = base[0]
-            voiceless = first.rstrip("012") in ("p", "t", "k", "f", "th")
-            return base + (["s"] if voiceless else ["z"])
     if "-" in w:
         parts = [p for p in w.split("-") if p]
         out = []
@@ -386,6 +389,12 @@ def pron_word(word, next_word="", prev_word=""):
                 out.append("-")
             out.extend(ph)
         return out
+    if w.endswith("s") and len(w) > 2:
+        base = pron_word(w[:-1])
+        if base and len(base) > 1:
+            first = base[0]
+            voiceless = first.rstrip("012") in ("p", "t", "k", "f", "th")
+            return base + (["s"] if voiceless else ["z"])
     return with_syllables(_fallback_phones(w))
 
 
@@ -668,6 +677,11 @@ def _parse(text):
                             last_word = low
                             continue
                         events.append(("letters", w))
+                        if i + 2 < n and text[i + 1] == ",":
+                            events.append(("pause", "punc."))
+                            i += 2
+                            last_word = low
+                            continue
                         if i + 1 >= n or text[i + 1] == " ":
                             events.append(("end", "punc."))
                         i += 1
@@ -699,9 +713,39 @@ def _parse(text):
             i += 1
             continue
         if ch in END_PUNCT:
+            if ch == ".":
+                run = 0
+                while i + run < n and text[i + run] == ".":
+                    run += 1
+                if run >= 2:
+                    events.append(("end", "punc."))
+                    events.append(("punc_after_end", "punc."))
+                    i += run
+                    continue
+                nxt = text[i + 1] if i + 1 < n else ""
+                if nxt and not nxt.isspace() and nxt not in ")]":
+                    if nxt.isalnum():
+                        i += 1
+                        continue
+                    events.append(("pause", "punc."))
+                    i += 1
+                    continue
             events.append(("end", END_PUNCT[ch]))
+            if i + 1 < n and text[i + 1] in BQUOTE:
+                events.append(("quote_after_end", "punc."))
+                i += 2
+                continue
             i += 1
             continue
+        if ch in ")]":
+            j2 = i + 1
+            while j2 < n and text[j2] in ")]":
+                j2 += 1
+            rest = text[j2:].lstrip()
+            if not rest or rest[0] in ".!?":
+                events.append(("end", "punc."))
+                i = j2
+                continue
         if ch in PAUSE_PUNCT:
             if ch == ":" and i + 1 < n and text[i + 1] in "\\/":
                 events.append(("pause_plain", None))
@@ -890,6 +934,12 @@ def _expand(events):
     for idx, (kind, val) in enumerate(events):
         nxt = events[idx + 1] if idx + 1 < len(events) else None
         # 月份词 + 日：转序数；紧随逗号 → 日期分隔
+        if kind == "ordinal" and nxt and nxt[0] == "word" and nxt[1].lower() in MONTH_NAMES:
+            out.append(("w", nxt[1]))
+            m = re.match(r"(\d+)", val)
+            out.extend([("w", w) for w in ordinal_words(int(m.group(1)))])
+            events[idx + 1] = ("consumed", None)
+            continue
         if kind == "word" and val.lower() in MONTH_NAMES and nxt and nxt[0] in ("number", "ordinal"):
             try:
                 day = int(re.match(r"\d+", nxt[1]).group(0))
@@ -983,6 +1033,10 @@ def _expand(events):
             out.append(("pause", val))
         elif kind == "end":
             out.append(("end", val))
+        elif kind == "punc_after_end":
+            out.append(("punc_after_end", val))
+        elif kind == "quote_after_end":
+            out.append(("quote_after_end", val))
         elif kind == "consumed":
             pass
     return out
@@ -1093,7 +1147,8 @@ def text_to_ids(text, sym, lexicon=None):
             after_w = flat[i + 1][1] if i + 1 < len(flat) and flat[i + 1][0] == "w" else ""
             if wl == "for":
                 prev_pause = first or (i > 0 and flat[i - 1][0] in ("pause", "pause_plain"))
-                if prev_pause or after_w in ("underscore", "asterisk") or after_kind == "br2":
+                if (prev_pause or after_w in ("underscore", "asterisk") or after_kind == "br2"
+                        or after_kind in ("end", "pause", "pause_plain")):
                     phones = list(STRONG_FOR)
             elif wl == "and":
                 if (after_kind in ("pause", "pause_plain", "end", "br2")
@@ -1121,10 +1176,23 @@ def text_to_ids(text, sym, lexicon=None):
             ids.append(sym["br0"])
             first = True
         elif kind == "end":
+            if ended:
+                ids.append(sym.get(item[1], sym.get("punc.", 0)))
+                i += 1
+                continue
             ids.append(sym["br4"])
             ids.append(sym.get(item[1], sym.get("punc.", 0)))
             ended = True
             first = True
+        elif kind == "punc_after_end":
+            ids.append(sym.get(item[1], sym.get("punc.", 0)))
+            i += 1
+            continue
+        elif kind == "quote_after_end":
+            ids.append(sym.get("br0", 0))
+            ids.append(sym.get(item[1], sym.get("punc.", 0)))
+            i += 1
+            continue
         elif kind == "br2":
             ids.append(sym.get("br2", sym["br1"]))
         elif kind == "phones":
