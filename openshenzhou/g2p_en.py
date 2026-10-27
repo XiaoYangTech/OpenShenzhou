@@ -28,6 +28,8 @@ _CONTEXT = None
 _ISO = None
 _VOCAB = None
 _HETERO = None
+_ACRONYMS = None
+_CASE = None
 HETERO_NOUN_PREV = {"ip", "email", "web", "home", "street", "url", "ftp", "http"}
 VERB_PREV = {"to", "will", "would", "can", "could", "should", "must", "may", "might",
              "do", "does", "did", "don't", "doesn't", "didn't", "i", "you", "we", "they",
@@ -125,6 +127,28 @@ def load_engine_lexicon():
                 iso.setdefault(r["w"], r["phones"])
         _ISO = iso
     return _ISO
+
+
+def load_acronyms():
+    global _ACRONYMS
+    if _ACRONYMS is None:
+        _ACRONYMS = _load_json(os.path.join(ROOT, "data", "lexicon_en_acronyms.json"), {})
+    return _ACRONYMS
+
+
+def load_case_words():
+    global _CASE
+    if _CASE is None:
+        _CASE = _load_json(os.path.join(ROOT, "data", "lexicon_en_case.json"), {})
+    return _CASE
+
+
+def acronym_phones(letters):
+    acr = load_acronyms()
+    ph = acr.get(letters) or acr.get(letters.upper())
+    if ph:
+        return list(ph)
+    return _letter_token(letters.lower())
 
 
 def load_heteronyms():
@@ -348,6 +372,12 @@ def _fallback_phones(word):
 
 
 def pron_word(word, next_word="", prev_word=""):
+    acro = load_acronyms().get(word)
+    if acro:
+        return list(acro)
+    case = load_case_words().get(word)
+    if case:
+        return list(case)
     w = word.lower().replace("’", "'")
     het = load_heteronyms().get(w)
     if het:
@@ -630,7 +660,10 @@ def _parse(text):
                 # HTML5 / AA123：字母串 + 数字
                 m_an = re.fullmatch(r"([A-Za-z]+)(\d+)", w)
                 if m_an:
-                    events.append(("letters", m_an.group(1)))
+                    if m_an.group(1).isupper() and len(m_an.group(1)) > 1:
+                        events.append(("acronym", m_an.group(1)))
+                    else:
+                        events.append(("letters", m_an.group(1)))
                     if len(m_an.group(2)) == 3:
                         events.append(("groupnum", m_an.group(2)))
                     else:
@@ -727,7 +760,10 @@ def _parse(text):
                     if nxt.isalnum():
                         i += 1
                         continue
-                    events.append(("pause", "punc."))
+                    if nxt == "_":
+                        events.append(("pause_br1", "punc."))
+                    else:
+                        events.append(("pause", "punc."))
                     i += 1
                     continue
             events.append(("end", END_PUNCT[ch]))
@@ -905,7 +941,10 @@ def _expand_number_token(tok, kind, next_kind):
                 else:
                     out += [("w", w) for w in digits_words(p)]
             else:
-                out.append(("phones", _letter_token(p.lower())))
+                if p.isupper() and len(p) > 1:
+                    out.append(("phones", acronym_phones(p)))
+                else:
+                    out.append(("phones", _letter_token(p.lower())))
         return out
     if kind == "groupnum":
         n = int(tok)
@@ -1010,6 +1049,8 @@ def _expand(events):
                 out.append(("word", val))
         elif kind == "letters":
             out.append(("phones", _letter_token(val.lower())))
+        elif kind == "acronym":
+            out.append(("phones", acronym_phones(val)))
         elif kind == "dotted":
             letters = [c for c in val.lower() if c.isalpha()]
             out.append(("phones", _letter_token("".join(letters))))
@@ -1027,6 +1068,8 @@ def _expand(events):
             out.append(("word", val))
         elif kind == "pause_plain":
             out.append(("pause_plain", None))
+        elif kind == "pause_br1":
+            out.append(("pause_br1", val))
         elif kind == "br2":
             out.append(("br2", None))
         elif kind == "pause":
@@ -1048,6 +1091,11 @@ def _flatten(events):
     prev_word = ""
     prev_was_name = False
     for kind, val in events:
+        if kind in ("pause", "pause_plain", "end", "br2", "pause_br1"):
+            prev_word = ""
+            prev_was_name = False
+            flat.append((kind, val))
+            continue
         if kind == "word":
             w = val
             exp = _word_expansion(w, prev_word)
@@ -1093,6 +1141,9 @@ def _is_roman(w):
 
 
 def _word_expansion(w, prev_word=""):
+    if w == "I" and prev_word in {"chapter", "part", "section", "book", "volume",
+                                  "act", "scene", "article", "appendix"}:
+        return cardinal_words(1)
     if _is_roman(w):
         n = _roman_value(w)
         if len(w) == 1 and prev_word not in CNT_WORDS:
@@ -1165,6 +1216,11 @@ def text_to_ids(text, sym, lexicon=None):
             first = False
         elif kind == "pause_plain":
             ids.append(sym["br3"])
+            first = True
+        elif kind == "pause_br1":
+            ids.append(sym["br1"])
+            ids.append(sym.get(item[1], sym.get("punc.", 0)))
+            ids.append(sym["br0"])
             first = True
         elif kind == "pause":
             if first:
