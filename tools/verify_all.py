@@ -6,7 +6,7 @@
   1. tests/test_all.py          SDK 端到端 + 106 项自检（含前端 golden）
   2. tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl   中文 599 句逐 id
   2b. tools/eval_zh_large.py                                    中文大规模泛化（3000 句引擎 golden）
-  3. tools/check_node_parity.py                                 Node≡Python 逐 id（中文）
+  3. tools/check_node_parity.py + check_zh_parity_batch.py      Node≡Python 逐 id（中文 17 句 + 599/大规模 899 句）
   4. tools/check_en_parity.py                                   英文 Python≡Node 682 句逐 id
   5. tools/eval_ml_offline.py                                   八语种逐 id（golden 来自引擎实测）
   6. 英文三套引擎语料指标（自然句/TN/异读词）
@@ -49,8 +49,10 @@ def main():
                os.path.join(HERE, "data", "eval", "zh_eval_599.jsonl")])
     ok &= run("2b. 中文大规模泛化（3000 句引擎 golden）",
               [sys.executable, os.path.join(HERE, "tools", "eval_zh_large.py")])
-    ok &= run("3. 中文 Node≡Python 逐 id",
+    ok &= run("3. 中文 Node≡Python 逐 id（17 句基础）",
               [sys.executable, os.path.join(HERE, "tools", "check_node_parity.py")])
+    ok &= run("3b. 中文 Node≡Python 逐 id（599+大规模 899 句批量）",
+              [sys.executable, os.path.join(HERE, "tools", "check_zh_parity_batch.py")])
     ok &= run("4. 英文 Node≡Python 逐 id（682 句）",
               [sys.executable, os.path.join(HERE, "tools", "check_en_parity.py")])
     ok &= run("5. 八语种逐 id（离线 golden）",
