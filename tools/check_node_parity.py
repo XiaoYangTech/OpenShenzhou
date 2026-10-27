@@ -10,7 +10,10 @@ script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "node_ids.js")
 node_dir = os.path.join(ROOT, "node").replace(os.sep, "/")
 
 tests = {
-    "zh": ("Xiaoxiao_Female_zh-CN", ["你好，世界。", "人工智能语音合成。", "系统加载中，请稍候。"]),
+    "zh": ("Xiaoxiao_Female_zh-CN", ["你好，世界。", "人工智能语音合成。", "系统加载中，请稍候。",
+                                     "本应阻止进程。", "本机变量字段格式无效",
+                                     "本卷没有任何问题。", "杜普洛彦标点符号奇努克句号。",
+                                     "来自服务器端的会话密钥具有空负载。"]),
     "ja": ("Keita_Male_ja-JP", ["こんにちは。", "ありがとう。"]),
     "ko": ("InJoon_Male_ko-KR", ["안녕하세요.", "감사합니다."]),
     "en": ("Aria_Female_en-US", ["hello world."]),

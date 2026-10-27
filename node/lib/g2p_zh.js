@@ -5,6 +5,8 @@ const { resolveSeq } = require('./symbols');
 const segmodel = require('./segmodel');
 let wb = null;
 try { wb = require('./wb_model'); } catch (e) { wb = null; }
+let crf = null;
+try { crf = require('./crf_zh'); } catch (e) { crf = null; }
 
 const path = require('path');
 
@@ -291,7 +293,7 @@ function lexiconGroups(core, sym) {
 }
 
 // 每个汉字对应的音节 token 列表（读音来自词表，保证多音字）
-function charSyllables(chars, sym, wordsIn) {
+function charSyllables(chars, sym, wordsIn, crfCtx) {
   const words = wordsIn || segmentWords(chars.join(''));
   const syls = new Array(chars.length).fill(null);
   const lexBounds = new Array(Math.max(0, chars.length - 1)).fill(null);
@@ -330,8 +332,21 @@ function charSyllables(chars, sym, wordsIn) {
         const gi = pos + k;
         const prevCh = gi > 0 ? chars[gi - 1] : '^';
         const nextCh = gi + 1 < chars.length ? chars[gi + 1] : '$';
-        const corr = ctxCharSyl(w[k], prevCh, nextCh, sym) || correctCharSyl(w[k], sym);
+        // 「一/不」的变调只在词首有效；词中/词尾保持本调（与 Python 一致）
+        const corr = ((w[k] === '一' || w[k] === '不') && k > 0)
+          ? null
+          : (ctxCharSyl(w[k], prevCh, nextCh, sym) || correctCharSyl(w[k], sym));
         if (corr) syls[pos + k] = corr;
+        // 多音字 CRF 覆盖（单字 token，与 Python 一致）
+        if (crf && crfCtx && n === 1) {
+          try {
+            const ti = crf.charTokenIndex(crfCtx.tokens, crfCtx.base + pos);
+            if (ti !== null) {
+              const rd = crf.readingForChar(w, crfCtx.sentChars, crfCtx.tokens, ti, crfCtx.pkgDir);
+              if (rd) syls[pos] = rd.map((x) => (sym[x] !== undefined ? sym[x] : 0));
+            }
+          } catch (e) { /* ignore */ }
+        }
       }
     }
     pos += n;
@@ -415,7 +430,7 @@ function applyYiSandhi(ids, sym) {
   return ids;
 }
 
-function textToIdsSentence(text, sym) {
+function textToIdsSentence(text, sym, pkgDir) {
   // 句尾的非句末标点（，；：等）：引擎当作句末处理（实测：句尾「，」→ br4+punc,；句尾「：」→ 仅 br4）
   let tailPunc = null;
   const trimmed = text.replace(/\s+$/, '');
@@ -425,6 +440,16 @@ function textToIdsSentence(text, sym) {
   }
   const segs = normalizeSegments(text);
   const ids = [sym['-bos-'], sym['br0']];
+  // 多音字 CRF 上下文：整句字符 + token 列表（与 Python crf_zh.build_tokens 一致）
+  let crfSentChars = null;
+  let crfTokens = null;
+  let crfCursor = 0;
+  if (crf && pkgDir) {
+    try {
+      crfSentChars = [...text];
+      crfTokens = crf.buildTokens(text, wb);
+    } catch (e) { crfSentChars = null; crfTokens = null; }
+  }
   let first = true, ended = false;
 
   const emitGroups = (groups) => {
@@ -483,6 +508,14 @@ function textToIdsSentence(text, sym) {
       }
       const cn = [...chunk].filter((c) => c >= '\u4e00' && c <= '\u9fff').join('');
       if (!cn) continue;
+      let crfCtx = null;
+      if (crfTokens) {
+        const b = text.indexOf(chunk, crfCursor);
+        if (b >= 0) {
+          crfCursor = b + chunk.length;
+          crfCtx = { sentChars: crfSentChars, tokens: crfTokens, base: b, pkgDir };
+        }
+      }
       // 断词：官方 CBlstm 模型（wb_model）优先，segmodel 兜底
       {
         const chars = [...cn];
@@ -494,7 +527,7 @@ function textToIdsSentence(text, sym) {
           } catch (e) { wbWords = null; wbBounds = null; }
         }
         if (wbBounds) {
-          const parsedSyl = charSyllables(chars, sym, wbWords);
+          const parsedSyl = charSyllables(chars, sym, wbWords, crfCtx);
           if (parsedSyl) {
             const syls = parsedSyl.syls;
             const lexBounds = parsedSyl.lexBounds;
@@ -514,7 +547,7 @@ function textToIdsSentence(text, sym) {
       }
       if (segmodel.available()) {
         const chars = [...cn];
-        const parsedSyl = charSyllables(chars, sym);
+        const parsedSyl = charSyllables(chars, sym, null, crfCtx);
         if (parsedSyl) {
           const syls = parsedSyl.syls;
           const lexBounds = parsedSyl.lexBounds;
@@ -574,12 +607,12 @@ function splitSentences(text) {
   return parts.filter((x) => x);
 }
 
-function textToIds(text, sym) {
+function textToIds(text, sym, pkgDir) {
   if (!text) return [];
   const out = [];
   for (const sent of splitSentences(text)) {
     if (!sent.trim()) continue;
-    for (const id of textToIdsSentence(sent, sym)) out.push(id);
+    for (const id of textToIdsSentence(sent, sym, pkgDir)) out.push(id);
   }
   return out;
 }

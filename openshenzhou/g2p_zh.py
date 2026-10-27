@@ -844,19 +844,23 @@ def _char_syllables(chars, wordset, lexicon, sym2id, table, words=None, crf_ctx=
                     corr = None
                 else:
                     order = os.environ.get("OS_CORR_ORDER", "orig")
-                    fixes = [fix_char_syl(w[k], prev_ch, next_ch, sym2id),
-                             ctx_char_syl(w[k], prev_ch, next_ch, sym2id)]
-                    if order == "iso_first":
-                        fixes += [isolated_char_syl(w[k], sym2id), correct_char_syl(w[k], sym2id)]
-                    elif order == "no_correct":
-                        fixes += [isolated_char_syl(w[k], sym2id)]
+                    # 「一/不」的变调只在词首有效；词中/词尾保持本调（引擎行为）
+                    if w[k] in ("一", "不") and k > 0:
+                        corr = None
                     else:
-                        fixes += [correct_char_syl(w[k], sym2id), isolated_char_syl(w[k], sym2id)]
-                    corr = None
-                    for f in fixes:
-                        if f:
-                            corr = f
-                            break
+                        fixes = [fix_char_syl(w[k], prev_ch, next_ch, sym2id),
+                                 ctx_char_syl(w[k], prev_ch, next_ch, sym2id)]
+                        if order == "iso_first":
+                            fixes += [isolated_char_syl(w[k], sym2id), correct_char_syl(w[k], sym2id)]
+                        elif order == "no_correct":
+                            fixes += [isolated_char_syl(w[k], sym2id)]
+                        else:
+                            fixes += [correct_char_syl(w[k], sym2id), isolated_char_syl(w[k], sym2id)]
+                        corr = None
+                        for f in fixes:
+                            if f:
+                                corr = f
+                                break
                     if corr is not None and os.environ.get("OS_LEX_FIRST", "0") == "1" and core:
                         lex_groups = lexicon_groups(core, sym2id.get("-", 3), sym2id.get("br1", 25))
                         flat = [g for grp in lex_groups for g in grp]
@@ -976,11 +980,72 @@ def _apply_yi_sandhi_ids(ids, sym2id):
     return ids
 
 
+def _apply_t3_ids(ids, sym2id):
+    """三声连读变调（引擎在词间也生效）：T3+T3… → 前字 T2，最后一个保持 T3。"""
+    rev = _TAG_IDS_CACHE.get("rev")
+    if rev is None or len(rev) != len(sym2id):
+        rev = {v: k for k, v in sym2id.items()}
+        _TAG_IDS_CACHE["rev"] = rev
+    tag_ids = {sym2id.get(x) for x in (BOS, END, BR0, BR1, BR2, BR3, BR4, SEP)}
+    tag_ids.discard(None)
+    punc_ids = {v for k, v in sym2id.items() if k.startswith("punc")}
+
+    def tone(tok):
+        nm = rev.get(tok, "")
+        if nm.endswith("_h"):
+            return "h"
+        if nm.endswith("_l"):
+            return "l"
+        if nm.endswith("_m"):
+            return "m"
+        return None
+
+    def t3(toks):
+        return tone(toks[1]) == "l" and tone(toks[2]) == "l"
+
+    def set_t2(pos, toks):
+        nm2 = rev.get(toks[2], "")
+        base2 = nm2.split("_")[0]
+        new2 = sym2id.get(base2 + "_h")
+        if new2 is not None:
+            ids[pos + 2] = new2
+
+    syl = []
+    buf = []
+    wid = -1
+    for idx, x in enumerate(ids):
+        if x in tag_ids or x in punc_ids:
+            if buf:
+                for s0 in range(0, len(buf) - 2, 3):
+                    syl.append((buf[s0][0], [buf[s0][1], buf[s0 + 1][1], buf[s0 + 2][1]], wid))
+                buf = []
+            wid += 1
+            continue
+        buf.append((idx, x))
+    if buf:
+        for s0 in range(0, len(buf) - 2, 3):
+            syl.append((buf[s0][0], [buf[s0][1], buf[s0 + 1][1], buf[s0 + 2][1]], wid))
+    i = 0
+    while i + 1 < len(syl):
+        # 只在跨词边界时做三声连读（引擎行为：词内读音由词表决定）
+        if (t3(syl[i][1]) and t3(syl[i + 1][1]) and syl[i][2] != syl[i + 1][2]):
+            j = i
+            while (j + 1 < len(syl) and t3(syl[j + 1][1])
+                   and syl[j][2] != syl[j + 1][2]):
+                set_t2(syl[j][0], syl[j][1])
+                j += 1
+            i = j + 1
+        else:
+            i += 1
+    return ids
+
+
 def _apply_sandhi_ids(ids, sym2id):
-    """在最终 id 序列上做「一/不」变调（引擎行为）：
-    - 一 + 四声 → yí（tone2）；一 + 一/二/三声 → yì（tone4）
-    - 不 + 四声 → bú（tone2）
-    音节 = 3 个连续音素；标签/标点/分隔符会打断音节流。
+    """在最终 id 序列上做「一/不/三声」变调（引擎行为）。
+
+    - 一 + 四声 → yí；一 + 一/二/三声 → yì
+    - 不 + 四声 → bú（仅词首「不」；词尾「不」保持 bù，与引擎语料一致）
+    - 三声连读：同一句内 T3+T3 → 前字变 T2（引擎会在词间做，如「一起使用」）
     """
     rev = _TAG_IDS_CACHE.get("rev")
     if rev is None or len(rev) != len(sym2id):
@@ -1003,23 +1068,26 @@ def _apply_sandhi_ids(ids, sym2id):
             return "m"
         return None
 
-    # 切出音节流（同时记录每个音节在 ids 里的起点）
+    # 切出音节流（记录 ids 起点、所属词编号）
     syl_pos = []
     buf = []
+    word_id = -1
     for idx, x in enumerate(ids):
         if x in tag_ids or x in punc_ids:
             if buf:
                 for s0 in range(0, len(buf) - 2, 3):
-                    syl_pos.append((buf[s0][0], [buf[s0][1], buf[s0 + 1][1], buf[s0 + 2][1]]))
+                    syl_pos.append((buf[s0][0], [buf[s0][1], buf[s0 + 1][1], buf[s0 + 2][1]],
+                                    word_id))
                 buf = []
+            word_id += 1
             continue
         buf.append((idx, x))
     if buf:
         for s0 in range(0, len(buf) - 2, 3):
-            syl_pos.append((buf[s0][0], [buf[s0][1], buf[s0 + 1][1], buf[s0 + 2][1]]))
+            syl_pos.append((buf[s0][0], [buf[s0][1], buf[s0 + 1][1], buf[s0 + 2][1]],
+                            word_id))
 
     def set_tone(pos, toks, s1, s2):
-        # 保持首音节符号不变，只改两个韵母的声调后缀
         nm1 = rev.get(toks[1], "")
         nm2 = rev.get(toks[2], "")
         base1 = nm1.split("_")[0]
@@ -1031,34 +1099,50 @@ def _apply_sandhi_ids(ids, sym2id):
         if new2 is not None:
             ids[pos + 2] = new2
 
-    for k, (pos, toks) in enumerate(syl_pos):
+    def tone_num(toks):
+        n1 = tone_of(toks[1])
+        n2 = tone_of(toks[2])
+        if n1 and n2:
+            if n1 == "h" and n2 == "h":
+                return 1
+            if n1 == "l" and n2 == "h":
+                return 2
+            if n1 == "l" and n2 == "l":
+                return 3
+            if n1 == "h" and n2 == "l":
+                return 4
+            if n1 == "m" and n2 == "m":
+                return 5
+        return None
+
+    for k, (pos, toks, wid) in enumerate(syl_pos):
         nm0 = rev.get(toks[0], "")
-        th1 = tone_of(toks[1])
-        th2 = tone_of(toks[2])
-        if nm0 == "yi" and th1 == "h" and th2 == "h":
-            # 一：看下一个音节的声调
+        if nm0 == "yi" and tone_num(toks) == 1:
             if k + 1 < len(syl_pos):
-                nxt = syl_pos[k + 1][1]
-                n1 = tone_of(nxt[1])
-                n2 = tone_of(nxt[2])
-                nxt_tone = None
-                if n1 and n2:
-                    nxt_tone = {"h": "1", "l": "2", "m": "5"}.get(n1) if n2 == "h" else None
-                    if n1 == "l" and n2 == "l":
-                        nxt_tone = "3"
-                    if n1 == "h" and n2 == "l":
-                        nxt_tone = "4"
-                if nxt_tone == "4":
+                nt = tone_num(syl_pos[k + 1][1])
+                if nt == 4:
                     set_tone(pos, toks, "l", "h")  # yí
-                elif nxt_tone in ("1", "2", "3"):
+                elif nt in (1, 2, 3):
                     set_tone(pos, toks, "h", "l")  # yì
-        elif nm0 == "bu" and th1 == "h" and th2 == "l":
-            if k + 1 < len(syl_pos):
-                nxt = syl_pos[k + 1][1]
-                n1 = tone_of(nxt[1])
-                n2 = tone_of(nxt[2])
-                if n1 == "h" and n2 == "l":  # 下一音节四声
+        elif nm0 == "bu" and tone_num(toks) == 4:
+            # 引擎只在「不」处于词首（且后面还有音节）时做变调
+            if k + 1 < len(syl_pos) and syl_pos[k + 1][2] == wid:
+                if tone_num(syl_pos[k + 1][1]) == 4:
                     set_tone(pos, toks, "l", "h")  # bú
+
+    # 三声连读（同一句内、词间也生效；标点/标签会打断）
+    if os.environ.get("OS_T3_CROSS", "1") == "1":
+        i = 0
+        while i + 1 < len(syl_pos):
+            if tone_num(syl_pos[i][1]) == 3 and tone_num(syl_pos[i + 1][1]) == 3:
+                j = i
+                # 一连续串 T3：除最后一个外都变 T2
+                while j + 1 < len(syl_pos) and tone_num(syl_pos[j + 1][1]) == 3:
+                    set_tone(syl_pos[j][0], syl_pos[j][1], "l", "h")
+                    j += 1
+                i = j + 1
+            else:
+                i += 1
     return ids
 
 
@@ -1217,6 +1301,11 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
     if os.environ.get("OS_YI_SANDHI_IDS", "0") == "1":
         try:
             ids = _apply_yi_sandhi_ids(ids, sym2id)
+        except Exception:
+            pass
+    if os.environ.get("OS_T3_IDS", "0") == "1":
+        try:
+            ids = _apply_t3_ids(ids, sym2id)
         except Exception:
             pass
     return ids

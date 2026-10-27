@@ -29,7 +29,7 @@ class TTS {
     if (this._g2p) return this._g2p;
     if (this.lang === 'zh') {
       const { textToIds } = require('./lib/g2p_zh');
-      this._g2p = (text) => textToIds(text, this.pack.symbols);
+      this._g2p = (text) => textToIds(text, this.pack.symbols, this.pack.dir);
     } else if (this.lang === 'en') {
       const { textToIds } = require('./lib/g2p_en');
       this._g2p = (text) => textToIds(text, this.pack.symbols);
