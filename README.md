@@ -14,19 +14,19 @@
 | 指标 | 结果 | 复现命令 |
 |---|---|---|
 | 模型层逐采样一致（8 语种 / 23 音色包） | 最大绝对误差 ~1e-6，相关 1.0000000 | 见论文 §4 |
-| 中文 599 句自然句首句逐音素 id | **585/599 = 97.7%** | `python tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl` |
+| 中文 599 句自然句首句逐音素 id | **587/599 = 98.0%** | `python tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl` |
 | 英文自然句 500 句逐 id（引擎探针标注） | **498/500 = 99.6%** | `python tools/eval_en_corpus.py data/eval/en_engine_500.jsonl` |
 | 英文 TN 压力集 102 句逐 id | **102/102 = 100%** |
 | 英文异读词句 80 句逐 id | **80/80 = 100%** |
 | 英文 holdout2 500 句（另三本书/不同年代） | **492/500 = 98.4%**（未标定词表前 53.2%） |
 | 英文 holdout 500 句（另外三本书，泛化评测） | **499/500 = 99.8%** | `python tools/eval_en_corpus.py data/eval/en_engine_holdout500.jsonl` |
-| 中文大规模泛化 3000 句（引擎 golden 留出） | **2855/3000 = 95.2%** |
+| 中文大规模泛化 3000 句（引擎 golden 留出） | **2875/3000 = 95.8%** |
 | 八语种 138 句整句逐 id | **138/138 = 100%** | `python tools/eval_ml_offline.py` |
 | Python / Node 双端一致性 | 中文 17 句 + 899 句批量（599+大规模）+ 英文 1682 句逐 id 一致 | `python tools/check_node_parity.py` / `check_zh_parity_batch.py` |
 | SDK 端到端自检 | 全通过 | `python tests/test_all.py --voice-root <语音包根>` |
 | 一键全量验证 | 全部通过 | `python tools/verify_all.py` |
 
-中文残余 14 句：长尾词界拆分差异与语料乱码行（词界单独评测 98.5%）；根因是引擎断词 Trie 的上下文相关后处理，静态词表/上下文规则均无法完全拟合。
+中文残余 12 句：长尾词界拆分/合并差异与语料乱码行（词界单独评测 98.9%）；已用「引擎 golden 对齐学习的片段合并表」修正词界后处理（599 句 585→587、大规模 2855→2875）。
 英文残余 11 句：引擎内部韵律停顿与数学上标标记处理（自然 498/500、holdout 499/500、holdout2 492/500），非文本规则可复现。
 
 ## 仓库结构
