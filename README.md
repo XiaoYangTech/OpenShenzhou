@@ -16,14 +16,15 @@
 | 模型层逐采样一致（8 语种 / 23 音色包） | 最大绝对误差 ~1e-6，相关 1.0000000 | 见论文 §4 |
 | 中文 599 句自然句首句逐音素 id | **585/599 = 97.7%** | `python tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl` |
 | 英文自然句 500 句逐 id（引擎探针标注） | **495/500 = 99.0%** | `python tools/eval_en_corpus.py data/eval/en_engine_500.jsonl` |
-| 英文 TN 压力集 102 句逐 id | **95/102 = 93.1%** | `python tools/eval_en_corpus.py data/eval/en_engine_tn.jsonl` |
+| 英文 TN 压力集 102 句逐 id | **99/102 = 97.1%** |
+| 英文 holdout 500 句（另外三本书，泛化评测） | **475/500 = 95.0%** | `python tools/eval_en_corpus.py data/eval/en_engine_tn.jsonl` |
 | 八语种 138 句整句逐 id | **138/138 = 100%** | `python tools/eval_ml_offline.py` |
 | Python / Node 双端一致性 | 中文 17 句 + 英文 682 句逐 id 一致 | `python tools/check_node_parity.py` |
 | SDK 端到端自检 | 全通过 | `python tests/test_all.py --voice-root <语音包根>` |
 | 一键全量验证 | 全部通过 | `python tools/verify_all.py` |
 
 中文残余 14 句：约 11 句为长尾词界拆分差异、3 句为语料乱码行。
-英文下一步：继续扩词表（top-10k 词引擎标定）与剩余 TN 长尾；Node SDK 英文前端 v2 已与 Python 完全对齐。
+英文下一步：继续扩词表（top-10k 词引擎标定）与 holdout 长尾（标点细节）；Node SDK 英文前端 v2 已与 Python 完全对齐。
 
 ## 仓库结构
 
