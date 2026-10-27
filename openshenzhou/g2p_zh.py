@@ -66,11 +66,28 @@ def load_seg_words():
     return _SEG_WORDS
 
 
+def load_broad_lexicon():
+    """宽领域引擎实测词读音（tools/build_zh_broad_lex.py 从大规模 golden 生成）"""
+    p = os.path.join(ROOT, "data", "lexicon_zh_broad.names.json")
+    try:
+        return json.load(open(p, encoding="utf-8"))
+    except Exception:
+        return {}
+
+
 def load_lexicon():
     """引擎标定的「词 → 音素序列」（符号名，使用时映射到本音色包 id）"""
     from .symbols import load_json_prefer_names
     d = load_json_prefer_names(os.path.join(ROOT, "data", "lexicon_zh"))
     if d:
+        mode = os.environ.get("OS_ZH_BROAD", "fill")
+        broad = load_broad_lexicon() if mode != "off" else {}
+        if broad:
+            if mode == "override":
+                d.update(broad)
+            else:
+                for k, v in broad.items():
+                    d.setdefault(k, v)
         return d
     p = os.path.join(ROOT, "data", "lexicon_zh.json")
     if os.path.exists(p):

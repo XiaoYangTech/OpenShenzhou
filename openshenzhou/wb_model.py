@@ -50,12 +50,24 @@ def _load():
 
 
 def _load_words():
+    """合并候选词表：优先用「引擎语料实际产出的词」（data/zh_engine_words.json），
+    否则退回官方词表。引擎只在自身词典词上做合并，官方词表范围过宽。"""
     if "lex" in _cache:
         return _cache["lex"]
-    try:
-        words = set(json.load(open(OFFICIAL_WORDS, encoding="utf-8")))
-    except Exception:
-        words = set()
+    words = None
+    if os.environ.get("OS_ENGINE_WORDS", "0") == "1":
+        try:
+            p = os.path.join(ROOT, "data", "zh_engine_words.json")
+            d = json.load(open(p, encoding="utf-8"))
+            if d:
+                words = set(d.keys())
+        except Exception:
+            words = None
+    if words is None:
+        try:
+            words = set(json.load(open(OFFICIAL_WORDS, encoding="utf-8")))
+        except Exception:
+            words = set()
     _cache["lex"] = words
     return words
 
@@ -148,16 +160,22 @@ def _load_merge_evidence():
     return ev
 
 
-def _load_merge_rates():
-    if "rates" in _cache:
-        return _cache["rates"]
+def _load_merge_params():
+    if "rates" in _cache and "threshold" in _cache:
+        return _cache["rates"], _cache["threshold"]
     try:
         d = json.load(open(os.path.join(ROOT, "data", "zh_merge_rates.json"), encoding="utf-8"))
         rates = d.get("rates", {})
+        th = d.get("threshold")
     except Exception:
-        rates = {}
+        rates, th = {}, None
     _cache["rates"] = rates
-    return rates
+    _cache["threshold"] = th
+    return rates, th
+
+
+def _load_merge_rates():
+    return _load_merge_params()[0]
 
 
 def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
@@ -166,7 +184,14 @@ def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
     合并率来自引擎语料统计（tools/tune_merge.py 生成）：
     引擎对哪些词会合并、哪些会拆开，直接反映其 Trie 后处理行为。
     """
-    rates = _load_merge_rates()
+    rates, file_th = _load_merge_params()
+    env_th = os.environ.get("OS_MERGE_TH")
+    if env_th not in (None, ""):
+        th = float(env_th)
+    elif file_th is not None:
+        th = float(file_th)
+    else:
+        th = MERGE_RATE_THRESHOLD
     changed = True
     while changed:
         changed = False
@@ -182,12 +207,12 @@ def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
                 rate = rates.get(cand)
                 if rate is None:
                     if _MERGE_DEFAULT_ENV is not None:
-                        ok = MERGE_RATE_DEFAULT >= MERGE_RATE_THRESHOLD
+                        ok = MERGE_RATE_DEFAULT >= th
                     else:
                         ev = _load_merge_evidence()
                         ok = (cand in ev) if ev is not None else True
                 else:
-                    ok = rate >= MERGE_RATE_THRESHOLD
+                    ok = rate >= th
                 if ok:
                     best = k
                     break
