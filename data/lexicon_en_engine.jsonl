@@ -3362,3 +3362,35 @@
 {"w": "youth", "phones": ["y", "uw1", "th"]}
 {"w": "youtube", "phones": ["y", "uw1", "-", "t", "uw2", "b"]}
 {"w": "zone", "phones": ["z", "ow1", "n"]}
+{"w": "celsius", "phones": ["s", "eh1", "l", "-", "s", "iy", "-", "ax", "s"]}
+{"w": "centimeters", "phones": ["s", "eh1", "n", "-", "t", "ih", "-", "m", "iy", "-", "t", "ax", "r", "z"]}
+{"w": "divided", "phones": ["d", "ih", "-", "v", "ay1", "-", "d", "ih", "d"]}
+{"w": "eighths", "phones": ["ey1", "t", "th", "s"]}
+{"w": "fahrenheit", "phones": ["f", "eh1", "-", "r", "ax", "n", "-", "h", "ay2", "t"]}
+{"w": "fifths", "phones": ["f", "ih1", "f", "th", "s"]}
+{"w": "fourths", "phones": ["f", "ao1", "r", "th", "s"]}
+{"w": "gigabytes", "phones": ["g", "ih1", "-", "g", "ax", "-", "b", "ay2", "t", "s"]}
+{"w": "grams", "phones": ["g", "r", "ae1", "m", "z"]}
+{"w": "halves", "phones": ["h", "ae1", "v", "z"]}
+{"w": "hundredths", "phones": ["h", "ah1", "n", "-", "d", "r", "ax", "d", "th", "s"]}
+{"w": "inches", "phones": ["ih1", "n", "-", "ch", "ih", "z"]}
+{"w": "kilobytes", "phones": ["k", "ih1", "-", "l", "ax", "-", "b", "ay2", "t", "s"]}
+{"w": "kilograms", "phones": ["k", "ih1", "-", "l", "ax", "-", "g", "r", "ae2", "m", "z"]}
+{"w": "kilometers", "phones": ["k", "ih", "-", "l", "aa1", "-", "m", "ax2", "-", "t", "ax", "r", "z"]}
+{"w": "liters", "phones": ["l", "iy1", "-", "t", "ax", "r", "z"]}
+{"w": "megabytes", "phones": ["m", "eh1", "-", "g", "ax", "-", "b", "ay2", "t", "s"]}
+{"w": "milligrams", "phones": ["m", "ih1", "-", "l", "ax", "-", "g", "r", "ae2", "m", "z"]}
+{"w": "milliliters", "phones": ["m", "ih1", "-", "l", "ax", "-", "l", "iy2", "-", "t", "ax", "r", "z"]}
+{"w": "millimeters", "phones": ["m", "ih1", "-", "l", "ih", "-", "m", "iy2", "-", "t", "ax", "r", "z"]}
+{"w": "milliseconds", "phones": ["m", "ih1", "-", "l", "ax", "-", "s", "eh2", "-", "k", "ax", "n", "d", "z"]}
+{"w": "minus", "phones": ["m", "ay1", "-", "n", "ax", "s"]}
+{"w": "ninths", "phones": ["n", "ay1", "n", "th", "s"]}
+{"w": "ounces", "phones": ["aw1", "n", "-", "s", "ih", "z"]}
+{"w": "sevenths", "phones": ["s", "eh1", "-", "v", "ax", "n", "th", "s"]}
+{"w": "sixths", "phones": ["s", "ih1", "k", "s", "th", "s"]}
+{"w": "slash", "phones": ["s", "l", "ae1", "sh"]}
+{"w": "tenths", "phones": ["t", "eh1", "n", "th", "s"]}
+{"w": "terabytes", "phones": ["t", "eh1", "-", "r", "ax", "-", "b", "ay2", "t", "s"]}
+{"w": "thirds", "phones": ["th", "er1", "d", "z"]}
+{"w": "thousandths", "phones": ["th", "aw1", "-", "z", "ax", "n", "d", "th", "s"]}
+{"w": "yards", "phones": ["y", "aa1", "r", "d", "z"]}

@@ -400,9 +400,9 @@ ours  : 0 2 0 2 0 2 0 2 3 2     ← 325/325 字符全部一致
    one million two hundred and thirty four thousand five hundred and sixty seven dollars、
    101 → one hundred and one、$5.99 → five dollars and ninety nine cents 等）。
 
-效果：英文自然句逐 id 一致率 **17.8% → 95.6%（478/500）**，8 语种 golden 仍是 138/138。
-TN 压力集目前 34/102，还没啃完（货币/日期/时间/单位/分数/电话分组各有各的规则），
-这是下一步的主要工作。
+效果：英文自然句逐 id 一致率 **17.8% → 97.6%（488/500）**，TN 压力集 **5.9% → 86.3%（88/102）**，
+8 语种 golden 仍是 138/138。TN 里货币/日期/时间/单位/分数/罗马数字/电话分组/缩写点号
+都已经按引擎实测行为实现，剩下的是电话三位分组、版本号、引号短语这类长尾。
 
 ## 8. 踩过的坑（真实的逆向日常）
 

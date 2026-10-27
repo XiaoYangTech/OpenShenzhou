@@ -46,6 +46,10 @@ def main():
         text = r["text"]
         eng = r["ids"]
         pred = g2p_en.text_to_ids(text, sym, lex)
+        # 引擎探针只抓首句（每句一次 encoder），比较也取首句
+        end = sym.get("~")
+        if end in pred:
+            pred = pred[:pred.index(end) + 1]
         n += 1
         if pred == eng:
             ok += 1
