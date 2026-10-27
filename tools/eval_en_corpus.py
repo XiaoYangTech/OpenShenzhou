@@ -46,10 +46,22 @@ def main():
         text = r["text"]
         eng = r["ids"]
         pred = g2p_en.text_to_ids(text, sym, lex)
-        # 引擎探针只抓首句（每句一次 encoder），比较也取首句
-        end = sym.get("~")
-        if end in pred:
-            pred = pred[:pred.index(end) + 1]
+        # 引擎探针只抓首句（每句一次 encoder）：截到第一个 br4+punc，并补 END
+        br4 = sym.get("br4")
+        if br4 is not None and br4 in pred:
+            k = pred.index(br4)
+            k += 1
+            if k < len(pred) and str(sym.get("~")) and pred[k] not in (sym.get("~"),):
+                pass
+            # 若下一个是 punc 符号则一并包含
+            rev = {v: kk for kk, v in sym.items()}
+            if k < len(pred) and rev.get(pred[k], "").startswith("punc"):
+                k += 1
+            pred = pred[:k] + [sym.get("~")]
+        else:
+            end = sym.get("~")
+            if end in pred:
+                pred = pred[:pred.index(end) + 1]
         n += 1
         if pred == eng:
             ok += 1
