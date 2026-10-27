@@ -382,6 +382,12 @@ def pron_word(word, next_word="", prev_word=""):
     het = load_heteronyms().get(w)
     if het:
         pv = (prev_word or "").lower()
+        if w == "read" and het.get("past"):
+            if pv in {"had", "has", "have", "was", "were", "been", "being", "is", "are", "am"}:
+                return list(het["past"])
+        if w == "use" and prev_word:
+            if pv in {"is", "are", "was", "were", "be", "being", "am"} and het.get("noun"):
+                return list(het["noun"])
         if w == "content":
             nxt0 = (next_word or "").lower()
             modal = pv in {"will", "would", "can", "could", "should", "must", "may", "might"}
@@ -710,7 +716,7 @@ def _parse(text):
                             last_word = low
                             continue
                         events.append(("letters", w))
-                        if i + 2 < n and text[i + 1] == ",":
+                        if i + 2 < n and text[i + 1] in ",;":
                             events.append(("pause", "punc."))
                             i += 2
                             last_word = low
@@ -777,12 +783,20 @@ def _parse(text):
             j2 = i + 1
             while j2 < n and text[j2] in ")]":
                 j2 += 1
+            if events and events[-1][0] in ("end", "punc_after_end"):
+                events.append(("punc_after_end", "punc."))
+                i = j2
+                continue
             rest = text[j2:].lstrip()
             if not rest or rest[0] in ".!?":
                 events.append(("end", "punc."))
                 i = j2
                 continue
         if ch in PAUSE_PUNCT:
+            if ch == "," and i + 1 < n and text[i + 1] in "-–—":
+                events.append(("pause_br1", "punc,"))
+                i += 1
+                continue
             if ch == ":" and i + 1 < n and text[i + 1] in "\\/":
                 events.append(("pause_plain", None))
             else:
@@ -1192,6 +1206,12 @@ def text_to_ids(text, sym, lexicon=None):
             if j < len(flat):
                 nxt = flat[j][1]
             prev_w = flat[i - 1][1] if i > 0 and flat[i - 1][0] == "w" else ""
+            if prev_w.lower() in ("not", "never", "always", "only", "also", "just", "still"):
+                j2 = i - 2
+                while j2 >= 0 and flat[j2][0] != "w":
+                    j2 -= 1
+                if j2 >= 0:
+                    prev_w = flat[j2][1]
             phones = pron_word(w, nxt, prev_w)
             wl = w.lower()
             after_kind = flat[i + 1][0] if i + 1 < len(flat) else "end"
