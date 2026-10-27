@@ -67,12 +67,11 @@ def _find_dat():
     env = os.environ.get("OS_ZH_DAT")
     if env:
         cands.append(env)
-    root = os.environ.get("TEMP", "")
-    if root:
-        base = os.path.join(root, "AllVoice")
-        if os.path.isdir(base):
-            for name in sorted(os.listdir(base)):
-                cands.append(os.path.join(base, name, "MSTTSLocZhCN.dat"))
+    # 语音包根：优先 OS_VOICE_ROOT，其次 %TEMP%/AllVoice
+    root = os.environ.get("OS_VOICE_ROOT") or os.path.join(os.environ.get("TEMP", ""), "AllVoice")
+    if root and os.path.isdir(root):
+        for name in sorted(os.listdir(root)):
+            cands.append(os.path.join(root, name, "MSTTSLocZhCN.dat"))
     for c in cands:
         if c and os.path.exists(c):
             return c
