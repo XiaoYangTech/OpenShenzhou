@@ -353,7 +353,33 @@ function charSyllables(chars, sym, wordsIn, crfCtx) {
   }
   if (pos !== chars.length || syls.some((s) => s === null)) return null;
   try { yiSandhiSyls(chars, syls, sym); } catch (e) { /* ignore */ }
+  try { applyT3Chars(chars, syls, sym); } catch (e) { /* ignore */ }
   return { syls, lexBounds };
+}
+
+// 特定汉字的三声连读（数据来自引擎语料统计，与 Python data/zh_t3_chars.json 同源）
+const T3_CHARS = (() => {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(DATA, 'zh_t3_chars.json'), 'utf8'));
+  } catch (e) { return {}; }
+})();
+
+function applyT3Chars(chars, syls, sym) {
+  if (!T3_CHARS || !Object.keys(T3_CHARS).length) return;
+  const rev = new Map();
+  for (const [k, v] of Object.entries(sym)) rev.set(v, k);
+  const isT3 = (syl) => syl && syl.length === 3
+    && String(rev.get(syl[1]) || '').endsWith('_l')
+    && String(rev.get(syl[2]) || '').endsWith('_l');
+  for (let i = 0; i + 1 < chars.length && i + 1 < syls.length; i++) {
+    if (!T3_CHARS[chars[i]]) continue;
+    const a = syls[i], b = syls[i + 1];
+    if (!isT3(a) || !isT3(b)) continue;
+    const nm = String(rev.get(a[2]) || '');
+    if (!nm.endsWith('_l')) continue;
+    const nid = sym[nm.slice(0, -2) + '_h'];
+    if (nid !== undefined) a[2] = nid;
+  }
 }
 
 // 字符级「一」变调（与 Python 相同规则：真「一」才变；第/唯/统/单/之/十 前不变）

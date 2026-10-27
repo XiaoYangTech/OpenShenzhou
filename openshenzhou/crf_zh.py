@@ -100,6 +100,8 @@ def _model_trusted(idx):
     t = load_trust().get(str(idx))
     if not t:
         return False
+    if t.get("force"):
+        return True
     return t.get("n", 0) >= _TRUST_MIN_N and t.get("acc", 0.0) >= _TRUST_TH
 
 

@@ -708,6 +708,53 @@ def _apply_char_rules(chars, syls, sym2id):
 _YI_EXCEPT = set("第唯统单之十")
 
 
+_T3_CHARS = None
+
+
+def load_t3_chars():
+    global _T3_CHARS
+    if _T3_CHARS is None:
+        try:
+            _T3_CHARS = json.load(open(os.path.join(ROOT, "data", "zh_t3_chars.json"),
+                                       encoding="utf-8"))
+        except Exception:
+            _T3_CHARS = {}
+    return _T3_CHARS
+
+
+def _syl_tone3(syl):
+    if not syl or len(syl) != 3:
+        return False
+    rev = _TAG_IDS_CACHE.get("rev3")
+    return rev.get(syl[1], "").endswith("_l") and rev.get(syl[2], "").endswith("_l")
+
+
+def _apply_t3_chars(chars, syls, sym2id):
+    """特定汉字的三声连读：在另一个三声音节前变二声（数据来自引擎语料统计）。"""
+    rules = load_t3_chars()
+    if not rules:
+        return
+    need_rev = _TAG_IDS_CACHE.get("rev3") is None
+    if need_rev:
+        _TAG_IDS_CACHE["rev3"] = {v: k for k, v in sym2id.items()}
+    rev = _TAG_IDS_CACHE["rev3"]
+    for i in range(len(chars) - 1):
+        if chars[i] not in rules:
+            continue
+        a = syls[i] if i < len(syls) else None
+        b = syls[i + 1] if i + 1 < len(syls) else None
+        if not a or not b or len(a) != 3 or len(b) != 3:
+            continue
+        if not (_syl_tone3(a) and _syl_tone3(b)):
+            continue
+        nm = rev.get(a[2], "")
+        if not nm.endswith("_l"):
+            continue
+        new = sym2id.get(nm[:-2] + "_h")
+        if new is not None:
+            a[2] = new
+
+
 def _yi_sandhi_syls(chars, syls, sym2id):
     """「一」变调：词首/一般情况变调，前字属例外表时保持 yī。
 
@@ -892,6 +939,11 @@ def _char_syllables(chars, wordset, lexicon, sym2id, table, words=None, crf_ctx=
     if os.environ.get("OS_YI_SANDHI", "1") == "1":
         try:
             _yi_sandhi_syls(chars, syls, sym2id)
+        except Exception:
+            pass
+    if os.environ.get("OS_T3_CHARS", "1") == "1":
+        try:
+            _apply_t3_chars(chars, syls, sym2id)
         except Exception:
             pass
     return syls, lex_bounds

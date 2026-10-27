@@ -14,13 +14,13 @@
 | 指标 | 结果 | 复现命令 |
 |---|---|---|
 | 模型层逐采样一致（8 语种 / 23 音色包） | 最大绝对误差 ~1e-6，相关 1.0000000 | 见论文 §4 |
-| 中文 599 句自然句首句逐音素 id | **580/599 = 96.8%** | `python tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl` |
+| 中文 599 句自然句首句逐音素 id | **582/599 = 97.2%** | `python tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl` |
 | 八语种 138 句整句逐 id | **138/138 = 100%** | `python tools/eval_ml_offline.py` |
 | Python / Node 双端一致性 | 9/9 逐 id 一致 | `python tools/check_node_parity.py` |
 | SDK 端到端自检 | **106/106 通过** | `python tests/test_all.py --voice-root "$TEMP/AllVoice"` |
 | 一键全量验证 | 全部通过 | `python tools/verify_all.py` |
 
-中文残余 19 句：约 12 句为长尾词界（引擎词表的合并/拆分差异）、4 句为语料乱码行、其余为极少数读音/标点。
+中文残余 17 句：约 12 句为长尾词界（引擎词表的合并/拆分差异）、4 句为语料乱码行、其余为极少数读音/标点。
 
 ## 仓库结构
 

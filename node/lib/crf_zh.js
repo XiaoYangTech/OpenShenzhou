@@ -50,6 +50,7 @@ function loadTrust() {
 function modelTrusted(idx) {
   const t = loadTrust()[String(idx)];
   if (!t) return false;
+  if (t.force) return true;
   return (t.n || 0) >= 3 && (t.acc || 0) >= 0.9;
 }
 

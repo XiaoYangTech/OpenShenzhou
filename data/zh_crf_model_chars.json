@@ -413,20 +413,12 @@
   "reason": "probed"
  },
  "22": {
-  "labels": [
-   [
-    "g",
-    "a_h",
-    "nn_h"
-   ],
-   [
-    "g",
-    "a_l",
-    "nn_l"
-   ]
-  ],
-  "char": "干",
-  "reason": "manual"
+  "char": "杆",
+  "reason": "manual-validated",
+  "cands": [
+   "杆",
+   "干"
+  ]
  },
  "23": {
   "labels": [
