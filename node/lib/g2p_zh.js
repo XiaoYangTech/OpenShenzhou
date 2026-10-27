@@ -73,6 +73,21 @@ function ctxCharSyl(ch, prevCh, nextCh, sym) {
   return null;
 }
 
+let ISOLATED = null;
+function loadIsolatedSyl() {
+  if (ISOLATED) return ISOLATED;
+  try {
+    ISOLATED = JSON.parse(fs.readFileSync(path.join(DATA, 'cjk_isolated.json'), 'utf8'));
+  } catch (e) { ISOLATED = {}; }
+  return ISOLATED;
+}
+
+function isolatedCharSyl(ch, sym) {
+  const hit = loadIsolatedSyl()[ch];
+  if (!hit) return null;
+  return hit.map((x) => (sym[x] !== undefined ? sym[x] : (sym['padding'] !== undefined ? sym['padding'] : (sym['<pad>'] || 0))));
+}
+
 function correctCharSyl(ch, sym) {
   const corr = CHAR_READINGS[ch];
   if (!corr) return null;
@@ -346,7 +361,7 @@ function charSyllables(chars, sym, wordsIn, crfCtx) {
         // 「一/不」的变调只在词首有效；词中/词尾保持本调（与 Python 一致）
         const corr = ((w[k] === '一' || w[k] === '不') && k > 0)
           ? null
-          : (ctxCharSyl(w[k], prevCh, nextCh, sym) || correctCharSyl(w[k], sym));
+          : (ctxCharSyl(w[k], prevCh, nextCh, sym) || correctCharSyl(w[k], sym) || isolatedCharSyl(w[k], sym));
         if (corr) syls[pos + k] = corr;
         // 多音字 CRF 覆盖（单字 token，与 Python 一致）
         if (crf && crfCtx && n === 1) {
