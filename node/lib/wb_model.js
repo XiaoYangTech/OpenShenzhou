@@ -17,6 +17,7 @@ const MERGE_DEFAULT_ENV = process.env.OS_MERGE_DEFAULT;
 let W = null;
 let OFFICIAL = null;
 let RATES = null;
+let RATES_TH = null;
 let EVIDENCE = null;
 
 function load() {
@@ -39,6 +40,24 @@ function load() {
   return W;
 }
 
+let ENGINE_WORDSET = null;
+function loadEngineWordset() {
+  if (ENGINE_WORDSET !== null) return ENGINE_WORDSET;
+  try {
+    const d = JSON.parse(fs.readFileSync(path.join(DATA, 'zh_engine_words.json'), 'utf8'));
+    ENGINE_WORDSET = new Set(Object.keys(d));
+  } catch (e) { ENGINE_WORDSET = null; }
+  return ENGINE_WORDSET;
+}
+
+function loadMergeWords() {
+  if ((process.env.OS_ENGINE_WORDS || '0') === '1') {
+    const ws = loadEngineWordset();
+    if (ws && ws.size) return ws;
+  }
+  return loadOfficial();
+}
+
 function loadOfficial() {
   if (OFFICIAL) return OFFICIAL;
   try {
@@ -54,8 +73,10 @@ function loadRates() {
   try {
     const d = JSON.parse(fs.readFileSync(path.join(DATA, 'zh_merge_rates.json'), 'utf8'));
     RATES = d.rates || {};
+    RATES_TH = (d.threshold === undefined) ? null : d.threshold;
   } catch (e) {
     RATES = {};
+    RATES_TH = null;
   }
   return RATES;
 }
@@ -161,8 +182,12 @@ function loadEvidence() {
 }
 
 function mergeByLexicon(text, segs) {
-  const words = loadOfficial();
+  const words = loadMergeWords();
   const rates = loadRates();
+  let th = RATES_TH !== null ? RATES_TH : MERGE_TH;
+  if (process.env.OS_MERGE_TH !== undefined && process.env.OS_MERGE_TH !== '') {
+    th = parseFloat(process.env.OS_MERGE_TH);
+  }
   let changed = true;
   while (changed) {
     changed = false;
@@ -177,12 +202,12 @@ function mergeByLexicon(text, segs) {
         const rate = rates[cand];
         let ok;
         if (rate === undefined) {
-          if (MERGE_DEFAULT_ENV !== undefined) ok = MERGE_DEFAULT >= MERGE_TH;
+          if (MERGE_DEFAULT_ENV !== undefined) ok = MERGE_DEFAULT >= th;
           else {
             const ev = loadEvidence();
             ok = ev === undefined ? true : ev.has(cand);
           }
-        } else ok = rate >= MERGE_TH;
+        } else ok = rate >= th;
         if (ok) { best = k; break; }
       }
       if (best >= 0) {

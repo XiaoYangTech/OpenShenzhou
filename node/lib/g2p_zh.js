@@ -82,11 +82,22 @@ function correctCharSyl(ch, sym) {
 const PINYIN = JSON.parse(fs.readFileSync(path.join(DATA, 'pinyin_zh.json'), 'utf8'));
 const FINALS = JSON.parse(fs.readFileSync(path.join(DATA, 'g2p_finals.json'), 'utf8')).finals;
 const LEXICON = (() => {
+  let d = {};
   try {
     const p = path.join(DATA, 'lexicon_zh.names.json');
     const f = fs.existsSync(p) ? p : path.join(DATA, 'lexicon_zh.json');
-    return JSON.parse(fs.readFileSync(f, 'utf8'));
-  } catch (e) { return {}; }
+    d = JSON.parse(fs.readFileSync(f, 'utf8'));
+  } catch (e) { d = {}; }
+  const mode = process.env.OS_ZH_BROAD || 'fill';
+  if (mode !== 'off') {
+    try {
+      const b = JSON.parse(fs.readFileSync(path.join(DATA, 'lexicon_zh_broad.names.json'), 'utf8'));
+      for (const [k, v] of Object.entries(b)) {
+        if (mode === 'override' || d[k] === undefined) d[k] = v;
+      }
+    } catch (e) { /* ignore */ }
+  }
+  return d;
 })();
 
 const OFFICIAL_WORDS = new Set((() => {
