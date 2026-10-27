@@ -18,10 +18,10 @@
 | 英文自然句 500 句逐 id（引擎探针标注） | **495/500 = 99.0%** | `python tools/eval_en_corpus.py data/eval/en_engine_500.jsonl` |
 | 英文 TN 压力集 102 句逐 id | **102/102 = 100%** |
 | 英文异读词句 80 句逐 id | **80/80 = 100%** |
-| 英文 holdout2 500 句（另三本书/不同年代） | 见文档（持续补词表） |
+| 英文 holdout2 500 句（另三本书/不同年代） | **492/500 = 98.4%**（未标定词表前 53.2%） |
 | 英文 holdout 500 句（另外三本书，泛化评测） | **499/500 = 99.8%** | `python tools/eval_en_corpus.py data/eval/en_engine_tn.jsonl` |
 | 八语种 138 句整句逐 id | **138/138 = 100%** | `python tools/eval_ml_offline.py` |
-| Python / Node 双端一致性 | 中文 17 句 + 英文 1182 句逐 id 一致 | `python tools/check_node_parity.py` |
+| Python / Node 双端一致性 | 中文 17 句 + 英文 1682 句逐 id 一致 | `python tools/check_node_parity.py` |
 | SDK 端到端自检 | 全通过 | `python tests/test_all.py --voice-root <语音包根>` |
 | 一键全量验证 | 全部通过 | `python tools/verify_all.py` |
 

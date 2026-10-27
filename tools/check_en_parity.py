@@ -27,6 +27,7 @@ CORPORA = [
     ("TN", "en_engine_tn.jsonl"),
     ("异读词", "en_engine_heteronyms.jsonl"),
     ("holdout", "en_engine_holdout500.jsonl"),
+    ("holdout2", "en_engine_holdout2_500.jsonl"),
 ]
 
 
