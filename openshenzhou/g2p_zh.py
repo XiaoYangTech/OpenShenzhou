@@ -484,6 +484,21 @@ _PINYIN_SYM = None
 _CJK_ISO = None
 
 
+_PINYIN_ZH = None
+
+
+def load_pinyin_zh():
+    """汉字 → 拼音（含全部 CJK 统一表意文字的默认读音；与 Node 共用同一张表）"""
+    global _PINYIN_ZH
+    if _PINYIN_ZH is None:
+        try:
+            _PINYIN_ZH = json.load(open(os.path.join(ROOT, "data", "pinyin_zh.json"),
+                                        encoding="utf-8"))
+        except Exception:
+            _PINYIN_ZH = {}
+    return _PINYIN_ZH
+
+
 def load_pinyin_symbols():
     global _PINYIN_SYM
     if _PINYIN_SYM is None:
@@ -872,7 +887,11 @@ def _char_syllables(chars, wordset, lexicon, sym2id, table, words=None, crf_ctx=
             if len(flat) == n:
                 groups = flat
         if groups is None:
-            py = [x[0] for x in pinyin(w, style=Style.TONE3, neutral_tone_with_five=True)]
+            tbl = load_pinyin_zh()
+            if w and all(ch in tbl for ch in w):
+                py = [tbl[ch] for ch in w]
+            else:
+                py = [x[0] for x in pinyin(w, style=Style.TONE3, neutral_tone_with_five=True)]
             py = apply_sandhi(py)
             if len(py) != n:
                 return None
