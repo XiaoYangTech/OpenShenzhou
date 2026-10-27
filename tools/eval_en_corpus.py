@@ -53,9 +53,10 @@ def main():
             k += 1
             if k < len(pred) and str(sym.get("~")) and pred[k] not in (sym.get("~"),):
                 pass
-            # 若下一个是 punc 符号则一并包含
+            # br4 之后连续的 punc / br0 一并包含（引号句末、重复标点等）
             rev = {v: kk for kk, v in sym.items()}
-            if k < len(pred) and rev.get(pred[k], "").startswith("punc"):
+            while k < len(pred) and (str(rev.get(pred[k], "")).startswith("punc")
+                                     or rev.get(pred[k]) == "br0"):
                 k += 1
             pred = pred[:k] + [sym.get("~")]
         else:
