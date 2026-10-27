@@ -160,6 +160,25 @@ def _load_merge_evidence():
     return ev
 
 
+_WBPAIR = None
+
+
+def _load_wbpair():
+    """训练语料统计的「相邻 wb 片段合并对」（引擎最终词），来自引擎 golden 对齐。"""
+    global _WBPAIR
+    if _WBPAIR is not None:
+        return _WBPAIR
+    if os.environ.get("OS_ZH_WBPAIR", "1") == "0":
+        _WBPAIR = set()
+        return _WBPAIR
+    try:
+        _WBPAIR = set(json.load(open(os.path.join(ROOT, "data", "zh_wb_merge_words.json"),
+                                     encoding="utf-8")))
+    except Exception:
+        _WBPAIR = set()
+    return _WBPAIR
+
+
 _PROBE = None
 
 
@@ -204,6 +223,7 @@ def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
     合并率来自引擎语料统计（tools/tune_merge.py 生成）：
     引擎对哪些词会合并、哪些会拆开，直接反映其 Trie 后处理行为。
     """
+    wbpair = _load_wbpair()
     rates, file_th = _load_merge_params()
     env_th = os.environ.get("OS_MERGE_TH")
     if env_th not in (None, ""):
@@ -225,8 +245,12 @@ def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
                 cand = text[segs[i][0]:end]
                 if len(cand) > max_len:
                     continue
-                if cand not in words and cand not in probe:
+                if cand not in words and cand not in probe and cand not in wbpair:
                     continue
+                if cand in wbpair and cand not in words:
+                    # 训练语料中引擎确实合并过的相邻片段串（官方词表之外）
+                    best = k
+                    break
                 probe = _load_probe_words()
                 pv = probe.get(cand)
                 if pv is not None:
