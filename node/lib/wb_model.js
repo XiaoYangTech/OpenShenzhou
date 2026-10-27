@@ -12,10 +12,12 @@ const WINDOW = 20;
 const MAX_MERGE_LEN = 12;
 const MERGE_TH = parseFloat(process.env.OS_MERGE_TH || '0.1');
 const MERGE_DEFAULT = parseFloat(process.env.OS_MERGE_DEFAULT || '0.5');
+const MERGE_DEFAULT_ENV = process.env.OS_MERGE_DEFAULT;
 
 let W = null;
 let OFFICIAL = null;
 let RATES = null;
+let EVIDENCE = null;
 
 function load() {
   if (W) return W;
@@ -149,6 +151,15 @@ function r1Segments(cls) {
   return segs;
 }
 
+function loadEvidence() {
+  if (OFFICIAL === null) loadOfficial();
+  if (EVIDENCE !== null) return EVIDENCE;
+  try {
+    EVIDENCE = new Set(JSON.parse(fs.readFileSync(path.join(DATA, 'zh_merge_evidence.json'), 'utf8')));
+  } catch (e) { EVIDENCE = undefined; }
+  return EVIDENCE;
+}
+
 function mergeByLexicon(text, segs) {
   const words = loadOfficial();
   const rates = loadRates();
@@ -163,8 +174,16 @@ function mergeByLexicon(text, segs) {
         const end = segs[k][0] + segs[k][1];
         const cand = text.slice(segs[i][0], end);
         if (cand.length > MAX_MERGE_LEN || !words.has(cand)) continue;
-        const rate = rates[cand] !== undefined ? rates[cand] : MERGE_DEFAULT;
-        if (rate >= MERGE_TH) { best = k; break; }
+        const rate = rates[cand];
+        let ok;
+        if (rate === undefined) {
+          if (MERGE_DEFAULT_ENV !== undefined) ok = MERGE_DEFAULT >= MERGE_TH;
+          else {
+            const ev = loadEvidence();
+            ok = ev === undefined ? true : ev.has(cand);
+          }
+        } else ok = rate >= MERGE_TH;
+        if (ok) { best = k; break; }
       }
       if (best >= 0) {
         out.push([segs[i][0], segs[best][0] + segs[best][1] - segs[i][0]]);

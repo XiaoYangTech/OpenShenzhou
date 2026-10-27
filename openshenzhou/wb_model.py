@@ -20,6 +20,7 @@ import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NPZ = os.path.join(ROOT, "data", "wb_bilstm_weights.npz")
 OFFICIAL_WORDS = os.path.join(ROOT, "data", "official_words_zh.json")
+MERGE_EVIDENCE = os.path.join(ROOT, "data", "zh_merge_evidence.json")
 WINDOW = 20
 MAX_MERGE_LEN = 12
 
@@ -128,6 +129,23 @@ def _segments_from_classes(cls):
 
 MERGE_RATE_THRESHOLD = float(os.environ.get("OS_MERGE_TH", "0.1"))
 MERGE_RATE_DEFAULT = float(os.environ.get("OS_MERGE_DEFAULT", "0.5"))
+_MERGE_DEFAULT_ENV = os.environ.get("OS_MERGE_DEFAULT")
+
+
+def _load_merge_evidence():
+    """官方词表里「有独立词证据」的子集：jieba 词典/引擎词表/引擎语料词频任一说它是词。
+
+    用于合并率缺失时的兜底判定：引擎只在候选确实是词时才合并（如 为时已晚、新生），
+    而不会合并非词短语（如 来做、的需要）。
+    """
+    if "ev" in _cache:
+        return _cache["ev"]
+    try:
+        ev = set(json.load(open(MERGE_EVIDENCE, encoding="utf-8")))
+    except Exception:
+        ev = None
+    _cache["ev"] = ev
+    return ev
 
 
 def _load_merge_rates():
@@ -161,7 +179,16 @@ def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
                 cand = text[segs[i][0]:end]
                 if len(cand) > max_len or cand not in words:
                     continue
-                if rates.get(cand, MERGE_RATE_DEFAULT) >= MERGE_RATE_THRESHOLD:
+                rate = rates.get(cand)
+                if rate is None:
+                    if _MERGE_DEFAULT_ENV is not None:
+                        ok = MERGE_RATE_DEFAULT >= MERGE_RATE_THRESHOLD
+                    else:
+                        ev = _load_merge_evidence()
+                        ok = (cand in ev) if ev is not None else True
+                else:
+                    ok = rate >= MERGE_RATE_THRESHOLD
+                if ok:
                     best = k
                     break
             if best is not None:
