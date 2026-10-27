@@ -286,6 +286,12 @@ function pronWord(word, nextWord, prevWord) {
   const het = HETERO[w];
   if (het) {
     const pv = String(prevWord || '').toLowerCase();
+    if (w === 'read' && het.past) {
+      if (['had', 'has', 'have', 'was', 'were', 'been', 'being', 'is', 'are', 'am'].includes(pv)) return het.past.slice();
+    }
+    if (w === 'use' && pv && ['is', 'are', 'was', 'were', 'be', 'being', 'am'].includes(pv) && het.noun) {
+      return het.noun.slice();
+    }
     if (w === 'content') {
       const nxt0 = String(nextWord || '').toLowerCase();
       const modal = ['will', 'would', 'can', 'could', 'should', 'must', 'may', 'might'].includes(pv);
@@ -501,7 +507,7 @@ function parse(text) {
           if (w.length === 1 && /[A-Z]/.test(w)) {
             if (CNT_WORDS.has(lastWord)) { events.push(['word', w]); lastWord = low; continue; }
             events.push(['letters', w]);
-            if (i + 2 < n && text[i + 1] === ',') {
+            if (i + 2 < n && ',;'.includes(text[i + 1])) {
               events.push(['pause', 'punc.']);
               i += 2; lastWord = low; continue;
             }
@@ -559,6 +565,12 @@ function parse(text) {
     if (ch === ')' || ch === ']') {
       let j2 = i + 1;
       while (j2 < n && ')]'.includes(text[j2])) j2++;
+      const lastEv = events.length ? events[events.length - 1] : null;
+      if (lastEv && (lastEv[0] === 'end' || lastEv[0] === 'punc_after_end')) {
+        events.push(['punc_after_end', 'punc.']);
+        i = j2;
+        continue;
+      }
       const rest2 = text.slice(j2).replace(/^\s+/, '');
       if (!rest2 || '.!?'.includes(rest2[0])) {
         events.push(['end', 'punc.']);
@@ -566,7 +578,16 @@ function parse(text) {
         continue;
       }
     }
-    if (ch in PAUSE_PUNCT) { events.push(['pause', PAUSE_PUNCT[ch]]); i += 1; continue; }
+    if (ch in PAUSE_PUNCT) {
+      if (ch === ',' && i + 1 < n && '-–—'.includes(text[i + 1])) {
+        events.push(['pause_br1', 'punc,']);
+        i += 1;
+        continue;
+      }
+      events.push(['pause', PAUSE_PUNCT[ch]]);
+      i += 1;
+      continue;
+    }
     if (ch === '&') { events.push(['phones', STRONG_AND.slice()]); i += 1; continue; }
     if (ch === '×') { events.push(['w', 'times']); i += 1; continue; }
     if (ch === '÷') {
@@ -901,7 +922,12 @@ function textToIds(text, sym) {
       let j = i + 1;
       while (j < flat.length && flat[j][0] !== 'w') j++;
       if (j < flat.length) nxt = flat[j][1];
-      const prevW = i > 0 && flat[i - 1][0] === 'w' ? flat[i - 1][1] : '';
+      let prevW = i > 0 && flat[i - 1][0] === 'w' ? flat[i - 1][1] : '';
+      if (['not', 'never', 'always', 'only', 'also', 'just', 'still'].includes(String(prevW).toLowerCase())) {
+        let j2 = i - 2;
+        while (j2 >= 0 && flat[j2][0] !== 'w') j2--;
+        if (j2 >= 0) prevW = flat[j2][1];
+      }
       let phones = pronWord(w, nxt, prevW);
       const wl = String(w).toLowerCase();
       const afterKind = i + 1 < flat.length ? flat[i + 1][0] : 'end';
