@@ -68,6 +68,16 @@ function loadOfficial() {
   return OFFICIAL;
 }
 
+let PROBE = null;
+function loadProbeWords() {
+  if (PROBE) return PROBE;
+  if ((process.env.OS_ZH_PROBE || '1') === '0') { PROBE = {}; return PROBE; }
+  try {
+    PROBE = JSON.parse(fs.readFileSync(path.join(DATA, 'zh_engine_probe.json'), 'utf8'));
+  } catch (e) { PROBE = {}; }
+  return PROBE;
+}
+
 function loadRates() {
   if (RATES) return RATES;
   try {
@@ -183,6 +193,7 @@ function loadEvidence() {
 
 function mergeByLexicon(text, segs) {
   const words = loadMergeWords();
+  const probe = loadProbeWords();
   const rates = loadRates();
   let th = RATES_TH !== null ? RATES_TH : MERGE_TH;
   if (process.env.OS_MERGE_TH !== undefined && process.env.OS_MERGE_TH !== '') {
@@ -198,7 +209,13 @@ function mergeByLexicon(text, segs) {
       for (let k = segs.length - 1; k > i; k--) {
         const end = segs[k][0] + segs[k][1];
         const cand = text.slice(segs[i][0], end);
-        if (cand.length > MAX_MERGE_LEN || !words.has(cand)) continue;
+        if (cand.length > MAX_MERGE_LEN) continue;
+        if (!words.has(cand) && probe[cand] === undefined) continue;
+        const pv = probe[cand];
+        if (pv !== undefined) {
+          if (pv === 1) { best = k; break; }
+          continue;
+        }
         const rate = rates[cand];
         let ok;
         if (rate === undefined) {
