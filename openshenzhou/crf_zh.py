@@ -91,6 +91,11 @@ def load_trust():
     return _TRUST
 
 
+def _model_margin(idx):
+    t = load_trust().get(str(idx)) or {}
+    return float(t.get("margin", _MARGIN))
+
+
 def _model_trusted(idx):
     t = load_trust().get(str(idx))
     if not t:
@@ -403,7 +408,7 @@ def reading_for_char(ch, sent_chars, tokens, ti):
             continue
         order = sorted(range(L), key=lambda l: -scores[l])
         margin = scores[order[0]] - scores[order[1]] if L > 1 else 99.0
-        if margin < _MARGIN:
+        if margin < _model_margin(idx):
             continue
         return list(labels[order[0]])
     return None
