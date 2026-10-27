@@ -19,6 +19,12 @@ const CTX = loadJson(path.join(DATA, 'lexicon_en_context.json'), {});
 const ISO = loadJson(path.join(DATA, 'lexicon_en_engine.json'), {});
 const VOCAB = loadJson(path.join(DATA, 'lexicon_en.names.json'), {});
 const CMU = loadJson(path.join(DATA, 'cmudict_en.json'), {});
+const HETERO = loadJson(path.join(DATA, 'lexicon_en_heteronyms.json'), {});
+const VERB_PREV = new Set(['to', 'will', 'would', 'can', 'could', 'should', 'must', 'may', 'might',
+  'do', 'does', 'did', "don't", "doesn't", "didn't", 'i', 'you', 'we', 'they', 'he', 'she',
+  'let', 'please', 'cannot', "won't"]);
+const NOUN_PREV = new Set(['the', 'a', 'an', 'this', 'that', 'these', 'those', 'my', 'your',
+  'his', 'her', 'its', 'our', 'their', 'no', 'every', 'each', 'any', 'some']);
 (function loadJsonl() {
   const p = path.join(DATA, 'lexicon_en_engine.jsonl');
   if (!fs.existsSync(p)) return;
@@ -71,7 +77,7 @@ const SPECIAL_PHONES = {
   "o'clock": ['ax', '-', 'k', 'l', 'aa1', 'k'],
 };
 const SYMBOL_WORDS = { '*': 'asterisk', _: 'underscore', '#': 'number', '@': 'at',
-  '=': 'equals', '+': 'plus', '<': 'less', '>': 'greater', '~': null, '|': 'bar' };
+  '+': 'plus', '<': 'less', '>': 'greater', '~': null, '|': 'bar' };
 const STRONG_AND = ['ae1', 'n', 'd'];
 const STRONG_FOR = ['f', 'ao1', 'r'];
 const PAUSE_PUNCT = { ',': 'punc,', ';': 'punc;', ':': null, '(': 'punc,',
@@ -260,8 +266,14 @@ function fallbackPhones(word) {
   return out;
 }
 
-function pronWord(word, nextWord) {
+function pronWord(word, nextWord, prevWord) {
   const w = String(word).toLowerCase().replace(/’/g, "'");
+  const het = HETERO[w];
+  if (het) {
+    const pv = String(prevWord || '').toLowerCase();
+    if (VERB_PREV.has(pv) && het.verb) return het.verb.slice();
+    if (NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
+  }
   if (w === 'the') {
     const nxt = String(nextWord || '').toLowerCase();
     const nxtPh = nxt ? enginePhones(nxt) : null;
@@ -306,8 +318,9 @@ function timeWords(hh, mm, ampm) {
 
 function fractionWords(num, den) {
   if (den === 2 && num === 1) return ['one', 'half'];
-  if (num === 1) return ['one', DENOM[den] || ordinalWords(den).slice(-1)[0]];
   const d = DENOM[den] || ordinalWords(den).slice(-1)[0];
+  if (num === den) return cardinalWords(num).concat([d + 's']);
+  if (num === 1) return ['one', d];
   return cardinalWords(num).concat([d + 's']);
 }
 
@@ -418,6 +431,9 @@ function parse(text) {
             if (si) events.push(['w', 'underscore']);
             if (/^[0-9]+$/.test(seg)) events.push(['number', seg]); else events.push(['word', seg]);
           });
+          if (i < n && text[i] === '.' && i + 1 < n && /[A-Za-z0-9]/.test(text[i + 1])) {
+            events.push(['w', 'dot']); i += 1;
+          }
           lastWord = w.toLowerCase(); continue;
         }
         const an = /^([A-Za-z]+)(\d+)$/.exec(w);
@@ -484,6 +500,7 @@ function parse(text) {
       i += 1; continue;
     }
     if (ch === '/') { events.push(['slash', null]); i += 1; continue; }
+    if (ch === '=') { events.push(['phones', ['iy1', '-', 'k', 'w', 'ax', 'l', 'z']]); i += 1; continue; }
     if (ch === '@') { events.push(['w', 'at']); i += 1; continue; }
     if (ch === '"') { events.push(['br2', null]); i += 1; continue; }
     if (ch === "'") { i += 1; continue; }
@@ -498,7 +515,8 @@ function parse(text) {
   return events;
 }
 
-function expandNumberToken(tok, kind) {
+function expandNumberToken(tok, kind, outWords) {
+  const out_words = outWords || [];
   const t = tok.replace(/,/g, '');
   if (kind === 'date') {
     let parts = t.split(/[/.-]/).map(Number);
@@ -593,16 +611,24 @@ function expandNumberToken(tok, kind) {
   if (kind === 'dashgroup') {
     const ev = [];
     const parts = tok.split('-').filter(Boolean);
-    parts.forEach((part, gi) => {
-      if (gi) ev.push(['w', 'dash']);
-      for (const ch of part) {
+    for (const ch of parts[0]) {
+      if (/[0-9]/.test(ch)) ev.push(['w', ONES[Number(ch)]]);
+      else ev.push(['phones', letterToken(ch.toLowerCase())]);
+    }
+    ev.push(['w', 'dash']);
+    for (let pi = 1; pi < parts.length; pi++) {
+      for (const ch of parts[pi]) {
         if (/[0-9]/.test(ch)) ev.push(['w', ONES[Number(ch)]]);
         else ev.push(['phones', letterToken(ch.toLowerCase())]);
       }
-    });
+    }
     return ev;
   }
   const nn = Number(t);
+  if (kind === 'number' && t.length === 4 && nn >= 1000 && nn <= 2099) {
+    const prevWords = out_words.slice(-2);
+    if (prevWords.includes('year')) return yearWords(nn).map((w) => ['w', w]);
+  }
   if (kind === 'number' && t.length === 4 && nn >= 2000 && nn <= 2099) {
     return yearWords(nn).map((w) => ['w', w]);
   }
@@ -631,7 +657,7 @@ function expand(events) {
     }
     if (['number', 'date', 'time', 'ratio', 'version', 'ordinal', 'decimal',
       'thousands', 'range', 'phone', 'alnum', 'fraction', 'mixed', 'ip', 'dashgroup'].includes(kind)) {
-      const ev = expandNumberToken(val, kind);
+      const ev = expandNumberToken(val, kind, out.filter((x) => x[0] === 'w').map((x) => x[1]));
       for (const e of ev) out.push(e);
       if (nxt && nxt[0] === 'word') {
         let rawU = nxt[1];
@@ -768,7 +794,8 @@ function textToIds(text, sym) {
       let j = i + 1;
       while (j < flat.length && flat[j][0] !== 'w') j++;
       if (j < flat.length) nxt = flat[j][1];
-      let phones = pronWord(w, nxt);
+      const prevW = i > 0 && flat[i - 1][0] === 'w' ? flat[i - 1][1] : '';
+      let phones = pronWord(w, nxt, prevW);
       const wl = String(w).toLowerCase();
       const afterKind = i + 1 < flat.length ? flat[i + 1][0] : 'end';
       const afterW = i + 1 < flat.length && flat[i + 1][0] === 'w' ? flat[i + 1][1] : '';
@@ -817,7 +844,10 @@ function textToIds(text, sym) {
       first = false;
     }
   }
-  if (!ended) ids.push(sym['br4']);
+  if (!ended) {
+    ids.push(sym['br4']);
+    if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
+  }
   ids.push(sym[END]);
   return ids;
 }
