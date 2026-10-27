@@ -27,6 +27,12 @@ BOS, END = "-bos-", "~"
 _CONTEXT = None
 _ISO = None
 _VOCAB = None
+_HETERO = None
+VERB_PREV = {"to", "will", "would", "can", "could", "should", "must", "may", "might",
+             "do", "does", "did", "don't", "doesn't", "didn't", "i", "you", "we", "they",
+             "he", "she", "let", "please", "cannot", "won't"}
+NOUN_PREV = {"the", "a", "an", "this", "that", "these", "those", "my", "your", "his",
+             "her", "its", "our", "their", "no", "every", "each", "any", "some"}
 
 MONTH_NAMES = ["january", "february", "march", "april", "may", "june", "july",
                "august", "september", "october", "november", "december"]
@@ -73,7 +79,7 @@ SPECIAL_PHONES = {
     "o'clock": ["ax", "-", "k", "l", "aa1", "k"],
 }
 SYMBOL_WORDS = {"*": "asterisk", "_": "underscore", "#": "number", "@": "at",
-                "=": "equals", "+": "plus", "<": "less", ">": "greater",
+                "+": "plus", "<": "less", ">": "greater",
                 "~": None, "|": "bar", "\\": None}
 STRONG_AND = ["ae1", "n", "d"]
 STRONG_FOR = ["f", "ao1", "r"]
@@ -110,10 +116,20 @@ def load_engine_lexicon():
                 line = line.strip()
                 if not line:
                     continue
-                r = json.loads(line)
+                try:
+                    r = json.loads(line)
+                except Exception:
+                    continue
                 iso.setdefault(r["w"], r["phones"])
         _ISO = iso
     return _ISO
+
+
+def load_heteronyms():
+    global _HETERO
+    if _HETERO is None:
+        _HETERO = _load_json(os.path.join(ROOT, "data", "lexicon_en_heteronyms.json"), {})
+    return _HETERO
 
 
 def load_lexicon():
@@ -329,8 +345,15 @@ def _fallback_phones(word):
     return out
 
 
-def pron_word(word, next_word=""):
+def pron_word(word, next_word="", prev_word=""):
     w = word.lower().replace("’", "'")
+    het = load_heteronyms().get(w)
+    if het:
+        pv = (prev_word or "").lower()
+        if pv in VERB_PREV and het.get("verb"):
+            return list(het["verb"])
+        if pv in NOUN_PREV and het.get("noun"):
+            return list(het["noun"])
     if w == "the":
         nxt = (next_word or "").lower()
         nxt_ph = _engine_phones(nxt) if nxt else None
@@ -461,11 +484,12 @@ DENOM = {2: "half", 3: "third", 4: "fourth", 5: "fifth", 6: "sixth", 7: "seventh
 def _fraction_words(num, den):
     if den == 2 and num == 1:
         return ["one", "half"]
-    if num == 1:
-        return ["one", DENOM.get(den, ordinal_words(den)[-1])]
-    w = cardinal_words(num)
     d = DENOM.get(den, ordinal_words(den)[-1])
-    return w + [d + "s"]
+    if num == den:
+        return cardinal_words(num) + [d + "s"]
+    if num == 1:
+        return ["one", d]
+    return cardinal_words(num) + [d + "s"]
 
 
 def _unit_words(unit):
@@ -578,6 +602,9 @@ def _parse(text):
                             events.append(("number", seg))
                         else:
                             events.append(("word", seg))
+                    if i < n and text[i] == "." and i + 1 < n and text[i + 1].isalnum():
+                        events.append(("w", "dot"))
+                        i += 1
                     last_word = w.lower()
                     continue
                 # HTML5 / AA123：字母串 + 数字
@@ -698,6 +725,10 @@ def _parse(text):
             events.append(("br2", None))
             i += 1
             continue
+        if ch == "=":
+            events.append(("phones", ["iy1", "-", "k", "w", "ax", "l", "z"]))
+            i += 1
+            continue
         if ch in SYMBOL_WORDS:
             word = SYMBOL_WORDS[ch]
             if word:
@@ -781,14 +812,28 @@ def _expand_number_token(tok, kind, next_kind):
         return ev
     if kind == "dashgroup":
         ev = []
-        for gi, part in enumerate([x for x in re.split(r"-", tok) if x]):
-            if gi:
-                ev.append(("w", "dash"))
+        first = True
+        for part in [x for x in re.split(r"-", tok) if x]:
             for ch2 in part:
-                if ch2.isdigit():
+                if first and ch2.isdigit():
                     ev.append(("w", ONES[int(ch2)]))
-                else:
+                elif first:
                     ev.append(("phones", _letter_token(ch2.lower())))
+                else:
+                    pass
+            if first:
+                ev.append(("w", "dash"))
+                first = False
+        # dash 后所有字符逐个读
+        rest = "".join(x for x in re.split(r"-", tok) if x)[0:]
+        tail = "".join([x for x in re.split(r"-", tok) if x])[len(re.split(r"-", tok)[0]):]
+        ev = []
+        firstpart = [x for x in re.split(r"-", tok) if x][0]
+        for ch2 in firstpart:
+            ev.append(("w", ONES[int(ch2)]) if ch2.isdigit() else ("phones", _letter_token(ch2.lower())))
+        ev.append(("w", "dash"))
+        for ch2 in tail:
+            ev.append(("w", ONES[int(ch2)]) if ch2.isdigit() else ("phones", _letter_token(ch2.lower())))
         return ev
     if kind == "alnum":
         parts = tok.split("-")
@@ -831,6 +876,11 @@ def _expand(events):
                 nxt2 = events[idx + 2] if idx + 2 < len(events) else None
                 if nxt2 and nxt2[0] == "pause" and nxt2[1] == "punc,":
                     events[idx + 2] = ("pause_plain", None)
+                continue
+        if kind == "number" and len(val.replace(",", "")) == 4 and 1000 <= int(val.replace(",", "")) <= 2099:
+            prev_words = [x[1] for x in out if x[0] == "w"][-2:]
+            if "year" in prev_words:
+                out.extend([("w", w) for w in year_words(int(val.replace(",", "")))])
                 continue
         if kind in ("number", "date", "time", "ratio", "version", "ordinal",
                     "decimal", "thousands", "range", "phone", "alnum", "fraction",
@@ -1003,7 +1053,8 @@ def text_to_ids(text, sym, lexicon=None):
                 j += 1
             if j < len(flat):
                 nxt = flat[j][1]
-            phones = pron_word(w, nxt)
+            prev_w = flat[i - 1][1] if i > 0 and flat[i - 1][0] == "w" else ""
+            phones = pron_word(w, nxt, prev_w)
             wl = w.lower()
             after_kind = flat[i + 1][0] if i + 1 < len(flat) else "end"
             after_w = flat[i + 1][1] if i + 1 < len(flat) and flat[i + 1][0] == "w" else ""
@@ -1055,6 +1106,8 @@ def text_to_ids(text, sym, lexicon=None):
         i += 1
     if not ended:
         ids.append(sym["br4"])
+        if sym.get("punc."):
+            ids.append(sym["punc."])
     ids.append(sym[END])
     return ids
 
