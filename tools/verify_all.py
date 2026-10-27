@@ -5,6 +5,7 @@
 依次执行：
   1. tests/test_all.py          SDK 端到端 + 106 项自检（含前端 golden）
   2. tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl   中文 599 句逐 id
+  2b. tools/eval_zh_large.py                                    中文大规模泛化（3000 句引擎 golden）
   3. tools/check_node_parity.py                                 Node≡Python 逐 id（中文）
   4. tools/check_en_parity.py                                   英文 Python≡Node 682 句逐 id
   5. tools/eval_ml_offline.py                                   八语种逐 id（golden 来自引擎实测）
@@ -46,6 +47,8 @@ def main():
     ok &= run("2. 中文 599 句逐 id",
               [sys.executable, os.path.join(HERE, "tools", "eval_first_sentence.py"),
                os.path.join(HERE, "data", "eval", "zh_eval_599.jsonl")])
+    ok &= run("2b. 中文大规模泛化（3000 句引擎 golden）",
+              [sys.executable, os.path.join(HERE, "tools", "eval_zh_large.py")])
     ok &= run("3. 中文 Node≡Python 逐 id",
               [sys.executable, os.path.join(HERE, "tools", "check_node_parity.py")])
     ok &= run("4. 英文 Node≡Python 逐 id（682 句）",

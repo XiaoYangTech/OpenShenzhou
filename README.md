@@ -20,6 +20,7 @@
 | 英文异读词句 80 句逐 id | **80/80 = 100%** |
 | 英文 holdout2 500 句（另三本书/不同年代） | **492/500 = 98.4%**（未标定词表前 53.2%） |
 | 英文 holdout 500 句（另外三本书，泛化评测） | **499/500 = 99.8%** | `python tools/eval_en_corpus.py data/eval/en_engine_tn.jsonl` |
+| 中文大规模泛化 3000 句（引擎 golden 留出） | **2854/3000 = 95.1%** |
 | 八语种 138 句整句逐 id | **138/138 = 100%** | `python tools/eval_ml_offline.py` |
 | Python / Node 双端一致性 | 中文 17 句 + 英文 1682 句逐 id 一致 | `python tools/check_node_parity.py` |
 | SDK 端到端自检 | 全通过 | `python tests/test_all.py --voice-root <语音包根>` |

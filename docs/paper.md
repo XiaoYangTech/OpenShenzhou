@@ -389,7 +389,10 @@ BR0/BR2 两个 CRF 的模板是 `Word.PrevWord.Text / Word.POS / Word.SyllableNu
 | 日语 | **17/17** | 断词模型精确复刻 + 读音/重音词表 + 上下文读音 + 数词切分 |
 | 韩语 | **17/17** | 整句词读音采集（词表）|
 
-合计 **138 句全部逐 id 一致（138/138 = 100%）**；Python 与 Node 双端逐 id 一致（`tools/check_node_parity.py`，17/17，含 5 句 CRF 多音字决策与 3 句词界合并回归）。Node SDK 也完整复刻了 A 段 Trie 遍历与 B 段权重打分（`node/lib/crf_zh.js`），不依赖 Python 运行时。
+合计 **138 句全部逐 id 一致（138/138 = 100%）**；
+另外用引擎实测语料留出集（seg_B，3000 句 UI/系统文本）做大规规模中文泛化验证：**2854/3000 = 95.1%**；
+逐项分析显示神经断词逐字类别已精确复刻，残差集中在「词表后处理合并」与「多音字上下文读音」两类长尾。
+Python 与 Node 双端逐 id 一致（`tools/check_node_parity.py`，17/17，含 5 句 CRF 多音字决策与 3 句词界合并回归）。Node SDK 也完整复刻了 A 段 Trie 遍历与 B 段权重打分（`node/lib/crf_zh.js`），不依赖 Python 运行时。
 评测工具：`tools/eval_ml_offline.py`（golden 为引擎实测 encoder 输入 id，离线可复现）；中文评测：
 `tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl`。
 
