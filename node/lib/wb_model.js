@@ -68,6 +68,16 @@ function loadOfficial() {
   return OFFICIAL;
 }
 
+let WBMERGE = null;
+function loadWbMerge() {
+  if (WBMERGE) return WBMERGE;
+  if ((process.env.OS_ZH_WBPAIR || '1') === '0') { WBMERGE = new Set(); return WBMERGE; }
+  try {
+    WBMERGE = new Set(JSON.parse(fs.readFileSync(path.join(DATA, 'zh_wb_merge_words.json'), 'utf8')));
+  } catch (e) { WBMERGE = new Set(); }
+  return WBMERGE;
+}
+
 let PROBE = null;
 function loadProbeWords() {
   if (PROBE) return PROBE;
@@ -194,6 +204,7 @@ function loadEvidence() {
 function mergeByLexicon(text, segs) {
   const words = loadMergeWords();
   const probe = loadProbeWords();
+  const wbmerge = loadWbMerge();
   const rates = loadRates();
   let th = RATES_TH !== null ? RATES_TH : MERGE_TH;
   if (process.env.OS_MERGE_TH !== undefined && process.env.OS_MERGE_TH !== '') {
@@ -210,7 +221,8 @@ function mergeByLexicon(text, segs) {
         const end = segs[k][0] + segs[k][1];
         const cand = text.slice(segs[i][0], end);
         if (cand.length > MAX_MERGE_LEN) continue;
-        if (!words.has(cand) && probe[cand] === undefined) continue;
+        if (!words.has(cand) && probe[cand] === undefined && !wbmerge.has(cand)) continue;
+        if (wbmerge.has(cand) && !words.has(cand)) { best = k; break; }
         const pv = probe[cand];
         if (pv !== undefined) {
           if (pv === 1) { best = k; break; }
