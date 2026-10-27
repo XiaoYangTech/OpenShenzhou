@@ -86,6 +86,7 @@ const STRONG_FOR = ['f', 'ao1', 'r'];
 const PAUSE_PUNCT = { ',': 'punc,', ';': 'punc;', ':': null, '(': 'punc,',
   ')': 'punc,', '[': 'punc,', ']': 'punc,' };
 const END_PUNCT = { '.': 'punc.', '?': 'punc?', '!': 'punc!' };
+const BQUOTE = new Set(['"', '’', '”', "'"]);
 const DENOM = { 2: 'half', 3: 'third', 4: 'fourth', 5: 'fifth', 6: 'sixth',
   7: 'seventh', 8: 'eighth', 9: 'ninth', 10: 'tenth', 100: 'hundredth' };
 
@@ -274,6 +275,13 @@ function pronWord(word, nextWord, prevWord) {
   const het = HETERO[w];
   if (het) {
     const pv = String(prevWord || '').toLowerCase();
+    if (w === 'content') {
+      const nxt0 = String(nextWord || '').toLowerCase();
+      const modal = ['will', 'would', 'can', 'could', 'should', 'must', 'may', 'might'].includes(pv);
+      const pron = ['me', 'you', 'him', 'her', 'us', 'them', 'it'].includes(nxt0);
+      if (modal && pron && het.verb) return het.verb.slice();
+      if (het.noun) return het.noun.slice();
+    }
     if (VERB_PREV.has(pv) && het.verb) return het.verb.slice();
     if (NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
     if (HETERO_NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
@@ -293,14 +301,6 @@ function pronWord(word, nextWord, prevWord) {
   if (SPECIAL_PHONES[w]) return SPECIAL_PHONES[w].slice();
   const v = enginePhones(w);
   if (v) return v;
-  if (w.endsWith('s') && w.length > 2) {
-    const base = pronWord(w.slice(0, -1), '', '');
-    if (base && base.length > 1) {
-      const first = String(base[0]).replace(/[012]$/, '');
-      const voiceless = ['p', 't', 'k', 'f', 'th'].includes(first);
-      return base.concat([voiceless ? 's' : 'z']);
-    }
-  }
   if (w.includes('-')) {
     const parts = w.split('-').filter(Boolean);
     const out = [];
@@ -310,6 +310,14 @@ function pronWord(word, nextWord, prevWord) {
       for (const x of ph) out.push(x);
     }
     return out;
+  }
+  if (w.endsWith('s') && w.length > 2) {
+    const base = pronWord(w.slice(0, -1), '', '');
+    if (base && base.length > 1) {
+      const first = String(base[0]).replace(/[012]$/, '');
+      const voiceless = ['p', 't', 'k', 'f', 'th'].includes(first);
+      return base.concat([voiceless ? 's' : 'z']);
+    }
   }
   return withSyllables(fallbackPhones(w));
 }
@@ -481,6 +489,10 @@ function parse(text) {
           if (w.length === 1 && /[A-Z]/.test(w)) {
             if (CNT_WORDS.has(lastWord)) { events.push(['word', w]); lastWord = low; continue; }
             events.push(['letters', w]);
+            if (i + 2 < n && text[i + 1] === ',') {
+              events.push(['pause', 'punc.']);
+              i += 2; lastWord = low; continue;
+            }
             if (i + 1 >= n || text[i + 1] === ' ') events.push(['end', 'punc.']);
             i += 1; lastWord = low; continue;
           }
@@ -505,7 +517,43 @@ function parse(text) {
         && (i === 0 || ' \t\n'.includes(text[i - 1]))) {
       events.push(['minus', null]); i += 1; continue;
     }
-    if (END_PUNCT[ch]) { events.push(['end', END_PUNCT[ch]]); i += 1; continue; }
+    if (END_PUNCT[ch]) {
+      if (ch === '.') {
+        let run = 0;
+        while (i + run < n && text[i + run] === '.') run++;
+        if (run >= 2) {
+          events.push(['end', 'punc.']);
+          events.push(['punc_after_end', 'punc.']);
+          i += run;
+          continue;
+        }
+        const nxt = i + 1 < n ? text[i + 1] : '';
+        if (nxt && !/\s/.test(nxt) && !')]'.includes(nxt)) {
+          if (/[A-Za-z0-9]/.test(nxt)) { i += 1; continue; }
+          events.push(['pause', 'punc.']);
+          i += 1;
+          continue;
+        }
+      }
+      events.push(['end', END_PUNCT[ch]]);
+      if (i + 1 < n && BQUOTE.has(text[i + 1])) {
+        events.push(['quote_after_end', 'punc.']);
+        i += 2;
+        continue;
+      }
+      i += 1;
+      continue;
+    }
+    if (ch === ')' || ch === ']') {
+      let j2 = i + 1;
+      while (j2 < n && ')]'.includes(text[j2])) j2++;
+      const rest2 = text.slice(j2).replace(/^\s+/, '');
+      if (!rest2 || '.!?'.includes(rest2[0])) {
+        events.push(['end', 'punc.']);
+        i = j2;
+        continue;
+      }
+    }
     if (ch in PAUSE_PUNCT) { events.push(['pause', PAUSE_PUNCT[ch]]); i += 1; continue; }
     if (ch === '&') { events.push(['phones', STRONG_AND.slice()]); i += 1; continue; }
     if (ch === '×') { events.push(['w', 'times']); i += 1; continue; }
@@ -669,6 +717,13 @@ function expand(events) {
   for (let idx = 0; idx < events.length; idx++) {
     const [kind, val] = events[idx];
     const nxt = idx + 1 < events.length ? events[idx + 1] : null;
+    if (kind === 'ordinal' && nxt && nxt[0] === 'word' && MONTH_NAMES.includes(String(nxt[1]).toLowerCase())) {
+      out.push(['w', nxt[1]]);
+      const m0 = /^(\d+)/.exec(val);
+      for (const w of ordinalWords(Number(m0[1]))) out.push(['w', w]);
+      events[idx + 1] = ['consumed', null];
+      continue;
+    }
     if (kind === 'word' && MONTH_NAMES.includes(String(val).toLowerCase())
         && nxt && (nxt[0] === 'number' || nxt[0] === 'ordinal')) {
       const day = Number(/^\d+/.exec(nxt[1])[0]);
@@ -754,6 +809,10 @@ function expand(events) {
       out.push(['pause', val]);
     } else if (kind === 'end') {
       out.push(['end', val]);
+    } else if (kind === 'punc_after_end') {
+      out.push(['punc_after_end', val]);
+    } else if (kind === 'quote_after_end') {
+      out.push(['quote_after_end', val]);
     }
   }
   return out;
@@ -827,7 +886,8 @@ function textToIds(text, sym) {
       const afterW = i + 1 < flat.length && flat[i + 1][0] === 'w' ? flat[i + 1][1] : '';
       if (wl === 'for') {
         const prevPause = first || (i > 0 && (flat[i - 1][0] === 'pause' || flat[i - 1][0] === 'pause_plain'));
-        if (prevPause || afterW === 'underscore' || afterW === 'asterisk' || afterKind === 'br2') {
+        if (prevPause || afterW === 'underscore' || afterW === 'asterisk' || afterKind === 'br2'
+            || ['end', 'pause', 'pause_plain'].includes(afterKind)) {
           phones = STRONG_FOR.slice();
         }
       } else if (wl === 'and') {
@@ -853,11 +913,22 @@ function textToIds(text, sym) {
       if (sym['br0'] !== undefined) ids.push(sym['br0']);
       first = true;
     } else if (kind === 'end') {
+      if (ended) {
+        ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
+        continue;
+      }
       ids.push(sym['br4']);
       if (item[1] && sym[item[1]] !== undefined) ids.push(sym[item[1]]);
       else if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
       ended = true;
       first = true;
+    } else if (kind === 'punc_after_end') {
+      ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
+      continue;
+    } else if (kind === 'quote_after_end') {
+      ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
+      ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
+      continue;
     } else if (kind === 'br2') {
       if (sym['br2'] !== undefined) ids.push(sym['br2']);
     } else if (kind === 'phones') {
