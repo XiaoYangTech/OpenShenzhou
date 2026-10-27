@@ -565,6 +565,7 @@ function parse(text) {
     if (ch === ')' || ch === ']') {
       let j2 = i + 1;
       while (j2 < n && ')]'.includes(text[j2])) j2++;
+      if (j2 < n && text[j2] === ':') { i = j2 + 1; continue; }
       const lastEv = events.length ? events[events.length - 1] : null;
       if (lastEv && (lastEv[0] === 'end' || lastEv[0] === 'punc_after_end')) {
         events.push(['punc_after_end', 'punc.']);
@@ -579,6 +580,20 @@ function parse(text) {
       }
     }
     if (ch in PAUSE_PUNCT) {
+      if (ch === ':' && i + 1 < n && '-–—'.includes(text[i + 1])) {
+        events.push(['br1_br0', null]);
+        i += 1;
+        continue;
+      }
+      if (ch === ':') {
+        let j3 = i + 1;
+        while (j3 < n && text[j3] === ' ') j3++;
+        if (j3 < n && text[j3] === '[') {
+          events.push(['pause', 'punc,']);
+          i += 1;
+          continue;
+        }
+      }
       if (ch === ',' && i + 1 < n && '-–—'.includes(text[i + 1])) {
         events.push(['pause_br1', 'punc,']);
         i += 1;
@@ -842,6 +857,8 @@ function expand(events) {
       out.push(['pause_plain', null]);
     } else if (kind === 'pause_br1') {
       out.push(['pause_br1', val]);
+    } else if (kind === 'br1_br0') {
+      out.push(['br1_br0', null]);
     } else if (kind === 'pause') {
       out.push(['pause', val]);
     } else if (kind === 'end') {
@@ -957,6 +974,10 @@ function textToIds(text, sym) {
     } else if (kind === 'pause_br1') {
       ids.push(sym['br1']);
       ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
+      ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
+      first = true;
+    } else if (kind === 'br1_br0') {
+      ids.push(sym['br1']);
       ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
       first = true;
     } else if (kind === 'pause') {
