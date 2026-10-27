@@ -28,6 +28,7 @@ _CONTEXT = None
 _ISO = None
 _VOCAB = None
 _HETERO = None
+HETERO_NOUN_PREV = {"ip", "email", "web", "home", "street", "url", "ftp", "http"}
 VERB_PREV = {"to", "will", "would", "can", "could", "should", "must", "may", "might",
              "do", "does", "did", "don't", "doesn't", "didn't", "i", "you", "we", "they",
              "he", "she", "let", "please", "cannot", "won't"}
@@ -354,6 +355,8 @@ def pron_word(word, next_word="", prev_word=""):
             return list(het["verb"])
         if pv in NOUN_PREV and het.get("noun"):
             return list(het["noun"])
+        if pv in HETERO_NOUN_PREV and het.get("noun"):
+            return list(het["noun"])
     if w == "the":
         nxt = (next_word or "").lower()
         nxt_ph = _engine_phones(nxt) if nxt else None
@@ -368,6 +371,12 @@ def pron_word(word, next_word="", prev_word=""):
     v = _engine_phones(w)
     if v:
         return v
+    if w.endswith("s") and len(w) > 2:
+        base = pron_word(w[:-1])
+        if base and len(base) > 1:
+            first = base[0]
+            voiceless = first.rstrip("012") in ("p", "t", "k", "f", "th")
+            return base + (["s"] if voiceless else ["z"])
     if "-" in w:
         parts = [p for p in w.split("-") if p]
         out = []
@@ -571,6 +580,8 @@ def _parse(text):
                 events.append(("dashgroup", tok))
             elif kind == "alnum":
                 events.append(("alnum", tok))
+            elif kind == "groupnum":
+                events.append(("groupnum", tok))
             elif kind == "fraction":
                 events.append(("fraction", tok))
             elif kind == "mixed":
@@ -611,7 +622,10 @@ def _parse(text):
                 m_an = re.fullmatch(r"([A-Za-z]+)(\d+)", w)
                 if m_an:
                     events.append(("letters", m_an.group(1)))
-                    events.append(("number", m_an.group(2)))
+                    if len(m_an.group(2)) == 3:
+                        events.append(("groupnum", m_an.group(2)))
+                    else:
+                        events.append(("number", m_an.group(2)))
                     last_word = w.lower()
                     continue
                 # 文件名/域名：word "dot" word
@@ -840,10 +854,22 @@ def _expand_number_token(tok, kind, next_kind):
         out = []
         for p in parts:
             if p.isdigit():
-                out += [("w", w) for w in digits_words(p)]
+                if len(p) == 3:
+                    n = int(p)
+                    out.append(("w", ONES[int(p[0])]))
+                    out += [("w", w) for w in cardinal_words(n % 100)] if n % 100 >= 10 else []
+                else:
+                    out += [("w", w) for w in digits_words(p)]
             else:
                 out.append(("phones", _letter_token(p.lower())))
         return out
+    if kind == "groupnum":
+        n = int(tok)
+        first = ONES[int(tok[0])]
+        rest = n % 100
+        if rest >= 10:
+            return [("w", first)] + [("w", w) for w in cardinal_words(rest)]
+        return [("w", w) for w in cardinal_words(n)]
     if kind == "fraction":
         a, b = re.split(r"\s*/\s*", tok)
         return [("w", w) for w in _fraction_words(int(a), int(b))]
@@ -878,13 +904,13 @@ def _expand(events):
                     events[idx + 2] = ("pause_plain", None)
                 continue
         if kind == "number" and len(val.replace(",", "")) == 4 and 1000 <= int(val.replace(",", "")) <= 2099:
-            prev_words = [x[1] for x in out if x[0] == "w"][-2:]
+            prev_words = [x[1] for x in out if x[0] in ("w", "word")][-2:]
             if "year" in prev_words:
                 out.extend([("w", w) for w in year_words(int(val.replace(",", "")))])
                 continue
         if kind in ("number", "date", "time", "ratio", "version", "ordinal",
                     "decimal", "thousands", "range", "phone", "alnum", "fraction",
-                    "mixed", "ip", "dashgroup"):
+                    "mixed", "ip", "dashgroup", "groupnum"):
             ev = _expand_number_token(val, kind, nxt[0] if nxt else None)
             out.extend(ev)
             # 单位：数字后紧跟单位缩写
@@ -971,7 +997,7 @@ def _flatten(events):
         if kind == "word":
             w = val
             exp = _word_expansion(w, prev_word)
-            if (re.fullmatch(r"[IVXLCDM]+", w) and len(w) > 1 and prev_was_name
+            if (_is_roman(w) and len(w) > 1 and prev_was_name
                     and prev_word not in CNT_WORDS):
                 n = _roman_value(w)
                 if 0 < n < 4000:
@@ -1005,8 +1031,15 @@ def _roman_value(w):
     return n
 
 
+ROMAN_RE = re.compile(r"^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")
+
+
+def _is_roman(w):
+    return bool(w) and bool(ROMAN_RE.fullmatch(w)) and w != "I"
+
+
 def _word_expansion(w, prev_word=""):
-    if re.fullmatch(r"[IVXLCDM]+", w) and w != "I":
+    if _is_roman(w):
         n = _roman_value(w)
         if len(w) == 1 and prev_word not in CNT_WORDS:
             return [w]
