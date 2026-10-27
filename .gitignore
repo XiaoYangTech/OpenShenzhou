@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 models/
 data/intermediate/
+data/lexicon_en_clean_b*.jsonl
+data/lexicon_en_prio_b*.jsonl
+data/lexicon_en_rest_b*.jsonl
+data/eval/en_*_chunk*.txt
+data/eval/en_priority_words.txt
+data/eval/en_rest_chunk*.txt
