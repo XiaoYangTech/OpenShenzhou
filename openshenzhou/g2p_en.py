@@ -783,6 +783,9 @@ def _parse(text):
             j2 = i + 1
             while j2 < n and text[j2] in ")]":
                 j2 += 1
+            if j2 < n and text[j2] == ":":
+                i = j2 + 1
+                continue
             if events and events[-1][0] in ("end", "punc_after_end"):
                 events.append(("punc_after_end", "punc."))
                 i = j2
@@ -793,6 +796,18 @@ def _parse(text):
                 i = j2
                 continue
         if ch in PAUSE_PUNCT:
+            if ch == ":" and i + 1 < n and text[i + 1] in "-–—":
+                events.append(("br1_br0", None))
+                i += 1
+                continue
+            if ch == ":":
+                j3 = i + 1
+                while j3 < n and text[j3] == " ":
+                    j3 += 1
+                if j3 < n and text[j3] == "[":
+                    events.append(("pause", "punc,"))
+                    i += 1
+                    continue
             if ch == "," and i + 1 < n and text[i + 1] in "-–—":
                 events.append(("pause_br1", "punc,"))
                 i += 1
@@ -1084,6 +1099,8 @@ def _expand(events):
             out.append(("pause_plain", None))
         elif kind == "pause_br1":
             out.append(("pause_br1", val))
+        elif kind == "br1_br0":
+            out.append(("br1_br0", None))
         elif kind == "br2":
             out.append(("br2", None))
         elif kind == "pause":
@@ -1240,6 +1257,10 @@ def text_to_ids(text, sym, lexicon=None):
         elif kind == "pause_br1":
             ids.append(sym["br1"])
             ids.append(sym.get(item[1], sym.get("punc.", 0)))
+            ids.append(sym["br0"])
+            first = True
+        elif kind == "br1_br0":
+            ids.append(sym["br1"])
             ids.append(sym["br0"])
             first = True
         elif kind == "pause":
