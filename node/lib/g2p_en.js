@@ -23,6 +23,7 @@ const HETERO = loadJson(path.join(DATA, 'lexicon_en_heteronyms.json'), {});
 const VERB_PREV = new Set(['to', 'will', 'would', 'can', 'could', 'should', 'must', 'may', 'might',
   'do', 'does', 'did', "don't", "doesn't", "didn't", 'i', 'you', 'we', 'they', 'he', 'she',
   'let', 'please', 'cannot', "won't"]);
+const HETERO_NOUN_PREV = new Set(['ip', 'email', 'web', 'home', 'street', 'url', 'ftp', 'http']);
 const NOUN_PREV = new Set(['the', 'a', 'an', 'this', 'that', 'these', 'those', 'my', 'your',
   'his', 'her', 'its', 'our', 'their', 'no', 'every', 'each', 'any', 'some']);
 (function loadJsonl() {
@@ -51,6 +52,8 @@ const TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy',
 const ORD_TENS = ['', '', 'twentieth', 'thirtieth', 'fortieth', 'fiftieth',
   'sixtieth', 'seventieth', 'eightieth', 'ninetieth'];
 const ROMAN = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+const ROMAN_RE = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
+function isRoman(w) { return !!w && w !== 'I' && ROMAN_RE.test(w); }
 const CNT_WORDS = new Set(['chapter', 'part', 'section', 'book', 'volume', 'act',
   'scene', 'article', 'item', 'figure', 'table', 'appendix', 'page', 'no']);
 const UNITS = {
@@ -273,6 +276,7 @@ function pronWord(word, nextWord, prevWord) {
     const pv = String(prevWord || '').toLowerCase();
     if (VERB_PREV.has(pv) && het.verb) return het.verb.slice();
     if (NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
+    if (HETERO_NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
   }
   if (w === 'the') {
     const nxt = String(nextWord || '').toLowerCase();
@@ -289,6 +293,14 @@ function pronWord(word, nextWord, prevWord) {
   if (SPECIAL_PHONES[w]) return SPECIAL_PHONES[w].slice();
   const v = enginePhones(w);
   if (v) return v;
+  if (w.endsWith('s') && w.length > 2) {
+    const base = pronWord(w.slice(0, -1), '', '');
+    if (base && base.length > 1) {
+      const first = String(base[0]).replace(/[012]$/, '');
+      const voiceless = ['p', 't', 'k', 'f', 'th'].includes(first);
+      return base.concat([voiceless ? 's' : 'z']);
+    }
+  }
   if (w.includes('-')) {
     const parts = w.split('-').filter(Boolean);
     const out = [];
@@ -410,6 +422,7 @@ function parse(text) {
       else if (kind === 'ip') events.push(['ip', tok]);
       else if (kind === 'alnum') events.push(['alnum', tok]);
       else if (kind === 'fraction') events.push(['fraction', tok]);
+      else if (kind === 'groupnum') events.push(['groupnum', tok]);
       else if (kind === 'mixed') events.push(['mixed', tok]);
       else if (kind === 'dashgroup') events.push(['dashgroup', tok]);
       else if (['decimal', 'thousands', 'version', 'range'].includes(kind)) events.push([kind, tok]);
@@ -439,7 +452,8 @@ function parse(text) {
         const an = /^([A-Za-z]+)(\d+)$/.exec(w);
         if (an) {
           events.push(['letters', an[1]]);
-          events.push(['number', an[2]]);
+          if (an[2].length === 3) events.push(['groupnum', an[2]]);
+          else events.push(['number', an[2]]);
           lastWord = w.toLowerCase(); continue;
         }
         if (i < n && text[i] === '.' && i + 1 < n && /[A-Za-z0-9]/.test(text[i + 1])) {
@@ -585,10 +599,22 @@ function expandNumberToken(tok, kind, outWords) {
   if (kind === 'alnum') {
     const out = [];
     for (const p of tok.split('-')) {
-      if (/^[0-9]+$/.test(p)) for (const w of digitsWords(p)) out.push(['w', w]);
-      else out.push(['phones', letterToken(p.toLowerCase())]);
+      if (/^[0-9]+$/.test(p)) {
+        if (p.length === 3) {
+          const n = Number(p);
+          out.push(['w', ONES[Number(p[0])]]);
+          if (n % 100 >= 10) for (const w of cardinalWords(n % 100)) out.push(['w', w]);
+        } else for (const w of digitsWords(p)) out.push(['w', w]);
+      } else out.push(['phones', letterToken(p.toLowerCase())]);
     }
     return out;
+  }
+  if (kind === 'groupnum') {
+    const n = Number(tok);
+    const first = ONES[Number(tok[0])];
+    const rest = n % 100;
+    if (rest >= 10) return [['w', first]].concat(cardinalWords(rest).map((w) => ['w', w]));
+    return cardinalWords(n).map((w) => ['w', w]);
   }
   if (kind === 'fraction') {
     const [a, b] = t.split(/\s*\/\s*/);
@@ -626,7 +652,7 @@ function expandNumberToken(tok, kind, outWords) {
   }
   const nn = Number(t);
   if (kind === 'number' && t.length === 4 && nn >= 1000 && nn <= 2099) {
-    const prevWords = out_words.slice(-2);
+    const prevWords = outWords.slice(-2);
     if (prevWords.includes('year')) return yearWords(nn).map((w) => ['w', w]);
   }
   if (kind === 'number' && t.length === 4 && nn >= 2000 && nn <= 2099) {
@@ -656,8 +682,8 @@ function expand(events) {
       }
     }
     if (['number', 'date', 'time', 'ratio', 'version', 'ordinal', 'decimal',
-      'thousands', 'range', 'phone', 'alnum', 'fraction', 'mixed', 'ip', 'dashgroup'].includes(kind)) {
-      const ev = expandNumberToken(val, kind, out.filter((x) => x[0] === 'w').map((x) => x[1]));
+      'thousands', 'range', 'phone', 'alnum', 'fraction', 'mixed', 'ip', 'dashgroup', 'groupnum'].includes(kind)) {
+      const ev = expandNumberToken(val, kind, out.filter((x) => x[0] === 'w' || x[0] === 'word').map((x) => x[1]));
       for (const e of ev) out.push(e);
       if (nxt && nxt[0] === 'word') {
         let rawU = nxt[1];
@@ -734,7 +760,7 @@ function expand(events) {
 }
 
 function wordExpansion(w, prevWord) {
-  if (/^[IVXLCDM]+$/.test(w) && w !== 'I') {
+  if (isRoman(w)) {
     const n = romanValue(w);
     if (w.length === 1 && !CNT_WORDS.has(prevWord)) return [w];
     if (n > 0 && n < 4000) return cardinalWords(n);
@@ -749,7 +775,7 @@ function flatten(events) {
     if (kind === 'word') {
       const w = String(val);
       const exp = wordExpansion(w, prevWord);
-      if (/^[IVXLCDM]+$/.test(w) && w.length > 1 && prevWasName && !CNT_WORDS.has(prevWord)) {
+      if (isRoman(w) && w.length > 1 && prevWasName && !CNT_WORDS.has(prevWord)) {
         const n = romanValue(w);
         if (n > 0 && n < 4000) {
           const ordw = ordinalWords(n).slice(-1)[0];
