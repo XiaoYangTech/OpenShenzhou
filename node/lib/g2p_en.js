@@ -20,6 +20,13 @@ const ISO = loadJson(path.join(DATA, 'lexicon_en_engine.json'), {});
 const VOCAB = loadJson(path.join(DATA, 'lexicon_en.names.json'), {});
 const CMU = loadJson(path.join(DATA, 'cmudict_en.json'), {});
 const HETERO = loadJson(path.join(DATA, 'lexicon_en_heteronyms.json'), {});
+const ACRONYMS = loadJson(path.join(DATA, 'lexicon_en_acronyms.json'), {});
+const CASE_WORDS = loadJson(path.join(DATA, 'lexicon_en_case.json'), {});
+function acronymPhones(letters) {
+  const ph = ACRONYMS[letters] || ACRONYMS[letters.toUpperCase()];
+  if (ph) return ph.slice();
+  return letterToken(letters.toLowerCase());
+}
 const VERB_PREV = new Set(['to', 'will', 'would', 'can', 'could', 'should', 'must', 'may', 'might',
   'do', 'does', 'did', "don't", "doesn't", "didn't", 'i', 'you', 'we', 'they', 'he', 'she',
   'let', 'please', 'cannot', "won't"]);
@@ -271,6 +278,10 @@ function fallbackPhones(word) {
 }
 
 function pronWord(word, nextWord, prevWord) {
+  const acro = ACRONYMS[word];
+  if (acro) return acro.slice();
+  const cw = CASE_WORDS[word];
+  if (cw) return cw.slice();
   const w = String(word).toLowerCase().replace(/’/g, "'");
   const het = HETERO[w];
   if (het) {
@@ -459,7 +470,8 @@ function parse(text) {
         }
         const an = /^([A-Za-z]+)(\d+)$/.exec(w);
         if (an) {
-          events.push(['letters', an[1]]);
+          if (an[1].length > 1 && an[1] === an[1].toUpperCase()) events.push(['acronym', an[1]]);
+          else events.push(['letters', an[1]]);
           if (an[2].length === 3) events.push(['groupnum', an[2]]);
           else events.push(['number', an[2]]);
           lastWord = w.toLowerCase(); continue;
@@ -530,7 +542,7 @@ function parse(text) {
         const nxt = i + 1 < n ? text[i + 1] : '';
         if (nxt && !/\s/.test(nxt) && !')]'.includes(nxt)) {
           if (/[A-Za-z0-9]/.test(nxt)) { i += 1; continue; }
-          events.push(['pause', 'punc.']);
+          events.push([nxt === '_' ? 'pause_br1' : 'pause', 'punc.']);
           i += 1;
           continue;
         }
@@ -653,7 +665,7 @@ function expandNumberToken(tok, kind, outWords) {
           out.push(['w', ONES[Number(p[0])]]);
           if (n % 100 >= 10) for (const w of cardinalWords(n % 100)) out.push(['w', w]);
         } else for (const w of digitsWords(p)) out.push(['w', w]);
-      } else out.push(['phones', letterToken(p.toLowerCase())]);
+      } else if (p.length > 1 && p === p.toUpperCase()) out.push(['phones', acronymPhones(p)]); else out.push(['phones', letterToken(p.toLowerCase())]);
     }
     return out;
   }
@@ -790,6 +802,8 @@ function expand(events) {
       } else out.push(['word', val]);
     } else if (kind === 'letters') {
       out.push(['phones', letterToken(String(val).toLowerCase())]);
+    } else if (kind === 'acronym') {
+      out.push(['phones', acronymPhones(String(val))]);
     } else if (kind === 'dotted') {
       const letters = String(val).toLowerCase().split('').filter((c) => /[a-z]/.test(c)).join('');
       out.push(['phones', letterToken(letters)]);
@@ -805,6 +819,8 @@ function expand(events) {
       out.push(['br2', null]);
     } else if (kind === 'pause_plain') {
       out.push(['pause_plain', null]);
+    } else if (kind === 'pause_br1') {
+      out.push(['pause_br1', val]);
     } else if (kind === 'pause') {
       out.push(['pause', val]);
     } else if (kind === 'end') {
@@ -819,6 +835,9 @@ function expand(events) {
 }
 
 function wordExpansion(w, prevWord) {
+  if (w === 'I' && ['chapter', 'part', 'section', 'book', 'volume', 'act', 'scene', 'article', 'appendix'].includes(prevWord)) {
+    return cardinalWords(1);
+  }
   if (isRoman(w)) {
     const n = romanValue(w);
     if (w.length === 1 && !CNT_WORDS.has(prevWord)) return [w];
@@ -831,6 +850,9 @@ function flatten(events) {
   const flat = [];
   let prevWord = '', prevWasName = false;
   for (const [kind, val] of events) {
+    if (['pause', 'pause_plain', 'end', 'br2', 'pause_br1'].includes(kind)) {
+      prevWord = ''; prevWasName = false; flat.push([kind, val]); continue;
+    }
     if (kind === 'word') {
       const w = String(val);
       const exp = wordExpansion(w, prevWord);
@@ -905,6 +927,11 @@ function textToIds(text, sym) {
       first = false;
     } else if (kind === 'pause_plain') {
       ids.push(sym['br3']);
+      first = true;
+    } else if (kind === 'pause_br1') {
+      ids.push(sym['br1']);
+      ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
+      ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
       first = true;
     } else if (kind === 'pause') {
       if (first) continue;
