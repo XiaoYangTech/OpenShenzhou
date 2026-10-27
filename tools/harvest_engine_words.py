@@ -13,6 +13,7 @@ import time
 import urllib.request
 
 import numpy as np
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +23,7 @@ VOICE = "Microsoft Xiaoxiao"
 
 
 def load_id2name():
-    pkg = os.path.join(os.environ.get("TEMP", ""), "AllVoice", "Xiaoxiao_Female_zh-CN")
+    pkg = _voice_pkg("Xiaoxiao_Female_zh-CN")
     m = {}
     for line in open(os.path.join(pkg, "phones.txt"), encoding="utf-8", errors="replace"):
         line = line.strip()

@@ -6,11 +6,12 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.abspath(os.path.join(HERE, "..", "OpenShenzhou"))
+ROOT = HERE
 sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(HERE, "tools"))
 
 import ml_eval as E  # noqa: E402
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 CASES = {
     "zh": ["你好，世界。", "网络连接已断开。", "会议将在下午三点开始。"],

@@ -14,6 +14,7 @@ import time
 import urllib.request
 
 import numpy as np
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.abspath(HERE)
@@ -22,7 +23,7 @@ sys.path.insert(0, os.path.join(HERE, "tools"))
 
 PROBE = os.path.join(os.environ["TEMP"], "probe_dbg")
 PORT = int(os.environ.get("OS_ENGINE_PORT", "17461"))
-PKG = os.path.join(os.environ["TEMP"], "AllVoice")
+PKG = _voice_root()
 
 
 SENTINEL = {"zh": "测试哨兵甲", "ja": "てすとせんてい", "ko": "테스트센티널"}

@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 import sys
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -25,7 +26,7 @@ tests = {
 
 ok = bad = 0
 for lang, (pkg, texts) in tests.items():
-    pkg_path = os.path.join(os.environ["TEMP"], "AllVoice", pkg)
+    pkg_path = _voice_pkg(pkg)
     for text in texts:
         py = subprocess.run(
             [sys.executable, "-c",

@@ -16,6 +16,7 @@ ENGINE = os.path.abspath(os.path.join(HERE, "..", "tts-engine"))
 sys.path.insert(0, HERE)
 import openshenzhou.g2p_zh as gz  # noqa: E402
 from openshenzhou import crf_zh as C  # noqa: E402
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 TAGS = {17, 18, 25, 39, 68}
 MAX_SENT = int(os.environ.get("OS_CALIB_SENT", "12000"))
@@ -33,7 +34,7 @@ def load_symbols(path):
 
 
 def main():
-    pkg = os.path.join(os.environ.get("TEMP", ""), "AllVoice", "Xiaoxiao_Female_zh-CN")
+    pkg = _voice_pkg("Xiaoxiao_Female_zh-CN")
     C.set_dat_path(os.path.join(pkg, "MSTTSLocZhCN.dat"))
     id2sym = load_symbols(os.path.join(pkg, "phones.txt"))
     sym2id = {v: k for k, v in id2sym.items()}

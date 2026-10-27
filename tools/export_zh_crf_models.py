@@ -17,11 +17,12 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(HERE, "tools"))
 import parse_crf_models as P  # noqa: E402
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 
 def main():
     dat = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
-        os.environ.get("TEMP", ""), "AllVoice", "Xiaoxiao_Female_zh-CN",
+        os.path.dirname(_voice_pkg("Xiaoxiao_Female_zh-CN")),
         "MSTTSLocZhCN.dat")
     data = open(dat, "rb").read()
     secs = P.find_sections(data)

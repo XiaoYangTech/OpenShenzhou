@@ -14,6 +14,7 @@
 import os
 import subprocess
 import sys
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -35,7 +36,7 @@ def run(title, cmd, cwd=HERE, timeout=3600):
 
 
 def main():
-    voice_root = os.path.join(os.environ.get("TEMP", ""), "AllVoice")
+    voice_root = _voice_root()
     ok = True
     ok &= run("1. 端到端测试（106 项，含前端 golden）",
               [sys.executable, os.path.join(HERE, "tests", "test_all.py"),

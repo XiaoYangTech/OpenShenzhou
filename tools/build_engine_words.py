@@ -14,11 +14,12 @@ import json
 import os
 import sys
 from collections import Counter
+from _paths import voice_root as _voice_root, voice_pkg as _voice_pkg  # noqa: E402
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.join(os.path.dirname(HERE), "OpenShenzhou")
+ROOT = os.path.dirname(HERE)
 PUNCT = set("，。！？、；：,.;!?…—－《》「」『』（）()【】 \t")
 BOS, BR4, BR0, BR1, BR3, BR2, SEP, END = 2, 17, 68, 25, 39, 18, 3, 1
 TAGS = {BR1, BR4, BR0, BR3, BR2}
