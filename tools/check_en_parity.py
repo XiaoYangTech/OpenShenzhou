@@ -26,6 +26,7 @@ CORPORA = [
     ("自然句", "en_engine_500.jsonl"),
     ("TN", "en_engine_tn.jsonl"),
     ("异读词", "en_engine_heteronyms.jsonl"),
+    ("holdout", "en_engine_holdout500.jsonl"),
 ]
 
 
@@ -70,7 +71,8 @@ def main():
             br4 = sym.get("br4")
             if br4 is not None and br4 in ids:
                 k = ids.index(br4) + 1
-                if k < len(ids) and str(rev.get(ids[k], "")).startswith("punc"):
+                while k < len(ids) and (str(rev.get(ids[k], "")).startswith("punc")
+                                        or rev.get(ids[k]) == "br0"):
                     k += 1
                 return ids[:k] + [sym.get("~")]
             return ids

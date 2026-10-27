@@ -56,7 +56,8 @@ def main():
     ev = os.path.join(HERE, "tools", "eval_en_corpus.py")
     thresholds = [(os.path.join(HERE, "data", "eval", "en_engine_500.jsonl"), 0.98),
                   (os.path.join(HERE, "data", "eval", "en_engine_tn.jsonl"), 0.90),
-                  (os.path.join(HERE, "data", "eval", "en_engine_heteronyms.jsonl"), 0.98)]
+                  (os.path.join(HERE, "data", "eval", "en_engine_heteronyms.jsonl"), 0.98),
+                  (os.path.join(HERE, "data", "eval", "en_engine_holdout500.jsonl"), 0.95)]
     for i, (corpus, th) in enumerate(thresholds, 1):
         print("\n==== 6.%d 英文语料 %s ====" % (i, os.path.basename(corpus)))
 
