@@ -31,12 +31,30 @@ CPU 上 8.8 倍实时、内存 375 MB、无任何 Windows 依赖。
 
 ---
 
+## 0.5 数据从哪来（先说清楚，免得误会）
+
+做逆向最容易被问的两个问题：**"你逆的 DLL 哪来的？"** 和 **"评测用的句子哪来的？"** 统一交代：
+
+| 东西 | 来源 |
+|---|---|
+| 被逆向的引擎 DLL | 微软**公开分发**的 Azure 嵌入式语音 SDK（NuGet 包 `Microsoft.CognitiveServices.Speech.Extension.Embedded.TTS`，0.2.10 x64）。不是破解、不是泄露，就是从公开 SDK 里拿的；它只在"对答案"时用，我们的 SDK 运行时不依赖它 |
+| 语音包（模型/词典） | Windows 系统自带的「讲述人自然语音」（MSIX/appx），由使用者自己解包；仓库里**不含**任何微软模型或语音数据 |
+| 中文评测语料 | Windows 系统本地化资源里的界面文案（约 15 万句）。599 句评测集是从里面**留出来**的，训练时从没看过 |
+| 中文小说语料 | Project Gutenberg（古登堡计划）中文公版书，如《红楼梦》 |
+| 英文评测语料 | Project Gutenberg 英文公版书 9 本（爱丽丝、白鲸、双城记、傲慢与偏见、福尔摩斯、德古拉、科学怪人、世界大战、绿野仙踪），按"同书 / 跨书 / 跨年代"三组做泛化 |
+| 英文 TN/异读压力集 | 自建：人工写句子，再用引擎标一遍标准答案 |
+| 所有"标准答案" | 用探针让引擎逐句合成、把音素 id 记下来——相当于请原作者逐题写答案 |
+
+一句话：**能公开的都来自公开来源，不公开的（语音包）由使用者自备，我们只分发"方法和评测数据"。**
+
+---
+
 ## 1. 第 0 步：先搞清楚"敌人在哪"
 
 Windows 本地自然语音在系统里的落点是：
 
 ```
-Microsoft.CognitiveServices.Speech.extension.embedded.tts.dll      # 5.9 MB，x64
+Microsoft.CognitiveServices.Speech.extension.embedded.tts.dll      # 5.9 MB，x64，来自 Azure 嵌入式语音 SDK（NuGet，公开下载）
 Microsoft.CognitiveServices.Speech.extension.onnxruntime.dll       # 它静态/动态链接的 ORT
 ```
 
