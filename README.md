@@ -1,81 +1,73 @@
-# OpenShenzhou（神州）—— 端侧神经语音引擎的可验证黑盒复刻
+# OpenShenzhou（开放神州）· Python SDK
 
-对 Windows 本地神经语音引擎（内部代号 **shenzhou / 神州**）的**运行时 + 文本前端**做黑盒逆向与等价重建：
-不调用引擎、不联网，只用 ONNX Runtime 跑用户自备的语音包模型，并给出**逐采样 / 逐音素 id 可验证**的复刻证据。
+**微软自然语音推理引擎的本地、离线、跨平台复现（Python 版）。**
+不调用微软引擎、不联网、不需要 SAPI 注册，只用 ONNX Runtime 加载你自己解包的语音包模型；给定相同音素序列，合成音频与官方引擎逐采样一致。
 
-> **两份正式文档（仅保留这两份）**
-> - 论文：[docs/paper.md](docs/paper.md)
-> - 帖子：[docs/blog-52pojie.md](docs/blog-52pojie.md)
->
-> 本仓库**不包含**微软的模型/语音包数据；`models/` 与 `node/node_modules/` 均不入库，运行时使用本机解包出的语音包目录。
+> 完整项目介绍、研究成果与数据说明见 `main` 分支的 README；本分支只包含 Python SDK、自检与运行所需数据。
 
-## 当前状态（可一键复现）
+## 特性
 
-| 指标 | 结果 | 复现命令 |
-|---|---|---|
-| 模型层逐采样一致（8 语种 / 23 音色包） | 最大绝对误差 ~1e-6，相关 1.0000000 | 见论文 §4 |
-| 中文 599 句自然句首句逐音素 id | **585/599 = 97.7%** | `python tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl` |
-| 英文自然句 500 句逐 id（引擎探针标注） | **495/500 = 99.0%** | `python tools/eval_en_corpus.py data/eval/en_engine_500.jsonl` |
-| 英文 TN 压力集 102 句逐 id | **102/102 = 100%** |
-| 英文异读词句 80 句逐 id | **80/80 = 100%** |
-| 英文 holdout2 500 句（另三本书/不同年代） | **492/500 = 98.4%**（未标定词表前 53.2%） |
-| 英文 holdout 500 句（另外三本书，泛化评测） | **499/500 = 99.8%** | `python tools/eval_en_corpus.py data/eval/en_engine_tn.jsonl` |
-| 中文大规模泛化 3000 句（引擎 golden 留出） | **2855/3000 = 95.2%** |
-| 八语种 138 句整句逐 id | **138/138 = 100%** | `python tools/eval_ml_offline.py` |
-| Python / Node 双端一致性 | 中文 17 句 + 英文 1682 句逐 id 一致 | `python tools/check_node_parity.py` |
-| SDK 端到端自检 | 全通过 | `python tests/test_all.py --voice-root <语音包根>` |
-| 一键全量验证 | 全部通过 | `python tools/verify_all.py` |
+- **纯本地 / 跨平台**：Python + onnxruntime，Windows / Linux / macOS 都能跑；
+- **8 种语言、23 个音色包**：中、英、日、韩、西、法、德、葡；
+- **逐采样一致**：与官方引擎音频最大绝对误差 ~1e-6、皮尔逊相关 1.0000000；
+- **文本前端高保真**：中文 599 句逐音素 id 一致率 98.0%，英文自然/压力/泛化集 99.6%~100%，八语种 golden 138/138；
+- **流式与分块推理**：复刻引擎的分块调度、卷积/加法缓存、逐块量化，低内存实时合成（4 核 CPU RTF≈0.113）。
 
-中文残余 14 句：约 11 句为长尾词界拆分差异、3 句为语料乱码行。
-英文下一步：继续扩词表（top-10k 词引擎标定）与标点/缩略语长尾；Node SDK 英文前端 v2 已与 Python 完全对齐。
+## 环境要求
 
-## 仓库结构
+- Python 3.9+
+- 依赖：`pip install numpy onnx onnxruntime pypinyin`
+
+## 准备语音包
+
+语音包来自 Windows 系统自带的「讲述人自然语音」（MSIX/appx），由你自行解包。目录内需包含：
 
 ```
-openshenzhou/   Python SDK：容器解码、私有流式算子重写、8 语种文本前端、分块推理
-node/           Node SDK（纯 JS + onnxruntime-node，与 Python 逐 id 一致）
-data/           8 语种词表/符号/断词模型/CRF 映射/英文实测词表等标定数据 + eval/ 离线评测数据
-tools/          数据构建、引擎标定、评测、验证工具（仅保留生产性脚本）
-tests/          端到端自检
-docs/           仅保留：paper.md（论文）、blog-52pojie.md（帖子）
+am_v5_encoder.bin
+am_v5_decoder.bin
+device_vocoder_v6_streaming.bin
+phones.txt
+punc.txt
+MSTTSLocZhCN.dat        # 中文必需（词表/读音/多音字模型）
 ```
+
+（其他语言包结构类似，模型文件名以实际解包结果为准。）
 
 ## 快速开始
 
 ```python
 from openshenzhou import TTS
-tts = TTS(r"D:\Voice\Xiaoxiao_Female_zh-CN")   # 语音包目录（.bin 模型 + phones.txt）
+
+tts = TTS(r"<语音包目录>")          # 例如解包出的 Xiaoxiao_Female_zh-CN 目录
 tts.speak("人工智能语音合成。", "out.wav")
 ```
 
-```bash
-# CLI
-python -m openshenzhou --voice "D:\Voice\Xiaoxiao_Female_zh-CN" --text "你好，世界。" --out out.wav
+命令行：
 
-# Node
-cd node && npm install
-node cli.js --voice "D:\Voice\Xiaoxiao_Female_zh-CN" --text "你好，世界。" --out out.wav
+```bash
+python -m openshenzhou --voice "<语音包目录>" --text "你好，世界。" --out out.wav
+# 可选：--speed 1.2
 ```
 
-语音包从 Windows 系统自带的讲述人自然语音（MSIX/appx）中解包得到：把 `*.bin` 模型与 `phones.txt` 放进同一目录即可。
-Linux / macOS 上可运行同一套 SDK（ONNX Runtime 支持三平台），前提是已有解包好的语音包目录。
+## 自检
 
-### 环境变量（研究工具用）
+```bash
+python tests/test_all.py --voice-root "<语音包根目录>"   # 内含各语音包子目录
+```
 
-| 变量 | 作用 |
+自检覆盖：数据完整性、8 语种 G2P 冒烟、8 语种合成冒烟、Node≡Python 一致性（需 Node SDK 分支）等。
+
+## 与其它分支的关系
+
+| 分支 | 内容 |
 |---|---|
-| `OS_VOICE_ROOT` | 语音包根目录（内含各 `*_Female_*` 语音包目录）；默认 `../AllVoice`，其次 `%TEMP%/AllVoice` |
-| `OS_SDK_ROOT` | SDK 源码根（`openshenzhou/` 所在目录）。main 分支只放研究成果时，运行 `tools/` 需指向 python 分支的 checkout |
-| `OS_ZH_DAT` | 可选：直接指定 `MSTTSLocZhCN.dat` 路径（默认从语音包目录查找） |
+| `main` | 研究成果：标定/评测数据（`data/`）、构建与评测脚本（`tools/`）、一键验证 |
+| `python`（本分支） | **Python SDK**：`openshenzhou/` + `tests/` + 运行所需数据 |
+| `node` | **Node SDK**：`node/` 包（与 Python 逐 id 一致） |
 
-自然语音枚举需要一次性注册 SAPI 适配器（仅一次，之后零注册表写入亦可）：
-`regsvr32 /s NaturalVoiceSAPIAdapter.dll`，然后启动引擎时用 `--voice-path=<语音包根>`。
+做完整验证时，把三个分支内容合并到同一工作区后运行 `python tools/verify_all.py`。
 
-## 分支（按交付物分门别类）
+## 声明
 
-- `main`：**研究成果**——论文/帖子、复刻数据（`data/`）、工具（`tools/`）
-- `python`：**Python SDK**——`openshenzhou/` + `tests/` + 数据
-- `node`：**Node SDK**——`node/` + 数据
-
-三个分支共享同一份 `data/`（git blob 去重，不额外占空间）；集成验证时把三者临时合并到工作区即可
-（`re_integrate.sh` 或 `git worktree` + `git read-tree`）。
+- 本分支不包含任何微软的模型、语音包或引擎二进制文件；使用前需自行准备**正版语音包**；
+- 本项目用于互操作、离线部署与学习研究；请遵守你所在地法律与微软相关许可。
