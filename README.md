@@ -53,6 +53,25 @@ node cli.js --voice "<语音包目录>" --text "你好，世界。" --out out.wa
 # 可选：--speed 1.2
 ```
 
+### 多语音包 / 指定发音人 / 语速
+
+```js
+const { TTS } = require('./index');
+
+(async () => {
+  const zh = new TTS('<语音包根>/Xiaoxiao_Female_zh-CN'); // 发音人 = 语音包目录
+  const en = new TTS('<语音包根>/Aria_Female_en-US');     // 可同时加载多个语音包
+
+  await zh.speak('中文合成测试。', 'a.wav', 1.0);          // 语速：模型内 speed_ratios
+  await en.speak('Hello world.', 'b.wav', 1.3);
+})();
+```
+
+- **同时加载多个语音包**：new 多个 `TTS(目录)` 实例即可，各自独立；
+- **指定发音人**：选择对应语音包目录（本机共 23 个音色包）；
+- **语速**：`speed` 参数（模型内调节；实测 0.7/1.0/1.3 时长约 5.08s/3.48s/2.71s）；
+- **无 SAPI、无服务器**：纯本地库 + CLI，不需要注册 COM/SAPI，也不含 HTTP 服务。
+
 ## 与其它分支的关系
 
 | 分支 | 内容 |
