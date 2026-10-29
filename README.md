@@ -14,6 +14,40 @@ Windows 上有一套音质接近真人的本地神经语音引擎，但它只能
 
 为此，本项目通过黑盒逆向 + "把引擎当标注器"的探针方法，复刻了：加密模型的解密与明文 ONNX 还原、8 个私有流式算子、分块调度/缓存/量化、中文 LSTM 断词模型与词界后处理、多音字 CRF 读音模型、多语种词表与连诵/省音等前端规则。
 
+## 原版是怎么运行的（SAPI 链路）
+
+原版在 Windows 上的调用链是：
+
+```
+应用程序（SAPI.SpVoice / System.Speech / WinRT）
+  → SAPI5 运行时 sapi.dll（框架：根据"语音令牌"找引擎、传文本、收音频）
+  → 语音令牌（注册表 ...\Speech\Voices\Tokens\...，含 Name/Language/CLSID）
+  → NaturalVoiceSAPIAdapter（开源社区转接器，注册成 SAPI 引擎；每个语音包一个"系统音色"）
+  → Microsoft.CognitiveServices.Speech.extension.embedded.tts.dll（真正干活：解密模型 → ONNX Runtime）
+  → 24 kHz PCM 音频
+```
+
+几个关键事实：
+
+- **SAPI 只是"插座"**，不负责合成；真正合成声音的是嵌入式语音 SDK（`embedded.tts.dll`）；
+- 转接器需要 `regsvr32` 注册 COM、把语音包路径写进注册表，SAPI 才能看到这些音色；
+- SAPI 的语速（Rate）是框架在**模型外**做时间伸缩，不是模型内部参数；
+- 本项目开发期的"探针服务器"直接调用嵌入式 SDK（绕过 SAPI）来采集标准答案，仅用于研究，不在 SDK 中。
+
+**我们的 SDK 直接替换了这条链路的后半段**：不注册 SAPI、不走 `sapi.dll`、不依赖 Windows 引擎，纯 ONNX Runtime 执行同一份语音包模型，输出与官方引擎逐采样一致。
+
+## SDK 能做什么
+
+Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
+
+| 能力 | 说明 |
+|---|---|
+| **同时加载多个语音包** | 一个进程里 new 多个 `TTS(语音包目录)` 实例即可（每个实例独立模型/状态）；本机 23 个音色包可任意组合 |
+| **指定发音人** | 每个语音包目录对应一个发音人（如 `Xiaoxiao_Female_zh-CN`、`Aria_Female_en-US`），传哪个目录就用哪个 |
+| **设置语速** | `speak(text, out, speed=1.0)`；speed 是模型内 `speed_ratios` 调节（0.7/1.0/1.3 实测时长 5.08s/3.48s/2.71s） |
+| **无 SAPI 依赖** | 无需注册 COM/注册表，不调用 Windows 引擎；Windows/Linux/macOS 通用 |
+| **无服务器** | SDK 只是本地库 + CLI，不含 HTTP 服务；历史开发用探针服务器未进入仓库 |
+
 ## 主要成果
 
 | 指标 | 结果 |
