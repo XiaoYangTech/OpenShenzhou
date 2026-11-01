@@ -48,6 +48,24 @@ class TTS:
         self._g2p = None
         self._proj = None
         self._stream = None
+        # 英文变体：en-GB（英式）/ en-IN（印式）使用引擎实测的专用发音词表
+        self._en_variant = self._detect_en_variant() if self.lang == "en" else ""
+
+    def _detect_en_variant(self):
+        d = (self.pack.dir or "").lower()
+        if "en-gb" in d:
+            return "gb"
+        if "en-in" in d:
+            return "in"
+        syms = self.pack.symbols
+        try:
+            if any(str(k).endswith("_hin") for k in syms) or "vw" in syms:
+                return "in"
+            if "ir1" in syms:
+                return "gb"
+        except Exception:
+            pass
+        return ""
 
     def _ensure(self):
         if self._sessions is None:
@@ -69,7 +87,7 @@ class TTS:
                     load_lexicon())
         if self.lang == "en":
             from .g2p_en import load_lexicon, text_to_ids
-            return (text_to_ids, self.pack.symbols, load_lexicon(), None)
+            return (text_to_ids, self.pack.symbols, load_lexicon(self._en_variant), None)
         if self.lang in ("es", "fr", "de", "pt"):
             from .g2p_latin import load_lexicon, text_to_ids
             return (text_to_ids, self.pack.symbols, load_lexicon(self.lang), self.lang)
@@ -87,7 +105,7 @@ class TTS:
         if self.lang == "zh":
             return fn(text, a1, a2, a3)
         if self.lang == "en":
-            return fn(text, a1, a2)
+            return fn(text, a1, a2, self._en_variant)
         if self.lang in ("es", "fr", "de", "pt"):
             return fn(text, a1, a2, a3)
         if self.lang in ("ja", "ko"):

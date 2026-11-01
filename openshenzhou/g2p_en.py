@@ -164,8 +164,73 @@ def load_heteronyms():
     return _HETERO
 
 
-def load_lexicon():
-    return load_engine_lexicon()
+_VARIANT_LEX = {}
+
+
+_ACTIVE_LEX = None
+_ACTIVE_VARIANT = ""
+
+
+def _active_lexicon():
+    return _ACTIVE_LEX if _ACTIVE_LEX is not None else load_engine_lexicon()
+
+
+def load_lexicon(variant=None):
+    """英文词表；variant='gb'/'in' 时用引擎实测的英式/印式发音词表覆盖。"""
+    base = load_engine_lexicon()
+    if variant not in ("gb", "in"):
+        return base
+    if variant in _VARIANT_LEX:
+        return _VARIANT_LEX[variant]
+    import json as _json
+    import os as _os
+    path = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "data",
+                         "lexicon_en_%s.json" % variant)
+    lex = dict(base)
+    if _os.path.exists(path):
+        try:
+            lex.update(_json.load(open(path, encoding="utf-8")))
+        except Exception:
+            pass
+    _VARIANT_LEX[variant] = lex
+    return lex
+
+
+def text_to_ids(text, sym, lexicon=None, variant=""):
+    """包装：在本次转换期间把词表切换为传入的（变体）词表"""
+    global _ACTIVE_LEX, _ACTIVE_VARIANT
+    prev = _ACTIVE_LEX
+    prev_var = _ACTIVE_VARIANT
+    # 仅 en-GB/en-IN 变体启用"变体词表优先"；en-US 保持原有上下文/规则路径
+    if lexicon is not None and variant in ("gb", "in"):
+        _ACTIVE_LEX = lexicon
+        _ACTIVE_VARIANT = variant
+    try:
+        return _text_to_ids_impl(text, sym, lexicon, variant)
+    finally:
+        _ACTIVE_LEX = prev
+        _ACTIVE_VARIANT = prev_var
+
+
+# 印式英语：个别音素在 *_hin 符号表中缺失时的回退映射（引擎实测的印式口音音素）
+_ALIAS_IN = {"w": "vw", "v": "vw", "d": "dr", "t": "tr", "er": "ah", "dh": "d", "ax": "ah"}
+
+
+def _sym_id(sym, ph, variant=""):
+    v = sym.get(ph)
+    if v is not None:
+        return v
+    base = (ph or "").rstrip("012")
+    if variant == "in":
+        alt = _ALIAS_IN.get(base)
+        if alt is not None and sym.get(alt) is not None:
+            return sym[alt]
+        if sym.get(base) is not None:
+            return sym[base]
+    elif variant in ("gb", "in"):
+        if sym.get(base) is not None:
+            return sym[base]
+    return sym.get("<pad>", 0)
 
 
 def load_symbols(path):
@@ -178,6 +243,12 @@ def load_symbols(path):
         m[name] = int(idx)
     return m
 
+
+FUNCTION_WORDS = set("""a an the and of to for in on at by with from as or but not no so
+do does did has have had is are was were be been am being
+i you he she we they it me him her us them my your his its our their
+this that these those there here who what which when where why how
+will would can could shall should may might must""".split())
 
 VOWELS = set("aa ae ah ao aw ax ay eh er ey ih iy ow oy uh uw".split())
 ONSETS = set("""
@@ -339,7 +410,12 @@ def plural(n, word):
 # ---------------- 词 → 音素 ----------------
 def _engine_phones(word):
     w = word.lower().replace("’", "'")
-    for src in (load_context(), load_engine_lexicon(), _VOCAB):
+    # 变体词表（en-GB/en-IN 引擎实测）优先于上下文词表
+    if _ACTIVE_LEX is not None:
+        v = _ACTIVE_LEX.get(w)
+        if v:
+            return list(v)
+    for src in (load_context(), _active_lexicon(), _VOCAB):
         v = src.get(w) if src else None
         if v:
             return list(v)
@@ -445,6 +521,12 @@ def pron_word(word, next_word="", prev_word=""):
             return ["ey1"] if is_vowel else pron_word("a", next_word, prev_word)
         return _letter_token(word.lower())
     w = word.lower().replace("’", "'")
+    # 变体词表（en-GB/en-IN 引擎实测）优先于内置规则，但功能词（弱读/上下文读法）
+    # 实测是"孤立词 citation 读法"，在句子里不适用，仍交给内置规则。
+    if _ACTIVE_LEX is not None and "'" not in w and w not in FUNCTION_WORDS:
+        v = _ACTIVE_LEX.get(w)
+        if v:
+            return list(v)
     if "'" in w:
         cph = _contraction_phones(w)
         if cph:
@@ -473,6 +555,11 @@ def pron_word(word, next_word="", prev_word=""):
         if pv in HETERO_NOUN_PREV and het.get("noun"):
             return list(het["noun"])
     if w == "the":
+        # en-IN 实测：句子里 the 读 [d, ah]（与孤立词一致）
+        if _ACTIVE_VARIANT == "in" and _ACTIVE_LEX is not None:
+            v = _ACTIVE_LEX.get("the")
+            if v:
+                return list(v)
         nxt = (next_word or "").lower()
         nxt_ph = _engine_phones(nxt) if nxt else None
         if nxt_ph:
@@ -507,7 +594,7 @@ def pron_word(word, next_word="", prev_word=""):
 # ---------------- TN 展开 ----------------
 def _letter_token(letters):
     """U.S.A. / i.e. / ABC → 单个 token，字母之间用 '-'"""
-    iso = load_engine_lexicon()
+    iso = _active_lexicon()
     names = []
     for k, ch in enumerate(letters):
         if k:
@@ -1476,7 +1563,7 @@ def _push(ids, v):
         ids.append(v)
 
 
-def text_to_ids(text, sym, lexicon=None):
+def _text_to_ids_impl(text, sym, lexicon=None, variant=""):
     text = _preprocess(text)
     raw = _parse(text)
     # 日期上下文：month word + number
@@ -1525,7 +1612,7 @@ def text_to_ids(text, sym, lexicon=None):
                 if ph == "-":
                     _push(ids, sym.get("-") if sym.get("-") is not None else sym.get("&"))
                 else:
-                    ids.append(sym.get(ph, sym.get("<pad>", 0)))
+                    ids.append(_sym_id(sym, ph, variant))
             first = False
         elif kind == "ellipsis_pause":
             ids.append(sym.get("br3", 0))
@@ -1555,6 +1642,12 @@ def text_to_ids(text, sym, lexicon=None):
             if first:
                 i += 1
                 continue
+            if variant == "in":
+                # 印式英语实测：句中逗号只插入 br3，不使用 punc 符号
+                _push(ids, sym.get("br3"))
+                first = True
+                i += 1
+                continue
             _push(ids, sym.get("br3"))
             if item[1]:
                 ids.append(sym.get(item[1], sym.get("punc,", 0)))
@@ -1562,6 +1655,20 @@ def text_to_ids(text, sym, lexicon=None):
             first = True
         elif kind == "end":
             # 句末：br4 + 主标点 +（紧随的附加标点）+ ~；若后面还有内容，另起一句
+            if variant == "in":
+                # 印式英语实测：句末只保留 br4（若有）+ ~，不带 punc 标点
+                _push(ids, sym.get("br4"))
+                _push(ids, sym.get(END))
+                if i + 1 < len(flat):
+                    ids.extend([x for x in (sym.get(BOS), sym.get("br0")) if x is not None])
+                    first = True
+                    ended = False
+                    i += 1
+                    continue
+                ended = True
+                first = True
+                i += 1
+                continue
             _push(ids, sym.get("br4"))
             j = i + 1
             extra = []
@@ -1610,12 +1717,12 @@ def text_to_ids(text, sym, lexicon=None):
                 if ph == "-":
                     _push(ids, sym.get("-") if sym.get("-") is not None else sym.get("&"))
                 else:
-                    ids.append(sym.get(ph, sym.get("<pad>", 0)))
+                    ids.append(_sym_id(sym, ph, variant))
             first = False
         i += 1
     if not ended:
         _push(ids, sym.get("br4"))
-        if sym.get("punc."):
+        if variant != "in" and sym.get("punc."):
             _push(ids, sym.get("punc."))
         _push(ids, sym.get(END))
     return ids
