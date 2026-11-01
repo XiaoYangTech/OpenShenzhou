@@ -198,12 +198,13 @@ function ordinalWords(n) {
   }
   if (n < 1000) {
     const q = Math.floor(n / 100), r = n % 100;
-    let w = [ONES[q], 'hundred'];
-    if (r) w = w.concat(r < 100 ? ['and'] : [], ordinalWords(r));
+    const w = [ONES[q], 'hundred'];
+    if (r) w.push(...(r < 100 ? ['and'] : []), ...ordinalWords(r));
+    else w[w.length - 1] = 'hundredth';
     return w;
   }
   const base = cardinalWords(n);
-  if (n % 100 === 0) return base;
+  if (n % 100 === 0) return base.slice(0, -1).concat([base[base.length - 1] + 'th']);
   return base.slice(0, -1).concat([ordinalWords(n % 100).slice(-1)[0]]);
 }
 
@@ -381,10 +382,12 @@ const NUM_PATTERNS = [
   ['ordinal', /\d+(?:st|nd|rd|th)\b/],
   ['percent', /\d+(?:\.\d+)?%/],
   ['decimal', /\d*\.\d+/],
+  ['ordinal', /\d{1,3}(?:,\d{3})+(?:st|nd|rd|th)/],
   ['thousands', /\d{1,3}(?:,\d{3})+(?:\.\d+)?/],
   ['dashgroup', /\d{2}(?:-[0-9A-Za-z]{2}){2,}/],
   ['range', /\d+(?:-\d+)+/],
   ['mixed', /\d+\s+\d+\s*\/\s*\d+/],
+  ['date_my', /\d{1,2}\/\d{4}/],
   ['fraction', /\d+\s*\/\s*\d+/],
   ['currency', /[$€£¥￥]\s*\d[\d,]*(?:\.\d+)?/],
   ['number', /\d+/],
@@ -443,6 +446,7 @@ function parse(text) {
     if (kind) {
       if (kind === 'currency') events.push(['currency', [tok[0], tok.slice(1).trim()]]);
       else if (kind === 'date' || kind === 'date2') events.push(['date', tok]);
+      else if (kind === 'date_my') events.push(['date_my', tok]);
       else if (kind === 'time') events.push(['time', tok]);
       else if (kind === 'ratio') events.push(['ratio', tok]);
       else if (kind === 'percent') { const num = tok.slice(0, -1); events.push([num.includes('.') ? 'decimal' : 'number', num]); events.push(['percent', null]); }
@@ -630,7 +634,7 @@ function parse(text) {
         i += 1;
         continue;
       }
-      if (ch === ':' && i + 1 < n && '\/'.includes(text[i + 1])) {
+      if (ch === ':' && i + 1 < n && /[\\/]/.test(text[i + 1])) {
         events.push(['pause_plain', null]);
       } else {
         events.push(['pause', PAUSE_PUNCT[ch]]);
@@ -644,8 +648,20 @@ function parse(text) {
       events.push(['phones', ['d', 'ih', '-', 'v', 'ay1', '-', 'd', 'ih', 'd', '-', 'b', 'ay2']]);
       i += 1; continue;
     }
+    if (ch === '–' || ch === '—') {
+      const prevKind = events.length ? events[events.length - 1][0] : null;
+      let jj = i + 1;
+      while (jj < n && text[jj] === ' ') jj++;
+      if (['number', 'decimal', 'percent', 'thousands', 'currency'].includes(prevKind)
+          && jj < n && /[0-9]/.test(text[jj])) {
+        events.push(['w', 'to']);
+      } else {
+        events.push(['pause', 'punc,']);
+      }
+      i += 1; continue;
+    }
     if (ch === '/') {
-      if (i > 0 && i + 1 < n && /[A-Za-z]/.test(text[i - 1]) && /[A-Za-z]/.test(text[i + 1])
+      if (i > 0 && i + 1 < n && /[A-Z]/.test(text[i - 1]) && /[A-Z]/.test(text[i + 1])
           && (i < 2 || !/[A-Za-z]/.test(text[i - 2]))
           && (i + 2 >= n || !/[A-Za-z]/.test(text[i + 2]))) {
         i += 1; continue;
@@ -670,6 +686,12 @@ function parse(text) {
 function expandNumberToken(tok, kind, outWords) {
   const out_words = outWords || [];
   const t = tok.replace(/,/g, '');
+  if (kind === 'date_my') {
+    const [a1, b1] = tok.split('/');
+    const ev = [['w', MONTH_NAMES[Number(a1) - 1]]];
+    for (const w of yearWords(Number(b1))) ev.push(['w', w]);
+    return ev;
+  }
   if (kind === 'date') {
     const sepM = /[/.-]/.exec(tok);
     const sep = sepM ? sepM[0] : '/';
@@ -736,7 +758,8 @@ function expandNumberToken(tok, kind, outWords) {
     return ev;
   }
   if (kind === 'ordinal') {
-    return ordinalWords(Number(/^\d+/.exec(tok)[0])).map((w) => ['w', w]);
+    const digits = String(tok).replace(/\D/g, '');
+    return ordinalWords(Number(digits)).map((w) => ['w', w]);
   }
   if (kind === 'decimal') {
     let a, b;
@@ -870,13 +893,28 @@ function expand(events) {
       for (const w of digitsWords(String(val))) out.push(['w', w]);
       continue;
     }
-    if (['number', 'date', 'time', 'ratio', 'version', 'ordinal', 'decimal',
+    if (['number', 'date', 'date_my', 'time', 'ratio', 'version', 'ordinal', 'decimal',
       'thousands', 'range', 'phone', 'alnum', 'fraction', 'mixed', 'ip', 'dashgroup', 'groupnum'].includes(kind)) {
       const ev = expandNumberToken(val, kind, out.filter((x) => x[0] === 'w' || x[0] === 'word').map((x) => x[1]));
       for (const e of ev) out.push(e);
       if (nxt && nxt[0] === 'word') {
         let rawU = nxt[1];
         let uw = unitWords(rawU);
+        const nxt3 = idx + 2 < events.length ? events[idx + 2] : null;
+        const nxt4 = idx + 3 < events.length ? events[idx + 3] : null;
+        if (String(rawU).toLowerCase() === 'm' && nxt3 && nxt3[0] === 'slash' && nxt4 && nxt4[0] === 'word') {
+          out.push(['phones', letterToken('m')]);
+          events[idx + 1] = ['consumed', null];
+          continue;
+        }
+        if (String(rawU).toLowerCase() === 'km' && nxt3 && nxt3[0] === 'slash'
+            && nxt4 && nxt4[0] === 'word' && String(nxt4[1]).toLowerCase() === 'h') {
+          out.push(['w', 'kilometers'], ['w', 'per'], ['w', 'hour']);
+          events[idx + 1] = ['consumed', null];
+          events[idx + 2] = ['consumed', null];
+          events[idx + 3] = ['consumed', null];
+          continue;
+        }
         if (String(rawU).toLowerCase() === 'm') {
           const prevWords = out.filter((x) => x[0] === 'w').slice(-4).map((x) => x[1]).join(' ');
           uw = (prevWords.includes('hour') || prevWords.includes('hours')) ? ['minutes'] : null;
@@ -911,7 +949,7 @@ function expand(events) {
         const nn = Number(num.replace(/,/g, ''));
         if ((sym === '¥' || sym === '￥') && nn) {
           for (const w of cardinalWords(nn)) out.push(['w', w]);
-          out.push(['phones', ['y', 'uw', '-', 'aa1', 'n']]);
+          out.push(['w', 'yen']);
         } else {
           for (const w of cardinalWords(nn)) out.push(['w', w]);
           out.push(['w', plural(nn, major)]);
