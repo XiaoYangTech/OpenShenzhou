@@ -579,6 +579,7 @@ NUM_PATTERNS = [
     ("date2", re.compile(r"\d{1,2}[./-]\d{1,2}[./-]\d{2,4}")),
     ("date", re.compile(r"\d{4}-\d{1,2}-\d{1,2}")),
     ("date", re.compile(r"\d{1,2}/\d{1,2}/\d{2,4}")),
+    ("time_range", re.compile(r"\d{1,2}:\d{2}\s*[-–—]\s*\d{1,2}:\d{2}")),
     ("time", re.compile(r"\d{1,2}:\d{2}(?::\d{2})?(?:\s?[AaPp]\.?[Mm])?")),
     ("time", re.compile(r"\d{1,2}\s?(?:[AaPp]\.?[Mm])(?![A-Za-z])")),
     ("alnum", re.compile(r"\d{2,4}-[A-Za-z]{2,4}-\d{2,4}")),
@@ -592,6 +593,7 @@ NUM_PATTERNS = [
     ("dashgroup", re.compile(r"\d{2}(?:-[0-9A-Za-z]{2}){2,}")),
     ("range", re.compile(r"\d+(?:-\d+)+")),
     ("mixed", re.compile(r"\d+\s+\d+\s*/\s*\d+")),
+    ("date_ym", re.compile(r"\d{4}/\d{1,2}")),
     ("date_my", re.compile(r"\d{1,2}/\d{4}")),
     ("fraction", re.compile(r"\d+\s*/\s*\d+")),
     ("currency", re.compile(r"[$€£¥￥]\s*\d[\d,]*(?:\.\d+)?")),
@@ -644,8 +646,12 @@ def _parse(text):
                 events.append(("date", tok))
             elif kind == "date_my":
                 events.append(("date_my", tok))
+            elif kind == "date_ym":
+                events.append(("date_ym", tok))
             elif kind == "time":
                 events.append(("time", tok))
+            elif kind == "time_range":
+                events.append(("time_range", tok))
             elif kind == "ratio":
                 events.append(("ratio", tok))
             elif kind == "percent":
@@ -962,6 +968,27 @@ def _parse(text):
 def _expand_number_token(tok, kind, next_kind):
     t = tok.replace(",", "")
     low = tok.lower()
+    if kind == "time_range":
+        parts = re.split(r"\s*[-–—]\s*", tok)
+        def _one(tp):
+            hh, mm = int(tp.split(":")[0]), int(tp.split(":")[1])
+            return hh, mm
+        h1, m1 = _one(parts[0])
+        h2, m2 = _one(parts[1])
+        ev = []
+        if m1 == 0 and m2 == 0:
+            ev += [("w", w) for w in cardinal_words(h1)]
+            ev.append(("w", "to"))
+            ev += [("w", w) for w in cardinal_words(h2)]
+            ev.append(("w", "o'clock"))
+        else:
+            ev += _time_words(h1, m1, None)
+            ev.append(("w", "to"))
+            ev += _time_words(h2, m2, None)
+        return ev
+    if kind == "date_ym":
+        a, b = t.split("/")
+        return [("w", w) for w in year_words(int(a))] + [("w", "slash")] + [("w", w) for w in digits_words(b.zfill(2))]
     if kind == "date_my":
         a, b = t.split("/")
         return [("w", MONTH_NAMES[int(a) - 1])] + [("w", w) for w in year_words(int(b))]
@@ -1143,6 +1170,9 @@ def _expand(events):
                 if nxt2 and nxt2[0] == "pause" and nxt2[1] == "punc,":
                     events[idx + 2] = ("pause_plain", None)
                 continue
+        if kind == "number" and val.isdigit() and len(val) >= 8:
+            out.extend([("w", w) for w in digits_words(val)])
+            continue
         if kind == "number" and len(val) > 1 and val.startswith("0") and val.isdigit():
             out.extend([("w", w) for w in digits_words(val)])
             continue
@@ -1151,7 +1181,7 @@ def _expand(events):
             if "year" in prev_words:
                 out.extend([("w", w) for w in year_words(int(val.replace(",", "")))])
                 continue
-        if kind in ("number", "date", "date_my", "time", "ratio", "version", "ordinal",
+        if kind in ("number", "date", "date_my", "date_ym", "time", "time_range", "ratio", "version", "ordinal",
                     "decimal", "thousands", "range", "phone", "alnum", "fraction",
                     "mixed", "ip", "dashgroup", "groupnum"):
             ev = _expand_number_token(val, kind, nxt[0] if nxt else None)
