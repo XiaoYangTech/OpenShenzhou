@@ -1184,7 +1184,8 @@ function textToIds(text, sym) {
   const raw = parse(text);
   const ev = expand(raw);
   const flat = flatten(ev);
-  const ids = [sym[BOS]];
+  const ids = [];
+  if (sym[BOS] !== undefined) ids.push(sym[BOS]);
   if (sym['br0'] !== undefined) ids.push(sym['br0']);
   let first = true, ended = false;
   for (let i = 0; i < flat.length; i++) {
