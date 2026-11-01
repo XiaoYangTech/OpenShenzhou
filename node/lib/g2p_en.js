@@ -280,12 +280,73 @@ function fallbackPhones(word) {
   return out;
 }
 
+const CONTRACTIONS = {
+  "don't": ['d', 'ow1', 'n', 't'], "can't": ['k', 'ae1', 'n', 't'],
+  "won't": ['w', 'ow1', 'n', 't'], "shan't": ['sh', 'ae1', 'n', 't'],
+  "ain't": ['ey1', 'n', 't'],
+  "isn't": ['ih1', 'z', 'ax', 'n', 't'], "aren't": ['aa1', 'r', 'n', 't'],
+  "wasn't": ['w', 'ah1', 'z', 'ax', 'n', 't'], "weren't": ['w', 'er1', 'n', 't'],
+  "doesn't": ['d', 'ah1', 'z', 'ax', 'n', 't'], "didn't": ['d', 'ih1', 'd', 'ax', 'n', 't'],
+  "couldn't": ['k', 'uh1', 'd', 'ax', 'n', 't'], "shouldn't": ['sh', 'uh1', 'd', 'ax', 'n', 't'],
+  "wouldn't": ['w', 'uh1', 'd', 'ax', 'n', 't'], "mustn't": ['m', 'ah1', 's', 'ax', 'n', 't'],
+  "needn't": ['n', 'iy1', 'd', 'ax', 'n', 't'],
+  "it's": ['ih1', 't', 's'], "that's": ['dh', 'ae1', 't', 's'],
+  "what's": ['w', 'ah1', 't', 's'], "let's": ['l', 'eh1', 't', 's'],
+  "he's": ['h', 'iy1', 'z'], "she's": ['sh', 'iy1', 'z'],
+  "there's": ['dh', 'eh1', 'r', 'z'], "here's": ['hh', 'ih1', 'r', 'z'],
+  "where's": ['w', 'eh1', 'r', 'z'], "who's": ['hh', 'uw1', 'z'],
+  "how's": ['hh', 'aw1', 'z'],
+  "i'm": ['ay1', 'm'], "i've": ['ay1', 'v'], "i'll": ['ay1', 'l'], "i'd": ['ay1', 'd'],
+  "you're": ['y', 'ao1', 'r'], "you've": ['y', 'uw1', 'v'], "you'll": ['y', 'uw1', 'l'], "you'd": ['y', 'uw1', 'd'],
+  "we're": ['w', 'iy1', 'r'], "we've": ['w', 'iy1', 'v'], "we'll": ['w', 'iy1', 'l'], "we'd": ['w', 'iy1', 'd'],
+  "they're": ['dh', 'ey1', 'r'], "they've": ['dh', 'ey1', 'v'], "they'll": ['dh', 'ey1', 'l'], "they'd": ['dh', 'ey1', 'd'],
+  "he'll": ['hh', 'iy1', 'l'], "he'd": ['hh', 'iy1', 'd'],
+  "she'll": ['sh', 'iy1', 'l'], "she'd": ['sh', 'iy1', 'd'],
+  "it'll": ['ih1', 't', 'ax', 'l'],
+  "who'll": ['hh', 'uw1', 'l'], "who'd": ['hh', 'uw1', 'd'], "who've": ['hh', 'uw1', 'v'],
+};
+
+const VOICELESS = new Set(['p', 't', 'k', 'f', 'th', 's', 'sh', 'ch', 'hh']);
+
+function contractionPhones(word) {
+  const w = String(word).toLowerCase().replace(/’/g, "'");
+  if (CONTRACTIONS[w]) return CONTRACTIONS[w].slice();
+  if (w.endsWith("n't") && w.length > 3) {
+    let base = w.slice(0, -3);
+    base = ({ ca: 'can', wo: 'will', sha: 'shall', ai: 'am' })[base] || base;
+    return pronWord(base).concat(['n', 't']);
+  }
+  if (w.endsWith("'s") && w.length > 2) {
+    const bp = pronWord(w.slice(0, -2));
+    const last = bp.length ? bp[bp.length - 1].replace(/[012]+$/, '') : '';
+    return bp.concat([VOICELESS.has(last) ? 's' : 'z']);
+  }
+  for (const [suf, ph] of [["'ll", 'l'], ["'re", 'r'], ["'ve", 'v'], ["'d", 'd'], ["'m", 'm']]) {
+    if (w.endsWith(suf) && w.length > suf.length) return pronWord(w.slice(0, -suf.length)).concat([ph]);
+  }
+  return null;
+}
+
 function pronWord(word, nextWord, prevWord) {
   const acro = ACRONYMS[word];
   if (acro) return acro.slice();
   const cw = CASE_WORDS[word];
   if (cw) return cw.slice();
+  if (word.length === 1 && word === word.toUpperCase() && word !== 'I') {
+    const nxt = String(nextWord || '').trim();
+    if (word === 'A' && nxt && !(nxt.length === 1 && nxt === nxt.toUpperCase())) {
+      const ph = enginePhones(nxt.split(/\s+/)[0]);
+      const first = (ph || []).filter((x) => x !== '-');
+      const isVowel = first.length > 0 && VOWELS.has(first[0].replace(/[012]+$/, ''));
+      return isVowel ? ['ey1'] : pronWord('a', nextWord, prevWord);
+    }
+    return letterToken(word.toLowerCase());
+  }
   const w = String(word).toLowerCase().replace(/’/g, "'");
+  if (w.includes("'")) {
+    const cph = contractionPhones(w);
+    if (cph) return cph;
+  }
   const het = HETERO[w];
   if (het) {
     const pv = String(prevWord || '').toLowerCase();
