@@ -157,6 +157,12 @@ class TTS:
         else:
             import numpy as np
             audio = np.concatenate([run(ch) for ch in chunks])
+        # 引擎 RateAdjustment：语音包 INI 中非 100 的音色，引擎会对音频做
+        # 保音高时长伸缩（时长×100/RateAdjustment）。这里用 WSOLA 近似复刻。
+        rate = getattr(self.pack, "rate_adjust", 100) or 100
+        if rate != 100:
+            from .timestretch import wsola
+            audio = wsola(audio, 100.0 / rate)
         if out_path:
             write_wav(audio, out_path)
         return audio

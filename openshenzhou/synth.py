@@ -22,6 +22,9 @@ def split_sentences(ids, sym=None, end_id=END_ID):
         br4_id = sym.get("br4")
         punc_ids = {v for k, v in sym.items() if k.startswith("punc")}
         punc_ids.add(sym.get("punc.", -1))
+        # '/'：多语种前端用��的分隔/收尾符号，视为结构符号，不切开句子
+        if sym.get("/") is not None:
+            punc_ids.add(sym["/"])
         punc_ids.discard(None)
     else:
         bos_id = None; br0_id = None; br4_id = None; punc_ids = set()
@@ -29,7 +32,8 @@ def split_sentences(ids, sym=None, end_id=END_ID):
         # 句尾补 br4：若末尾是 punc token 且前面没有 br4，则插入 br4
         if cur and cur[-1] == end_id:
             j = len(cur) - 2
-            if j >= 0 and cur[j] in punc_ids and br4_id not in cur[max(0, j - 2):j]:
+            if (br4_id is not None and j >= 0 and cur[j] in punc_ids
+                    and br4_id not in cur[max(0, j - 2):j]):
                 cur.insert(j, br4_id)
         if not cur or cur[-1] != end_id:
             cur.append(end_id)
@@ -53,7 +57,7 @@ def split_sentences(ids, sym=None, end_id=END_ID):
                 out.append(_close(cur)); cur = []
                 # 下一句补齐 -bos- br0 前缀
                 if ids[i] != bos_id and bos_id is not None:
-                    cur = [bos_id, br0_id]
+                    cur = [x for x in (bos_id, br0_id) if x is not None]
             continue
     if cur:
         out.append(_close(cur))

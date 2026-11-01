@@ -168,6 +168,35 @@ class VoicePack:
         self.ids = {v: k for k, v in self.symbols.items()}
         self._sessions = None
         self._lang = self._guess_lang()
+        self.rate_adjust = self._read_rate_adjust()
+
+    def _read_rate_adjust(self):
+        """读取语音包 INI 的 VoiceSetting.RateAdjustment（默认 100）。
+
+        引擎实测：=100 时模型输出即最终音频；≠100 时引擎对音频做保音高时长伸缩
+        （时长×100/RateAdjustment），本 SDK 用 WSOLA 近似。
+        """
+        import glob
+        import re as _re
+        try:
+            for f in sorted(glob.glob(os.path.join(self.dir, "*.INI"))):
+                base = os.path.basename(f)
+                if base.lower().startswith("msttsloc"):
+                    continue
+                try:
+                    txt = open(f, encoding="utf-8", errors="replace").read()
+                except OSError:
+                    continue
+                m = _re.search(r"Vo?iceSetting.*?RateAdjustment\s*=\s*(\d+)", txt, _re.S)
+                if not m:
+                    m = _re.search(r"RateAdjustment\s*=\s*(\d+)", txt)
+                if m:
+                    v = int(m.group(1))
+                    if 1 <= v <= 1000:
+                        return v
+        except Exception:
+            pass
+        return 100
 
     def _load_symbols(self, path):
         m = {}
