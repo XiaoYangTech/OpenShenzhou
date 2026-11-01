@@ -127,6 +127,11 @@ class TTS:
             self._proj = False
         return self._proj
 
+    def word_events(self, text, speed=1.0):
+        """复刻引擎 WordBoundary 事件（audio_ticks / text_offset / text_length / word / type）"""
+        from .events import word_events as _we
+        return _we(self, text, speed=speed)
+
     def speak(self, text, out_path=None, speed=1.0):
         """文本 → 24kHz 音频（返回 numpy 数组，可选写 WAV）
 

@@ -910,7 +910,7 @@ def _parse(text):
             continue
         if ch == "…":
             rest = text[i + 1:].strip()
-            events.append(("ellipsis_pause" if rest else "end_ellipsis", None))
+            events.append(("ellipsis_pause" if rest else "end_ellipsis", "punc…"))
             i += 1
             continue
         if ch in END_PUNCT:
@@ -1372,7 +1372,7 @@ def _expand(events):
         elif kind == "br2":
             out.append(("br2", None))
         elif kind in ("ellipsis_pause", "end_ellipsis"):
-            out.append((kind, None))
+            out.append((kind, val))
         elif kind == "pause":
             out.append(("pause", val))
         elif kind == "end":
@@ -1523,12 +1523,12 @@ def text_to_ids(text, sym, lexicon=None):
             first = False
         elif kind == "ellipsis_pause":
             ids.append(sym.get("br3", 0))
-            ids.append(sym.get("punc...", sym.get("punc.", 0)))
+            ids.append(sym.get(item[1] or "punc...", sym.get("punc.", 0)))
             ids.append(sym.get("br0", 0))
             first = True
         elif kind == "end_ellipsis":
             ids.append(sym["br4"])
-            ids.append(sym.get("punc...", sym.get("punc.", 0)))
+            ids.append(sym.get(item[1] or "punc...", sym.get("punc.", 0)))
             ids.append(sym.get("punc.", 0))
             ids.append(sym[END])
             ended = True
