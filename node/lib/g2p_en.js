@@ -644,7 +644,14 @@ function parse(text) {
       events.push(['phones', ['d', 'ih', '-', 'v', 'ay1', '-', 'd', 'ih', 'd', '-', 'b', 'ay2']]);
       i += 1; continue;
     }
-    if (ch === '/') { events.push(['slash', null]); i += 1; continue; }
+    if (ch === '/') {
+      if (i > 0 && i + 1 < n && /[A-Za-z]/.test(text[i - 1]) && /[A-Za-z]/.test(text[i + 1])
+          && (i < 2 || !/[A-Za-z]/.test(text[i - 2]))
+          && (i + 2 >= n || !/[A-Za-z]/.test(text[i + 2]))) {
+        i += 1; continue;
+      }
+      events.push(['slash', null]); i += 1; continue;
+    }
     if (ch === '=') { events.push(['phones', ['iy1', '-', 'k', 'w', 'ax', 'l', 'z']]); i += 1; continue; }
     if (ch === '@') { events.push(['w', 'at']); i += 1; continue; }
     if (ch === '"') { events.push(['br2', null]); i += 1; continue; }
