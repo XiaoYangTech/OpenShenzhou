@@ -881,6 +881,12 @@ def _parse(text):
             i += 1
             continue
         if ch == "/":
+            # 单字母/单字母（A/B、I/O）：原版直接按两个字母读，不读 "slash"
+            if (i > 0 and i + 1 < n and text[i - 1].isalpha() and text[i + 1].isalpha()
+                    and (i < 2 or not text[i - 2].isalpha())
+                    and (i + 2 >= n or not text[i + 2].isalpha())):
+                i += 1
+                continue
             events.append(("slash", None))
             i += 1
             continue
