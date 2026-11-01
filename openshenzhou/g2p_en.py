@@ -298,10 +298,12 @@ def ordinal_words(n):
         w = [ONES[q], "hundred"]
         if r:
             w += (["and"] + ordinal_words(r)) if r < 100 else ordinal_words(r)
+        else:
+            w[-1] = "hundredth"
         return w
     base = cardinal_words(n)
     if n % 100 == 0:
-        return base
+        return base[:-1] + [base[-1] + "th"]
     return base[:-1] + [ordinal_words(n % 100)[-1]]
 
 
@@ -504,7 +506,7 @@ def _currency_words(sym, numstr):
         return events
     n = int(numstr.replace(",", ""))
     if sym in ("¥", "￥") and n:
-        return [("w", w) for w in cardinal_words(n)] + [("phones", ["y", "uw", "-", "aa1", "n"])]
+        return [("w", w) for w in cardinal_words(n) + ["yen"]]
     return [("w", w) for w in cardinal_words(n) + [plural(n, major)]]
 
 
@@ -583,10 +585,12 @@ NUM_PATTERNS = [
     ("ordinal", re.compile(r"\d+(?:st|nd|rd|th)")),
     ("percent", re.compile(r"\d+(?:\.\d+)?%")),
     ("decimal", re.compile(r"\d*\.\d+")),
+    ("ordinal", re.compile(r"\d{1,3}(?:,\d{3})+(?:st|nd|rd|th)")),
     ("thousands", re.compile(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?")),
     ("dashgroup", re.compile(r"\d{2}(?:-[0-9A-Za-z]{2}){2,}")),
     ("range", re.compile(r"\d+(?:-\d+)+")),
     ("mixed", re.compile(r"\d+\s+\d+\s*/\s*\d+")),
+    ("date_my", re.compile(r"\d{1,2}/\d{4}")),
     ("fraction", re.compile(r"\d+\s*/\s*\d+")),
     ("currency", re.compile(r"[$€£¥￥]\s*\d[\d,]*(?:\.\d+)?")),
     ("number", re.compile(r"\d+")),
@@ -619,6 +623,8 @@ def _parse(text):
                 events.append(("currency", (sym, num)))
             elif kind in ("date", "date2"):
                 events.append(("date", tok))
+            elif kind == "date_my":
+                events.append(("date_my", tok))
             elif kind == "time":
                 events.append(("time", tok))
             elif kind == "ratio":
@@ -880,9 +886,20 @@ def _parse(text):
             events.append(("phones", ["d", "ih", "-", "v", "ay1", "-", "d", "ih", "d", "-", "b", "ay2"]))
             i += 1
             continue
+        if ch in "–—":
+            prev_kind = events[-1][0] if events else None
+            jj = i + 1
+            while jj < n and text[jj] == " ":
+                jj += 1
+            if prev_kind in ("number", "decimal", "percent", "thousands", "currency") and jj < n and text[jj].isdigit():
+                events.append(("w", "to"))
+            else:
+                events.append(("pause", "punc,"))
+            i += 1
+            continue
         if ch == "/":
             # 单字母/单字母（A/B、I/O）：原版直接按两个字母读，不读 "slash"
-            if (i > 0 and i + 1 < n and text[i - 1].isalpha() and text[i + 1].isalpha()
+            if (i > 0 and i + 1 < n and text[i - 1].isupper() and text[i + 1].isupper()
                     and (i < 2 or not text[i - 2].isalpha())
                     and (i + 2 >= n or not text[i + 2].isalpha())):
                 i += 1
@@ -922,6 +939,9 @@ def _parse(text):
 def _expand_number_token(tok, kind, next_kind):
     t = tok.replace(",", "")
     low = tok.lower()
+    if kind == "date_my":
+        a, b = t.split("/")
+        return [("w", MONTH_NAMES[int(a) - 1])] + [("w", w) for w in year_words(int(b))]
     if kind == "date":
         sep = re.search(r"[/.-]", t).group(0)
         a, b, c = re.split(r"[/.-]", t)
@@ -969,8 +989,8 @@ def _expand_number_token(tok, kind, next_kind):
             ev += [("w", w) for w in digits_words(p)]
         return ev
     if kind == "ordinal":
-        m = re.match(r"(\d+)", tok)
-        return [("w", w) for w in ordinal_words(int(m.group(1)))]
+        digits = re.sub(r"\D", "", tok)
+        return [("w", w) for w in ordinal_words(int(digits))]
     if kind == "decimal":
         if t.startswith("."):
             a, b = "", t[1:]
@@ -1103,7 +1123,7 @@ def _expand(events):
             if "year" in prev_words:
                 out.extend([("w", w) for w in year_words(int(val.replace(",", "")))])
                 continue
-        if kind in ("number", "date", "time", "ratio", "version", "ordinal",
+        if kind in ("number", "date", "date_my", "time", "ratio", "version", "ordinal",
                     "decimal", "thousands", "range", "phone", "alnum", "fraction",
                     "mixed", "ip", "dashgroup", "groupnum"):
             ev = _expand_number_token(val, kind, nxt[0] if nxt else None)
@@ -1124,6 +1144,20 @@ def _expand(events):
                         uw = ["minutes"]
                     else:
                         uw = None
+                nxt3 = events[idx + 2] if idx + 2 < len(events) else None
+                nxt4 = events[idx + 3] if idx + 3 < len(events) else None
+                if (raw_u.lower() == "m" and nxt3 and nxt3[0] == "slash"
+                        and nxt4 and nxt4[0] == "word"):
+                    out.append(("phones", _letter_token("m")))
+                    events[idx + 1] = ("consumed", None)
+                    continue
+                if (raw_u.lower() == "km" and nxt3 and nxt3[0] == "slash"
+                        and nxt4 and nxt4[0] == "word" and nxt4[1].lower() == "h"):
+                    out.extend([("w", "kilometers"), ("w", "per"), ("w", "hour")])
+                    events[idx + 1] = ("consumed", None)
+                    events[idx + 2] = ("consumed", None)
+                    events[idx + 3] = ("consumed", None)
+                    continue
                 if len(raw_u) == 1 and raw_u.isupper():
                     uw = None  # 5G / 4K: 引擎读作字母，而不是单位
                 if uw and kind in ("number", "decimal", "thousands", "version"):
@@ -1138,8 +1172,8 @@ def _expand(events):
                     out.extend([("w", w) for w in words])
                     events[idx + 1] = ("consumed", None)
         elif kind == "ordinal":
-            m = re.match(r"(\d+)", val)
-            out.extend([("w", w) for w in ordinal_words(int(m.group(1)))])
+            digits = re.sub(r"\D", "", val)
+            out.extend([("w", w) for w in ordinal_words(int(digits))])
         elif kind == "currency":
             sym, num = val
             if sym.lower() in CURRENCY:
