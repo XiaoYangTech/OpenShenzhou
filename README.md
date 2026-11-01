@@ -68,7 +68,28 @@ en.speak("Hello world.", "b.wav", speed=1.3)
 - **同时加载多个语音包**：new 多个 `TTS(目录)` 实例即可，各自独立；
 - **指定发音人**：选择对应语音包目录（本机共 23 个音色包）；
 - **语速**：`speed` 参数（模型内调节；实测 0.7/1.0/1.3 时长约 5.08s/3.48s/2.71s）；
+- **词边界事件**：`tts.word_events(text)` 返回与官方引擎一致的 WordBoundary 事件
+  （`audio_ticks` / `duration_ticks` / `text_offset` / `text_length` / `word` / `type`），
+  英文实测 19/19 案例逐字段一致；
 - **无 SAPI、无服务器**：纯本地库 + CLI，不需要注册 COM/SAPI，也不含 HTTP 服务。
+
+### 词边界事件（WordBoundary）
+
+```python
+from openshenzhou import TTS
+
+tts = TTS(r"<语音包目录>")
+for e in tts.word_events("Hello world. How are you?"):
+    print(e["audio_ticks"], e["text_offset"], e["text_length"], e["word"])
+
+# 500000 0 5 Hello
+# 4500000 6 5 world
+# 11625000 13 3 How
+# ...
+```
+
+事件字段与官方嵌入式 SDK 一致：`audio_ticks`（100ns）、`duration_ticks`（引擎实测恒为 0）、
+`text_offset`、`text_length`、`word`、`type`。
 
 ## 自检
 
