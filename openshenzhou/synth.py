@@ -17,6 +17,9 @@ def split_sentences(ids, sym=None, end_id=END_ID):
     也可能是 br4 + 标点后直接接下一句（英文单流），两种都要拆开。
     """
     if sym:
+        # 每个语音包的 '~' id 可能不同；部分语音包（如 Francisca pt-BR）符号表里没有 '~'，
+        # 此时整段 ids 就是一个序列，不做切分也不补 END。
+        end_id = sym.get("~")
         bos_id = sym.get("-bos-")
         br0_id = sym.get("br0")
         br4_id = sym.get("br4")
@@ -29,6 +32,8 @@ def split_sentences(ids, sym=None, end_id=END_ID):
     else:
         bos_id = None; br0_id = None; br4_id = None; punc_ids = set()
     def _close(cur):
+        if end_id is None:
+            return cur
         # 句尾补 br4：若末尾是 punc token 且前面没有 br4，则插入 br4
         if cur and cur[-1] == end_id:
             j = len(cur) - 2

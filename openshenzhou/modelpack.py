@@ -199,13 +199,15 @@ class VoicePack:
         return 100
 
     def _load_symbols(self, path):
+        # 部分语音包（Conrad/Neerja/Prabhat）phones.txt 里同名符号出现多次（不同语言段），
+        # 引擎使用**第一次**出现的 id（实测 Conrad: h=75 而非 134），故用 setdefault。
         m = {}
         for line in open(path, encoding="utf-8", errors="replace"):
             line = line.strip()
             if not line:
                 continue
             name, idx = line.rsplit(":", 1)
-            m[name] = int(idx)
+            m.setdefault(name, int(idx))
         return m
 
     _LANG_TAGS = (("zh-cn", "zh"), ("en-us", "en"), ("en-gb", "en"),

@@ -94,14 +94,27 @@ def _resolve_names_for(names, sym):
         for alt in (x.rstrip("0123456789"), x.replace("hh", "h"), x.replace("ss", "s")):
             if alt in sym:
                 cand = sym[alt]; break
-        out.append(cand if cand is not None else sym.get("padding", 0))
+        # 引擎对未映射音素使用 '-' 占位（实测 SunHi: id 11='-'），而不是 'padding'
+        if cand is None:
+            cand = sym.get("-", sym.get("&", sym.get("padding", 0)))
+        out.append(cand if cand is not None else 0)
     return out
 
 
 def text_to_ids(text, sym, lexicon, syllables):
-    from .symbols import resolve_table, resolve_lexicon
+    from .symbols import resolve_table, resolve_seq, is_name_table
     syllables = resolve_table(syllables, sym)
-    lexicon = resolve_lexicon(lexicon, sym)
+    # 音节分隔符名：优先 '&'；部分音色包（SunHi）没有 '&'，用 '-' 充当分隔符。
+    # 直接逐条解析（不走 resolve_lexicon 缓存，避免不同 dict 的 id 复用问题）
+    sep_name = "&" if "&" in sym else ("-" if "-" in sym else None)
+    if sep_name and sep_name != "&" and is_name_table(lexicon):
+        lexicon = {
+            k: resolve_seq([sep_name if x == "&" else x for x in v], sym)
+            for k, v in lexicon.items()
+        }
+    else:
+        from .symbols import resolve_lexicon
+        lexicon = resolve_lexicon(lexicon, sym)
     amp = sym.get("&")
     slash = sym.get("/")
     tilde = sym.get("~")
@@ -139,15 +152,21 @@ def text_to_ids(text, sym, lexicon, syllables):
             groups = []
             raw = lexicon.get(w)
             if raw:
-                toks = _resolve_names_for(list(raw), sym)
-                delim = sym.get("&")
+                # 音节分隔符：优先 '&'，部分音色包（SunHi）用 '-' 充当分隔符
+                sep = sym.get("&")
+                if sep is None:
+                    sep = sym.get("-")
+                toks = []
+                for x in list(raw):
+                    if x == "&" or (sep is not None and x == sep):
+                        toks.append(sep)
+                    else:
+                        toks.extend(_resolve_names_for([x], sym))
                 cur = []
                 for x in toks:
-                    if x == delim:
+                    if sep is not None and x == sep:
                         if cur: groups.append(cur)
                         cur = []
-                    elif x in (sym.get("-"), delim):
-                        continue
                     else:
                         cur.append(x)
                 if cur: groups.append(cur)
