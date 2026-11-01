@@ -22,6 +22,41 @@ const CMU = loadJson(path.join(DATA, 'cmudict_en.json'), {});
 const HETERO = loadJson(path.join(DATA, 'lexicon_en_heteronyms.json'), {});
 const ACRONYMS = loadJson(path.join(DATA, 'lexicon_en_acronyms.json'), {});
 const CASE_WORDS = loadJson(path.join(DATA, 'lexicon_en_case.json'), {});
+const VARIANT_LEX = {};
+function loadVariantLexicon(variant) {
+  if (variant !== 'gb' && variant !== 'in') return null;
+  if (VARIANT_LEX[variant]) return VARIANT_LEX[variant];
+  const base = {};
+  for (const k of Object.keys(ISO)) base[k] = ISO[k];
+  const p = path.join(DATA, 'lexicon_en_' + variant + '.json');
+  if (fs.existsSync(p)) {
+    const extra = loadJson(p, {});
+    for (const k of Object.keys(extra)) base[k] = extra[k];
+  }
+  VARIANT_LEX[variant] = base;
+  return base;
+}
+let ACTIVE_LEX = null;
+let ACTIVE_VARIANT = '';
+const VARIANT_FUNCTION_WORDS = new Set(('a an the and of to for in on at by with from as or but not no so ' +
+  'do does did has have had is are was were be been am being i you he she we they it me him her us them ' +
+  'my your his its our their this that these those there here who what which when where why how ' +
+  'will would can could shall should may might must').split(' '));
+const ALIAS_IN = { w: 'vw', v: 'vw', d: 'dr', t: 'tr', er: 'ah', dh: 'd', ax: 'ah' };
+function symId(sym, ph, variant) {
+  const direct = sym[ph];
+  if (direct !== undefined) return direct;
+  const base = String(ph || '').replace(/[012]+$/, '');
+  if (variant === 'in') {
+    const alt = ALIAS_IN[base];
+    if (alt !== undefined && sym[alt] !== undefined) return sym[alt];
+    if (sym[base] !== undefined) return sym[base];
+  } else if (variant === 'gb') {
+    if (sym[base] !== undefined) return sym[base];
+  }
+  return sym['<pad>'] !== undefined ? sym['<pad>'] : 0;
+}
+
 function acronymPhones(letters) {
   const ph = ACRONYMS[letters] || ACRONYMS[letters.toUpperCase()];
   if (ph) return ph.slice();
@@ -248,6 +283,7 @@ function romanValue(w) {
 
 function enginePhones(word) {
   const w = String(word).toLowerCase().replace(/’/g, "'");
+  if (ACTIVE_LEX && ACTIVE_LEX[w] && ACTIVE_LEX[w].length) return ACTIVE_LEX[w].slice();
   for (const src of [CTX, ISO, VOCAB]) {
     const v = src[w];
     if (v && v.length) return v.slice();
@@ -343,6 +379,11 @@ function pronWord(word, nextWord, prevWord) {
     return letterToken(word.toLowerCase());
   }
   const w = String(word).toLowerCase().replace(/’/g, "'");
+  // en-GB/en-IN 引擎实测词表优先（功能词弱读形式除外，见 Python 版说明）
+  if (ACTIVE_LEX && !w.includes("'") && !VARIANT_FUNCTION_WORDS.has(w)) {
+    const lv = ACTIVE_LEX[w];
+    if (lv && lv.length) return lv.slice();
+  }
   if (w.includes("'")) {
     const cph = contractionPhones(w);
     if (cph) return cph;
@@ -368,6 +409,9 @@ function pronWord(word, nextWord, prevWord) {
     if (HETERO_NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
   }
   if (w === 'the') {
+    if (ACTIVE_VARIANT === 'in' && ACTIVE_LEX && ACTIVE_LEX['the'] && ACTIVE_LEX['the'].length) {
+      return ACTIVE_LEX['the'].slice();
+    }
     const nxt = String(nextWord || '').toLowerCase();
     const nxtPh = nxt ? enginePhones(nxt) : null;
     let isVowel;
@@ -1179,7 +1223,22 @@ function preprocess(text) {
   return text;
 }
 
-function textToIds(text, sym) {
+function textToIds(text, sym, lexicon, variant) {
+  const prevLex = ACTIVE_LEX;
+  const prevVar = ACTIVE_VARIANT;
+  if ((variant === 'gb' || variant === 'in') && lexicon) {
+    ACTIVE_LEX = lexicon;
+    ACTIVE_VARIANT = variant;
+  }
+  try {
+    return _textToIdsImpl(text, sym, variant || '');
+  } finally {
+    ACTIVE_LEX = prevLex;
+    ACTIVE_VARIANT = prevVar;
+  }
+}
+
+function _textToIdsImpl(text, sym, variant) {
   text = preprocess(String(text || ''));
   const raw = parse(text);
   const ev = expand(raw);
@@ -1222,8 +1281,8 @@ function textToIds(text, sym) {
       const needBr1 = !first && !(i > 0 && flat[i - 1][0] === 'br2');
       if (needBr1 && sym['br1'] !== undefined) ids.push(sym['br1']);
       for (const ph of phones) {
-        if (ph === '-') ids.push(sym['-'] !== undefined ? sym['-'] : 0);
-        else ids.push(sym[ph] !== undefined ? sym[ph] : (sym['<pad>'] !== undefined ? sym['<pad>'] : 0));
+        if (ph === '-') ids.push(symId(sym, '-', variant));
+        else ids.push(symId(sym, ph, variant));
       }
       first = false;
     } else if (kind === 'pause_plain') {
@@ -1240,6 +1299,11 @@ function textToIds(text, sym) {
       first = true;
     } else if (kind === 'pause') {
       if (first) continue;
+      if (variant === 'in') {
+        if (sym['br3'] !== undefined) ids.push(sym['br3']);
+        first = true;
+        continue;
+      }
       ids.push(sym['br3']);
       if (item[1] && sym[item[1]] !== undefined) ids.push(sym[item[1]]);
       if (sym['br0'] !== undefined) ids.push(sym['br0']);
@@ -1257,6 +1321,17 @@ function textToIds(text, sym) {
       ended = true;
       first = true;
     } else if (kind === 'end') {
+      if (variant === 'in') {
+        if (sym['br4'] !== undefined) ids.push(sym['br4']);
+        if (sym[END] !== undefined) ids.push(sym[END]);
+        let jx2 = i + 1;
+        if (jx2 < flat.length) {
+          if (sym[BOS] !== undefined) ids.push(sym[BOS]);
+          if (sym['br0'] !== undefined) ids.push(sym['br0']);
+          first = true; ended = false; i = jx2 - 1; continue;
+        }
+        ended = true; first = true; i = jx2 - 1; continue;
+      }
       ids.push(sym['br4']);
       ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
       let jx = i + 1;
@@ -1285,18 +1360,18 @@ function textToIds(text, sym) {
       const needBr1 = !first && !(i > 0 && flat[i - 1][0] === 'br2');
       if (needBr1 && sym['br1'] !== undefined) ids.push(sym['br1']);
       for (const ph of item[1]) {
-        if (ph === '-') ids.push(sym['-'] !== undefined ? sym['-'] : 0);
-        else ids.push(sym[ph] !== undefined ? sym[ph] : (sym['<pad>'] !== undefined ? sym['<pad>'] : 0));
+        if (ph === '-') ids.push(symId(sym, '-', variant));
+        else ids.push(symId(sym, ph, variant));
       }
       first = false;
     }
   }
   if (!ended) {
-    ids.push(sym['br4']);
-    if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
-    ids.push(sym[END]);
+    if (sym['br4'] !== undefined) ids.push(sym['br4']);
+    if (variant !== 'in' && sym['punc.'] !== undefined) ids.push(sym['punc.']);
+    if (sym[END] !== undefined) ids.push(sym[END]);
   }
   return ids;
 }
 
-module.exports = { textToIds };
+module.exports = { textToIds, loadVariantLexicon };

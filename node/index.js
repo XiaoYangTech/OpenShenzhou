@@ -56,14 +56,27 @@ class TTS {
     this._g2p = null;
   }
 
+  _detectEnVariant() {
+    const d = String(this.pack.dir || '').toLowerCase();
+    if (d.includes('en-gb')) return 'gb';
+    if (d.includes('en-in')) return 'in';
+    const syms = this.pack.symbols || {};
+    const keys = Object.keys(syms);
+    if (keys.some((k) => k.endsWith('_hin')) || syms['vw'] !== undefined) return 'in';
+    if (syms['ir1'] !== undefined) return 'gb';
+    return '';
+  }
+
   _g2pFn() {
     if (this._g2p) return this._g2p;
     if (this.lang === 'zh') {
       const { textToIds } = require('./lib/g2p_zh');
       this._g2p = (text) => textToIds(text, this.pack.symbols, this.pack.dir);
     } else if (this.lang === 'en') {
-      const { textToIds } = require('./lib/g2p_en');
-      this._g2p = (text) => textToIds(text, this.pack.symbols);
+      const { textToIds, loadVariantLexicon } = require('./lib/g2p_en');
+      const variant = this._detectEnVariant();
+      const lex = loadVariantLexicon(variant);
+      this._g2p = (text) => textToIds(text, this.pack.symbols, lex, variant);
     } else if (['es', 'fr', 'de', 'pt'].includes(this.lang)) {
       const { textToIds } = require('./lib/g2p_latin');
       this._g2p = (text) => textToIds(text, this.pack.symbols, this.lang);
