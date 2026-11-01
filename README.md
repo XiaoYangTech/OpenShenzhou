@@ -82,7 +82,7 @@ Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
 | **SSML prosody（rate / pitch / volume）** | 引擎支持 SSML 韵律标签：volume 为线性增益、rate 为重新合成（时长 ∝ 1/(1+rate)，并非时间伸缩）、pitch 为模型内音高特征；当前 SDK 仅提供 `speed` 参数（时长接近、非逐采样一致），SSML 解析与逐采样复刻待后续 |
 | **词边界事件** | Python SDK `word_events` 已复刻英文（19/19 逐字段一致）；中文事件与 Node 事件接口待后续版本 |
 | **中文混合 token**（如 `5G`、`MP3`、`iPhone15`） | 引擎使用中文混合语（mixlingual）专用读音；当前 SDK 对中英混合 token 的读音与引擎存在差异，相关资源解析仍在进行 |
-| **英式/印式英语变体** | 已支持：用引擎实测采集了 en-GB / en-IN 专用发音词表（各 4.85 万词条），en-GB 的 `hello→h ax - l ow1`、en-IN 的 `world→vw ah r l dr` 等口音读法、以及 en-IN 的标点约定（逗号→br3、句末无 punc、Prabhat 无结构符）均已复刻 |
+| **英式/印式英语变体** | 已支持：用引擎实测采集了 en-GB / en-IN 专用发音词表（各 4.85 万词条，含 51 个缩写读法），en-GB 的 `hello→h ax - l ow1`、en-IN 的 `world→vw ah r l dr` 等口音读法、功能词读法（`the→[d,ah]`、`to→[tr,uw]` 等）以及 en-IN 的标点约定（逗号→br3、句末无 punc、Prabhat 无结构符）均已复刻；抽样 20 句实测：en-GB 10/10、en-IN 10/10 逐采样一致（Prabhat 长句因解码分块调度约 0.995） |
 | **12 个音色包的语速调整** | 语音包 INI 中 `RateAdjustment≠100` 的 12 个音色引擎会对音频做整体保音高时长伸缩（时长 ≈ 模型时长×100/RateAdjustment，音高不变）。SDK 用 WSOLA 近似：**时长/音高与引擎一致**，波形非逐采样一致（引擎的伸缩实现仍在逆向：已确认引擎输出是"1:1 复制原始音频片段 + 短交叠过渡"的结构，且喂给模型的 speed_ratios 恒为 1.0） |
 
 ## 仓库结构（本分支：研究成果与工具）
