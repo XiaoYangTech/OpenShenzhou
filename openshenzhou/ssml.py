@@ -150,10 +150,12 @@ def _sinc_resample(x, ratio, taps=24):
     frac = t - idx
     out = np.zeros(n_out, dtype=np.float64)
     norm = np.zeros(n_out, dtype=np.float64)
+    # 降采样（ratio>1）时按 1/ratio 收缩截止频率做抗混叠
+    cutoff = 1.0 if ratio <= 1.0 else 1.0 / ratio
     for kk in k:
         pos = idx + int(kk)
         d = frac - kk
-        w = np.sinc(d) * (0.5 + 0.5 * np.cos(np.pi * d / half))
+        w = cutoff * np.sinc(cutoff * d) * (0.5 + 0.5 * np.cos(np.pi * d / half))
         valid = (pos >= 0) & (pos < len(x))
         out[valid] += x[pos[valid]] * w[valid]
         norm[valid] += w[valid]
@@ -161,13 +163,24 @@ def _sinc_resample(x, ratio, taps=24):
     return (out / norm).astype(np.float32)
 
 
+def _engine_resample_step(f28, sr=24000):
+    """引擎 b0264 的整数化重采样步长：esi=(int)(sr/f28)，while(>0x4000){esi>>=1;edi>>=1}，
+    实际输入步长 = edi/esi（输出长度 = 输入/步长）"""
+    edi = sr
+    esi = int(np.float32(sr) / np.float32(f28))
+    while esi > 0x4000 or edi > 0x4000:
+        esi >>= 1
+        edi >>= 1
+    return float(edi) / float(esi)
+
+
 def _pitch_shift_engine(audio, f28, rate_factor):
-    """引擎音高链路：先 PSOLA 以 rate/f28 变速，再按 f28 重采样（时长还原、音高 ×f28）"""
+    """引擎音高链路：先 PSOLA 以 rate/f28 变速，再按引擎整数比率重采样（时长还原、音高 ×f28）"""
     if len(audio) == 0:
         return audio
     from .rateadjust import adjust_float
     stretched = adjust_float(audio, float(np.float32(rate_factor) / np.float32(f28)))
-    return _sinc_resample(stretched, f28)
+    return _sinc_resample(stretched, _engine_resample_step(f28))
 
 
 def _word_starts(tts, text):
