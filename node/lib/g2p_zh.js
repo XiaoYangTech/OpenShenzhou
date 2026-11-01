@@ -536,8 +536,26 @@ function textToIdsSentence(text, sym, pkgDir) {
     return pys.map((py) => sylToSymbols(py).map((x) => (sym[x] !== undefined ? sym[x] : (sym['<pad>'] || 0))));
   };
 
+  // 数字读法跨词变调：一/不 规则（第 后的一保持一声）
+  const numSandhi = (pys, nextTone) => {
+    const out = pys.slice();
+    const toneOf = (p) => { const t = p[p.length - 1]; return /[0-9]/.test(t) ? Number(t) : 5; };
+    for (let i = 0; i < out.length; i++) {
+      const base = out[i].replace(/[0-9]+$/, '');
+      const nt = i + 1 < out.length ? toneOf(out[i + 1]) : (nextTone || 5);
+      const prev = i > 0 ? out[i - 1].replace(/[0-9]+$/, '') : '';
+      if (base === 'yi' && toneOf(out[i]) === 1 && prev !== 'di') {
+        if (nt === 4) out[i] = 'yi2';
+        else if (nt === 1 || nt === 2 || nt === 3) out[i] = 'yi4';
+      } else if (base === 'bu' && toneOf(out[i]) === 4 && nt === 4) {
+        out[i] = 'bu2';
+      }
+    }
+    return out;
+  };
+
   // 数字串专用：额外处理「一」的变调（和 pypinyin 短语词典一致）
-  const pinyinGroupsNum = (cn) => {
+  const pinyinGroupsNum = (cn, nextTone) => {
     // 去掉末尾量词（年/月/日/点/元/分/秒）后查表，量词单独用字表
     let core = cn, tail = '';
     while (core.length && '年月日点元分秒'.includes(core[core.length - 1])) {
@@ -547,12 +565,23 @@ function textToIdsSentence(text, sym, pkgDir) {
     let pys = numPinyin(core);
     for (const ch of tail) pys.push(PINYIN[ch] || 'a1');
     pys = applySandhi(pys);
+    pys = numSandhi(pys, nextTone);
     return pys.map((py) => sylToSymbols(py).map((x) => (sym[x] !== undefined ? sym[x] : (sym['<pad>'] || 0))));
   };
 
-  for (const seg of segs) {
+  for (let segIdx = 0; segIdx < segs.length; segIdx++) {
+    const seg = segs[segIdx];
     if (seg.kind === 'n') {
-      const groups = pinyinGroupsNum(seg.v);
+      let nextTone = null;
+      const nseg = segs[segIdx + 1];
+      if (nseg && nseg.kind === 't') {
+        const nch = Array.from(nseg.v).find((c) => c >= '一' && c <= '鿿');
+        if (nch && PINYIN[nch]) {
+          const t = PINYIN[nch][PINYIN[nch].length - 1];
+          nextTone = /[0-9]/.test(t) ? Number(t) : 5;
+        }
+      }
+      const groups = pinyinGroupsNum(seg.v, nextTone);
       if (groups.length) emitGroups(groups);
       continue;
     }
