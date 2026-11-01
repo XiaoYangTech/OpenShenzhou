@@ -186,6 +186,7 @@ function tnSymbols(text) {
     (m, h, mi) => parseInt(mi, 10) ? h + '点' + mi + '分' : h + '点');
   const rules = [['℃', '摄氏度'], ['℉', '华氏度'], ['～', '至'], ['×', '乘以'], ['÷', '除以'], ['±', '正负']];
   for (const [a, b] of rules) text = text.split(a).join(b);
+  text = text.replace(/\d{1,3}(?:,\d{3})+/g, (m) => readDigits(m.replace(/,/g, '')));
   return text;
 }
 
@@ -199,7 +200,13 @@ function normalizeSegments(text) {
     if (m.index > pos) segs.push({ kind: 't', v: text.slice(pos, m.index) });
     let endp = m.index + m[0].length;
     if (m[1]) {
-      segs.push({ kind: 'n', v: readDigitSeq(m[1]) + '年' });
+      const rest = text.slice(endp);
+      if (/^\d{1,2}月/.test(rest)) {
+        segs.push({ kind: 'n', v: readDigitSeq(m[1]) + '年' });
+      } else {
+        segs.push({ kind: 't', v: readDigitSeq(m[1]) });
+        segs.push({ kind: 't', v: '年' });
+      }
     } else if (m[3] !== undefined) {
       let txt = readDigits(m[3]) + '点' + readDigitSeq(m[4]);
       while (endp < text.length && '点元年分秒'.includes(text[endp])) { txt += text[endp]; endp += 1; }
@@ -212,8 +219,11 @@ function normalizeSegments(text) {
       segs.push({ kind: 'n', v: readDigits(m[7]) + m[8] });
     } else {
       let txt = readDigits(m[9]);
-      while (endp < text.length && '点元分秒'.includes(text[endp])) { txt += text[endp]; endp += 1; }
-      segs.push({ kind: 'n', v: txt });
+      while (endp < text.length && '点元分秒'.includes(text[endp])) {
+        txt += text[endp]; endp += 1;
+        if (text[endp - 1] === '分' && endp < text.length && text[endp] === '钟') { txt += '钟'; endp += 1; }
+      }
+      segs.push({ kind: txt.endsWith('分钟') ? 't' : 'n', v: txt });
     }
     pos = endp;
     NUM_RE.lastIndex = endp;
