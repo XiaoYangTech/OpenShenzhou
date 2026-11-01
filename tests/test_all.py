@@ -101,6 +101,24 @@ def main():
         check("%s 音频长度（%.2f 秒）" % (lang, len(audio) / 24000.0), len(audio) > 4800)
         check("%s 音频非静音" % lang, float(np.abs(audio).max()) > 0.05)
 
+    print("== 3b. SSML 冒烟 ==")
+    if "en" in tts:
+        import numpy as _np
+        t = tts["en"]
+        ns = 'xmlns="http://www.w3.org/2001/10/synthesis"'
+        base = _np.asarray(t.speak_ssml('<speak %s>Hello world.</speak>' % ns))
+        check("SSML 基础合成", len(base) > 4800)
+        loud = _np.asarray(t.speak_ssml('<speak %s><prosody volume="80">Hello world.</prosody></speak>' % ns))
+        rms = lambda x: float(_np.sqrt((x ** 2).mean()))
+        ratio = rms(loud) / (rms(base) + 1e-9)
+        check("SSML volume=80 增益 ≈0.5623", abs(ratio - 0.5623) < 0.02, "实际 %.4f" % ratio)
+        slow = _np.asarray(t.speak_ssml('<speak %s><prosody rate="-20%%">Hello world.</prosody></speak>' % ns))
+        check("SSML rate=-20% 时长 ×1.25", abs(len(slow) / len(base) - 1.25) < 0.03,
+              "实际 %.4f" % (len(slow) / len(base)))
+        brk = _np.asarray(t.speak_ssml('<speak %s>Hello<break time="500ms"/>world.</speak>' % ns))
+        check("SSML break=500ms 插入 12000 采样", abs((len(brk) - len(base)) - 12000) < 600,
+              "实际差 %d" % (len(brk) - len(base)))
+
     if not a.skip_node and os.path.exists(os.path.join(ROOT, "node", "node_modules")):
         print("== 4. Node≡Python G2P 一致 ==")
         script = os.path.join(os.environ.get("TEMP", "."), "os_node_ids.js")

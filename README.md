@@ -13,6 +13,7 @@
 
 - **纯本地 / 跨平台**：Python + onnxruntime，Windows / Linux / macOS 都能跑；
 - **8 种语言、23 个音色包**：中、英（含英式/印式）、日、韩、西、法、德、葡；
+- **SSML**：支持 `<speak>` / `<prosody volume|rate|pitch>` / `<break>`（volume 逐采样一致，rate 时长一致、pitch/break 近似）；
   **23 个音色包在自然语速（RateAdjustment=100）下与引擎逐采样一致**；
   其中 12 个音色包引擎会做 `RateAdjustment` 保音高变速，SDK 用 WSOLA 近似（时长/音高一致，波形非逐采样一致），详见 main 分支「已知差异」；
 - **逐采样一致**：与官方引擎音频最大绝对误差 ~1e-6、皮尔逊相关 1.0000000；

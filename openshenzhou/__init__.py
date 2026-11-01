@@ -99,6 +99,22 @@ class TTS:
             return (text_to_ids, self.pack.symbols, load_lexicon(), load_syllables())
         return (None, None, None, None)
 
+    def speak_ssml(self, ssml, out_path=None):
+        """按 SSML 合成（volume 逐采样精确；rate/pitch 见 ssml 模块说明）"""
+        from .ssml import speak_ssml as _speak_ssml
+        audio = _speak_ssml(self, ssml)
+        if out_path:
+            import wave
+            import numpy as _np
+            data = (_np.clip(audio, -1.0, 1.0) * 32767.0).astype('<i2')
+            w = wave.open(out_path, 'wb')
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(24000)
+            w.writeframes(data.tobytes())
+            w.close()
+        return audio
+
     def text_to_ids(self, text):
         self._ensure()
         fn, a1, a2, a3 = self._g2p
