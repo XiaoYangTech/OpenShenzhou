@@ -616,6 +616,23 @@ def _parse(text):
         if ch in " \t\r\n":
             i += 1
             continue
+        # http(s):// → 逐字母读协议名 + colon slash slash
+        m_url = re.match(r"(?i)(https?)://", text[i:])
+        if m_url:
+            scheme = m_url.group(1).lower()
+            for ch2 in scheme:
+                events.append(("phones", _letter_token(ch2)))
+            events.append(("w", "colon"))
+            events.append(("w", "slash"))
+            events.append(("w", "slash"))
+            i += m_url.end()
+            continue
+        # mailto: → 单词 mailto（不读冒号）
+        m_mail = re.match(r"(?i)mailto:", text[i:])
+        if m_mail:
+            events.append(("word", "mailto"))
+            i += m_mail.end()
+            continue
         # 数字类
         kind, tok, j = _match_number(text, i)
         if kind:
@@ -716,16 +733,20 @@ def _parse(text):
                     _emit_group_letters(m_an3.group(3))
                     last_word = w.lower()
                     continue
+                if w.lower() == "no" and i < n and text[i] == ".":
+                    events.append(("w", "number"))
+                    i += 1
+                    last_word = "number"
+                    continue
                 # HTML5 / AA123：字母串 + 数字
                 m_an = re.fullmatch(r"([A-Za-z]+)(\d+)", w)
                 if m_an:
                     letters = m_an.group(1)
-                    if letters.isupper() and len(letters) > 1 and letters.lower() not in SPECIAL_PHONES:
-                        events.append(("acronym", letters))
-                    elif _engine_phones(letters.lower()) or letters.lower() in SPECIAL_PHONES:
-                        # English1 → 引擎按「English + one」读：已知单词当词读，
-                        # 只有未知的字母串才逐字母拼读（MP3 / IPv4 等）
+                    if _engine_phones(letters.lower()) or letters.lower() in SPECIAL_PHONES or not letters.isupper():
+                        # 已知读音的字母串/大小写混合词：按词读（MP3→"MP three", iPhone15→"iPhone fifteen"）
                         events.append(("word", letters))
+                    elif letters.isupper() and len(letters) > 1:
+                        events.append(("acronym", letters))
                     else:
                         events.append(("letters", letters))
                     if len(m_an.group(2)) == 3:
@@ -977,8 +998,11 @@ def _expand_number_token(tok, kind, next_kind):
         raw_ap = (m.group(4) or "").lower()
         ampm = ("am" if raw_ap.startswith("a") else "pm") if raw_ap else None
         if m.group(3):
-            return [("w", w) for w in
-                    cardinal_words(hh) + cardinal_words(mm) + cardinal_words(int(m.group(3)))]
+            ss = int(m.group(3))
+            ev = [("w", w) for w in cardinal_words(hh)] + [("w", "hour" if hh == 1 else "hours")]
+            ev += [("w", w) for w in cardinal_words(mm)] + [("w", "minute" if mm == 1 else "minutes")]
+            ev += [("w", "and")] + [("w", w) for w in cardinal_words(ss)] + [("w", "second" if ss == 1 else "seconds")]
+            return ev
         return _time_words(hh, mm, ampm)
     if kind == "ratio":
         hh, mm = t.split(":")
@@ -1084,6 +1108,8 @@ def _expand_number_token(tok, kind, next_kind):
     if kind == "mixed":
         m = re.match(r"(\d+)\s+(\d+)\s*/\s*(\d+)", tok)
         n, a, b = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if a == 1 and b == 2:
+            return [("w", w) for w in cardinal_words(n) + ["and", "a", "half"]]
         return [("w", w) for w in cardinal_words(n) + ["and"] + _fraction_words(a, b)]
     nn = int(t)
     if len(t) == 4 and 2000 <= nn <= 2099 and kind in ("number", "thousands"):
@@ -1160,8 +1186,9 @@ def _expand(events):
                     events[idx + 2] = ("consumed", None)
                     events[idx + 3] = ("consumed", None)
                     continue
-                if len(raw_u) == 1 and raw_u.isupper():
-                    uw = None  # 5G / 4K: 引擎读作字母，而不是单位
+                if raw_u.isupper() and len(raw_u) == 1:
+                    uw = None  # 5G / 4K：单个大写字母读字母；MB 等多字母缩写仍按单位展开
+
                 if uw and kind in ("number", "decimal", "thousands", "version"):
                     last_num = None
                     try:
