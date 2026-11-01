@@ -86,6 +86,7 @@ const SPECIAL_PHONES = {
   underscore: ['ah2', 'n', '-', 'd', 'ax', 'r', '-', 's', 'k', 'ao1', 'r'],
   asterisk: ['ae1', '-', 's', 't', 'ax', '-', 'r', 'ih', 's', 'k'],
   "o'clock": ['ax', '-', 'k', 'l', 'aa1', 'k'],
+  covid: ['k', 'ah1', '-', 'v', 'ih', 'd'],
 };
 const SYMBOL_WORDS = { '*': 'asterisk', _: 'underscore', '#': 'number', '@': 'at',
   '+': 'plus', '<': 'less', '>': 'greater', '~': null, '|': 'bar' };
@@ -470,7 +471,21 @@ function parse(text) {
           const segs = w.split('_').filter(Boolean);
           segs.forEach((seg, si) => {
             if (si) events.push(['w', 'underscore']);
-            if (/^[0-9]+$/.test(seg)) events.push(['number', seg]); else events.push(['word', seg]);
+            const m_a = /^([A-Za-z]+)(\d+)$/.exec(seg);
+            const m_d = /^(\d+)([A-Za-z]+)$/.exec(seg);
+            if (/^[0-9]+$/.test(seg)) events.push(['number', seg]);
+            else if (m_a) {
+              const letters = m_a[1];
+              if (letters.length > 1 && letters === letters.toUpperCase()) events.push(['acronym', letters]);
+              else if (enginePhones(letters.toLowerCase())) events.push(['word', letters]);
+              else events.push(['letters', letters]);
+              events.push(['number', m_a[2]]);
+            } else if (m_d) {
+              events.push(['number', m_d[1]]);
+              const letters = m_d[2];
+              if (letters.length > 1 && letters === letters.toUpperCase()) events.push(['acronym', letters]);
+              else events.push(['letters', letters]);
+            } else events.push(['word', seg]);
           });
           if (i < n && text[i] === '.' && i + 1 < n && /[A-Za-z0-9]/.test(text[i + 1])) {
             events.push(['w', 'dot']); i += 1;
@@ -491,8 +506,8 @@ function parse(text) {
         }
         const an = /^([A-Za-z]+)(\d+)$/.exec(w);
         if (an) {
-          if (an[1].length > 1 && an[1] === an[1].toUpperCase()) events.push(['acronym', an[1]]);
-          else if (enginePhones(an[1].toLowerCase())) events.push(['word', an[1]]);
+          if (an[1].length > 1 && an[1] === an[1].toUpperCase() && !SPECIAL_PHONES[an[1].toLowerCase()]) events.push(['acronym', an[1]]);
+          else if (enginePhones(an[1].toLowerCase()) || SPECIAL_PHONES[an[1].toLowerCase()]) events.push(['word', an[1]]);
           else events.push(['letters', an[1]]);
           if (an[2].length === 3) events.push(['groupnum', an[2]]);
           else events.push(['number', an[2]]);
@@ -615,7 +630,11 @@ function parse(text) {
         i += 1;
         continue;
       }
-      events.push(['pause', PAUSE_PUNCT[ch]]);
+      if (ch === ':' && i + 1 < n && '\/'.includes(text[i + 1])) {
+        events.push(['pause_plain', null]);
+      } else {
+        events.push(['pause', PAUSE_PUNCT[ch]]);
+      }
       i += 1;
       continue;
     }
