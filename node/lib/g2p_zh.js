@@ -197,6 +197,31 @@ function tnSymbols(text) {
 }
 
 function normalizeSegments(text) {
+  {
+    const mt = /^(\d{1,2})[:：](\d{2})(.*)$/.exec(text);
+    const md = mt ? null : /^(\D*?)(\d{1,2})点(\d{1,2})分(.*)$/.exec(text);
+    if (mt || md) {
+      const pre = mt ? '' : md[1];
+      const hh = mt ? mt[1] : md[2];
+      const mm = mt ? mt[2] : md[3];
+      const rest = mt ? mt[3] : md[4];
+      const out = [];
+      if (pre) out.push({ kind: 't', v: tnSymbols(pre) });
+      let ntxt = readDigits(hh) + '点';
+      if (Number(mm) !== 0) ntxt += readDigits(mm) + '分';
+      out.push({ kind: 'n', v: ntxt });
+      if (rest) out.push({ kind: 't', v: tnSymbols(rest) });
+      return out;
+    }
+    const mo = /^(\D*?)(\d{1,2})点(?!\d)(.*)$/.exec(text);
+    if (mo) {
+      const out = [];
+      if (mo[1]) out.push({ kind: 't', v: tnSymbols(mo[1]) });
+      out.push({ kind: 't', v: readDigits(mo[2]) + '点' });
+      if (mo[3]) out.push({ kind: 't', v: tnSymbols(mo[3]) });
+      return out;
+    }
+  }
   text = tnSymbols(text);
   const mOrd = /^第([0-9零一二三四五六七八九十百千万两]+)(.*)$/.exec(text);
   if (mOrd) {
@@ -553,7 +578,9 @@ function textToIdsSentence(text, sym, pkgDir) {
   const numSandhi = (pys, nextTone) => {
     const out = pys.slice();
     const toneOf = (p) => { const t = p[p.length - 1]; return /[0-9]/.test(t) ? Number(t) : 5; };
+    const dianIdx = out.findIndex((q) => q.replace(/[0-9]+$/, '') === 'dian');
     for (let i = 0; i < out.length; i++) {
+      if (dianIdx >= 0 && i > dianIdx) continue;
       const base = out[i].replace(/[0-9]+$/, '');
       const nt = i + 1 < out.length ? toneOf(out[i + 1]) : (nextTone || 5);
       const prev = i > 0 ? out[i - 1].replace(/[0-9]+$/, '') : '';
