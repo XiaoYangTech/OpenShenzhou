@@ -81,6 +81,7 @@ Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
 | **SSML prosody（rate / pitch / volume）** | 引擎支持 SSML 韵律标签：volume 为线性增益、rate 为重新合成（时长 ∝ 1/(1+rate)，并非时间伸缩）、pitch 为模型内音高特征；当前 SDK 仅提供 `speed` 参数（时长接近、非逐采样一致），SSML 解析与逐采样复刻待后续 |
 | **词边界事件** | Python SDK `word_events` 已复刻英文（19/19 逐字段一致）；中文事件与 Node 事件接口待后续版本 |
 | **中文混合 token**（如 `5G`、`MP3`、`iPhone15`） | 引擎使用中文混合语（mixlingual）专用读音；当前 SDK 对中英混合 token 的读音与引擎存在差异，相关资源解析仍在进行 |
+| **英式/印式英语等前端变体** | en-GB（Ryan/Sonia）与 en-IN（Neerja/Prabhat）在引擎侧使用**不同的音素表/发音词典**（如 Prabhat 的符号表无 -bos-/br 等结构符），当前英文前端仍按 en-US 词典生成，音色虽可发声但发音与引擎不同；逐音色前端适配待后续 |
 | **12 个音色包的语速调整** | 语音包 INI 中 `RateAdjustment≠100` 的 12 个音色（德/西/日/英式/英印等）引擎会做整体语速调整（输出时长 ≈ 模型时长×100/RateAdjustment，音高不变）。SDK 已用 WSOLA 保音高伸缩近似复刻：**时长/音高与引擎一致**，波形非逐采样一致（引擎具体伸缩算法尚未逆向出来）。已知引擎在 RateAdjustment=100 时与 SDK 逐采样一致（temp INI 实测 corr=1.0） |
 
 ## 仓库结构（本分支：研究成果与工具）
