@@ -198,6 +198,18 @@ function tnSymbols(text) {
 
 function normalizeSegments(text) {
   {
+    const mdt = /^(\d{4})年(\d{1,2})月(\d{1,2})日\s*(\d{1,2})[:：](\d{2})$/.exec(text);
+    if (mdt) {
+      const out = [
+        { kind: 'n', v: readDigitSeq(mdt[1]) + '年' },
+        { kind: 'n', v: readDigits(mdt[2]) + '月' },
+        { kind: 'n', v: readDigits(mdt[3]) + '日' },
+      ];
+      let ntxt = readDigits(mdt[4]) + '点';
+      if (Number(mdt[5]) !== 0) ntxt += readDigits(mdt[5]) + '分';
+      out.push({ kind: 'n', v: ntxt });
+      return out;
+    }
     const mt = /^(\d{1,2})[:：](\d{2})(.*)$/.exec(text);
     const md = mt ? null : /^(\D*?)(\d{1,2})点(\d{1,2})分(.*)$/.exec(text);
     if (mt || md) {
