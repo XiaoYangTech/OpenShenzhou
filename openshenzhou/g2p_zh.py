@@ -373,12 +373,21 @@ def tn_symbols(text):
     def _date(m):
         y, mo, d = m.group(1), m.group(2), m.group(3)
         return "%s年%s月%s日" % (y, str(int(mo)), str(int(d)))
-    text = re.sub(r"(?<!\d)(\d{4})[/-](\d{1,2})[/-](\d{1,2})(?!\d)", _date, text)
+    text = re.sub(r"(?<!\d)(\d{4})[./-](\d{1,2})[./-](\d{1,2})(?!\d)", _date, text)
     # 时间 9:30 -> 9点30分
     def _time(m):
         h, mi = m.group(1), m.group(2)
         return "%s点%s分" % (h, mi) if int(mi) else "%s点" % h
     text = re.sub(r"(?<!\d)(\d{1,2})[:：](\d{2})(?!\d)", _time, text)
+    # 分数 a/b -> b分之a（避免命中日期）
+    def _frac(m):
+        a, b = _read_digits(m.group(1)), _read_digits(m.group(2))
+        return b + "分之" + a
+    text = re.sub(r"(?<![\d/])(\d+)\s*/\s*(\d+)(?![\d/])", _frac, text)
+    # 负号/正号（引擎实测：-5→负五，+5→加五）
+    text = re.sub(r"(?<![\d\w])-(\d)", lambda m: "负" + m.group(1), text)
+    text = re.sub(r"(?<![\d\w])\+(\d)", lambda m: "加" + m.group(1), text)
+    text = text.replace("~", "至")
     for a, b in SYM_RULES:
         text = text.replace(a, b)
     return text
@@ -410,7 +419,7 @@ def normalize_segments(text):
             while endp < len(text) and text[endp] in "点元年":
                 txt += text[endp]
                 endp += 1
-            if txt.endswith("分钟"):
+            if endp > m.end() or txt.endswith("分钟"):
                 segs.append(("t", txt))
             else:
                 segs.append(("n", txt))
