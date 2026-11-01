@@ -399,6 +399,18 @@ def normalize_segments(text):
     数字片段会被当成一个词（引擎里就是如此），
     并吸收紧跟的「年/月/日/点」等量词。
     """
+    # 日期+时间组合 token：引擎读法 = 日期各部分词 + 时间一个词
+    #   例：2026年10月26日 10:30 → 二零二六 | 年月 | 二十六日 | 十点三十分
+    m_dt = re.match(r"^(\d{4})年(\d{1,2})月(\d{1,2})日\s*(\d{1,2})[:：](\d{2})$", text)
+    if m_dt:
+        y, mo, d, hh, mm = m_dt.groups()
+        segs = [("n", _read_digit_seq(y) + "年"), ("n", _read_digits(mo) + "月"),
+                ("n", _read_digits(d) + "日")]
+        ntxt = _read_digits(hh) + "点"
+        if int(mm) != 0:
+            ntxt += _read_digits(mm) + "分"
+        segs.append(("n", ntxt))
+        return segs
     # 时间 token（基于原文）：
     #   H:MM / H点M分 → 整个时间作为一个词（十点三十分、十二点）
     #   纯 H点（0点/下午3点/晚上8点…）→ 数字与「点」分属两个词（走普通文本管线）
