@@ -229,8 +229,7 @@ function normalizeSegments(text) {
         txt += text[endp]; endp += 1;
         if (text[endp - 1] === '分' && endp < text.length && text[endp] === '钟') { txt += '钟'; endp += 1; }
       }
-      const absorbed = endp > m.index + m[0].length;
-      segs.push({ kind: (absorbed || txt.endsWith('分钟')) ? 't' : 'n', v: txt });
+      segs.push({ kind: txt.endsWith('分钟') ? 't' : 'n', v: txt });
     }
     pos = endp;
     NUM_RE.lastIndex = endp;
