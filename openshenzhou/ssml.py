@@ -213,7 +213,8 @@ def speak_ssml(tts, ssml, volume=None):
     import numpy as _np
     # 引擎把 RateAdjustment/100 存成 float32（setter 接收 double 后转 float），
     # SSML 因子在 float32 域相乘：f20 = float32(base) * float32(1 + p/100)
-    base_rate = _np.float32((getattr(t.pack, "rate_adjust", 100) or 100) / 100.0)
+    from .rateadjust import engine_rate_factor as _erf
+    base_rate = _np.float32(_erf(getattr(t.pack, "rate_adjust", 100) or 100))
     for style, pieces in _runs(segs):
         gain, rate, pitch = style
         # 把同一段内的文本拼成整句合成（保持与引擎相同的句子结构），break 处插静音

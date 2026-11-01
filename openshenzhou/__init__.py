@@ -204,8 +204,8 @@ class TTS:
         # 基音同步拼接的保音高变速（已完全逆向，见 rateadjust.py）。
         rate = getattr(self.pack, "rate_adjust", 100) or 100
         if rate != 100:
-            from .rateadjust import adjust_float
-            audio = adjust_float(audio, rate / 100.0)
+            from .rateadjust import adjust_float, engine_rate_factor
+            audio = adjust_float(audio, engine_rate_factor(rate))
         if out_path:
             write_wav(audio, out_path)
         return audio

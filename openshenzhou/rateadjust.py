@@ -79,6 +79,15 @@ def _crossfade(a, b, count):
     return np.clip(val, -32768, 32767).astype(np.int32)
 
 
+def engine_rate_factor(pct):
+    """引擎速率因子：float32(percent * 0.01f)——注意不是 percent/100.0 的双精度除法。
+
+    实测：RateAdjustment=85 → f20=0.8499999642372131（= float32(85*0.01f)），
+    而 float32(0.85) 是 0.85000002384；两者会让 carry 差 1 导致整段相位漂移。
+    """
+    return float(np.float32(np.float32(pct) * np.float32(0.01)))
+
+
 def adjust_int16(x, rate):
     """引擎 RateAdjustment 的 int16 复刻；返回 np.int16"""
     buf = [int(v) for v in np.asarray(x, dtype=np.int32)]
