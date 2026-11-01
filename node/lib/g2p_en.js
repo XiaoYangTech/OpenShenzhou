@@ -474,6 +474,14 @@ function parse(text) {
       else events.push(['number', tok]);
       i = j; continue;
     }
+    const verM = /^v(\d+(?:\.\d+)+)(?:[-–]([A-Za-z0-9]+))?/i.exec(text.slice(i));
+    if (verM) {
+      events.push(['phones', letterToken('v')]);
+      const num = verM[1];
+      events.push([num.split('.').length >= 3 ? 'version' : 'decimal', num]);
+      if (verM[2]) events.push(['word', verM[2]]);
+      i += verM[0].length; continue;
+    }
     const dotM = DOT_ABBR_RE.exec(text.slice(i));
     if (dotM && dotM.index === 0) {
       events.push(['dotted', dotM[0]]); i += dotM[0].length; continue;
