@@ -400,6 +400,20 @@ def normalize_segments(text):
     并吸收紧跟的「年/月/日/点」等量词。
     """
     text = tn_symbols(text)
+    # 序数：第 + 数字 → 「第N」作为一个词，后缀另起一词（引擎实测：第一名 = 第一|名）
+    m_ord = re.match(r"^第([0-9零一二三四五六七八九十百千万两]+)(.*)$", text)
+    if m_ord:
+        num = m_ord.group(1)
+        rest = m_ord.group(2)
+        if num[:1].isdigit():
+            # 引擎：第 + 阿拉伯数字 → 「第」与数字分属两个词
+            segs = [("t", "第"), ("n", _read_digits(num))]
+        else:
+            # 中文数字：第N 作为一个词（如 第一名 = 第一|名）
+            segs = [("n", "第" + num)]
+        if rest:
+            segs.append(("t", rest))
+        return segs
     segs = []
     pos = 0
     for m in NUM_RE.finditer(text):
