@@ -48,6 +48,7 @@ const NOUN_PREV = new Set(['the', 'a', 'an', 'this', 'that', 'these', 'those', '
 const BOS = '-bos-', END = '~';
 const MONTH_NAMES = ['january', 'february', 'march', 'april', 'may', 'june', 'july',
   'august', 'september', 'october', 'november', 'december'];
+const MONTH_ABBR = { jan: 'january', feb: 'february', mar: 'march', apr: 'april', jun: 'june', jul: 'july', aug: 'august', sep: 'september', sept: 'september', oct: 'october', nov: 'november', dec: 'december' };
 const ORD_ONES = ['zeroth', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth',
   'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth',
   'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
@@ -367,6 +368,8 @@ const NUM_PATTERNS = [
   ['phone', /\d{3}[-.]\d{3}[-.]\d{4}/],
   ['phone', /\d{3}[-.]\d{4}(?![\d])/],
   ['ip', /\d{1,3}(?:\.\d{1,3}){3}/],
+  ['date', /\d{4}[./-]\d{1,2}[./-]\d{1,4}/],
+  ['date2', /\d{1,2}[./-]\d{1,2}[./-]\d{2,4}/],
   ['date', /\d{4}-\d{1,2}-\d{1,2}/],
   ['date', /\d{1,2}\/\d{1,2}\/\d{2,4}/],
   ['time', /\d{1,2}:\d{2}(?::\d{2})?(?:\s?[AaPp]\.?[Mm])?/],
@@ -375,13 +378,13 @@ const NUM_PATTERNS = [
   ['ratio', /\d{1,2}:\d{1}/],
   ['version', /\d+\.\d+(?:\.\d+)+/],
   ['ordinal', /\d+(?:st|nd|rd|th)\b/],
+  ['percent', /\d+(?:\.\d+)?%/],
   ['decimal', /\d*\.\d+/],
   ['thousands', /\d{1,3}(?:,\d{3})+(?:\.\d+)?/],
   ['dashgroup', /\d{2}(?:-[0-9A-Za-z]{2}){2,}/],
   ['range', /\d+(?:-\d+)+/],
   ['mixed', /\d+\s+\d+\s*\/\s*\d+/],
   ['fraction', /\d+\s*\/\s*\d+/],
-  ['percent', /\d+(?:\.\d+)?%/],
   ['currency', /[$€£¥￥]\s*\d[\d,]*(?:\.\d+)?/],
   ['number', /\d+/],
 ];
@@ -438,10 +441,10 @@ function parse(text) {
     const [kind, tok, j] = matchNumber(text, i);
     if (kind) {
       if (kind === 'currency') events.push(['currency', [tok[0], tok.slice(1).trim()]]);
-      else if (kind === 'date') events.push(['date', tok]);
+      else if (kind === 'date' || kind === 'date2') events.push(['date', tok]);
       else if (kind === 'time') events.push(['time', tok]);
       else if (kind === 'ratio') events.push(['ratio', tok]);
-      else if (kind === 'percent') { events.push(['number', tok.slice(0, -1)]); events.push(['percent', null]); }
+      else if (kind === 'percent') { const num = tok.slice(0, -1); events.push([num.includes('.') ? 'decimal' : 'number', num]); events.push(['percent', null]); }
       else if (kind === 'ordinal') events.push(['ordinal', tok]);
       else if (kind === 'phone') events.push(['phone', tok]);
       else if (kind === 'ip') events.push(['ip', tok]);
@@ -472,6 +475,18 @@ function parse(text) {
           if (i < n && text[i] === '.' && i + 1 < n && /[A-Za-z0-9]/.test(text[i + 1])) {
             events.push(['w', 'dot']); i += 1;
           }
+          lastWord = w.toLowerCase(); continue;
+        }
+        const an3 = /^([A-Za-z]+)(\d+)([A-Za-z]+)$/.exec(w);
+        if (an3) {
+          const emitGroup = (g) => {
+            if (g.length > 1 && g === g.toUpperCase()) events.push(['acronym', g]);
+            else if (enginePhones(g.toLowerCase())) events.push(['word', g]);
+            else events.push(['letters', g]);
+          };
+          emitGroup(an3[1]);
+          events.push(['number', an3[2]]);
+          emitGroup(an3[3]);
           lastWord = w.toLowerCase(); continue;
         }
         const an = /^([A-Za-z]+)(\d+)$/.exec(w);
@@ -630,19 +645,37 @@ function expandNumberToken(tok, kind, outWords) {
   const out_words = outWords || [];
   const t = tok.replace(/,/g, '');
   if (kind === 'date') {
-    let parts = t.split(/[/.-]/).map(Number);
-    let mm, dd, yy;
-    if (t.includes('/')) { [mm, dd, yy] = parts; }
-    else { [yy, mm, dd] = parts; }
-    if (yy < 100) yy += yy < 30 ? 2000 : 1900;
-    if (mm >= 1 && mm <= 12 && dd >= 1 && dd <= 31) {
-      const words = [MONTH_NAMES[mm - 1]].concat(ordinalWords(dd));
+    const sepM = /[/.-]/.exec(tok);
+    const sep = sepM ? sepM[0] : '/';
+    const parts = tok.split(/[/.-]/);
+    const a0 = parts[0], b0 = parts[1], c0 = parts[2];
+    const ai = Number(a0), bi = Number(b0), ci = Number(c0);
+    if (a0.length === 4) {
+      const mo = bi, d = ci, y = ai;
+      if (mo >= 1 && mo <= 12 && d >= 1 && d <= 31) {
+        const words = [MONTH_NAMES[mo - 1]].concat(ordinalWords(d));
+        const events = words.map((w) => ['w', w]);
+        events.push(['pause_plain', null]);
+        for (const w of yearWords(y)) events.push(['w', w]);
+        return events;
+      }
+    } else if (ai >= 1 && ai <= 12 && bi >= 1 && bi <= 31) {
+      const mo = ai, d = bi, y = ci;
+      const words = [MONTH_NAMES[mo - 1]].concat(ordinalWords(d));
       const events = words.map((w) => ['w', w]);
       events.push(['pause_plain', null]);
-      for (const w of yearWords(yy)) events.push(['w', w]);
+      if (c0.length <= 2) { for (const w of cardinalWords(y)) events.push(['w', w]); }
+      else { for (const w of yearWords(y)) events.push(['w', w]); }
       return events;
     }
-    return digitsWords(t.replace(/\D/g, '')).map((w) => ['w', w]);
+    const sepWord = sep === '/' ? 'slash' : (sep === '-' ? 'dash' : 'dot');
+    const ev = cardinalWords(ai).map((w) => ['w', w]);
+    ev.push(['w', sepWord]);
+    for (const w of cardinalWords(bi)) ev.push(['w', w]);
+    ev.push(['w', sepWord]);
+    if (c0.length === 4) { for (const w of yearWords(ci)) ev.push(['w', w]); }
+    else { for (const w of cardinalWords(ci)) ev.push(['w', w]); }
+    return ev;
   }
   if (kind === 'time') {
     let m = /^(\d{1,2}):(\d{2})(?::(\d{2}))?(?:\s?([AaPp])\.?[Mm])?/.exec(tok);
@@ -689,8 +722,18 @@ function expandNumberToken(tok, kind, outWords) {
     return ev;
   }
   if (kind === 'range') {
-    const [a, b] = t.split('-');
-    return cardinalWords(Number(a)).concat(['to'], cardinalWords(Number(b))).map((w) => ['w', w]);
+    const parts = tok.split('-').filter(Boolean);
+    const sepWord = parts.length === 2 ? 'to' : 'dash';
+    const ev = [];
+    parts.forEach((part, pi) => {
+      if (pi) ev.push(['w', sepWord]);
+      if (part.length > 1 && part.startsWith('0')) {
+        for (const w of digitsWords(part)) ev.push(['w', w]);
+      } else {
+        for (const w of cardinalWords(Number(part))) ev.push(['w', w]);
+      }
+    });
+    return ev;
   }
   if (kind === 'phone') return phoneWords(tok);
   if (kind === 'alnum') {
@@ -773,6 +816,18 @@ function expand(events) {
       events[idx + 1] = ['consumed', null];
       continue;
     }
+    if (kind === 'word' && MONTH_ABBR[String(val).toLowerCase()]) {
+      const monthFull = MONTH_ABBR[String(val).toLowerCase()];
+      let day = null;
+      if (nxt && (nxt[0] === 'number' || nxt[0] === 'ordinal')) {
+        const dm = /^(\d+)/.exec(String(nxt[1]));
+        const d = dm ? Number(dm[1]) : 0;
+        if (d >= 1 && d <= 31) { day = d; events[idx + 1] = ['consumed', null]; }
+      }
+      out.push(['w', monthFull]);
+      if (day !== null) { for (const w of ordinalWords(day)) out.push(['w', w]); }
+      continue;
+    }
     if (kind === 'word' && MONTH_NAMES.includes(String(val).toLowerCase())
         && nxt && (nxt[0] === 'number' || nxt[0] === 'ordinal')) {
       const day = Number(/^\d+/.exec(nxt[1])[0]);
@@ -785,6 +840,10 @@ function expand(events) {
         continue;
       }
     }
+    if (kind === 'number' && /^0[0-9]+$/.test(String(val))) {
+      for (const w of digitsWords(String(val))) out.push(['w', w]);
+      continue;
+    }
     if (['number', 'date', 'time', 'ratio', 'version', 'ordinal', 'decimal',
       'thousands', 'range', 'phone', 'alnum', 'fraction', 'mixed', 'ip', 'dashgroup', 'groupnum'].includes(kind)) {
       const ev = expandNumberToken(val, kind, out.filter((x) => x[0] === 'w' || x[0] === 'word').map((x) => x[1]));
@@ -796,6 +855,7 @@ function expand(events) {
           const prevWords = out.filter((x) => x[0] === 'w').slice(-4).map((x) => x[1]).join(' ');
           uw = (prevWords.includes('hour') || prevWords.includes('hours')) ? ['minutes'] : null;
         }
+        if (rawU.length === 1 && rawU === rawU.toUpperCase()) uw = null;
         if (uw && ['number', 'decimal', 'thousands', 'version'].includes(kind)) {
           let lastNum = null;
           try { lastNum = parseFloat(val.replace(/[^0-9.]/g, '')); } catch (e) { lastNum = null; }
