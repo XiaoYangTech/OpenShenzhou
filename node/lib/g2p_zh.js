@@ -179,11 +179,17 @@ function tnSymbols(text) {
   // 百分比：99.9% -> 百分之99.9
   text = text.replace(/(\d+(?:\.\d+)?)\s*[%％]/g, (m, a) => '百分之' + a);
   // 日期 2026/10/26 -> 2026年10月26日
-  text = text.replace(/(?<!\d)(\d{4})[/-](\d{1,2})[/-](\d{1,2})(?!\d)/g,
+  text = text.replace(/(?<!\d)(\d{4})[./-](\d{1,2})[./-](\d{1,2})(?!\d)/g,
     (m, y, mo, d) => y + '年' + parseInt(mo, 10) + '月' + parseInt(d, 10) + '日');
   // 时间 9:30 -> 9点30分
   text = text.replace(/(?<!\d)(\d{1,2})[:：](\d{2})(?!\d)/g,
     (m, h, mi) => parseInt(mi, 10) ? h + '点' + mi + '分' : h + '点');
+  // 分数 a/b -> b分之a（避免命中日期）
+  text = text.replace(/(?<![\d/])(\d+)\s*\/\s*(\d+)(?![\d/])/g,
+    (m, a, b) => readDigits(b) + '分之' + readDigits(a));
+  text = text.replace(/(?<![\d\w])-(\d)/g, (m, a) => '负' + a);
+  text = text.replace(/(?<![\d\w])\+(\d)/g, (m, a) => '加' + a);
+  text = text.split('~').join('至');
   const rules = [['℃', '摄氏度'], ['℉', '华氏度'], ['～', '至'], ['×', '乘以'], ['÷', '除以'], ['±', '正负']];
   for (const [a, b] of rules) text = text.split(a).join(b);
   text = text.replace(/\d{1,3}(?:,\d{3})+/g, (m) => readDigits(m.replace(/,/g, '')));
@@ -223,7 +229,8 @@ function normalizeSegments(text) {
         txt += text[endp]; endp += 1;
         if (text[endp - 1] === '分' && endp < text.length && text[endp] === '钟') { txt += '钟'; endp += 1; }
       }
-      segs.push({ kind: txt.endsWith('分钟') ? 't' : 'n', v: txt });
+      const absorbed = endp > m.index + m[0].length;
+      segs.push({ kind: (absorbed || txt.endsWith('分钟')) ? 't' : 'n', v: txt });
     }
     pos = endp;
     NUM_RE.lastIndex = endp;
