@@ -39,6 +39,11 @@ NOUN_PREV = {"the", "a", "an", "this", "that", "these", "those", "my", "your", "
 
 MONTH_NAMES = ["january", "february", "march", "april", "may", "june", "july",
                "august", "september", "october", "november", "december"]
+MONTH_ABBR = {
+    "jan": "january", "feb": "february", "mar": "march", "apr": "april",
+    "jun": "june", "jul": "july", "aug": "august", "sep": "september",
+    "sept": "september", "oct": "october", "nov": "november", "dec": "december",
+}
 ORD_ONES = ["zeroth", "first", "second", "third", "fourth", "fifth", "sixth",
             "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth",
             "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth",
@@ -459,10 +464,13 @@ def _expand_date(md=0, dd=0, yy=0):
     return out
 
 
-def _date_words(md, dd, yy):
+def _date_words(md, dd, yy, year_style="year"):
     words = [MONTH_NAMES[md - 1]] + ordinal_words(dd)
     events = [("w", w) for w in words] + [("pause_plain", None)]
-    events += [("w", w) for w in year_words(yy)]
+    if year_style == "cardinal":
+        events += [("w", w) for w in cardinal_words(yy)]
+    else:
+        events += [("w", w) for w in year_words(yy)]
     return events
 
 
@@ -562,6 +570,8 @@ NUM_PATTERNS = [
     ("phone", re.compile(r"\d{3}[-.]\d{3}[-.]\d{4}")),
     ("phone", re.compile(r"\d{3}[-.]\d{4}(?![\d])")),
     ("ip", re.compile(r"\d{1,3}(?:\.\d{1,3}){3}")),
+    ("date", re.compile(r"\d{4}[./-]\d{1,2}[./-]\d{1,4}")),
+    ("date2", re.compile(r"\d{1,2}[./-]\d{1,2}[./-]\d{2,4}")),
     ("date", re.compile(r"\d{4}-\d{1,2}-\d{1,2}")),
     ("date", re.compile(r"\d{1,2}/\d{1,2}/\d{2,4}")),
     ("time", re.compile(r"\d{1,2}:\d{2}(?::\d{2})?(?:\s?[AaPp]\.?[Mm])?")),
@@ -570,13 +580,13 @@ NUM_PATTERNS = [
     ("ratio", re.compile(r"\d{1,2}:\d{1}")),
     ("version", re.compile(r"\d+\.\d+(?:\.\d+)+")),
     ("ordinal", re.compile(r"\d+(?:st|nd|rd|th)")),
+    ("percent", re.compile(r"\d+(?:\.\d+)?%")),
     ("decimal", re.compile(r"\d*\.\d+")),
     ("thousands", re.compile(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?")),
     ("dashgroup", re.compile(r"\d{2}(?:-[0-9A-Za-z]{2}){2,}")),
     ("range", re.compile(r"\d+(?:-\d+)+")),
     ("mixed", re.compile(r"\d+\s+\d+\s*/\s*\d+")),
     ("fraction", re.compile(r"\d+\s*/\s*\d+")),
-    ("percent", re.compile(r"\d+(?:\.\d+)?%")),
     ("currency", re.compile(r"[$€£¥￥]\s*\d[\d,]*(?:\.\d+)?")),
     ("number", re.compile(r"\d+")),
 ]
@@ -606,14 +616,15 @@ def _parse(text):
                 sym = tok[0]
                 num = tok[1:].strip()
                 events.append(("currency", (sym, num)))
-            elif kind == "date":
+            elif kind in ("date", "date2"):
                 events.append(("date", tok))
             elif kind == "time":
                 events.append(("time", tok))
             elif kind == "ratio":
                 events.append(("ratio", tok))
             elif kind == "percent":
-                events.append(("number", tok[:-1]))
+                num = tok[:-1]
+                events.append(("decimal" if "." in num else "number", num))
                 events.append(("percent", None))
             elif kind == "ordinal":
                 events.append(("ordinal", tok))
@@ -661,6 +672,21 @@ def _parse(text):
                     if i < n and text[i] == "." and i + 1 < n and text[i + 1].isalnum():
                         events.append(("w", "dot"))
                         i += 1
+                    last_word = w.lower()
+                    continue
+                # B2B / C3PO：字母 + 数字 + 字母
+                m_an3 = re.fullmatch(r"([A-Za-z]+)(\d+)([A-Za-z]+)", w)
+                if m_an3:
+                    def _emit_group_letters(g):
+                        if g.isupper() and len(g) > 1:
+                            events.append(("acronym", g))
+                        elif _engine_phones(g.lower()):
+                            events.append(("word", g))
+                        else:
+                            events.append(("letters", g))
+                    _emit_group_letters(m_an3.group(1))
+                    events.append(("number", m_an3.group(2)))
+                    _emit_group_letters(m_an3.group(3))
                     last_word = w.lower()
                     continue
                 # HTML5 / AA123：字母串 + 数字
@@ -872,17 +898,26 @@ def _expand_number_token(tok, kind, next_kind):
     t = tok.replace(",", "")
     low = tok.lower()
     if kind == "date":
-        if "/" in t:
-            a, b, c = re.split(r"[/.-]", t)
-            mm, dd, yy = int(a), int(b), int(c)
+        sep = re.search(r"[/.-]", t).group(0)
+        a, b, c = re.split(r"[/.-]", t)
+        ai, bi, ci = int(a), int(b), int(c)
+        if len(a) == 4:
+            mo, d, y = bi, ci, ai
+            if 1 <= mo <= 12 and 1 <= d <= 31:
+                return _date_words(mo, d, y, "year")
+        elif 1 <= ai <= 12 and 1 <= bi <= 31:
+            mo, d, y = ai, bi, ci
+            return _date_words(mo, d, y, "cardinal" if len(c) <= 2 else "year")
+        sep_word = {"/": "slash", "-": "dash", ".": "dot"}.get(sep, "slash")
+        ev = [("w", w) for w in cardinal_words(ai)]
+        ev.append(("w", sep_word))
+        ev += [("w", w) for w in cardinal_words(bi)]
+        ev.append(("w", sep_word))
+        if len(c) == 4:
+            ev += [("w", w) for w in year_words(ci)]
         else:
-            a, b, c = re.split(r"[/.-]", t)
-            yy, mm, dd = int(a), int(b), int(c)
-        if yy < 100:
-            yy += 2000 if yy < 30 else 1900
-        if 1 <= mm <= 12 and 1 <= dd <= 31:
-            return _date_words(mm, dd, yy)
-        return [("w", w) for w in digits_words(re.sub(r"\D", "", tok))]
+            ev += [("w", w) for w in cardinal_words(ci)]
+        return ev
     if kind == "time":
         m = re.match(r"(\d{1,2})(?::(\d{2}))(?::(\d{2}))?(?:\s?([AaPp])\.?[Mm])?", tok) or             re.match(r"(\d{1,2})\s?(?:([AaPp])\.?[Mm])", tok)
         if m and m.lastindex and m.lastindex <= 2 and m.group(2) and m.group(2).isdigit() is False:
@@ -926,8 +961,17 @@ def _expand_number_token(tok, kind, next_kind):
         return None
     # number / thousands / range / phone
     if kind == "range":
-        a, b = t.split("-", 1)
-        return [("w", w) for w in cardinal_words(int(a)) + ["to"] + cardinal_words(int(b))]
+        parts = [p for p in t.split("-") if p]
+        sep_word = "to" if len(parts) == 2 else "dash"
+        ev = []
+        for pi, part in enumerate(parts):
+            if pi:
+                ev.append(("w", sep_word))
+            if len(part) > 1 and part.startswith("0"):
+                ev += [("w", w) for w in digits_words(part)]
+            else:
+                ev += [("w", w) for w in cardinal_words(int(part))]
+        return ev
     if kind == "phone":
         return _phone_words(tok, tok)
     if kind == "ip":
@@ -1026,6 +1070,9 @@ def _expand(events):
                 if nxt2 and nxt2[0] == "pause" and nxt2[1] == "punc,":
                     events[idx + 2] = ("pause_plain", None)
                 continue
+        if kind == "number" and len(val) > 1 and val.startswith("0") and val.isdigit():
+            out.extend([("w", w) for w in digits_words(val)])
+            continue
         if kind == "number" and len(val.replace(",", "")) == 4 and 1000 <= int(val.replace(",", "")) <= 2099:
             prev_words = [x[1] for x in out if x[0] in ("w", "word")][-2:]
             if "year" in prev_words:
@@ -1052,6 +1099,8 @@ def _expand(events):
                         uw = ["minutes"]
                     else:
                         uw = None
+                if len(raw_u) == 1 and raw_u.isupper():
+                    uw = None  # 5G / 4K: 引擎读作字母，而不是单位
                 if uw and kind in ("number", "decimal", "thousands", "version"):
                     last_num = None
                     try:
@@ -1076,6 +1125,21 @@ def _expand(events):
             if out:
                 out.append(("w", "percent"))
         elif kind in ("word",):
+            if val.lower() in MONTH_ABBR:
+                month_full = MONTH_ABBR[val.lower()]
+                day = None
+                if nxt and nxt[0] in ("number", "ordinal"):
+                    try:
+                        d = int(re.match(r"\d+", nxt[1]).group(0))
+                    except Exception:
+                        d = 0
+                    if 1 <= d <= 31:
+                        day = d
+                        events[idx + 1] = ("consumed", None)
+                out.append(("w", month_full))
+                if day is not None:
+                    out.extend([("w", w) for w in ordinal_words(day)])
+                continue
             if val.lower() == "www":
                 for ch2 in "www":
                     out.append(("phones", _letter_token(ch2)))
