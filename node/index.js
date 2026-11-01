@@ -17,7 +17,7 @@ function splitSentences(ids, sym) {
   const close = (cur) => {
     if (cur.length && cur[cur.length - 1] === END) {
       const j = cur.length - 2;
-      if (j >= 0 && puncIds.has(cur[j]) && (j === 0 || cur[j - 1] !== br4)) cur.splice(j, 0, br4);
+      if (j >= 0 && puncIds.has(cur[j]) && !cur.slice(Math.max(0, j - 2), j).includes(br4)) cur.splice(j, 0, br4);
     }
     if (!cur.length || cur[cur.length - 1] !== END) cur.push(END);
     return cur;

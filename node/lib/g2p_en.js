@@ -654,13 +654,19 @@ function parse(text) {
         && (i === 0 || ' \t\n'.includes(text[i - 1]))) {
       events.push(['minus', null]); i += 1; continue;
     }
+    if (ch === '…') {
+      const restE = text.slice(i + 1).replace(/^\s+/, '');
+      events.push([restE ? 'ellipsis_pause' : 'end_ellipsis', null]);
+      i += 1; continue;
+    }
     if (END_PUNCT[ch]) {
       if (ch === '.') {
         let run = 0;
         while (i + run < n && text[i + run] === '.') run++;
         if (run >= 2) {
-          events.push(['end', 'punc.']);
-          events.push(['punc_after_end', 'punc.']);
+          const restDot = text.slice(i + run).replace(/^\s+/, '');
+          if (run >= 3) events.push([restDot ? 'ellipsis_pause' : 'end_ellipsis', null]);
+          else { events.push(['end', 'punc.']); events.push(['punc_after_end', 'punc.']); }
           i += run;
           continue;
         }
@@ -1108,6 +1114,8 @@ function expand(events) {
       out.push(['pause_br1', val]);
     } else if (kind === 'br1_br0') {
       out.push(['br1_br0', null]);
+    } else if (kind === 'ellipsis_pause' || kind === 'end_ellipsis') {
+      out.push([kind, null]);
     } else if (kind === 'pause') {
       out.push(['pause', val]);
     } else if (kind === 'end') {
@@ -1235,16 +1243,33 @@ function textToIds(text, sym) {
       if (item[1] && sym[item[1]] !== undefined) ids.push(sym[item[1]]);
       if (sym['br0'] !== undefined) ids.push(sym['br0']);
       first = true;
-    } else if (kind === 'end') {
-      if (ended) {
-        ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
-        continue;
-      }
+    } else if (kind === 'ellipsis_pause') {
+      ids.push(sym['br3'] !== undefined ? sym['br3'] : 0);
+      ids.push(sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0));
+      ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
+      first = true;
+    } else if (kind === 'end_ellipsis') {
       ids.push(sym['br4']);
-      if (item[1] && sym[item[1]] !== undefined) ids.push(sym[item[1]]);
-      else if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
+      ids.push(sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0));
+      if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
+      ids.push(sym[END]);
       ended = true;
       first = true;
+    } else if (kind === 'end') {
+      ids.push(sym['br4']);
+      ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
+      let jx = i + 1;
+      const extra = [];
+      while (jx < flat.length && flat[jx][0] === 'punc_after_end') { extra.push(flat[jx][1]); jx += 1; }
+      if (extra.length) {
+        for (const ex of extra) ids.push(sym[ex] !== undefined ? sym[ex] : (sym['punc.'] || 0));
+      }
+      ids.push(sym[END]);
+      if (jx < flat.length) {
+        ids.push(sym[BOS]); ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
+        first = true; ended = false; i = jx; continue;
+      }
+      ended = true; first = true; i = jx; continue;
     } else if (kind === 'punc_after_end') {
       ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
       continue;
@@ -1267,8 +1292,8 @@ function textToIds(text, sym) {
   if (!ended) {
     ids.push(sym['br4']);
     if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
+    ids.push(sym[END]);
   }
-  ids.push(sym[END]);
   return ids;
 }
 
