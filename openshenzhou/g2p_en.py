@@ -505,8 +505,10 @@ def _currency_words(sym, numstr):
         events = [("w", w) for w in words]
         return events
     n = int(numstr.replace(",", ""))
-    if sym in ("¥", "￥") and n:
+    if sym == "¥" and n:  # U+00A5 半角日元符号 → yen
         return [("w", w) for w in cardinal_words(n) + ["yen"]]
+    if sym == "￥" and n:  # U+FFE5 全角符号 → 原版读 yuan
+        return [("w", w) for w in cardinal_words(n)] + [("phones", ["y", "uw", "-", "aa1", "n"])]
     return [("w", w) for w in cardinal_words(n) + [plural(n, major)]]
 
 
