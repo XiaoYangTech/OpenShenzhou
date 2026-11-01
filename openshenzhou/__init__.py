@@ -192,7 +192,10 @@ class TTS:
             import numpy as np
             audio = np.concatenate([run(ch) for ch in chunks])
         # 引擎 RateAdjustment：语音包 INI 中非 100 的音色，引擎会对音频做
-        # 保音高时长伸缩（时长×100/RateAdjustment）。这里用 WSOLA 近似复刻。
+        # 基音同步拼接的保音高变速。引擎算法已完全逆向（见 rateadjust.py，
+        # 对引擎自身 int16 输入可逐采样复刻），但 SDK 自然音频与引擎 int16
+        # 尚有少量 ±1 采样差异（约 1.6%），直接套用会因基音检测敏感而相位漂移，
+        # 故当前仍用 WSOLA 近似；待自然音频做到 bit-exact 后切换。
         rate = getattr(self.pack, "rate_adjust", 100) or 100
         if rate != 100:
             from .timestretch import wsola

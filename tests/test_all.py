@@ -119,6 +119,26 @@ def main():
         check("SSML break=500ms 插入 12000 采样", abs((len(brk) - len(base)) - 12000) < 600,
               "实际差 %d" % (len(brk) - len(base)))
 
+    print("== 3c. RateAdjustment 精确复刻（引擎算法自检） ==")
+    from openshenzhou.rateadjust import adjust_int16
+    import numpy as _np2
+    rng = _np2.random.RandomState(0)
+    # 用带周期的合成信号检查 int16 输出与长度关系（不依赖音色包）
+    tsec = 0.5
+    n = int(24000 * tsec)
+    per = 120
+    sig = (_np2.sin(2 * _np2.pi * _np2.arange(n) / per) * 8000).astype(_np2.int16)
+    for rate, expect in ((110, 1 / 1.1), (90, 1 / 0.9), (95, 1 / 0.95)):
+        out = adjust_int16(sig, rate / 100.0)
+        ratio = len(out) / len(sig)
+        check("rate=%d 输出长度比 ≈%.3f" % (rate, expect), abs(ratio - expect) < 0.02,
+              "实际 %.4f（%d/%d）" % (ratio, len(out), len(sig)))
+        check("rate=%d 输出为 int16" % rate, out.dtype == _np2.int16)
+    # 同一输入的确定性
+    o1 = adjust_int16(sig, 1.1)
+    o2 = adjust_int16(sig, 1.1)
+    check("rate复刻确定性", _np2.array_equal(o1, o2))
+
     if not a.skip_node and os.path.exists(os.path.join(ROOT, "node", "node_modules")):
         print("== 4. Node≡Python G2P 一致 ==")
         script = os.path.join(os.environ.get("TEMP", "."), "os_node_ids.js")
