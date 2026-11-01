@@ -908,14 +908,23 @@ def _parse(text):
             events.append(("minus", None))
             i += 1
             continue
+        if ch == "…":
+            rest = text[i + 1:].strip()
+            events.append(("ellipsis_pause" if rest else "end_ellipsis", None))
+            i += 1
+            continue
         if ch in END_PUNCT:
             if ch == ".":
                 run = 0
                 while i + run < n and text[i + run] == ".":
                     run += 1
                 if run >= 2:
-                    events.append(("end", "punc."))
-                    events.append(("punc_after_end", "punc."))
+                    rest = text[i + run:].strip()
+                    if run >= 3:
+                        events.append(("ellipsis_pause" if rest else "end_ellipsis", None))
+                    else:
+                        events.append(("end", "punc."))
+                        events.append(("punc_after_end", "punc."))
                     i += run
                     continue
                 nxt = text[i + 1] if i + 1 < n else ""
@@ -1362,6 +1371,8 @@ def _expand(events):
             out.append(("br1_br0", None))
         elif kind == "br2":
             out.append(("br2", None))
+        elif kind in ("ellipsis_pause", "end_ellipsis"):
+            out.append((kind, None))
         elif kind == "pause":
             out.append(("pause", val))
         elif kind == "end":
@@ -1510,6 +1521,18 @@ def text_to_ids(text, sym, lexicon=None):
                 else:
                     ids.append(sym.get(ph, sym.get("<pad>", 0)))
             first = False
+        elif kind == "ellipsis_pause":
+            ids.append(sym.get("br3", 0))
+            ids.append(sym.get("punc...", sym.get("punc.", 0)))
+            ids.append(sym.get("br0", 0))
+            first = True
+        elif kind == "end_ellipsis":
+            ids.append(sym["br4"])
+            ids.append(sym.get("punc...", sym.get("punc.", 0)))
+            ids.append(sym.get("punc.", 0))
+            ids.append(sym[END])
+            ended = True
+            first = True
         elif kind == "pause_plain":
             ids.append(sym["br3"])
             first = True
@@ -1532,14 +1555,37 @@ def text_to_ids(text, sym, lexicon=None):
             ids.append(sym["br0"])
             first = True
         elif kind == "end":
-            if ended:
-                ids.append(sym.get(item[1], sym.get("punc.", 0)))
-                i += 1
-                continue
+            # 句末：br4 + 主标点 +（紧随的附加标点）+ ~；若后面还有内容，另起一句
             ids.append(sym["br4"])
-            ids.append(sym.get(item[1], sym.get("punc.", 0)))
+            j = i + 1
+            extra = []
+            while j < len(flat) and flat[j][0] == "punc_after_end":
+                extra.append(flat[j][1])
+                j += 1
+            next_end = flat[j] if j < len(flat) and flat[j][0] == "end" else None
+            if item[1] == "punc." and len(extra) >= 2:
+                # 省略号：引擎结构 br4 + punc... + punc.（后面紧跟 ?/! 时用对应标点）
+                ids.append(sym.get("punc...", sym.get("punc.", 0)))
+                if next_end is not None:
+                    ids.append(sym.get(next_end[1], sym.get("punc.", 0)))
+                    j += 1
+                else:
+                    ids.append(sym.get("punc.", 0))
+            else:
+                ids.append(sym.get(item[1], sym.get("punc.", 0)))
+                for e in extra:
+                    ids.append(sym.get(e, sym.get("punc.", 0)))
+            ids.append(sym[END])
+            if j < len(flat):
+                ids.extend([sym[BOS], sym["br0"]])
+                first = True
+                ended = False
+                i = j
+                continue
             ended = True
             first = True
+            i = j
+            continue
         elif kind == "punc_after_end":
             ids.append(sym.get(item[1], sym.get("punc.", 0)))
             i += 1
@@ -1565,7 +1611,7 @@ def text_to_ids(text, sym, lexicon=None):
         ids.append(sym["br4"])
         if sym.get("punc."):
             ids.append(sym["punc."])
-    ids.append(sym[END])
+        ids.append(sym[END])
     return ids
 
 

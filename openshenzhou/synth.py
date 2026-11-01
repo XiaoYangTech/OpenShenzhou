@@ -29,7 +29,7 @@ def split_sentences(ids, sym=None, end_id=END_ID):
         # 句尾补 br4：若末尾是 punc token 且前面没有 br4，则插入 br4
         if cur and cur[-1] == end_id:
             j = len(cur) - 2
-            if j >= 0 and cur[j] in punc_ids and (j == 0 or cur[j - 1] != br4_id):
+            if j >= 0 and cur[j] in punc_ids and br4_id not in cur[max(0, j - 2):j]:
                 cur.insert(j, br4_id)
         if not cur or cur[-1] != end_id:
             cur.append(end_id)
