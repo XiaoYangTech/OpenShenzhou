@@ -380,7 +380,7 @@ function pronWord(word, nextWord, prevWord) {
   }
   const w = String(word).toLowerCase().replace(/’/g, "'");
   // en-GB/en-IN 引擎实测词表优先（功能词弱读形式除外，见 Python 版说明）
-  if (ACTIVE_LEX && !w.includes("'") && !VARIANT_FUNCTION_WORDS.has(w)) {
+  if (ACTIVE_LEX && !VARIANT_FUNCTION_WORDS.has(w)) {
     const lv = ACTIVE_LEX[w];
     if (lv && lv.length) return lv.slice();
   }
@@ -408,6 +408,9 @@ function pronWord(word, nextWord, prevWord) {
     if (NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
     if (HETERO_NOUN_PREV.has(pv) && het.noun) return het.noun.slice();
   }
+  if (ACTIVE_VARIANT === 'in' && w === 'a') return ['ah'];
+  if (ACTIVE_VARIANT === 'gb' && w === 'a') return ['ax'];
+  if (ACTIVE_VARIANT === 'in' && w === 'to') return ['tr', 'uw'];
   if (w === 'the') {
     if (ACTIVE_VARIANT === 'in' && ACTIVE_LEX && ACTIVE_LEX['the'] && ACTIVE_LEX['the'].length) {
       return ACTIVE_LEX['the'].slice();
