@@ -79,7 +79,7 @@ Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
 
 | 项目 | 现状 |
 |---|---|
-| **SSML 韵律** | Python SDK 已支持 `<speak>` / `<prosody volume|rate|pitch>` / `<break>`：`volume` **逐采样一致**（引擎实测为线性增益 `10^((v-100)/80)`，超出 ±1 削波）；`rate` 已确认由**音频域基音同步拼接**实现，总因子 = RateAdjustment/100 ×(1+rate/100)，SDK 已用引擎同款精确算法复刻；官方 SAPI 路径实测（24kHz）：算法对引擎输入流**逐采样一致（maxdiff=0）**，SDK 端到端 99.4%~99.7% 采样相同、残差 ≤1 LSB（见 §5.8）；`pitch`/`break` 近似（break 分段细节仍有差异）；Node SDK 暂未提供 SSML |
+| **SSML 韵律** | Python SDK 已支持 `<speak>` / `<prosody volume|rate|pitch>` / `<break>`：`volume` **逐采样一致**（引擎实测为线性增益 `10^((v-100)/80)`，超出 ±1 削波）；`rate` 已确认由**音频域基音同步拼接**实现，总因子 = RateAdjustment/100 ×(1+rate/100)，SDK 已用引擎同款精确算法复刻；官方 SAPI 路径实测（24kHz）：算法对引擎输入流**逐采样一致（maxdiff=0）**，SDK 端到端 99.4%~99.7% 采样相同、残差 ≤1 LSB（见 §5.8）；`pitch` 已确认与 `rate` 共用同一音频处理器：f28=2^(pct/120)，先 PSOLA 变速再重采样（时长不变、音高 ×f28），SDK 已按此实现（正弦实测 F0 比值与 f28 一致）；`break` 分段细节仍有差异；Node SDK 暂未提供 SSML |
 | **词边界事件** | Python SDK `word_events` 已复刻英文（19/19 逐字段一致）；中文事件与 Node 事件接口待后续版本 |
 | **中文混合 token**（如 `5G`、`MP3`、`iPhone15`） | 引擎使用中文混合语（mixlingual）专用读音；当前 SDK 对中英混合 token 的读音与引擎存在差异，相关资源解析仍在进行 |
 | **英式/印式英语变体** | 已支持：用引擎实测采集了 en-GB / en-IN 专用发音词表（各 4.85 万词条，含 51 个缩写读法），en-GB 的 `hello→h ax - l ow1`、en-IN 的 `world→vw ah r l dr` 等口音读法、功能词读法（`the→[d,ah]`、`to→[tr,uw]` 等）以及 en-IN 的标点约定（逗号→br3、句末无 punc、Prabhat 无结构符）均已复刻；抽样 20 句实测：en-GB 10/10、en-IN 10/10 逐采样一致（Prabhat 长句因解码分块调度约 0.995） |
