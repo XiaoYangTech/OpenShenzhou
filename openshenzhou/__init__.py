@@ -103,12 +103,6 @@ class TTS:
         """按 SSML 合成（volume 逐采样精确；rate/pitch 见 ssml 模块说明）"""
         from .ssml import speak_ssml as _speak_ssml
         audio = _speak_ssml(self, ssml)
-        # 与引擎一致：整段音频首尾各 300 采样静音（Vocoder 前导/收尾帧）
-        if len(audio) > 800:
-            import numpy as _np
-            audio = _np.asarray(audio, dtype=_np.float32).copy()
-            audio[:300] = 0.0
-            audio[-300:] = 0.0
         if out_path:
             import wave
             import numpy as _np

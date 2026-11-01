@@ -175,7 +175,10 @@ def speak_ssml(tts, ssml, volume=None):
     # 引擎：总加减速因子 = 语音包 RateAdjustment/100 × (1 + prosody_rate/100)，
     # 且由同一个音频域基音同步拼接处理器一次完成（已由 SAPI 路径实测确认：
     # Katja rate+100% 时处理器因子 1.1×2.0=2.2）。
-    base_rate = (getattr(t.pack, "rate_adjust", 100) or 100) / 100.0
+    import numpy as _np
+    # 引擎把 RateAdjustment/100 存成 float32（setter 接收 double 后转 float），
+    # SSML 因子在 float32 域相乘：f20 = float32(base) * float32(1 + p/100)
+    base_rate = _np.float32((getattr(t.pack, "rate_adjust", 100) or 100) / 100.0)
     for style, pieces in _runs(segs):
         gain, rate, pitch = style
         # 把同一段内的文本拼成整句合成（保持与引擎相同的句子结构），break 处插静音
@@ -213,8 +216,14 @@ def speak_ssml(tts, ssml, volume=None):
                     prev = pos
                 out.append(audio[prev:])
                 audio = np.concatenate(out) if out else audio
-        factor = base_rate * (1.0 + (rate or 0.0) / 100.0)
+        factor = float(_np.float32(base_rate * _np.float32(1.0 + (rate or 0.0) / 100.0)))
         if abs(factor - 1.0) > 1e-9:
+            # 引擎进 rate 处理器之前，自然音频首尾已有各 300 采样静音
+            # （Vocoder 前导/收尾帧），必须先复刻，否则基音检测会相位漂移
+            if len(audio) > 800:
+                audio = _np.asarray(audio, dtype=_np.float32).copy()
+                audio[:300] = 0.0
+                audio[-300:] = 0.0
             # 引擎同款：基音同步拼接（精确复刻的 RateAdjustment 算法）
             from .rateadjust import adjust_float
             audio = adjust_float(audio, factor)
