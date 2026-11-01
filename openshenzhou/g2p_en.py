@@ -85,6 +85,7 @@ SPECIAL_PHONES = {
     "underscore": ["ah2", "n", "-", "d", "ax", "r", "-", "s", "k", "ao1", "r"],
     "asterisk": ["ae1", "-", "s", "t", "ax", "-", "r", "ih", "s", "k"],
     "o'clock": ["ax", "-", "k", "l", "aa1", "k"],
+    "covid": ["k", "ah1", "-", "v", "ih", "d"],
 }
 SYMBOL_WORDS = {"*": "asterisk", "_": "underscore", "#": "number", "@": "at",
                 "+": "plus", "<": "less", ">": "greater",
@@ -665,8 +666,26 @@ def _parse(text):
                     for si, seg in enumerate(segs):
                         if si:
                             events.append(("w", "underscore"))
+                        m_a = re.fullmatch(r"([A-Za-z]+)(\d+)", seg)
+                        m_d = re.fullmatch(r"(\d+)([A-Za-z]+)", seg)
                         if seg.isdigit():
                             events.append(("number", seg))
+                        elif m_a:
+                            letters = m_a.group(1)
+                            if letters.isupper() and len(letters) > 1:
+                                events.append(("acronym", letters))
+                            elif _engine_phones(letters.lower()):
+                                events.append(("word", letters))
+                            else:
+                                events.append(("letters", letters))
+                            events.append(("number", m_a.group(2)))
+                        elif m_d:
+                            events.append(("number", m_d.group(1)))
+                            letters = m_d.group(2)
+                            if letters.isupper() and len(letters) > 1:
+                                events.append(("acronym", letters))
+                            else:
+                                events.append(("letters", letters))
                         else:
                             events.append(("word", seg))
                     if i < n and text[i] == "." and i + 1 < n and text[i + 1].isalnum():
@@ -693,9 +712,9 @@ def _parse(text):
                 m_an = re.fullmatch(r"([A-Za-z]+)(\d+)", w)
                 if m_an:
                     letters = m_an.group(1)
-                    if letters.isupper() and len(letters) > 1:
+                    if letters.isupper() and len(letters) > 1 and letters.lower() not in SPECIAL_PHONES:
                         events.append(("acronym", letters))
-                    elif _engine_phones(letters.lower()):
+                    elif _engine_phones(letters.lower()) or letters.lower() in SPECIAL_PHONES:
                         # English1 → 引擎按「English + one」读：已知单词当词读，
                         # 只有未知的字母串才逐字母拼读（MP3 / IPv4 等）
                         events.append(("word", letters))
