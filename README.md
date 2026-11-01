@@ -16,7 +16,8 @@
 - **SSML**：支持 `<speak>` / `<prosody volume|rate|pitch>` / `<break>`（volume 逐采样一致；`rate` 与语音包
   `RateAdjustment` 由**同一个音频域基音同步拼接**实现，总因子 = RateAdjustment/100 ×(1+rate/100)，
   已用引擎同款精确算法复刻（官方 SAPI 24kHz 路径实测：算法对引擎输入流逐采样一致，
-  SDK 端到端 99.4%~99.7% 采样相同、残差 ≤1 LSB）；pitch/break 近似）；
+  SDK 端到端 99.4%~99.7% 采样相同、残差 ≤1 LSB）；`pitch` 也已确认同样在音频处理器内实现
+  （f28=2^(pct/120)，PSOLA 变速 + 重采样，SDK 已复刻）；break 细节近似）；
   **23 个音色包在自然语速（RateAdjustment=100）下与引擎基本逐采样一致**（唯一残差是 ONNX 浮点运算次序
   导致的 ±1 LSB，约 99.7% 采样完全相同、皮尔逊相关 1.0000000）；
   **12 个音色包的 `RateAdjustment` 保音高变速已完全逆向复刻**（`openshenzhou/rateadjust.py`：基音同步

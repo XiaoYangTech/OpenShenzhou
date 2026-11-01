@@ -126,13 +126,48 @@ def _synth(t, text):
 
 
 def _resample_pitch(audio, semis):
-    """音高近似：按半音重采样（音高与时长耦合，仅近似）"""
+    """旧接口：音高近似（仅线性插值，音高与时长耦合），保留作兜底"""
     if abs(semis) < 1e-3 or len(audio) == 0:
         return audio
     ratio = 2.0 ** (semis / 12.0)
     n = max(1, int(round(len(audio) / ratio)))
     idx = np.linspace(0, len(audio) - 1, n)
     return np.interp(idx, np.arange(len(audio)), audio).astype(np.float32)
+
+
+def _sinc_resample(x, ratio, taps=24):
+    """窗函数 sinc 重采样：输出长度 = len(x)/ratio，音高 ×ratio（时长不变由前级 PSOLA 保证）"""
+    x = np.asarray(x, dtype=np.float64)
+    if len(x) == 0 or abs(ratio - 1.0) < 1e-9:
+        return x.astype(np.float32)
+    n_out = max(1, int(round(len(x) / ratio)))
+    # 输出点 j 对应输入位置 t = j*ratio（播放速度 ×ratio → 音高 ×ratio）
+    j = np.arange(n_out, dtype=np.float64)
+    t = j * ratio
+    half = taps // 2
+    k = np.arange(-half, half, dtype=np.float64)
+    idx = np.floor(t).astype(np.int64)
+    frac = t - idx
+    out = np.zeros(n_out, dtype=np.float64)
+    norm = np.zeros(n_out, dtype=np.float64)
+    for kk in k:
+        pos = idx + int(kk)
+        d = frac - kk
+        w = np.sinc(d) * (0.5 + 0.5 * np.cos(np.pi * d / half))
+        valid = (pos >= 0) & (pos < len(x))
+        out[valid] += x[pos[valid]] * w[valid]
+        norm[valid] += w[valid]
+    norm[norm == 0] = 1.0
+    return (out / norm).astype(np.float32)
+
+
+def _pitch_shift_engine(audio, f28, rate_factor):
+    """引擎音高链路：先 PSOLA 以 rate/f28 变速，再按 f28 重采样（时长还原、音高 ×f28）"""
+    if len(audio) == 0:
+        return audio
+    from .rateadjust import adjust_float
+    stretched = adjust_float(audio, float(np.float32(rate_factor) / np.float32(f28)))
+    return _sinc_resample(stretched, f28)
 
 
 def _word_starts(tts, text):
@@ -227,8 +262,21 @@ def speak_ssml(tts, ssml, volume=None):
             # 引擎同款：基音同步拼接（精确复刻的 RateAdjustment 算法）
             from .rateadjust import adjust_float
             audio = adjust_float(audio, factor)
-        if pitch:
-            audio = _resample_pitch(audio, pitch / 10.0)  # 100% ≈ 10 半音（近似）
+        # 引擎音高：SSML pitch 百分比 → 半音 = pct/10 → 因子 f28 = 2^(pct/120)
+        # （SAPI 实测：absmiddle=5→SSML 25%→f28=1.155353=2^(2.5/12)；
+        #  absmiddle=10/20→adapter 截断到 10→SSML 50%→f28=1.33484=2^(5/12)；
+        #  absmiddle=-20→SSML -50%→f28=0.749154=2^(-5/12)）
+        # 处理顺序：先 PSOLA 变速 rate/f28，再按 f28 重采样（时长不变、音高 ×f28）
+        f28 = float(np.float32(2.0) ** np.float32((pitch or 0.0) / 120.0))
+        if abs(f28 - 1.0) > 1e-6:
+            # 引擎在音高/速率处理前，自然音频首尾已有各 300 采样静音
+            if len(audio) > 800:
+                audio = np.asarray(audio, dtype=np.float32).copy()
+                audio[:300] = 0.0
+                audio[-300:] = 0.0
+            audio = _pitch_shift_engine(audio, f28, factor)
+        elif pitch:
+            audio = _resample_pitch(audio, pitch / 10.0)
         audio = audio * float(gain)
         parts.append(audio)
     audio = np.concatenate(parts) if parts else np.zeros(0, dtype=np.float32)
