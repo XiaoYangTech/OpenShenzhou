@@ -419,7 +419,7 @@ def normalize_segments(text):
             while endp < len(text) and text[endp] in "点元年":
                 txt += text[endp]
                 endp += 1
-            if endp > m.end() or txt.endswith("分钟"):
+            if txt.endswith("分钟"):
                 segs.append(("t", txt))
             else:
                 segs.append(("n", txt))
