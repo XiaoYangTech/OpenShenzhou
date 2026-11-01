@@ -198,6 +198,19 @@ function tnSymbols(text) {
 
 function normalizeSegments(text) {
   text = tnSymbols(text);
+  const mOrd = /^第([0-9零一二三四五六七八九十百千万两]+)(.*)$/.exec(text);
+  if (mOrd) {
+    const num = mOrd[1];
+    const rest = mOrd[2];
+    const out = [];
+    if (/^[0-9]/.test(num)) {
+      out.push({ kind: 't', v: '第' }, { kind: 'n', v: readDigits(num) });
+    } else {
+      out.push({ kind: 'n', v: '第' + num });
+    }
+    if (rest) out.push({ kind: 't', v: rest });
+    return out;
+  }
   const segs = [];
   let pos = 0;
   NUM_RE.lastIndex = 0;
