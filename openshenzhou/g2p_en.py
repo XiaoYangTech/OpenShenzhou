@@ -379,6 +379,55 @@ def _fallback_phones(word):
     return out
 
 
+CONTRACTIONS = {
+    "don't": ["d", "ow1", "n", "t"], "can't": ["k", "ae1", "n", "t"],
+    "won't": ["w", "ow1", "n", "t"], "shan't": ["sh", "ae1", "n", "t"],
+    "ain't": ["ey1", "n", "t"],
+    "isn't": ["ih1", "z", "ax", "n", "t"], "aren't": ["aa1", "r", "n", "t"],
+    "wasn't": ["w", "ah1", "z", "ax", "n", "t"], "weren't": ["w", "er1", "n", "t"],
+    "doesn't": ["d", "ah1", "z", "ax", "n", "t"], "didn't": ["d", "ih1", "d", "ax", "n", "t"],
+    "couldn't": ["k", "uh1", "d", "ax", "n", "t"], "shouldn't": ["sh", "uh1", "d", "ax", "n", "t"],
+    "wouldn't": ["w", "uh1", "d", "ax", "n", "t"], "mustn't": ["m", "ah1", "s", "ax", "n", "t"],
+    "needn't": ["n", "iy1", "d", "ax", "n", "t"],
+    "it's": ["ih1", "t", "s"], "that's": ["dh", "ae1", "t", "s"],
+    "what's": ["w", "ah1", "t", "s"], "let's": ["l", "eh1", "t", "s"],
+    "he's": ["h", "iy1", "z"], "she's": ["sh", "iy1", "z"],
+    "there's": ["dh", "eh1", "r", "z"], "here's": ["hh", "ih1", "r", "z"],
+    "where's": ["w", "eh1", "r", "z"], "who's": ["hh", "uw1", "z"],
+    "how's": ["hh", "aw1", "z"],
+    "i'm": ["ay1", "m"], "i've": ["ay1", "v"], "i'll": ["ay1", "l"], "i'd": ["ay1", "d"],
+    "you're": ["y", "ao1", "r"], "you've": ["y", "uw1", "v"], "you'll": ["y", "uw1", "l"], "you'd": ["y", "uw1", "d"],
+    "we're": ["w", "iy1", "r"], "we've": ["w", "iy1", "v"], "we'll": ["w", "iy1", "l"], "we'd": ["w", "iy1", "d"],
+    "they're": ["dh", "ey1", "r"], "they've": ["dh", "ey1", "v"], "they'll": ["dh", "ey1", "l"], "they'd": ["dh", "ey1", "d"],
+    "he'll": ["hh", "iy1", "l"], "he'd": ["hh", "iy1", "d"],
+    "she'll": ["sh", "iy1", "l"], "she'd": ["sh", "iy1", "d"],
+    "it'll": ["ih1", "t", "ax", "l"],
+    "who'll": ["hh", "uw1", "l"], "who'd": ["hh", "uw1", "d"], "who've": ["hh", "uw1", "v"],
+}
+
+VOICELESS = {"p", "t", "k", "f", "th", "s", "sh", "ch", "hh"}
+
+
+def _contraction_phones(word):
+    w = word.replace("’", "'").lower()
+    if w in CONTRACTIONS:
+        return list(CONTRACTIONS[w])
+    if w.endswith("n't") and len(w) > 3:
+        base = w[:-3]
+        base = {"ca": "can", "wo": "will", "sha": "shall", "ai": "am"}.get(base, base)
+        bp = pron_word(base)
+        return list(bp) + ["n", "t"]
+    if w.endswith("'s") and len(w) > 2:
+        base = w[:-2]
+        bp = pron_word(base)
+        last = (bp[-1].rstrip("012") if bp else "")
+        return list(bp) + (["s"] if last in VOICELESS else ["z"])
+    for suf, ph in (("'ll", "l"), ("'re", "r"), ("'ve", "v"), ("'d", "d"), ("'m", "m")):
+        if w.endswith(suf) and len(w) > len(suf):
+            return list(pron_word(w[:-len(suf)])) + [ph]
+    return None
+
+
 def pron_word(word, next_word="", prev_word=""):
     acro = load_acronyms().get(word)
     if acro:
@@ -386,7 +435,20 @@ def pron_word(word, next_word="", prev_word=""):
     case = load_case_words().get(word)
     if case:
         return list(case)
+    if len(word) == 1 and word.isupper() and word != "I":
+        nxt = (next_word or "").strip()
+        # 句首的 "A"：后接辅音开头的词读冠词弱读 ax；后接元音开头的词读 /eɪ/（引擎实测）
+        if word == "A" and nxt and not (len(nxt) == 1 and nxt.isupper()):
+            ph = _engine_phones(nxt.split()[0]) if nxt.split() else None
+            first = [x for x in (ph or []) if x != "-"]
+            is_vowel = bool(first) and first[0].rstrip("012") in VOWELS
+            return ["ey1"] if is_vowel else pron_word("a", next_word, prev_word)
+        return _letter_token(word.lower())
     w = word.lower().replace("’", "'")
+    if "'" in w:
+        cph = _contraction_phones(w)
+        if cph:
+            return cph
     het = load_heteronyms().get(w)
     if het:
         pv = (prev_word or "").lower()
