@@ -4,14 +4,42 @@ const path = require('path');
 const { VoicePack } = require('./lib/voicepack');
 const { synthesize, writeWav } = require('./lib/synth');
 
-function splitSentences(ids) {
+function splitSentences(ids, sym) {
+  const END = 1;
+  const bos = sym ? sym['-bos-'] : null;
+  const br0 = sym ? sym['br0'] : null;
+  const br4 = sym ? sym['br4'] : null;
+  const puncIds = new Set();
+  if (sym) {
+    for (const [k, v] of Object.entries(sym)) if (k.startsWith('punc')) puncIds.add(v);
+    if (sym['punc.'] !== undefined) puncIds.add(sym['punc.']);
+  }
+  const close = (cur) => {
+    if (cur.length && cur[cur.length - 1] === END) {
+      const j = cur.length - 2;
+      if (j >= 0 && puncIds.has(cur[j]) && (j === 0 || cur[j - 1] !== br4)) cur.splice(j, 0, br4);
+    }
+    if (!cur.length || cur[cur.length - 1] !== END) cur.push(END);
+    return cur;
+  };
   const out = [];
   let cur = [];
-  for (const x of ids) {
+  let i = 0;
+  while (i < ids.length) {
+    const x = ids[i];
     cur.push(x);
-    if (x === 1) { out.push(cur); cur = []; }
+    i += 1;
+    if (x === END) { out.push(close(cur)); cur = []; continue; }
+    if (br4 !== null && x === br4) {
+      while (i < ids.length && puncIds.has(ids[i])) { cur.push(ids[i]); i += 1; }
+      if (i < ids.length && ids[i] !== END) {
+        out.push(close(cur)); cur = [];
+        if (ids[i] !== bos && bos !== null) cur = [bos, br0];
+      }
+      continue;
+    }
   }
-  if (cur.length) out.push(cur);
+  if (cur.length) out.push(close(cur));
   return out;
 }
 
@@ -62,7 +90,7 @@ class TTS {
     const ids = this.textToIds(text);
     const sessions = await this.pack.sessions();
     // 引擎每句一次 encoder：多句序列逐句合成后拼接
-    const chunks = splitSentences(ids);
+    const chunks = splitSentences(ids, this.pack.symbols);
     if (chunks.length <= 1) return synthesize(sessions, ids, outPath, speed);
     const parts = [];
     let total = 0;
