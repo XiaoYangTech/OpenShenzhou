@@ -680,6 +680,16 @@ def _parse(text):
                 events.append(("number", tok))
             i = j
             continue
+        # 版本号 vX.Y[.Z][-suffix]：原版读 "vee two point one"（字母 v + 版本数字）
+        m_ver = re.match(r"(?i)v(\d+(?:\.\d+)+)(?:[-–]([A-Za-z0-9]+))?", text[i:])
+        if m_ver:
+            events.append(("phones", _letter_token("v")))
+            num = m_ver.group(1)
+            events.append(("version" if num.count(".") >= 2 else "decimal", num))
+            if m_ver.group(2):
+                events.append(("word", m_ver.group(2)))
+            i += m_ver.end()
+            continue
         # 点分缩写（U.S.A. / i.e. / e.g.）
         m = DOT_ABBR_RE.match(text, i)
         if m:
