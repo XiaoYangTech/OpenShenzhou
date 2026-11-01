@@ -13,7 +13,9 @@
 
 - **纯本地 / 跨平台**：Python + onnxruntime，Windows / Linux / macOS 都能跑；
 - **8 种语言、23 个音色包**：中、英（含英式/印式）、日、韩、西、法、德、葡；
-- **SSML**：支持 `<speak>` / `<prosody volume|rate|pitch>` / `<break>`（volume 逐采样一致，rate 时长一致、pitch/break 近似）；
+- **SSML**：支持 `<speak>` / `<prosody volume|rate|pitch>` / `<break>`（volume 逐采样一致；`rate` 与语音包
+  `RateAdjustment` 由**同一个音频域基音同步拼接**实现，总因子 = RateAdjustment/100 ×(1+rate/100)，
+  已用引擎同款精确算法复刻（SAPI 实测因子 1.1×2.0=2.2 等）；pitch/break 近似）；
   **23 个音色包在自然语速（RateAdjustment=100）下与引擎基本逐采样一致**（唯一残差是 ONNX 浮点运算次序
   导致的 ±1 LSB，约 99.7% 采样完全相同、皮尔逊相关 1.0000000）；
   **12 个音色包的 `RateAdjustment` 保音高变速已完全逆向复刻**（`openshenzhou/rateadjust.py`：基音同步

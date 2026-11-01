@@ -6,7 +6,8 @@
 * ``<prosody volume="...">`` —— 纯增益，时长不变。
   数值音量 v（百分比，默认 100）→ 线性增益 ``10 ** ((v-100)/80)``，超过 ±1 时削波。
   命名音量：x-soft=20 / soft=40 / medium=60 / loud=80 / x-loud=100（换算成上面的 v）。
-* ``<prosody rate="...">`` —— 时长 = 自然时长 / (1 + r/100)，音高不变（引擎为重构语音）。
+* ``<prosody rate="...">`` —— 引擎在音频域用基音同步拼接实现（与语音包 RateAdjustment 同一算法，
+  总因子 = RateAdjustment/100 × (1+r/100)），SDK 已精确复刻，时长/波形与引擎一致。
   SDK 用 WSOLA 保音高伸缩近似（时长一致、音高一致，波形非逐采样一致）。
   命名：x-slow=-66.6 / slow=-33.3 / medium=0 / fast=+33.3 / x-fast=+66.6。
 * ``<prosody pitch="...">`` —— 引擎通过模型内音高特征重构（时长基本不变）。
@@ -171,6 +172,10 @@ def speak_ssml(tts, ssml, volume=None):
     segs = []
     _iter_segments(root, (1.0, 0.0, 0.0), segs)
     parts = []
+    # 引擎：总加减速因子 = 语音包 RateAdjustment/100 × (1 + prosody_rate/100)，
+    # 且由同一个音频域基音同步拼接处理器一次完成（已由 SAPI 路径实测确认：
+    # Katja rate+100% 时处理器因子 1.1×2.0=2.2）。
+    base_rate = (getattr(t.pack, "rate_adjust", 100) or 100) / 100.0
     for style, pieces in _runs(segs):
         gain, rate, pitch = style
         # 把同一段内的文本拼成整句合成（保持与引擎相同的句子结构），break 处插静音
@@ -208,9 +213,11 @@ def speak_ssml(tts, ssml, volume=None):
                     prev = pos
                 out.append(audio[prev:])
                 audio = np.concatenate(out) if out else audio
-        if rate:
-            # 引擎：新时长 = 原始时长 / (1 + r/100)
-            audio = wsola(audio, 1.0 / (1.0 + rate / 100.0))
+        factor = base_rate * (1.0 + (rate or 0.0) / 100.0)
+        if abs(factor - 1.0) > 1e-9:
+            # 引擎同款：基音同步拼接（精确复刻的 RateAdjustment 算法）
+            from .rateadjust import adjust_float
+            audio = adjust_float(audio, factor)
         if pitch:
             audio = _resample_pitch(audio, pitch / 10.0)  # 100% ≈ 10 半音（近似）
         audio = audio * float(gain)
