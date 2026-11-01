@@ -463,6 +463,7 @@ def normalize_segments(text):
     m_time = re.match(r"^(\d{1,2})[:：](\d{2})(.*)$", text)
     m_dian = None if m_time else re.match(r"^(\D*?)(\d{1,2})点(\d{1,2})分(.*)$", text)
     if m_time or m_dian:
+        colon = bool(m_time)
         if m_time:
             pre, hh, mm, rest = "", m_time.group(1), m_time.group(2), m_time.group(3)
         else:
@@ -470,10 +471,17 @@ def normalize_segments(text):
         segs = []
         if pre:
             segs.append(("t", tn_symbols(pre)))
-        ntxt = _read_digits(hh) + "点"
-        if int(mm) != 0:
-            ntxt += _read_digits(mm) + "分"
-        segs.append(("n", ntxt))
+        if colon:
+            # 冒号时间：整个时间一个词（十点三十分）
+            ntxt = _read_digits(hh) + "点"
+            if int(mm) != 0:
+                ntxt += _read_digits(mm) + "分"
+            segs.append(("n", ntxt))
+        else:
+            # 中文「点」时间：小时+点 与 分钟 分属两个词（引擎实测：10点30分 = 十点 | 三十分）
+            segs.append(("n", _read_digits(hh) + "点"))
+            if int(mm) != 0:
+                segs.append(("n", _read_digits(mm) + "分"))
         if rest:
             segs.append(("t", tn_symbols(rest)))
         return segs
