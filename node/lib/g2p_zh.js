@@ -256,9 +256,14 @@ function normalizeSegments(text) {
       const rest = mt ? mt[3] : md[4];
       const out = [];
       if (pre) out.push({ kind: 't', v: tnSymbols(pre) });
-      let ntxt = readDigits(hh) + '点';
-      if (Number(mm) !== 0) ntxt += readDigits(mm) + '分';
-      out.push({ kind: 'n', v: ntxt });
+      if (mt) {
+        let ntxt = readDigits(hh) + '点';
+        if (Number(mm) !== 0) ntxt += readDigits(mm) + '分';
+        out.push({ kind: 'n', v: ntxt });
+      } else {
+        out.push({ kind: 'n', v: readDigits(hh) + '点' });
+        if (Number(mm) !== 0) out.push({ kind: 'n', v: readDigits(mm) + '分' });
+      }
       if (rest) out.push({ kind: 't', v: tnSymbols(rest) });
       return out;
     }
