@@ -343,6 +343,7 @@ NUM_RE = re.compile(
     r"|(?P<dec>\d+)\.(?P<frac>\d+)"
     r"|(?P<pct>\d+)%"
     r"|(?P<phone>\d{7,})"
+    r"|(?P<comma>\d{1,3}(?:,\d{3})+)"
     r"|(?P<md>\d+)(?P<mdunit>[月日])"
     r"|(?P<int>\d+)"
 )
@@ -396,16 +397,27 @@ def normalize_segments(text):
         if m.start() > pos:
             segs.append(("t", text[pos:m.start()]))
         if m.group("year"):
-            segs.append(("n", _read_digit_seq(m.group("year")) + "年"))
+            rest = text[m.end():]
+            if re.match(r"\d{1,2}月", rest):
+                # 完整日期：年份和「年」合并成一个词（与引擎日期规则一致）
+                segs.append(("n", _read_digit_seq(m.group("year")) + "年"))
+            else:
+                segs.append(("t", _read_digit_seq(m.group("year"))))
+                segs.append(("t", "年"))
         elif m.group("dec") is not None:
             txt = _read_digits(m.group("dec")) + "点" + _read_digit_seq(m.group("frac"))
             endp = m.end()
             while endp < len(text) and text[endp] in "点元年":
                 txt += text[endp]
                 endp += 1
-            segs.append(("n", txt))
+            if txt.endswith("分钟"):
+                segs.append(("t", txt))
+            else:
+                segs.append(("n", txt))
             pos = endp
             continue
+        elif m.group("comma"):
+            segs.append(("t", _read_digits(m.group("comma").replace(",", ""))))
         elif m.group("pct"):
             segs.append(("t", "百分之" + _read_digits(m.group("pct"))))
         elif m.group("phone"):
@@ -419,6 +431,9 @@ def normalize_segments(text):
             while endp < len(text) and text[endp] in "点元分秒":
                 txt += text[endp]
                 endp += 1
+                if text[endp - 1] == "分" and endp < len(text) and text[endp] == "钟":
+                    txt += "钟"
+                    endp += 1
             segs.append(("n", txt))
             pos = endp
             continue
