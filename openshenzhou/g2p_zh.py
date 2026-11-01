@@ -416,6 +416,20 @@ def normalize_segments(text):
         num, unit = m_unit.groups()
         unit_cn = {"kg": "千克", "km": "千米", "cm": "厘米", "mm": "毫米", "ml": "毫升"}[unit.lower()]
         return [("n", _read_digits(num)), ("t", unit_cn)]
+    # 4 位年份（1900–2099）：逐位读；2000 例外读「两千」
+    m_year = re.match(r"^(19\d{2}|20\d{2})$", text)
+    if m_year:
+        y = m_year.group(1)
+        if y == "2000":
+            return [("n", "两千")]
+        txt = "".join("零一二三四五六七八九"[int(ch)] for ch in y)
+        # 年份逐位读时「一」不变调（用同音字「衣」避免声调规则）
+        return [("ny", txt)]
+    # 数字串逐位读（前导零的 007）：每位数字一个词
+    m_digits = re.match(r"^(0\d+)$", text)
+    if m_digits:
+        digits = m_digits.group(1)
+        return [("n", "零" if ch == "0" else _read_digits(ch)) for ch in digits]
     # 周：2周 → 两周（引擎读「两」）
     m_week = re.match(r"^(\d+)周$", text)
     if m_week:
@@ -1442,12 +1456,22 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
         first = False
 
     for seg_idx, (kind, val) in enumerate(segs):
+        if kind == "ny":
+            py = [x[0] for x in pinyin(val, style=Style.TONE3, neutral_tone_with_five=True)]
+            py = apply_sandhi(py)
+            grp = []
+            for p2 in py:
+                grp.append([sym2id.get(sym, sym2id.get("padding", 0))
+                            for sym in syl_to_symbols(p2, table)])
+            if grp:
+                emit_word(grp)
+            continue
         if kind == "n":
             py = [x[0] for x in pinyin(val, style=Style.TONE3, neutral_tone_with_five=True)]
             py = apply_sandhi(py)
             next_tone = None
             if seg_idx + 1 < len(segs) and segs[seg_idx + 1][0] == "t":
-                nch = next((c for c in segs[seg_idx + 1][1] if "一" <= c <= "鿿"), None)
+                nch = next((c for c in segs[seg_idx + 1][1] if ("一" <= c <= "鿿" or c == "〇")), None)
                 if nch:
                     try:
                         np = pinyin(nch, style=Style.TONE3, neutral_tone_with_five=True)
@@ -1489,7 +1513,7 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
                     crf_cursor = _b + len(chunk)
             crf_ctx = ((crf_sent_chars, crf_tokens, crf_base)
                        if (crf_tokens is not None and crf_base is not None) else None)
-            chars = [c for c in chunk if "\u4e00" <= c <= "\u9fff"]
+            chars = [c for c in chunk if ("一" <= c <= "鿿" or c == "〇")]
             if not chars:
                 continue
             text_cn = "".join(chars)
