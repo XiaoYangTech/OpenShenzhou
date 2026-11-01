@@ -75,7 +75,7 @@ const { TTS } = require('./index');
 - **指定发音人**：选择对应语音包目录（本机共 23 个音色包）；
 - **语速**：`speed` 参数（模型内调节；实测 0.7/1.0/1.3 时长约 5.08s/3.48s/2.71s）；
 - **词边界事件**：Python SDK 提供 `word_events`（引擎 WordBoundary 复刻，英文 19/19 一致）；Node 事件接口待后续版本补上；
-- **语速调整（RateAdjustment）**：语音包 INI 中 `RateAdjustment≠100` 的音色，引擎会做保音高时长伸缩；**Python SDK 已精确复刻引擎算法**（`openshenzhou/rateadjust.py`，11 个变速率音色长度精确、corr=1.0、99%+ 采样一致），Node SDK 侧仍用 WSOLA 近似（时长/音高一致，波形非逐采样一致，后续移植同一算法）；
+- **语速调整（RateAdjustment）**：语音包 INI 中 `RateAdjustment≠100` 的音色，引擎会做保音高时长伸缩；**Python 与 Node 双端均已复刻引擎的基音同步拼接算法**（`openshenzhou/rateadjust.py` / `node/lib/rateadjust.js`，另复刻引擎自然音频首尾各 300 采样静音）。Python 侧 11 个变速率音色长度精确、corr=1.0、99%+ 采样一致；Node 侧端到端 corr≈0.976（受 Node 整段 decoder 与引擎分块量化的自然音频差异限制）；
 - **英式/印式英语**：en-GB（Ryan/Sonia）与 en-IN（Neerja/Prabhat）使用引擎实测的专用发音词表与标点约定，ids 与 Python SDK 完全一致；
 - **无 SAPI、无服务器**：纯本地库 + CLI，不需要注册 COM/SAPI，也不含 HTTP 服务。
 

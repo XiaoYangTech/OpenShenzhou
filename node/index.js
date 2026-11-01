@@ -122,11 +122,16 @@ class TTS {
       let off = 0;
       for (const a of parts) { audio.set(a, off); off += a.length; }
     }
-    // 引擎 RateAdjustment（语音包 INI ≠100）：保音高时长伸缩，WSOLA 近似复刻
+    // 复刻引擎自然音频首尾各 300 采样静音（Vocoder 前导/收尾帧）
+    if (audio.length > 800) {
+      audio.fill(0, 0, 300);
+      audio.fill(0, audio.length - 300);
+    }
+    // 引擎 RateAdjustment（语音包 INI ≠100）：基音同步拼接，精确复刻引擎算法
     const rate = this.pack.rateAdjust || 100;
     if (rate !== 100) {
-      const { wsola } = require('./lib/timestretch');
-      audio = wsola(audio, 100.0 / rate);
+      const { adjustFloat } = require('./lib/rateadjust');
+      audio = adjustFloat(audio, rate / 100.0);
     }
     if (outPath) writeWav(outPath, audio, 24000);
     return audio;
