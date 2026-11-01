@@ -399,7 +399,70 @@ def normalize_segments(text):
     数字片段会被当成一个词（引擎里就是如此），
     并吸收紧跟的「年/月/日/点」等量词。
     """
+    # 时间 token（基于原文）：
+    #   H:MM / H点M分 → 整个时间作为一个词（十点三十分、十二点）
+    #   纯 H点（0点/下午3点/晚上8点…）→ 数字与「点」分属两个词（走普通文本管线）
+    m_time = re.match(r"^(\d{1,2})[:：](\d{2})(.*)$", text)
+    m_dian = None if m_time else re.match(r"^(\D*?)(\d{1,2})点(\d{1,2})分(.*)$", text)
+    if m_time or m_dian:
+        if m_time:
+            pre, hh, mm, rest = "", m_time.group(1), m_time.group(2), m_time.group(3)
+        else:
+            pre, hh, mm, rest = m_dian.group(1), m_dian.group(2), m_dian.group(3), m_dian.group(4)
+        segs = []
+        if pre:
+            segs.append(("t", tn_symbols(pre)))
+        ntxt = _read_digits(hh) + "点"
+        if int(mm) != 0:
+            ntxt += _read_digits(mm) + "分"
+        segs.append(("n", ntxt))
+        if rest:
+            segs.append(("t", tn_symbols(rest)))
+        return segs
+    m_oclock = re.match(r"^(\D*?)(\d{1,2})点(?!\d)(.*)$", text)
+    if m_oclock:
+        pre, hh, rest = m_oclock.group(1), m_oclock.group(2), m_oclock.group(3)
+        segs = []
+        if pre:
+            segs.append(("t", tn_symbols(pre)))
+        # 纯 H点：数字与点分属两个词（引擎实测：下午3点 = 下午|三|点）
+        segs.append(("t", _read_digits(hh) + "点"))
+        if rest:
+            segs.append(("t", tn_symbols(rest)))
+        return segs
     text = tn_symbols(text)
+    # 时间 token：
+    #   H:MM / H点M分 → 整个时间作为一个词（十点三十分、十二点）
+    #   纯 H点（0点/下午3点/晚上8点…）→ 数字与「点」分属两个词（走普通文本管线）
+    m_time = re.match(r"^(\d{1,2})[:：](\d{2})(.*)$", text)
+    m_dian = None if m_time else re.match(r"^(.+?)(\d{1,2})点(\d{1,2})?分(.*)$", text)
+    if m_time:
+        h = _read_digits(m_time.group(1))
+        mm = int(m_time.group(2))
+        segs = [("n", h + "点" + (_read_digits(m_time.group(2)) + "分" if mm else ""))]
+        if m_time.group(3):
+            segs.append(("t", m_time.group(3)))
+        return segs
+    if m_dian:
+        pre, hh, mm, rest = m_dian.group(1), m_dian.group(2), m_dian.group(3), m_dian.group(4)
+        segs = []
+        if pre:
+            segs.append(("t", pre))
+        segs.append(("n", _read_digits(hh) + "点" + (_read_digits(mm) + "分" if mm is not None else "")))
+        if rest:
+            segs.append(("t", rest))
+        return segs
+    m_oclock = re.match(r"^(.*?)(\d{1,2})(点)(.*)$", text)
+    if m_oclock and "分" not in m_oclock.group(4) and ":" not in text:
+        pre, hh, dian, rest = m_oclock.groups()
+        segs = []
+        if pre:
+            segs.append(("t", pre))
+        # 纯 H点：数字与点分属两个词（引擎实测：下午3点 = 下午|三|点）
+        segs.append(("t", _read_digits(hh) + dian))
+        if rest:
+            segs.append(("t", rest))
+        return segs
     # 序数：第 + 数字 → 「第N」作为一个词，后缀另起一词（引擎实测：第一名 = 第一|名）
     m_ord = re.match(r"^第([0-9零一二三四五六七八九十百千万两]+)(.*)$", text)
     if m_ord:
@@ -1281,7 +1344,10 @@ def _num_sandhi(py, next_tone=None):
     def tone(p):
         t = p[-1]
         return int(t) if t.isdigit() else 5
+    dian_idx = next((k for k, q in enumerate(out) if q.rstrip("012345") == "dian"), None)
     for i, p in enumerate(out):
+        if dian_idx is not None and i > dian_idx:
+            continue
         base = p.rstrip("012345")
         nt = tone(out[i + 1]) if i + 1 < len(out) else (next_tone if next_tone else 5)
         prev = out[i - 1].rstrip("012345") if i > 0 else ""
