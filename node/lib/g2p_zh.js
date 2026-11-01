@@ -198,6 +198,16 @@ function tnSymbols(text) {
 
 function normalizeSegments(text) {
   {
+    const myear = /^(19\d{2}|20\d{2})$/.exec(text);
+    if (myear) {
+      if (myear[1] === '2000') return [{ kind: 'n', v: '两千' }];
+      const dig = '零一二三四五六七八九';
+      return [{ kind: 'ny', v: [...myear[1]].map((c) => dig[Number(c)]).join('') }];
+    }
+    const mlead0 = /^(0\d+)$/.exec(text);
+    if (mlead0) {
+      return [...mlead0[1]].map((c) => ({ kind: 'n', v: c === '0' ? '零' : readDigits(c) }));
+    }
     const mmoney = /^([$€])([\d.,]+)$/.exec(text);
     if (mmoney) {
       const unit = mmoney[1] === '$' ? '美元' : '欧元';
@@ -650,6 +660,11 @@ function textToIdsSentence(text, sym, pkgDir) {
 
   for (let segIdx = 0; segIdx < segs.length; segIdx++) {
     const seg = segs[segIdx];
+    if (seg.kind === 'ny') {
+      const groups = pinyinGroups(seg.v);
+      if (groups.length) emitGroups(groups);
+      continue;
+    }
     if (seg.kind === 'n') {
       let nextTone = null;
       const nseg = segs[segIdx + 1];
@@ -682,7 +697,7 @@ function textToIdsSentence(text, sym, pkgDir) {
         }
         continue;
       }
-      const cn = [...chunk].filter((c) => c >= '\u4e00' && c <= '\u9fff').join('');
+      const cn = [...chunk].filter((c) => (c >= '一' && c <= '鿿') || c === '〇').join('');
       if (!cn) continue;
       let crfCtx = null;
       if (crfTokens) {
