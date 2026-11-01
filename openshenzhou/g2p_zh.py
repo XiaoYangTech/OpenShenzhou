@@ -399,6 +399,38 @@ def normalize_segments(text):
     数字片段会被当成一个词（引擎里就是如此），
     并吸收紧跟的「年/月/日/点」等量词。
     """
+    # 金额 token：$5 / €5 → 一个词（五美元 / 五欧元；词内 SEP，三声变调在 n 读法里处理）
+    m_money = re.match(r"^([$€])([\d.,]+)$", text)
+    if m_money:
+        sym, num = m_money.groups()
+        unit = "美元" if sym == "$" else "欧元"
+        return [("n", _read_digits(num.replace(",", "")) + unit)]
+    # 数字+货币单位 token：5美元 / 5欧元 → 一个词
+    m_money2 = re.match(r"^([\d.,]+)(美元|欧元)$", text)
+    if m_money2:
+        num, unit = m_money2.groups()
+        return [("n", _read_digits(num.replace(",", "")) + unit)]
+    # 单位 token：5kg/5km/5cm/5mm/5ml → 数字词 + 单位词（数字与单位分属两词）
+    m_unit = re.match(r"^(\d+(?:\.\d+)?)(kg|km|cm|mm|ml)$", text, re.I)
+    if m_unit:
+        num, unit = m_unit.groups()
+        unit_cn = {"kg": "千克", "km": "千米", "cm": "厘米", "mm": "毫米", "ml": "毫升"}[unit.lower()]
+        return [("n", _read_digits(num)), ("t", unit_cn)]
+    # 周：2周 → 两周（引擎读「两」）
+    m_week = re.match(r"^(\d+)周$", text)
+    if m_week:
+        num = _read_digits(m_week.group(1))
+        if num == "二":
+            num = "两"
+        return [("n", num), ("t", "周")]
+    # 百分号区间：5%–10% → 5%至10%（引擎把区间符号读作「至」）
+    if "%" in text and ("–" in text or "—" in text):
+        text = text.replace("–", "至").replace("—", "至")
+    # 纯数字区间 token：5-10 → 五杠十（引擎读作「杠」）
+    m_range = re.match(r"^(\d+)[-–—](\d+)$", text)
+    if m_range:
+        return [("n", _read_digits(m_range.group(1))), ("t", "杠"),
+                ("n", _read_digits(m_range.group(2)))]
     # 日期+时间组合 token：引擎读法 = 日期各部分词 + 时间一个词
     #   例：2026年10月26日 10:30 → 二零二六 | 年月 | 二十六日 | 十点三十分
     m_dt = re.match(r"^(\d{4})年(\d{1,2})月(\d{1,2})日\s*(\d{1,2})[:：](\d{2})$", text)
