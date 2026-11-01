@@ -198,6 +198,33 @@ function tnSymbols(text) {
 
 function normalizeSegments(text) {
   {
+    const mmoney = /^([$€])([\d.,]+)$/.exec(text);
+    if (mmoney) {
+      const unit = mmoney[1] === '$' ? '美元' : '欧元';
+      return [{ kind: 'n', v: readDigits(mmoney[2].replace(/,/g, '')) + unit }];
+    }
+    const mmoney2 = /^([\d.,]+)(美元|欧元)$/.exec(text);
+    if (mmoney2) {
+      return [{ kind: 'n', v: readDigits(mmoney2[1].replace(/,/g, '')) + mmoney2[2] }];
+    }
+    const munit = /^(\d+(?:\.\d+)?)(kg|km|cm|mm|ml)$/i.exec(text);
+    if (munit) {
+      const UNIT_CN = { kg: '千克', km: '千米', cm: '厘米', mm: '毫米', ml: '毫升' };
+      return [{ kind: 'n', v: readDigits(munit[1]) }, { kind: 't', v: UNIT_CN[munit[2].toLowerCase()] }];
+    }
+    if (text.includes('%') && (text.includes('–') || text.includes('—'))) {
+      text = text.replace(/[–—]/g, '至');
+    }
+    const mrange = /^(\d+)[-–—](\d+)$/.exec(text);
+    if (mrange) {
+      return [{ kind: 'n', v: readDigits(mrange[1]) }, { kind: 't', v: '杠' }, { kind: 'n', v: readDigits(mrange[2]) }];
+    }
+    const mweek = /^(\d+)周$/.exec(text);
+    if (mweek) {
+      let num = readDigits(mweek[1]);
+      if (num === '二') num = '两';
+      return [{ kind: 'n', v: num }, { kind: 't', v: '周' }];
+    }
     const mdt = /^(\d{4})年(\d{1,2})月(\d{1,2})日\s*(\d{1,2})[:：](\d{2})$/.exec(text);
     if (mdt) {
       const out = [
