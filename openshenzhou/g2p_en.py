@@ -1470,13 +1470,19 @@ def _preprocess(text):
     return text
 
 
+def _push(ids, v):
+    """只追加存在的符号（部分语音包没有 -bos-/br0/br4 等结构符号）"""
+    if v is not None:
+        ids.append(v)
+
+
 def text_to_ids(text, sym, lexicon=None):
     text = _preprocess(text)
     raw = _parse(text)
     # 日期上下文：month word + number
     ev = _expand(raw)
     flat = _flatten(ev)
-    ids = [sym[BOS], sym["br0"]]
+    ids = [x for x in (sym.get(BOS), sym.get("br0")) if x is not None]
     first = True
     ended = False
     # 预处理：字符串词后的单位已经合并；处理 "month day" 日期
@@ -1514,10 +1520,10 @@ def text_to_ids(text, sym, lexicon=None):
                     phones = list(STRONG_AND)
             need_br1 = (not first) and not (i > 0 and flat[i - 1][0] == "br2")
             if need_br1:
-                ids.append(sym["br1"])
+                _push(ids, sym.get("br1"))
             for ph in phones:
                 if ph == "-":
-                    ids.append(sym["-"])
+                    _push(ids, sym.get("-") if sym.get("-") is not None else sym.get("&"))
                 else:
                     ids.append(sym.get(ph, sym.get("<pad>", 0)))
             first = False
@@ -1527,36 +1533,36 @@ def text_to_ids(text, sym, lexicon=None):
             ids.append(sym.get("br0", 0))
             first = True
         elif kind == "end_ellipsis":
-            ids.append(sym["br4"])
+            _push(ids, sym.get("br4"))
             ids.append(sym.get(item[1] or "punc...", sym.get("punc.", 0)))
             ids.append(sym.get("punc.", 0))
-            ids.append(sym[END])
+            _push(ids, sym.get(END))
             ended = True
             first = True
         elif kind == "pause_plain":
-            ids.append(sym["br3"])
+            _push(ids, sym.get("br3"))
             first = True
         elif kind == "pause_br1":
-            ids.append(sym["br1"])
+            _push(ids, sym.get("br1"))
             ids.append(sym.get(item[1], sym.get("punc.", 0)))
-            ids.append(sym["br0"])
+            _push(ids, sym.get("br0"))
             first = True
         elif kind == "br1_br0":
-            ids.append(sym["br1"])
-            ids.append(sym["br0"])
+            _push(ids, sym.get("br1"))
+            _push(ids, sym.get("br0"))
             first = True
         elif kind == "pause":
             if first:
                 i += 1
                 continue
-            ids.append(sym["br3"])
+            _push(ids, sym.get("br3"))
             if item[1]:
                 ids.append(sym.get(item[1], sym.get("punc,", 0)))
-            ids.append(sym["br0"])
+            _push(ids, sym.get("br0"))
             first = True
         elif kind == "end":
             # 句末：br4 + 主标点 +（紧随的附加标点）+ ~；若后面还有内容，另起一句
-            ids.append(sym["br4"])
+            _push(ids, sym.get("br4"))
             j = i + 1
             extra = []
             while j < len(flat) and flat[j][0] == "punc_after_end":
@@ -1575,9 +1581,9 @@ def text_to_ids(text, sym, lexicon=None):
                 ids.append(sym.get(item[1], sym.get("punc.", 0)))
                 for e in extra:
                     ids.append(sym.get(e, sym.get("punc.", 0)))
-            ids.append(sym[END])
+            _push(ids, sym.get(END))
             if j < len(flat):
-                ids.extend([sym[BOS], sym["br0"]])
+                ids.extend([x for x in (sym.get(BOS), sym.get("br0")) if x is not None])
                 first = True
                 ended = False
                 i = j
@@ -1596,22 +1602,22 @@ def text_to_ids(text, sym, lexicon=None):
             i += 1
             continue
         elif kind == "br2":
-            ids.append(sym.get("br2", sym["br1"]))
+            _push(ids, sym.get("br2") if sym.get("br2") is not None else sym.get("br1"))
         elif kind == "phones":
             if not first:
-                ids.append(sym["br1"])
+                _push(ids, sym.get("br1"))
             for ph in item[1]:
                 if ph == "-":
-                    ids.append(sym["-"])
+                    _push(ids, sym.get("-") if sym.get("-") is not None else sym.get("&"))
                 else:
                     ids.append(sym.get(ph, sym.get("<pad>", 0)))
             first = False
         i += 1
     if not ended:
-        ids.append(sym["br4"])
+        _push(ids, sym.get("br4"))
         if sym.get("punc."):
-            ids.append(sym["punc."])
-        ids.append(sym[END])
+            _push(ids, sym.get("punc."))
+        _push(ids, sym.get(END))
     return ids
 
 
