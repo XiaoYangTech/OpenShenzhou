@@ -477,6 +477,7 @@ function parse(text) {
         const an = /^([A-Za-z]+)(\d+)$/.exec(w);
         if (an) {
           if (an[1].length > 1 && an[1] === an[1].toUpperCase()) events.push(['acronym', an[1]]);
+          else if (enginePhones(an[1].toLowerCase())) events.push(['word', an[1]]);
           else events.push(['letters', an[1]]);
           if (an[2].length === 3) events.push(['groupnum', an[2]]);
           else events.push(['number', an[2]]);
