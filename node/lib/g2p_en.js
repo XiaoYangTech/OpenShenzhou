@@ -656,7 +656,7 @@ function parse(text) {
     }
     if (ch === '…') {
       const restE = text.slice(i + 1).replace(/^\s+/, '');
-      events.push([restE ? 'ellipsis_pause' : 'end_ellipsis', null]);
+      events.push([restE ? 'ellipsis_pause' : 'end_ellipsis', 'punc…']);
       i += 1; continue;
     }
     if (END_PUNCT[ch]) {
@@ -1115,7 +1115,7 @@ function expand(events) {
     } else if (kind === 'br1_br0') {
       out.push(['br1_br0', null]);
     } else if (kind === 'ellipsis_pause' || kind === 'end_ellipsis') {
-      out.push([kind, null]);
+      out.push([kind, val]);
     } else if (kind === 'pause') {
       out.push(['pause', val]);
     } else if (kind === 'end') {
@@ -1245,12 +1245,12 @@ function textToIds(text, sym) {
       first = true;
     } else if (kind === 'ellipsis_pause') {
       ids.push(sym['br3'] !== undefined ? sym['br3'] : 0);
-      ids.push(sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0));
+      ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0)));
       ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
       first = true;
     } else if (kind === 'end_ellipsis') {
       ids.push(sym['br4']);
-      ids.push(sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0));
+      ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0)));
       if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
       ids.push(sym[END]);
       ended = true;
@@ -1264,12 +1264,13 @@ function textToIds(text, sym) {
       if (extra.length) {
         for (const ex of extra) ids.push(sym[ex] !== undefined ? sym[ex] : (sym['punc.'] || 0));
       }
-      ids.push(sym[END]);
       if (jx < flat.length) {
+        ids.push(sym[END]);
         ids.push(sym[BOS]); ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
-        first = true; ended = false; i = jx; continue;
+        first = true; ended = false; i = jx - 1; continue;
       }
-      ended = true; first = true; i = jx; continue;
+      ids.push(sym[END]);
+      ended = true; first = true; i = jx - 1; continue;
     } else if (kind === 'punc_after_end') {
       ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc.'] || 0));
       continue;
