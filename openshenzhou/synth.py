@@ -10,16 +10,53 @@ MEL_SCALE = 0.25   # 引擎实测：decoder 输出 × 0.25 后转置成 [1,80,T]
 END_ID = 1         # '~' 序列结束符；引擎每句一个序列
 
 
-def split_sentences(ids, end_id=END_ID):
-    """把「多句首尾相接」的音素序列拆成逐句序列（每句以 ~ 结束）。"""
+def split_sentences(ids, sym=None, end_id=END_ID):
+    """把多句音素序列拆成逐句序列（每句以 ~ 结束）。
+
+    引擎对每个句子单独跑一次 encoder：句间边界可能是 ~（中文逐句流），
+    也可能是 br4 + 标点后直接接下一句（英文单流），两种都要拆开。
+    """
+    if sym:
+        bos_id = sym.get("-bos-")
+        br0_id = sym.get("br0")
+        br4_id = sym.get("br4")
+        punc_ids = {v for k, v in sym.items() if k.startswith("punc")}
+        punc_ids.add(sym.get("punc.", -1))
+        punc_ids.discard(None)
+    else:
+        bos_id = None; br0_id = None; br4_id = None; punc_ids = set()
+    def _close(cur):
+        # 句尾补 br4：若末尾是 punc token 且前面没有 br4，则插入 br4
+        if cur and cur[-1] == end_id:
+            j = len(cur) - 2
+            if j >= 0 and cur[j] in punc_ids and (j == 0 or cur[j - 1] != br4_id):
+                cur.insert(j, br4_id)
+        if not cur or cur[-1] != end_id:
+            cur.append(end_id)
+        return cur
+
     out, cur = [], []
-    for x in ids:
+    n = len(ids)
+    i = 0
+    while i < n:
+        x = ids[i]
         cur.append(x)
-        if x == end_id:
-            out.append(cur)
-            cur = []
+        i += 1
+        if end_id is not None and x == end_id:
+            out.append(_close(cur)); cur = []
+            continue
+        if br4_id is not None and x == br4_id:
+            # 句末 br4：把紧跟的标点 token 一并收进本句，然后按句收尾
+            while i < n and ids[i] in punc_ids:
+                cur.append(ids[i]); i += 1
+            if i < n and ids[i] != end_id:
+                out.append(_close(cur)); cur = []
+                # 下一句补齐 -bos- br0 前缀
+                if ids[i] != bos_id and bos_id is not None:
+                    cur = [bos_id, br0_id]
+            continue
     if cur:
-        out.append(cur)
+        out.append(_close(cur))
     return out
 
 

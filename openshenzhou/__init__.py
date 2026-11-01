@@ -137,7 +137,7 @@ class TTS:
         if self._sessions is None:
             self._sessions = self.pack.sessions()
         from .synth import split_sentences, write_wav
-        chunks = split_sentences(ids)
+        chunks = split_sentences(ids, self.pack.symbols)
         stream = self._streaming()
         proj = None if stream else self._projection()
 
