@@ -1261,6 +1261,25 @@ def _apply_sandhi_ids(ids, sym2id):
     return ids
 
 
+def _num_sandhi(py, next_tone=None):
+    """数字读法的跨词/词内变调：一/不 规则（第 后的一保持一声）"""
+    out = list(py)
+    def tone(p):
+        t = p[-1]
+        return int(t) if t.isdigit() else 5
+    for i, p in enumerate(out):
+        base = p.rstrip("012345")
+        nt = tone(out[i + 1]) if i + 1 < len(out) else (next_tone if next_tone else 5)
+        prev = out[i - 1].rstrip("012345") if i > 0 else ""
+        if base == "yi" and tone(p) == 1 and prev != "di":
+            if nt == 4:
+                out[i] = "yi2"
+            elif nt in (1, 2, 3):
+                out[i] = "yi4"
+        elif base == "bu" and tone(p) == 4 and nt == 4:
+            out[i] = "bu2"
+    return out
+
 def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
     """单句：-bos- br0 <syl> - <syl> ... [br3 punc, br0] <syl> ... br4 [punc。] ~"""
     # 句尾的非句末标点（，；：等）：引擎把它当作句末处理
@@ -1298,10 +1317,22 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
             ids.extend(toks)
         first = False
 
-    for kind, val in segs:
+    for seg_idx, (kind, val) in enumerate(segs):
         if kind == "n":
             py = [x[0] for x in pinyin(val, style=Style.TONE3, neutral_tone_with_five=True)]
             py = apply_sandhi(py)
+            next_tone = None
+            if seg_idx + 1 < len(segs) and segs[seg_idx + 1][0] == "t":
+                nch = next((c for c in segs[seg_idx + 1][1] if "一" <= c <= "鿿"), None)
+                if nch:
+                    try:
+                        np = pinyin(nch, style=Style.TONE3, neutral_tone_with_five=True)
+                        if np:
+                            t = np[0][0][-1]
+                            next_tone = int(t) if t.isdigit() else 5
+                    except Exception:
+                        next_tone = None
+            py = _num_sandhi(py, next_tone)
             grp = []
             for p2 in py:
                 grp.append([sym2id.get(sym, sym2id.get("padding", 0))
