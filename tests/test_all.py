@@ -101,6 +101,13 @@ def main():
         check("%s 音频长度（%.2f 秒）" % (lang, len(audio) / 24000.0), len(audio) > 4800)
         check("%s 音频非静音" % lang, float(np.abs(audio).max()) > 0.05)
 
+    # 引擎自然音频首尾各 300 采样静音（Vocoder 前导/收尾帧），SDK 已复刻
+    if "en" in tts:
+        _a = np.asarray(tts["en"].speak("hello world."))
+        if len(_a) > 800:
+            check("自然音频首 300 采样为静音", float(np.abs(_a[:300]).max()) == 0.0)
+            check("自然音频末 300 采样为静音", float(np.abs(_a[-300:]).max()) == 0.0)
+
     print("== 3b. SSML 冒烟 ==")
     if "en" in tts:
         import numpy as _np
