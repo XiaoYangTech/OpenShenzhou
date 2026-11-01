@@ -666,10 +666,15 @@ def _parse(text):
                 # HTML5 / AA123：字母串 + 数字
                 m_an = re.fullmatch(r"([A-Za-z]+)(\d+)", w)
                 if m_an:
-                    if m_an.group(1).isupper() and len(m_an.group(1)) > 1:
-                        events.append(("acronym", m_an.group(1)))
+                    letters = m_an.group(1)
+                    if letters.isupper() and len(letters) > 1:
+                        events.append(("acronym", letters))
+                    elif _engine_phones(letters.lower()):
+                        # English1 → 引擎按「English + one」读：已知单词当词读，
+                        # 只有未知的字母串才逐字母拼读（MP3 / IPv4 等）
+                        events.append(("word", letters))
                     else:
-                        events.append(("letters", m_an.group(1)))
+                        events.append(("letters", letters))
                     if len(m_an.group(2)) == 3:
                         events.append(("groupnum", m_an.group(2)))
                     else:
