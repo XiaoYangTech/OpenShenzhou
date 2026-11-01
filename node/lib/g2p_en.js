@@ -947,9 +947,12 @@ function expand(events) {
         for (const w of words) out.push(['w', w]);
       } else {
         const nn = Number(num.replace(/,/g, ''));
-        if ((sym === '¥' || sym === '￥') && nn) {
+        if (sym === '¥' && nn) {
           for (const w of cardinalWords(nn)) out.push(['w', w]);
           out.push(['w', 'yen']);
+        } else if (sym === '￥' && nn) {
+          for (const w of cardinalWords(nn)) out.push(['w', w]);
+          out.push(['phones', ['y', 'uw', '-', 'aa1', 'n']]);
         } else {
           for (const w of cardinalWords(nn)) out.push(['w', w]);
           out.push(['w', plural(nn, major)]);
