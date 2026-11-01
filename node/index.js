@@ -13,11 +13,13 @@ function splitSentences(ids, sym) {
   if (sym) {
     for (const [k, v] of Object.entries(sym)) if (k.startsWith('punc')) puncIds.add(v);
     if (sym['punc.'] !== undefined) puncIds.add(sym['punc.']);
+    if (sym['/'] !== undefined) puncIds.add(sym['/']); // '/' 是多语种前端结构符号
   }
   const close = (cur) => {
     if (cur.length && cur[cur.length - 1] === END) {
       const j = cur.length - 2;
-      if (j >= 0 && puncIds.has(cur[j]) && !cur.slice(Math.max(0, j - 2), j).includes(br4)) cur.splice(j, 0, br4);
+      if (br4 !== null && j >= 0 && puncIds.has(cur[j])
+          && !cur.slice(Math.max(0, j - 2), j).includes(br4)) cur.splice(j, 0, br4);
     }
     if (!cur.length || cur[cur.length - 1] !== END) cur.push(END);
     return cur;
@@ -34,7 +36,7 @@ function splitSentences(ids, sym) {
       while (i < ids.length && puncIds.has(ids[i])) { cur.push(ids[i]); i += 1; }
       if (i < ids.length && ids[i] !== END) {
         out.push(close(cur)); cur = [];
-        if (ids[i] !== bos && bos !== null) cur = [bos, br0];
+        if (ids[i] !== bos && bos !== null) cur = br0 === null ? [bos] : [bos, br0];
       }
       continue;
     }
@@ -91,17 +93,27 @@ class TTS {
     const sessions = await this.pack.sessions();
     // 引擎每句一次 encoder：多句序列逐句合成后拼接
     const chunks = splitSentences(ids, this.pack.symbols);
-    if (chunks.length <= 1) return synthesize(sessions, ids, outPath, speed);
-    const parts = [];
-    let total = 0;
-    for (const ch of chunks) {
-      const a = await synthesize(sessions, ch, null, speed);
-      parts.push(a);
-      total += a.length;
+    let audio;
+    if (chunks.length <= 1) {
+      audio = await synthesize(sessions, ids, null, speed);
+    } else {
+      const parts = [];
+      let total = 0;
+      for (const ch of chunks) {
+        const a = await synthesize(sessions, ch, null, speed);
+        parts.push(a);
+        total += a.length;
+      }
+      audio = new Float32Array(total);
+      let off = 0;
+      for (const a of parts) { audio.set(a, off); off += a.length; }
     }
-    const audio = new Float32Array(total);
-    let off = 0;
-    for (const a of parts) { audio.set(a, off); off += a.length; }
+    // 引擎 RateAdjustment（语音包 INI ≠100）：保音高时长伸缩，WSOLA 近似复刻
+    const rate = this.pack.rateAdjust || 100;
+    if (rate !== 100) {
+      const { wsola } = require('./lib/timestretch');
+      audio = wsola(audio, 100.0 / rate);
+    }
     if (outPath) writeWav(outPath, audio, 24000);
     return audio;
   }

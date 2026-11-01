@@ -34,6 +34,24 @@ class VoicePack {
     this.symbols = loadSymbols(this.phonesPath);
     this.lang = this._guessLang();
     this._sessions = null;
+    this.rateAdjust = this._readRateAdjust();
+  }
+
+  _readRateAdjust() {
+    // 语音包 INI 的 VoiceSetting.RateAdjustment：≠100 时引擎会做保音高时长伸缩
+    try {
+      const files = fs.readdirSync(this.dir).filter((f) => f.toLowerCase().endsWith('.ini'));
+      for (const f of files.sort()) {
+        if (f.toLowerCase().startsWith('msttsloc')) continue;
+        const txt = fs.readFileSync(path.join(this.dir, f), 'utf8');
+        const m = /RateAdjustment\s*=\s*(\d+)/.exec(txt);
+        if (m) {
+          const v = parseInt(m[1], 10);
+          if (v >= 1 && v <= 1000) return v;
+        }
+      }
+    } catch (e) { /* ignore */ }
+    return 100;
   }
 
   _guessLang() {
