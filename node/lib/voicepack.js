@@ -20,7 +20,9 @@ function loadSymbols(phonesPath) {
     if (!t) continue;
     const idx = t.lastIndexOf(':');
     if (idx < 0) continue;
-    m[t.slice(0, idx)] = parseInt(t.slice(idx + 1), 10);
+    const name = t.slice(0, idx);
+    // 同名符号取第一次出现的 id（引擎行为，见 Python 版说明）
+    if (m[name] === undefined) m[name] = parseInt(t.slice(idx + 1), 10);
   }
   return m;
 }

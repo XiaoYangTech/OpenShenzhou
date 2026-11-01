@@ -5,7 +5,7 @@ const { VoicePack } = require('./lib/voicepack');
 const { synthesize, writeWav } = require('./lib/synth');
 
 function splitSentences(ids, sym) {
-  const END = 1;
+  const END = sym && sym['~'] !== undefined ? sym['~'] : null; // 部分语音包符号表无 '~'
   const bos = sym ? sym['-bos-'] : null;
   const br0 = sym ? sym['br0'] : null;
   const br4 = sym ? sym['br4'] : null;
@@ -16,6 +16,7 @@ function splitSentences(ids, sym) {
     if (sym['/'] !== undefined) puncIds.add(sym['/']); // '/' 是多语种前端结构符号
   }
   const close = (cur) => {
+    if (END === null) return cur;
     if (cur.length && cur[cur.length - 1] === END) {
       const j = cur.length - 2;
       if (br4 !== null && j >= 0 && puncIds.has(cur[j])
