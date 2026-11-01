@@ -523,7 +523,7 @@ def pron_word(word, next_word="", prev_word=""):
     w = word.lower().replace("’", "'")
     # 变体词表（en-GB/en-IN 引擎实测）优先于内置规则，但功能词（弱读/上下文读法）
     # 实测是"孤立词 citation 读法"，在句子里不适用，仍交给内置规则。
-    if _ACTIVE_LEX is not None and "'" not in w and w not in FUNCTION_WORDS:
+    if _ACTIVE_LEX is not None and w not in FUNCTION_WORDS:
         v = _ACTIVE_LEX.get(w)
         if v:
             return list(v)
@@ -554,6 +554,15 @@ def pron_word(word, next_word="", prev_word=""):
             return list(het["noun"])
         if pv in HETERO_NOUN_PREV and het.get("noun"):
             return list(het["noun"])
+    if _ACTIVE_VARIANT == "in" and w == "a":
+        # en-IN 实测：冠词 a 读 [ah]
+        return ["ah"]
+    if _ACTIVE_VARIANT == "gb" and w == "a":
+        # en-GB 实测：冠词 a 读 [ax]
+        return ["ax"]
+    if _ACTIVE_VARIANT == "in" and w == "to":
+        # en-IN 实测：虚词 to 读 [tr, uw]
+        return ["tr", "uw"]
     if w == "the":
         # en-IN 实测：句子里 the 读 [d, ah]（与孤立词一致）
         if _ACTIVE_VARIANT == "in" and _ACTIVE_LEX is not None:
