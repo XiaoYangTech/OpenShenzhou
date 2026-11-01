@@ -442,6 +442,14 @@ function parse(text) {
   while (i < n) {
     const ch = text[i];
     if (' \t\r\n'.includes(ch)) { i++; continue; }
+    const urlM = /^(https?):\/\//i.exec(text.slice(i));
+    if (urlM) {
+      for (const ch2 of urlM[1].toLowerCase()) events.push(['phones', letterToken(ch2)]);
+      events.push(['w', 'colon'], ['w', 'slash'], ['w', 'slash']);
+      i += urlM[0].length; continue;
+    }
+    const mailM = /^mailto:/i.exec(text.slice(i));
+    if (mailM) { events.push(['word', 'mailto']); i += mailM[0].length; continue; }
     const [kind, tok, j] = matchNumber(text, i);
     if (kind) {
       if (kind === 'currency') events.push(['currency', [tok[0], tok.slice(1).trim()]]);
@@ -480,8 +488,8 @@ function parse(text) {
             if (/^[0-9]+$/.test(seg)) events.push(['number', seg]);
             else if (m_a) {
               const letters = m_a[1];
-              if (letters.length > 1 && letters === letters.toUpperCase()) events.push(['acronym', letters]);
-              else if (enginePhones(letters.toLowerCase())) events.push(['word', letters]);
+              if (enginePhones(letters.toLowerCase()) || letters !== letters.toUpperCase()) events.push(['word', letters]);
+              else if (letters.length > 1) events.push(['acronym', letters]);
               else events.push(['letters', letters]);
               events.push(['number', m_a[2]]);
             } else if (m_d) {
@@ -499,8 +507,8 @@ function parse(text) {
         const an3 = /^([A-Za-z]+)(\d+)([A-Za-z]+)$/.exec(w);
         if (an3) {
           const emitGroup = (g) => {
-            if (g.length > 1 && g === g.toUpperCase()) events.push(['acronym', g]);
-            else if (enginePhones(g.toLowerCase())) events.push(['word', g]);
+            if (enginePhones(g.toLowerCase()) || g !== g.toUpperCase()) events.push(['word', g]);
+            else if (g.length > 1) events.push(['acronym', g]);
             else events.push(['letters', g]);
           };
           emitGroup(an3[1]);
@@ -510,12 +518,15 @@ function parse(text) {
         }
         const an = /^([A-Za-z]+)(\d+)$/.exec(w);
         if (an) {
-          if (an[1].length > 1 && an[1] === an[1].toUpperCase() && !SPECIAL_PHONES[an[1].toLowerCase()]) events.push(['acronym', an[1]]);
-          else if (enginePhones(an[1].toLowerCase()) || SPECIAL_PHONES[an[1].toLowerCase()]) events.push(['word', an[1]]);
+          if (enginePhones(an[1].toLowerCase()) || SPECIAL_PHONES[an[1].toLowerCase()] || an[1] !== an[1].toUpperCase()) events.push(['word', an[1]]);
+          else if (an[1].length > 1 && an[1] === an[1].toUpperCase()) events.push(['acronym', an[1]]);
           else events.push(['letters', an[1]]);
           if (an[2].length === 3) events.push(['groupnum', an[2]]);
           else events.push(['number', an[2]]);
           lastWord = w.toLowerCase(); continue;
+        }
+        if (w.toLowerCase() === 'no' && i < n && text[i] === '.') {
+          events.push(['w', 'number']); i += 1; lastWord = 'number'; continue;
         }
         if (i < n && text[i] === '.' && i + 1 < n && /[A-Za-z0-9]/.test(text[i + 1])) {
           events.push(['word', w]);
@@ -732,8 +743,14 @@ function expandNumberToken(tok, kind, outWords) {
       const rawAp = (m[4] || '').toLowerCase();
       const ampm = rawAp ? (rawAp.startsWith('a') ? 'am' : 'pm') : null;
       if (m[3]) {
-        return cardinalWords(hh).concat(cardinalWords(mm), cardinalWords(Number(m[3])))
-          .map((w) => ['w', w]);
+        const ss = Number(m[3]);
+        const ev = cardinalWords(hh).map((w) => ['w', w]);
+        ev.push(['w', hh === 1 ? 'hour' : 'hours']);
+        for (const w of cardinalWords(mm)) ev.push(['w', w]);
+        ev.push(['w', mm === 1 ? 'minute' : 'minutes'], ['w', 'and']);
+        for (const w of cardinalWords(ss)) ev.push(['w', w]);
+        ev.push(['w', ss === 1 ? 'second' : 'seconds']);
+        return ev;
       }
       return timeWords(hh, mm, ampm);
     }
@@ -811,7 +828,9 @@ function expandNumberToken(tok, kind, outWords) {
   }
   if (kind === 'mixed') {
     const m = /^(\d+)\s+(\d+)\s*\/\s*(\d+)/.exec(tok);
-    const words = cardinalWords(Number(m[1])).concat(['and'], fractionWords(Number(m[2]), Number(m[3])));
+    const n = Number(m[1]), num = Number(m[2]), den = Number(m[3]);
+    if (num === 1 && den === 2) return cardinalWords(n).concat(['and', 'a', 'half']).map((w) => ['w', w]);
+    const words = cardinalWords(n).concat(['and'], fractionWords(num, den));
     return words.map((w) => ['w', w]);
   }
   if (kind === 'ip') {
@@ -919,7 +938,7 @@ function expand(events) {
           const prevWords = out.filter((x) => x[0] === 'w').slice(-4).map((x) => x[1]).join(' ');
           uw = (prevWords.includes('hour') || prevWords.includes('hours')) ? ['minutes'] : null;
         }
-        if (rawU.length === 1 && rawU === rawU.toUpperCase()) uw = null;
+        if (rawU === rawU.toUpperCase() && rawU.length === 1) uw = null;
         if (uw && ['number', 'decimal', 'thousands', 'version'].includes(kind)) {
           let lastNum = null;
           try { lastNum = parseFloat(val.replace(/[^0-9.]/g, '')); } catch (e) { lastNum = null; }
