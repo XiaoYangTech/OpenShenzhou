@@ -190,9 +190,19 @@ def _word_starts(tts, text):
     try:
         from .events import word_events
         evs = word_events(tts, text)
-        return [int(round(e["audio"] * 24.0 / 10000.0)) for e in evs]
+        return [int(round(e["audio_ticks"] * 24.0 / 10000.0)) for e in evs]
     except Exception:
         return None
+
+
+def _break_pos(pos, total):
+    """引擎把 break 静音插在「下一个 1200 采样块边界」：
+    实测 break 在开头时插在 1200（第一块）之后，两词之间时插在后续块边界；
+    SDK 用词边界向上对齐到 1200 的整数倍复刻该行为。"""
+    pos = max(0, min(int(pos), int(total)))
+    if pos <= 0:
+        return 1200
+    return int((pos + 1199) // 1200) * 1200
 
 
 def _runs(segs):
@@ -253,7 +263,7 @@ def speak_ssml(tts, ssml, volume=None):
                     silence = int(round(ms * 24.0))
                     idx = word_pos
                     pos = starts[idx] if starts and idx < len(starts) else len(audio)
-                    inserts.append((pos, silence))
+                    inserts.append((_break_pos(pos, len(audio)), silence))
                 else:
                     token = _WORD_RE.search(p[1] or "")
                     word_pos += len(_WORD_RE.findall(p[1] or ""))

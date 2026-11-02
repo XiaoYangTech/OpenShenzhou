@@ -185,6 +185,31 @@ def main():
         check("pitch -50% F0 比 ≈ 2^(-5/12)=0.7492", abs(_r_dn - 0.7492) < 0.06,
               "实际 %.4f" % _r_dn)
 
+    print("== 3e. SSML break 语义自检 ==")
+    if "en" in tts:
+        import numpy as _np4
+        _t = tts["en"]
+        _ns = 'xmlns="http://www.w3.org/2001/10/synthesis"'
+        _base = _np4.asarray(_t.speak_ssml('<speak %s>hello world.</speak>' % _ns), dtype=_np4.float32)
+        _brk = _np4.asarray(_t.speak_ssml(
+            '<speak %s><break time="500ms"/>hello world.</speak>' % _ns), dtype=_np4.float32)
+        check("break 500ms 总长 +12000 采样", len(_brk) == len(_base) + 12000,
+              "%d vs %d" % (len(_brk), len(_base) + 12000))
+        _runs = []
+        _st = None
+        for _i, _v in enumerate(_brk):
+            if abs(_v) < 1e-7 and _st is None:
+                _st = _i
+            if abs(_v) >= 1e-7 and _st is not None:
+                _runs.append((_st, _i))
+                _st = None
+        if _st is not None:
+            _runs.append((_st, len(_brk)))
+        _runs.sort(key=lambda x: x[1] - x[0], reverse=True)
+        check("break 在开头插入位置=1200（引擎块边界）",
+              bool(_runs) and _runs[0][0] == 1200 and _runs[0][1] - _runs[0][0] == 12000,
+              str(_runs[0]) if _runs else "None")
+
     if not a.skip_node and os.path.exists(os.path.join(ROOT, "node", "node_modules")):
         print("== 4. Node≡Python G2P 一致 ==")
         script = os.path.join(os.environ.get("TEMP", "."), "os_node_ids.js")
