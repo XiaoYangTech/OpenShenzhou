@@ -153,12 +153,17 @@ function classes(chars) {
   }
   seq.push(w.emb.subarray(64, 128));
   while (seq.length % WINDOW) seq.push(w.emb.subarray(64, 128));
-  // 引擎实测：对整段（补齐到 20 的倍数）做一次双向 LSTM，不按 20 帧重置状态
+  // 引擎实测（进程内 hook 对拍）：按 20 帧窗口流式执行——
+  // 前向 LSTM 跨窗口携带隐状态（等价整段一次前向），后向 LSTM 每个窗口内独立回扫。
   const hf = runLstm(seq, w.wFwd, w.bFwd, false);
-  const hb = runLstm(seq, w.wBwd, w.bBwd, true);
   const T = seq.length;
+  const Hb = new Float32Array(T * 64);
+  for (let st = 0; st < T; st += WINDOW) {
+    const en = Math.min(T, st + WINDOW);
+    const part = runLstm(seq.slice(st, en), w.wBwd, w.bBwd, true);
+    Hb.set(part.subarray(0, (en - st) * 64), st * 64);
+  }
   const Hf = hf;
-  const Hb = hb;
   const out = [];
   for (let k = 0; k < n; k++) {
     const t = k + 1;
