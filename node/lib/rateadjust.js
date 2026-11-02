@@ -150,4 +150,10 @@ function adjustFloat(audio, rate) {
   return out;
 }
 
-module.exports = { adjustInt16, adjustFloat, detectPeriod };
+function engineRateFactor(pct) {
+  // 引擎：float32(pct * 0.01f)——不是 pct/100 的双精度除法（85 时两者差 1 ulp，
+  // 会使 carry 截断差 1、整段相位漂移；与 python 分支 engine_rate_factor 一致）
+  return Math.fround(Math.fround(pct) * Math.fround(0.01));
+}
+
+module.exports = { adjustInt16, adjustFloat, detectPeriod, engineRateFactor };

@@ -130,8 +130,8 @@ class TTS {
     // 引擎 RateAdjustment（语音包 INI ≠100）：基音同步拼接，精确复刻引擎算法
     const rate = this.pack.rateAdjust || 100;
     if (rate !== 100) {
-      const { adjustFloat } = require('./lib/rateadjust');
-      audio = adjustFloat(audio, rate / 100.0);
+      const { adjustFloat, engineRateFactor } = require('./lib/rateadjust');
+      audio = adjustFloat(audio, engineRateFactor(rate));
     }
     if (outPath) writeWav(outPath, audio, 24000);
     return audio;
