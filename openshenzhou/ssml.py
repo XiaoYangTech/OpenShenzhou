@@ -382,32 +382,30 @@ def speak_ssml(tts, ssml, volume=None):
             audio = _synth(t, joined)
         else:
             audio = _synth_break_pieces(t, pieces)
-        factor = float(_np.float32(base_rate * _np.float32(1.0 + (rate or 0.0) / 100.0)))
-        if abs(factor - 1.0) > 1e-9:
-            # 引擎进 rate 处理器之前，自然音频首尾已有各 300 采样静音
-            # （Vocoder 前导/收尾帧），必须先复刻，否则基音检测会相位漂移
-            if len(audio) > 800:
-                audio = _np.asarray(audio, dtype=_np.float32).copy()
-                audio[:300] = 0.0
-                audio[-300:] = 0.0
-            # 引擎同款：基音同步拼接（精确复刻的 RateAdjustment 算法）
-            from .rateadjust import adjust_float
-            audio = adjust_float(audio, factor)
-        # 引擎音高：SSML pitch 百分比 → 半音 = pct/10 → 因子 f28 = 2^(pct/120)
-        # （SAPI 实测：absmiddle=5→SSML 25%→f28=1.155353=2^(2.5/12)；
-        #  absmiddle=10/20→adapter 截断到 10→SSML 50%→f28=1.33484=2^(5/12)；
-        #  absmiddle=-20→SSML -50%→f28=0.749154=2^(-5/12)）
-        # 处理顺序：先 PSOLA 变速 rate/f28，再按 f28 重采样（时长不变、音高 ×f28）
+        # 引擎总速率因子：f20 = float32( base * float32(1 + float32(pct) * float32(0.01)) )
+        # （实测：Aria +60% → 1.5999999046；+20% → 1.2000000477；-20% → 0.8000000119；
+        #  -33% → 0.6700000167；与 (1+pct/100.0) 的 float32 结果有 1 ulp 差异）
+        _pct = _np.float32(rate or 0.0)
+        factor = float(_np.float32(_np.float32(base_rate) * _np.float32(
+            1.0 + _np.float32(_pct * _np.float32(0.01)))))
+        # 引擎音高：f28 = 2^(pitch百分比/120)
         f28 = float(np.float32(2.0) ** np.float32((pitch or 0.0) / 120.0))
         if abs(f28 - 1.0) > 1e-6:
-            # 引擎在音高/速率处理前，自然音频首尾已有各 300 采样静音
+            # 引擎在有音高时走**同一个音频处理器**：PSOLA(r=f20/f28) → 定点重采样(f28)，
+            # 因此 rate 与 pitch 必须由同一条链路一次完成（不能先 rate 再 pitch）。
             if len(audio) > 800:
                 audio = np.asarray(audio, dtype=np.float32).copy()
                 audio[:300] = 0.0
                 audio[-300:] = 0.0
             audio = _pitch_shift_engine(audio, f28, factor)
-        elif pitch:
-            audio = _resample_pitch(audio, pitch / 10.0)
+        elif abs(factor - 1.0) > 1e-9:
+            # 纯 RateAdjustment：引擎走 b0514（PSOLA，r=f20），再经 afb08 flush 截断
+            if len(audio) > 800:
+                audio = _np.asarray(audio, dtype=_np.float32).copy()
+                audio[:300] = 0.0
+                audio[-300:] = 0.0
+            from .rateadjust import adjust_float
+            audio = adjust_float(audio, factor)
         audio = audio * float(gain)
         parts.append(audio)
     audio = np.concatenate(parts) if parts else np.zeros(0, dtype=np.float32)
