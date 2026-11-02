@@ -66,6 +66,39 @@ def _pct(value, names):
     return None
 
 
+_VOLUME_K_CACHE = None
+
+
+def _volume_k_table():
+    """引擎音量增益表：volume(0..100) → int16 定点乘子 K（实测，见 findings §64）"""
+    global _VOLUME_K_CACHE
+    if _VOLUME_K_CACHE is None:
+        import json as _json
+        import os as _os
+        path = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+                             "data", "volume_gain_k.json")
+        try:
+            with open(path, encoding="utf-8") as f:
+                d = _json.load(f)["K"]
+            _VOLUME_K_CACHE = {int(k): int(v) for k, v in d.items()}
+        except Exception:
+            _VOLUME_K_CACHE = {}
+    return _VOLUME_K_CACHE
+
+
+def _volume_k(level):
+    """音量值 → 引擎 int16 定点乘子 K；非整数/超范围退回公式 round(32768*10^((v-100)/80))"""
+    tab = _volume_k_table()
+    try:
+        fv = float(level)
+    except Exception:
+        fv = 100.0
+    iv = int(round(fv))
+    if tab and abs(fv - iv) < 1e-9 and iv in tab:
+        return tab[iv]
+    return int(round(32768.0 * (10.0 ** ((fv - 100.0) / 80.0))))
+
+
 def _volume_gain(value):
     """volume 属性 → 线性增益（引擎实测映射）"""
     if value is None:
@@ -78,7 +111,7 @@ def _volume_gain(value):
         if not m:
             return 1.0
         num = float(m.group(1))
-    return float(10.0 ** ((num - 100.0) / 80.0))
+    return _volume_k(num) / 32768.0
 
 
 def _iter_segments(elem, style, out):
@@ -411,7 +444,13 @@ def speak_ssml(tts, ssml, volume=None):
                 audio[-300:] = 0.0
             from .rateadjust import adjust_float
             audio = adjust_float(audio, factor)
-        audio = audio * float(gain)
+        # 引擎音量在 core 侧对最终 int16 PCM 做定点乘：out = floor(x*K/32768)
+        _k = int(round(float(gain) * 32768.0))
+        if _k != 32768:
+            _xi = np.trunc(np.asarray(audio, dtype=np.float32) * np.float32(32767.0)).astype(np.int64)
+            _yi = np.floor(_xi * _k / 32768.0).astype(np.int64)
+            _yi = np.clip(_yi, -32768, 32767)
+            audio = (_yi.astype(np.float32) / np.float32(32767.0))
         parts.append(audio)
     audio = np.concatenate(parts) if parts else np.zeros(0, dtype=np.float32)
     if volume is not None:
