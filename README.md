@@ -49,6 +49,7 @@ Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
 | **同时加载多个语音包** | 一个进程里 new 多个 `TTS(语音包目录)` 实例即可（每个实例独立模型/状态）；本机 23 个音色包可任意组合 |
 | **指定发音人** | 每个语音包目录对应一个发音人（如 `Xiaoxiao_Female_zh-CN`、`Aria_Female_en-US`），传哪个目录就用哪个 |
 | **设置语速** | `speak(text, out, speed=1.0)`；speed 是模型内 `speed_ratios` 调节（0.7/1.0/1.3 实测时长 5.08s/3.48s/2.71s） |
+| **Node SDK 音频保真度** | Node 分支文本前端（ids/词表）与 Python 完全一致（中英 1682+899 句逐 id），但**整段 decoder** 与引擎分块量化存在实现差异：端到端音频与 Python 相关约 0.974~0.976（长度一致）。逐采样复刻以 Python 分支为准，Node 的 decoder 分块对齐仍在推进 |
 | **词边界事件** | Python SDK `word_events()` 复刻官方 WordBoundary 事件（`audio_ticks`/`text_offset`/`text_length`/`word`/`type`），英文 19/19 案例逐字段一致 |
 | **多句/标点** | 多句逐句合成（与引擎逐采样一致）、省略号/引号/数字/日期/时间等标点结构已对齐 |
 | **无 SAPI 依赖** | 无需注册 COM/注册表，不调用 Windows 引擎；Windows/Linux/macOS 通用 |
