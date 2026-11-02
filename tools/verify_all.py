@@ -65,6 +65,9 @@ def main():
     ok &= run("2e. 引擎后处理分词算法还原（真值 CW + 复合词表）",
               [sys.executable, os.path.join(HERE, "tools", "eval_zh_cw_algorithm.py"),
                "--show", "0"])
+    ok &= run("2f. CWordBreaker 复刻 vs 引擎真值词序列",
+              [sys.executable, os.path.join(HERE, "tools", "eval_engine_wb.py"),
+               "--show", "0"])
     ok &= run("3. 中文 Node≡Python 逐 id（17 句基础）",
               [sys.executable, os.path.join(HERE, "tools", "check_node_parity.py")])
     ok &= run("3b. 中文 Node≡Python 逐 id（599+大规模 899 句批量）",
