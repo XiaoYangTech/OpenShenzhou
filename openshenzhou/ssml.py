@@ -135,15 +135,15 @@ def _resample_pitch(audio, semis):
     return np.interp(idx, np.arange(len(audio)), audio).astype(np.float32)
 
 
-def _sinc_resample(x, ratio, taps=24):
+def _sinc_resample(x, ratio, taps=24, start=0.0):
     """窗函数 sinc 重采样：输出长度 = len(x)/ratio，音高 ×ratio（时长不变由前级 PSOLA 保证）"""
     x = np.asarray(x, dtype=np.float64)
     if len(x) == 0 or abs(ratio - 1.0) < 1e-9:
         return x.astype(np.float32)
-    n_out = max(1, int(round(len(x) / ratio)))
-    # 输出点 j 对应输入位置 t = j*ratio（播放速度 ×ratio → 音高 ×ratio）
+    n_out = max(1, int(round((len(x) - start) / ratio)))
+    # 输出点 j 对应输入位置 t = start + j*ratio（播放速度 ×ratio → 音高 ×ratio）
     j = np.arange(n_out, dtype=np.float64)
-    t = j * ratio
+    t = start + j * ratio
     half = taps // 2
     k = np.arange(-half, half, dtype=np.float64)
     idx = np.floor(t).astype(np.int64)
@@ -180,7 +180,9 @@ def _pitch_shift_engine(audio, f28, rate_factor):
         return audio
     from .rateadjust import adjust_float
     stretched = adjust_float(audio, float(np.float32(rate_factor) / np.float32(f28)))
-    return _sinc_resample(stretched, _engine_resample_step(f28))
+    # 引擎 b0264 的相位/中心抽头对齐等价于输入起点偏移 5 采样（对引擎 24kHz PCM 实测
+    # pitch 25%/50%/-50% 时 corr=0.99996~0.999998）
+    return _sinc_resample(stretched, _engine_resample_step(f28), start=5.0)
 
 
 def _word_starts(tts, text):
