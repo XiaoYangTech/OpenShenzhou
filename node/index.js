@@ -37,7 +37,9 @@ function splitSentences(ids, sym) {
       while (i < ids.length && puncIds.has(ids[i])) { cur.push(ids[i]); i += 1; }
       if (i < ids.length && ids[i] !== END) {
         out.push(close(cur)); cur = [];
-        if (ids[i] !== bos && bos !== null) cur = br0 === null ? [bos] : [bos, br0];
+        // 句子末尾的 br4 + 标点之后通常紧跟 '~'（句末结束符）：此时不能重置当前句，
+        // 交给下一轮循环由 END 分支收句；只有确实出现新句起始（非 ~ 且非 bos）才补前缀。
+        if (ids[i] !== bos && ids[i] !== END && bos !== null) cur = br0 === null ? [bos] : [bos, br0];
       }
       continue;
     }
@@ -104,7 +106,9 @@ class TTS {
    */
   async speak(text, outPath, speed = 1.0) {
     // 引擎实测：纯标点/空白文本不产生任何 encoder 调用（音频为空）
-    if (!/[^\W_]/u.test(String(text || ''))) {
+    // 注意：JS 的 \w 只匹配 ASCII，中日韩文字会被误判为「纯标点」而返回空音频，
+    // 因此用 Unicode 属性类判断「文本是否含文字/数字」。
+    if (!/[\p{L}\p{N}]/u.test(String(text || ''))) {
       const empty = new Float32Array(0);
       if (outPath) writeWav(outPath, empty, 24000);
       return empty;
