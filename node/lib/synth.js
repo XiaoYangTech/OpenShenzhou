@@ -84,6 +84,38 @@ async function synthesize(sessions, ids, outPath, speed = 1.0) {
   return audio;
 }
 
+// 整段一次性解码（不按块）：没有引擎流式卷积缓存时，对中文/韩文这类模型
+// 整段推理反而比「按块启停、无缓存」更接近 Python 精确输出（实测 zh 0.96→0.99、
+// ko 0.84→0.96）；英文等模型按块解码更接近（0.53 vs 0.9988），故按语言选择。
+async function synthesizeWhole(sessions, ids) {
+  const ort = require('onnxruntime-node');
+  const [enc, dec, voc] = sessions;
+  const n = ids.length;
+  const encOut = await enc.run({
+    inputs: new ort.Tensor('int32', Int32Array.from(ids), [1, n]),
+    speed_ratios: new ort.Tensor('float32', new Float32Array(n).fill(1.0), [1, n]),
+  });
+  const dIn = encOut.decoder_inputs;
+  const T = dIn.dims[1];
+  const zero = () => new ort.Tensor('float32', new Float32Array(128), [1, 1, 128]);
+  const decOut = await dec.run({
+    decoder_inputs: new ort.Tensor('float32', new Float32Array(dIn.data), [1, T, 256]),
+    h1: zero(), c1: zero(), h2: zero(), c2: zero(),
+  });
+  const melOut = decOut.output_mels.data;
+  const C = 80;
+  const mel = new Float32Array(C * T);
+  for (let t = 0; t < T; t++) {
+    for (let c = 0; c < C; c++) mel[c * T + t] = melOut[t * C + c] * MEL_SCALE;
+  }
+  const vocOut = await voc.run({
+    mel: new ort.Tensor('float32', mel, [1, C, T]),
+    state1_in: new ort.Tensor('float32', new Float32Array(128), [1, 128]),
+    state2_in: new ort.Tensor('float32', new Float32Array(64), [1, 64]),
+  });
+  return vocOut.waveform ? vocOut.waveform.data : Object.values(vocOut)[0].data;
+}
+
 function writeWav(file, samples, sampleRate) {
   const n = samples.length;
   const buf = Buffer.alloc(44 + n * 2);
@@ -108,4 +140,4 @@ function writeWav(file, samples, sampleRate) {
   fs.writeFileSync(file, buf);
 }
 
-module.exports = { synthesize, writeWav };
+module.exports = { synthesize, synthesizeWhole, writeWav };

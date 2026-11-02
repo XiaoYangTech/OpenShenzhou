@@ -2,7 +2,7 @@
 // index.js —— OpenShenzhou Node SDK：给语音包目录即可朗读
 const path = require('path');
 const { VoicePack } = require('./lib/voicepack');
-const { synthesize, writeWav } = require('./lib/synth');
+const { synthesize, synthesizeWhole, writeWav } = require('./lib/synth');
 
 function splitSentences(ids, sym) {
   const END = sym && sym['~'] !== undefined ? sym['~'] : null; // 部分语音包符号表无 '~'
@@ -117,14 +117,17 @@ class TTS {
     const sessions = await this.pack.sessions();
     // 引擎每句一次 encoder：多句序列逐句合成后拼接
     const chunks = splitSentences(ids, this.pack.symbols);
+    // 中文/韩文模型：整段解码比「按块启停（无引擎卷积缓存）」更接近引擎/Python 输出；
+    // 其余语言（英文等）保持按块调度（实测英文 0.9988，整段仅 0.53）。
+    const whole = (this.lang === 'zh' || this.lang === 'ko');
     let audio;
     if (chunks.length <= 1) {
-      audio = await synthesize(sessions, ids, null, speed);
+      audio = whole ? await synthesizeWhole(sessions, ids) : await synthesize(sessions, ids, null, speed);
     } else {
       const parts = [];
       let total = 0;
       for (const ch of chunks) {
-        const a = await synthesize(sessions, ch, null, speed);
+        const a = whole ? await synthesizeWhole(sessions, ch) : await synthesize(sessions, ch, null, speed);
         parts.push(a);
         total += a.length;
       }
