@@ -35,7 +35,11 @@ VERB_PREV = {"to", "will", "would", "can", "could", "should", "must", "may", "mi
              "do", "does", "did", "don't", "doesn't", "didn't", "i", "you", "we", "they",
              "he", "she", "let", "please", "cannot", "won't"}
 NOUN_PREV = {"the", "a", "an", "this", "that", "these", "those", "my", "your", "his",
-             "her", "its", "our", "their", "no", "every", "each", "any", "some"}
+             "her", "its", "our", "their", "no", "every", "each", "any", "some",
+             # 引擎实测：形容词/限定词后的异读词取名词读法（good use → /s/）
+             "good", "better", "best", "great", "full", "own", "such", "same", "what",
+             "whatever", "little", "much", "more", "most", "only", "common",
+             "practical", "proper", "right", "wrong"}
 
 MONTH_NAMES = ["january", "february", "march", "april", "may", "june", "july",
                "august", "september", "october", "november", "december"]
@@ -1016,7 +1020,15 @@ def _parse(text):
                     run += 1
                 if run >= 2:
                     rest = text[i + run:].strip()
-                    if run >= 3:
+                    # 省略号后紧跟 ?/!（如 "Really...?"）：引擎只出 punc? + punc.
+                    if rest[:1] in ("?", "!") and rest[1:].strip().strip("\"'’”") == "":
+                        events.append(("end", END_PUNCT[rest[0]]))
+                        events.append(("punc_after_end", "punc."))
+                        i += run + 1
+                        continue
+                    # 引擎实测句末点串规则（输出 = 下面 token + 句尾 punc.）：
+                    #   3/6 点 → punc...；2/4/7 点 → punc.；5/8 点 → punc... br0 punc.
+                    if run % 3 == 0 or run in (5, 8):
                         events.append(("ellipsis_pause" if rest else "end_ellipsis", None))
                     else:
                         events.append(("end", "punc."))
@@ -1630,8 +1642,16 @@ def _text_to_ids_impl(text, sym, lexicon=None, variant=""):
             first = True
         elif kind == "end_ellipsis":
             _push(ids, sym.get("br4"))
-            ids.append(sym.get(item[1] or "punc...", sym.get("punc.", 0)))
-            ids.append(sym.get("punc.", 0))
+            nxt = flat[i + 1] if i + 1 < len(flat) else None
+            if nxt is not None and nxt[0] == "end" and str(nxt[1]).startswith("punc"):
+                # "Really...?" / "Really...!" → 引擎为 punc? / punc! + punc.
+                ids.append(sym.get(nxt[1], sym.get("punc.", 0)))
+                ids.append(sym.get("punc.", 0))
+                i += 2
+            else:
+                ids.append(sym.get(item[1] or "punc...", sym.get("punc.", 0)))
+                ids.append(sym.get("punc.", 0))
+                i += 1
             _push(ids, sym.get(END))
             ended = True
             first = True

@@ -239,6 +239,38 @@ def main():
               bool(_runs) and _runs[0][0] == 1200 and _runs[0][1] - _runs[0][0] == 12000,
               str(_runs[0]) if _runs else "None")
 
+    print("== 3f. 英文省略号/异读规则（引擎实测） ==")
+    if "en" in tts:
+        _t = tts["en"]
+        _rev = {v: k for k, v in _t.pack.symbols.items()}
+        _sym = _t.pack.symbols
+
+        def _names_of(text):
+            ids = _t.text_to_ids(text)
+            out = []
+            for x in ids:
+                out.append(_rev.get(x, "?%d" % x))
+                if x == 1:
+                    break
+            return out
+
+        check("引擎省略号 '...' → br4 punc... punc.",
+              _names_of("Wait...") == ['-bos-', 'br0', 'w', 'ey1', 't', 'br4', 'punc...', 'punc.', '~'],
+              " ".join(_names_of("Wait...")))
+        check("引擎省略号 '....' → br4 punc. punc.",
+              _names_of("Wait....") == ['-bos-', 'br0', 'w', 'ey1', 't', 'br4', 'punc.', 'punc.', '~'],
+              " ".join(_names_of("Wait....")))
+        check("引擎省略号 '...?' → br4 punc? punc.",
+              _names_of("Really...?")[-4:] == ['br4', 'punc?', 'punc.', '~'],
+              " ".join(_names_of("Really...?")))
+        check("引擎省略号 '...!' → br4 punc! punc.",
+              _names_of("Really...!")[-4:] == ['br4', 'punc!', 'punc.', '~'],
+              " ".join(_names_of("Really...!")))
+        _u1 = _names_of("Good use.")
+        check("异读：Good use → /juw s/（名词读法）", 'uw1' in _u1 and _u1[_u1.index('uw1') + 1] == 's', " ".join(_u1))
+        _u2 = _names_of("Use it.")
+        check("异读：Use it → /juw z/（动词读法）", 'uw1' in _u2 and _u2[_u2.index('uw1') + 1] == 'z', " ".join(_u2))
+
     if not a.skip_node and os.path.exists(os.path.join(ROOT, "node", "node_modules")):
         print("== 4. Node≡Python G2P 一致 ==")
         script = os.path.join(os.environ.get("TEMP", "."), "os_node_ids.js")
