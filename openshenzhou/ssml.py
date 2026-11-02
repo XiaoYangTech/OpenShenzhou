@@ -175,14 +175,14 @@ def _engine_resample_step(f28, sr=24000):
 
 
 def _pitch_shift_engine(audio, f28, rate_factor):
-    """引擎音高链路：先 PSOLA 以 rate/f28 变速，再按引擎整数比率重采样（时长还原、音高 ×f28）"""
+    """引擎音高链路精确复刻：PSOLA(r=f20/f28) → b0264 12 抽头定点重采样 → afb08 flush 截断
+
+    对引擎进程内 24kHz PCM 验证：pitch=+25%/+50%/-50% 逐采样 maxdiff=0（见 findings §61）。
+    """
     if len(audio) == 0:
         return audio
-    from .rateadjust import adjust_float
-    stretched = adjust_float(audio, float(np.float32(rate_factor) / np.float32(f28)))
-    # 引擎 b0264 的相位/中心抽头对齐等价于输入起点偏移 5 采样（对引擎 24kHz PCM 实测
-    # pitch 25%/50%/-50% 时 corr=0.99996~0.999998）
-    return _sinc_resample(stretched, _engine_resample_step(f28), start=5.0)
+    from .pitchshift import adjust_pitch_float
+    return adjust_pitch_float(audio, f28, f20=rate_factor)
 
 
 def _word_starts(tts, text):

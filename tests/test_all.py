@@ -185,6 +185,23 @@ def main():
         check("pitch -50% F0 比 ≈ 2^(-5/12)=0.7492", abs(_r_dn - 0.7492) < 0.06,
               "实际 %.4f" % _r_dn)
 
+    print("== 3d2. SSML pitch 引擎黄金数据（逐采样精确） ==")
+    _golden = os.path.join(ROOT, "data", "eval", "ssml_pitch_golden.npz")
+    if os.path.exists(_golden):
+        import numpy as _np5
+        from openshenzhou.pitchshift import pitch_shift_int16 as _ps
+        _d = _np5.load(_golden)
+        _stream = _d["stream"].astype(_np5.int16)
+        _f28 = float(_d["f28"][0])
+        _exp = _d["expected"].astype(_np5.int16)
+        _got = _ps(_stream, _f28)
+        check("pitch 黄金数据长度一致", len(_got) == len(_exp),
+              "%d vs %d" % (len(_got), len(_exp)))
+        _m = min(len(_got), len(_exp))
+        check("pitch 黄金数据逐采样 maxdiff=0",
+              int(_np5.abs(_got[:_m].astype(_np5.int64) - _exp[:_m].astype(_np5.int64)).max()) == 0,
+              "maxdiff=%d" % int(_np5.abs(_got[:_m].astype(_np5.int64) - _exp[:_m].astype(_np5.int64)).max()))
+
     print("== 3c2. 引擎速率因子精确值自检 ==")
     from openshenzhou.rateadjust import engine_rate_factor as _erf2
     for _pct, _exp in ((80, 0.7999999523162842), (85, 0.8499999642372131),
