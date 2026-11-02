@@ -185,6 +185,15 @@ def main():
         check("pitch -50% F0 比 ≈ 2^(-5/12)=0.7492", abs(_r_dn - 0.7492) < 0.06,
               "实际 %.4f" % _r_dn)
 
+    print("== 3c2. 引擎速率因子精确值自检 ==")
+    from openshenzhou.rateadjust import engine_rate_factor as _erf2
+    for _pct, _exp in ((80, 0.7999999523162842), (85, 0.8499999642372131),
+                       (90, 0.8999999761581421), (110, 1.100000023841858),
+                       (150, 1.5)):
+        _got = _erf2(_pct)
+        check("engine_rate_factor(%d) == %r" % (_pct, _exp), abs(_got - _exp) < 1e-12,
+              "实际 %.17g" % _got)
+
     print("== 3e. SSML break 语义自检 ==")
     if "en" in tts:
         import numpy as _np4
