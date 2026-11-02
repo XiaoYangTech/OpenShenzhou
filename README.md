@@ -14,8 +14,9 @@
 - **纯 JS + onnxruntime-node**：无需 Python，Windows / Linux / macOS 可用；
 - **8 种语言、23 个音色包**：中、英（含英式/印式）、日、韩、西、法、德、葡；
 - **文本前端与 Python SDK 逐 id 一致**（中文 899 句 + 英文 1682 句全对），ids 层与引擎完全对齐；
-- **音频层近似复刻**：JS 按引擎同款分块调度执行解码器，自然音频与引擎 corr≈0.9988
-  （逐采样精确复刻以 Python 分支为准，corr=1.0、残差 ≤1 LSB）；
+- **音频层近似复刻**：JS 按引擎同款分块调度执行解码器；英文自然音频与引擎 corr≈0.9988
+  （中文 ids 一致句实测 corr≈0.96，因 JS 解码器未含引擎流式卷积缓存）；
+  逐采样精确复刻以 Python 分支为准（corr=1.0、残差 ≤1 LSB）；
 - **文本前端高保真**：中文 599 句 **99.5%（596/599）**、3000 句 97.03%，中文词界单独 99.7%/98.6%，
   英文自然/压力/泛化集 99.6%~100%，八语种 golden 138/138；
 - **CJK 文本合成**：中文/日文/韩文 `speak()` 完整输出（已修复 Unicode 文字判定与句末 chunk 重置缺陷）。
@@ -79,7 +80,7 @@ const { TTS } = require('./index');
 - **指定发音人**：选择对应语音包目录（本机共 23 个音色包）；
 - **语速**：`speed` 参数（模型内调节；实测 0.7/1.0/1.3 时长约 5.08s/3.48s/2.71s）；
 - **词边界事件**：Python SDK 提供 `word_events`（引擎 WordBoundary 复刻，英文 19/19 一致）；Node 事件接口待后续版本补上；
-- **语速调整（RateAdjustment）**：语音包 INI 中 `RateAdjustment≠100` 的音色，引擎会做保音高时长伸缩；**Python 与 Node 双端均已复刻引擎的基音同步拼接算法**（`openshenzhou/rateadjust.py` / `node/lib/rateadjust.js`，另复刻引擎自然音频首尾各 300 采样静音）。Python 侧 11 个变速率音色长度精确、corr=1.0、99%+ 采样一致；Node 侧 decoder 已改为**引擎同款分块调度**（首块 64、中间 64/32、末块 flush，LSTM 状态跨块携带），自然音频与引擎 corr≈0.9988、变速率端到端 corr≈0.9994（长度差 ≤ 数采样；逐采样精确仍以 Python 分支为准）；
+- **语速调整（RateAdjustment）**：语音包 INI 中 `RateAdjustment≠100` 的音色，引擎会做保音高时长伸缩；**Python 与 Node 双端均已复刻引擎的基音同步拼接算法**（`openshenzhou/rateadjust.py` / `node/lib/rateadjust.js`，另复刻引擎自然音频首尾各 300 采样静音）。Python 侧 11 个变速率音色长度精确、corr=1.0、99%+ 采样一致；Node 侧 decoder 已改为**引擎同款分块调度**（首块 64、中间 64/32、末块 flush，LSTM 状态跨块携带），英文自然音频与引擎 corr≈0.9988、变速率端到端 corr≈0.9994（中文 ids 一致句 corr≈0.96；逐采样精确仍以 Python 分支为准）；
 - **英式/印式英语**：en-GB（Ryan/Sonia）与 en-IN（Neerja/Prabhat）使用引擎实测的专用发音词表与标点约定，ids 与 Python SDK 完全一致；
 - **无 SAPI、无服务器**：纯本地库 + CLI，不需要注册 COM/SAPI，也不含 HTTP 服务。
 
