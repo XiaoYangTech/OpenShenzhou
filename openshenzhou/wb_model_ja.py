@@ -114,14 +114,9 @@ def classes(chars):
     while len(seq) % WINDOW:
         seq.append(w["emb"][1])
     F = np.stack(seq)
-    T = len(F)
-    Hf = np.zeros((T, 64), dtype=np.float32)
-    Hb = np.zeros((T, 64), dtype=np.float32)
-    for s in range(0, T, WINDOW):
-        X = F[s:s + WINDOW]
-        m = len(X)
-        Hf[s:s + m] = _run_lstm(X, w["w_fwd"], w["b_fwd"], False)
-        Hb[s:s + m] = _run_lstm(X, w["w_bwd"], w["b_bwd"], True)
+    # 引擎实测：整段（补齐到 20 的倍数）一次双向 LSTM，不按窗口重置状态
+    Hf = _run_lstm(F, w["w_fwd"], w["b_fwd"], reverse=False)
+    Hb = _run_lstm(F, w["w_bwd"], w["b_bwd"], reverse=True)
     H = np.concatenate([Hf, Hb], 1)
     logits = H @ w["w_out"] + w["b_out"]
     return [int(x) for x in logits.argmax(1)[1:1 + n]]
@@ -169,6 +164,12 @@ def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
                 i += 1
         segs = out
     return segs
+
+
+def segments_with_classes(chars, classes):
+    text = "".join(chars)
+    segs = _segments_from_classes(classes)
+    return _merge_by_lexicon(text, segs, _load_words())
 
 
 def segments(chars):

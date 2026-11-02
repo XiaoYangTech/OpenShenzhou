@@ -141,16 +141,28 @@ def _seg_words(text):
     """用复刻的官方 LSTM 断词模型在原文上分词（标点单独成项）。"""
     out = []
     buf = []
+    chunk_start = [0]
+    try:
+        from . import wb_model_ja as _wbm
+        _ctx = _wbm.classes(list(text))
+    except Exception:
+        _ctx = None
 
     def flush():
         if not buf:
             return
         chunk = "".join(buf)
+        start = chunk_start[0]
         buf.clear()
         try:
             from . import wb_model_ja
             chars = list(chunk)
-            segs = wb_model_ja.segments(chars)
+            segs = None
+            if _ctx is not None and len(_ctx) >= start + len(chars):
+                cls = [_ctx[start + j] for j in range(len(chars))]
+                segs = wb_model_ja.segments_with_classes(chars, cls)
+            if segs is None:
+                segs = wb_model_ja.segments(chars)
             for s, L in segs:
                 w = chunk[s:s + L]
                 if not w:
@@ -164,13 +176,15 @@ def _seg_words(text):
         except Exception:
             out.append(("w", chunk))
 
-    for ch in text:
+    for _i, ch in enumerate(text):
         if ch in PUNCT:
             flush()
             out.append(("p", PUNCT[ch]))
         elif ch in SPACE:
             flush()
         else:
+            if not buf:
+                chunk_start[0] = _i
             buf.append(ch)
     flush()
     return out

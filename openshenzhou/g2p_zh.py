@@ -1430,6 +1430,8 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
     """单句：-bos- br0 <syl> - <syl> ... [br3 punc, br0] <syl> ... br4 [punc。] ~"""
     # 句尾的非句末标点（，；：等）：引擎把它当作句末处理
     #   引擎实测（评测集 599 句）：句尾「，」→ br4 + punc,；句尾「：」→ 仅 br4（无 punc token）
+    sent_text = text  # 引擎词界模型的输入 = 整句原文（含标点）
+    wb_ctx = None
     tail_punc = None
     _t = text.rstrip()
     if _t and _t[-1] in "，、；：,;:":
@@ -1534,7 +1536,21 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
                     bounds = None
                     try:
                         from . import wb_model
-                        _wb_words = [''.join(chars[s0:s0 + L0]) for s0, L0 in wb_model.segments(chars)]
+                        ctx_classes = None
+                        if wb_ctx is None:
+                            wb_ctx = wb_model.classes(list(sent_text))
+                        _cp = sent_text.find(chunk)
+                        if _cp >= 0 and len(wb_ctx) >= _cp + len(chunk):
+                            ctx_classes = [wb_ctx[_cp + _j] for _j, _c in enumerate(chunk)
+                                           if ("一" <= _c <= "鿿" or _c == "〇")]
+                        if ctx_classes is not None and len(ctx_classes) == len(chars):
+                            _wb_segs = wb_model._segments_from_classes(ctx_classes)
+                            _wb_segs = wb_model._merge_by_lexicon(text_cn, _wb_segs,
+                                                                  wb_model._load_words())
+                            _wb_words = [''.join(chars[s0:s0 + L0]) for s0, L0 in _wb_segs]
+                        else:
+                            _wb_words = [''.join(chars[s0:s0 + L0])
+                                         for s0, L0 in wb_model.segments(chars)]
                         bounds = wb_model.bounds_from_words(chars, _wb_words)
                         parsed = _char_syllables(chars, wordset, lexicon, sym2id, table,
                                                  words=_wb_words, crf_ctx=crf_ctx)
