@@ -281,6 +281,16 @@ def main():
         _empty = t.speak("...") if hasattr(t, "speak") else []
         check("纯标点文本音频为空", len(_empty) == 0, "%d" % len(_empty))
 
+    # 3g. 中文词表断词：20 帧窗口流式语义回归（引擎 hook 实测类别）
+    wb_gold = os.path.join(ROOT, "tests", "wb_engine_classes.json")
+    if os.path.exists(wb_gold):
+        print("== 3g. 中文断词窗口语义（引擎实测逐字类别） ==")
+        from openshenzhou import wb_model
+        for rec in json.load(open(wb_gold, encoding="utf-8")):
+            got = wb_model.classes(list(rec["text"]))
+            check("断词类别 %s" % rec["text"][:12], got == rec["classes"],
+                  "%r vs %r" % (got[:8], rec["classes"][:8]))
+
     if not a.skip_node and os.path.exists(os.path.join(ROOT, "node", "node_modules")):
         print("== 4. Node≡Python G2P 一致 ==")
         script = os.path.join(os.environ.get("TEMP", "."), "os_node_ids.js")
