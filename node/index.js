@@ -103,6 +103,12 @@ class TTS {
    * @returns {Promise<Float32Array>} 24kHz 单声道波形
    */
   async speak(text, outPath, speed = 1.0) {
+    // 引擎实测：纯标点/空白文本不产生任何 encoder 调用（音频为空）
+    if (!/[^\W_]/u.test(String(text || ''))) {
+      const empty = new Float32Array(0);
+      if (outPath) writeWav(outPath, empty, 24000);
+      return empty;
+    }
     const ids = this.textToIds(text);
     const sessions = await this.pack.sessions();
     // 引擎每句一次 encoder：多句序列逐句合成后拼接

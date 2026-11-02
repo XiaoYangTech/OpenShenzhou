@@ -67,7 +67,10 @@ const VERB_PREV = new Set(['to', 'will', 'would', 'can', 'could', 'should', 'mus
   'let', 'please', 'cannot', "won't"]);
 const HETERO_NOUN_PREV = new Set(['ip', 'email', 'web', 'home', 'street', 'url', 'ftp', 'http']);
 const NOUN_PREV = new Set(['the', 'a', 'an', 'this', 'that', 'these', 'those', 'my', 'your',
-  'his', 'her', 'its', 'our', 'their', 'no', 'every', 'each', 'any', 'some']);
+  'his', 'her', 'its', 'our', 'their', 'no', 'every', 'each', 'any', 'some',
+  'good', 'better', 'best', 'great', 'full', 'own', 'such', 'same', 'what',
+  'whatever', 'little', 'much', 'more', 'most', 'only', 'common',
+  'practical', 'proper', 'right', 'wrong']);
 (function loadJsonl() {
   const p = path.join(DATA, 'lexicon_en_engine.jsonl');
   if (!fs.existsSync(p)) return;
@@ -379,6 +382,16 @@ function pronWord(word, nextWord, prevWord) {
     return letterToken(word.toLowerCase());
   }
   const w = String(word).toLowerCase().replace(/’/g, "'");
+  if (w === 'a') {
+    // 引擎实测：孤立小写 a（后接单字母/数字/标点/句末）读字母名 /ey1/
+    const nxtA = String(nextWord || '').trim();
+    const firstA = nxtA.split(/\s+/)[0] || '';
+    if (!nxtA || nxtA.startsWith('punc') || nxtA === 'dot'
+        || (firstA.length === 1 && /[A-Za-z]/.test(firstA))
+        || /^[0-9]/.test(firstA)) {
+      return ['ey1'];
+    }
+  }
   // en-GB/en-IN 引擎实测词表优先（功能词弱读形式除外，见 Python 版说明）
   if (ACTIVE_LEX && !VARIANT_FUNCTION_WORDS.has(w)) {
     const lv = ACTIVE_LEX[w];
@@ -712,7 +725,15 @@ function parse(text) {
         while (i + run < n && text[i + run] === '.') run++;
         if (run >= 2) {
           const restDot = text.slice(i + run).replace(/^\s+/, '');
-          if (run >= 3) events.push([restDot ? 'ellipsis_pause' : 'end_ellipsis', null]);
+          // 省略号后紧跟 ?/!（如 "Really...?"）：引擎只出 punc? + punc.
+          if ((restDot[0] === '?' || restDot[0] === '!') && restDot.slice(1).replace(/\s+$/g, '').replace(/["'’”“]/g, '') === '') {
+            events.push(['end', END_PUNCT[restDot[0]]]);
+            events.push(['punc_after_end', 'punc.']);
+            i += run + 1;
+            continue;
+          }
+          // 引擎实测句末点串规则：3/6 点 → punc...；2/4/7 点 → punc.；5/8 点 → punc... br0 punc.
+          if (run % 3 === 0 || run === 5 || run === 8) events.push([restDot ? 'ellipsis_pause' : 'end_ellipsis', null]);
           else { events.push(['end', 'punc.']); events.push(['punc_after_end', 'punc.']); }
           i += run;
           continue;
@@ -1241,8 +1262,24 @@ function textToIds(text, sym, lexicon, variant) {
   }
 }
 
+function normalizeNewlines(text) {
+  // 引擎实测：换行 = 句子边界（每行独立成句，自动补句号）
+  if (!text.includes('\n') && !text.includes('\r')) return text;
+  const s = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  let out = '';
+  for (const ch of s) {
+    if (ch === '\n') {
+      let j = out.length - 1;
+      while (j >= 0 && (out[j] === ' ' || out[j] === '\t')) j -= 1;
+      if (j >= 0 && '.!?'.includes(out[j])) out += ' ';
+      else out += '. ';
+    } else out += ch;
+  }
+  return out;
+}
+
 function _textToIdsImpl(text, sym, variant) {
-  text = preprocess(String(text || ''));
+  text = preprocess(normalizeNewlines(String(text || '')));
   const raw = parse(text);
   const ev = expand(raw);
   const flat = flatten(ev);
@@ -1318,8 +1355,17 @@ function _textToIdsImpl(text, sym, variant) {
       first = true;
     } else if (kind === 'end_ellipsis') {
       ids.push(sym['br4']);
-      ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0)));
-      if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
+      const nxtE = i + 1 < flat.length ? flat[i + 1] : null;
+      if (nxtE && nxtE[0] === 'end' && String(nxtE[1] || '').startsWith('punc')) {
+        // "Really...?" / "Really...!" → 引擎为 punc? / punc! + punc.
+        ids.push(sym[nxtE[1]] !== undefined ? sym[nxtE[1]] : (sym['punc.'] || 0));
+        if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
+        i += 2;
+      } else {
+        ids.push(item[1] && sym[item[1]] !== undefined ? sym[item[1]] : (sym['punc...'] !== undefined ? sym['punc...'] : (sym['punc.'] || 0)));
+        if (sym['punc.'] !== undefined) ids.push(sym['punc.']);
+        i += 1;
+      }
       ids.push(sym[END]);
       ended = true;
       first = true;
