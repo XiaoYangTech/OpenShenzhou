@@ -49,7 +49,7 @@ Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
 | **同时加载多个语音包** | 一个进程里 new 多个 `TTS(语音包目录)` 实例即可（每个实例独立模型/状态）；本机 23 个音色包可任意组合 |
 | **指定发音人** | 每个语音包目录对应一个发音人（如 `Xiaoxiao_Female_zh-CN`、`Aria_Female_en-US`），传哪个目录就用哪个 |
 | **设置语速** | `speak(text, out, speed=1.0)`；speed 是模型内 `speed_ratios` 调节（0.7/1.0/1.3 实测时长 5.08s/3.48s/2.71s） |
-| **Node SDK 音频保真度** | Node 分支文本前端（ids/词表）与 Python 完全一致（中英 1682+899 句逐 id）。Node decoder 已按**引擎同款分块调度**执行（首块 64、中间 64/32、末块 flush，LSTM 状态跨块携带）：英文自然音频与引擎 corr≈0.9988、变速率端到端 corr≈0.9994（长度差 ≤ 数采样）；中文 ids 一致句实测 corr≈0.96（JS 解码器未含引擎流式卷积缓存，故低于 Python）。逐采样精确复刻以 Python 分支为准（引擎的流式卷积/延迟对齐算子完整复刻，corr=1.0、残差 ≤1 LSB） |
+| **Node SDK 音频保真度** | Node 分支文本前端（ids/词表）与 Python 完全一致（中英 1682+899 句逐 id）。Node decoder 按语言选择近似策略：英文等按**引擎同款分块调度**执行（首块 64、中间 64/32、末块 flush，LSTM 状态跨块携带），自然音频与引擎 corr≈0.9988、变速率端到端 corr≈0.9994（长度差 ≤ 数采样）；中文/韩文因 JS 未含引擎流式卷积缓存，改用**整段解码**更接近引擎（实测中文 5 句 0.978~0.996、韩文 3 句 0.954~0.994，仍低于 Python 的逐采样一致）。逐采样精确复刻以 Python 分支为准。逐采样精确复刻以 Python 分支为准（引擎的流式卷积/延迟对齐算子完整复刻，corr=1.0、残差 ≤1 LSB） |
 | **词边界事件** | Python SDK `word_events()` 复刻官方 WordBoundary 事件（`audio_ticks`/`text_offset`/`text_length`/`word`/`type`），英文 19/19 案例逐字段一致 |
 | **多句/标点** | 多句逐句合成（与引擎逐采样一致）、省略号/引号/数字/日期/时间等标点结构已对齐 |
 | **无 SAPI 依赖** | 无需注册 COM/注册表，不调用 Windows 引擎；Windows/Linux/macOS 通用 |
