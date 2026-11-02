@@ -16,9 +16,11 @@
 - **SSML**：支持 `<speak>` / `<prosody volume|rate|pitch>` / `<break>`（volume 逐采样一致；`rate` 与语音包
   `RateAdjustment` 由**同一个音频域基音同步拼接**实现，总因子 = RateAdjustment/100 ×(1+rate/100)，
   已用引擎同款精确算法复刻（官方 SAPI 24kHz 路径实测：算法对引擎输入流逐采样一致，
-  SDK 端到端 99.4%~99.7% 采样相同、残差 ≤1 LSB）；`pitch` 也已确认同样在音频处理器内实现
-  （f28=2^(pct/120)，PSOLA 变速 + 引擎整数比重采样；SDK 已复刻该链路，对引擎 24kHz PCM
-  实测 corr 0.99996~0.999998、时长误差 <8 采样，残差仅为重采样核差异）；break 细节近似）；
+  SDK 端到端 99.4%~99.7% 采样相同、残差 ≤1 LSB）；`pitch` 也已确认同样在音频处理器内实现并**逐采样
+  精确复刻**（f28=2^(pct/120)，先 PSOLA 变速 r=f20/f28，再走引擎同款 12 抽头 int16 定点多相重采样器
+  b0264 + afb08 flush 截断语义；对引擎进程内 24kHz PCM 实测 pitch=+25%/+50%/-50% **逐采样 maxdiff=0**，
+  见 `openshenzhou/pitchshift.py` 与 `data/eval/ssml_pitch_golden.npz` 回归数据；SDK 端到端长度完全相同、
+  99.4%~99.5% 采样相同、残差 ≤2 LSB，来自自然音频 ±1 LSB 的固有差异）；break 细节近似）；
   **23 个音色包在自然语速（RateAdjustment=100）下与引擎基本逐采样一致**（唯一残差是 ONNX 浮点运算次序
   导致的 ±1 LSB，约 99.7% 采样完全相同、皮尔逊相关 1.0000000）；
   **12 个音色包的 `RateAdjustment` 保音高变速已完全逆向复刻**（`openshenzhou/rateadjust.py`：基音同步
