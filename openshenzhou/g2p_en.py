@@ -525,6 +525,15 @@ def pron_word(word, next_word="", prev_word=""):
             return ["ey1"] if is_vowel else pron_word("a", next_word, prev_word)
         return _letter_token(word.lower())
     w = word.lower().replace("’", "'")
+    if w == "a":
+        # 引擎实测：孤立小写 a（后接单字母/数字/标点/句末）读字母名 /ey1/，
+        # 只有后接普通单词时才作冠词弱读。
+        _nxt = (next_word or "").strip()
+        _first = _nxt.split()[0] if _nxt.split() else ""
+        if (not _nxt or _nxt.startswith("punc") or _nxt == "dot"
+                or (len(_first) == 1 and _first.isalpha())
+                or (_first[:1].isdigit())):
+            return ["ey1"]
     # 变体词表（en-GB/en-IN 引擎实测）优先于内置规则，但功能词（弱读/上下文读法）
     # 实测是"孤立词 citation 读法"，在句子里不适用，仍交给内置规则。
     if _ACTIVE_LEX is not None and w not in FUNCTION_WORDS:
@@ -1584,7 +1593,27 @@ def _push(ids, v):
         ids.append(v)
 
 
+def _normalize_newlines(text):
+    """引擎实测：换行 = 句子边界（每行独立成句，自动补句号）。"""
+    if "\n" not in text and "\r" not in text:
+        return text
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    out = []
+    for ch in text:
+        if ch == "\n":
+            j = len(out) - 1
+            while j >= 0 and out[j] in " \t":
+                j -= 1
+            if j >= 0 and out[j] in ".!?":
+                out.append(" ")
+            else:
+                out.append(". ")
+        else:
+            out.append(ch)
+    return "".join(out)
+
 def _text_to_ids_impl(text, sym, lexicon=None, variant=""):
+    text = _normalize_newlines(text or "")
     text = _preprocess(text)
     raw = _parse(text)
     # 日期上下文：month word + number

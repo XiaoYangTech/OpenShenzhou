@@ -396,6 +396,11 @@ def speak_ssml(tts, ssml, volume=None):
         raise ValueError("SSML 根元素必须是 <speak>")
     segs = []
     _iter_segments(root, (1.0, 0.0, 0.0), segs)
+    # 引擎实测：纯标点/空白文本不产生 encoder 调用（音频为空）
+    _all_text = "".join(p[1] for p in segs if p[0] == "text")
+    import re as _re0
+    if _re0.search(r"[^\W_]", _all_text or "", _re0.UNICODE) is None:
+        return np.zeros(0, dtype=np.float32)
     parts = []
     # 引擎：总加减速因子 = 语音包 RateAdjustment/100 × (1 + prosody_rate/100)，
     # 且由同一个音频域基音同步拼接处理器一次完成（已由 SAPI 路径实测确认：

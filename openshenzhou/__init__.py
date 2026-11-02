@@ -37,6 +37,13 @@ def _load_g2p(lang):
     return (lang, None, None, None)
 
 
+
+def _has_speakable(text):
+    """是否含可朗读内容（字母/数字/汉字等）；纯标点/空白引擎不合成。"""
+    import re as _re
+    return _re.search(r"[^\W_]", text or "", _re.UNICODE) is not None
+
+
 class TTS:
     """一个语音包的朗读器"""
 
@@ -173,6 +180,13 @@ class TTS:
         （否则把多段 -bos-...~ 塞进一次 encoder 会得到错误音频）。
         """
         ids = self.text_to_ids(text)
+        # 引擎实测：纯标点/空白文本不产生任何 encoder 调用（音频为空）
+        if not _has_speakable(text):
+            import numpy as _npz
+            if out_path:
+                from .synth import write_wav
+                write_wav(_npz.zeros(0, dtype=_npz.float32), out_path)
+            return _npz.zeros(0, dtype=_npz.float32)
         if self._sessions is None:
             self._sessions = self.pack.sessions()
         from .synth import split_sentences, write_wav

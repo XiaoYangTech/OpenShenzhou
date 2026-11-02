@@ -270,6 +270,16 @@ def main():
         check("异读：Good use → /juw s/（名词读法）", 'uw1' in _u1 and _u1[_u1.index('uw1') + 1] == 's', " ".join(_u1))
         _u2 = _names_of("Use it.")
         check("异读：Use it → /juw z/（动词读法）", 'uw1' in _u2 and _u2[_u2.index('uw1') + 1] == 'z', " ".join(_u2))
+        # 引擎实测：换行 = 句子边界（每行独立成句）
+        _nl_ids = _t.text_to_ids("Hello\nworld.")
+        _nl = [_rev.get(x, "?") for x in _nl_ids]
+        check("换行 = 句子边界（Hello\nworld. → 两句）",
+              _nl.count("~") == 2 and _nl.count("punc.") == 2, " ".join(_nl))
+        # 引擎实测：孤立小写 a 读字母名 /ey1/
+        check("孤立 a 读字母名", _names_of("a.")[:3] == ['-bos-', 'br0', 'ey1'], " ".join(_names_of("a.")))
+        # 引擎实测：纯标点文本不合成（音频为空）
+        _empty = t.speak("...") if hasattr(t, "speak") else []
+        check("纯标点文本音频为空", len(_empty) == 0, "%d" % len(_empty))
 
     if not a.skip_node and os.path.exists(os.path.join(ROOT, "node", "node_modules")):
         print("== 4. Node≡Python G2P 一致 ==")
