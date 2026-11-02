@@ -3,7 +3,7 @@
 """verify_all.py —— 一键复现全部验证证据（全部离线，无需引擎）
 
 依次执行：
-  1. tests/test_all.py          SDK 端到端 + 109 项自检（含前端 golden）
+  1. tests/test_all.py          SDK 端到端 + 128 项自检（含前端 golden）
   2. tools/eval_first_sentence.py data/eval/zh_eval_599.jsonl   中文 599 句逐 id
   2b. tools/eval_zh_large.py                                    中文大规模泛化（3000 句引擎 golden）
   3. tools/check_node_parity.py + check_zh_parity_batch.py      Node≡Python 逐 id（中文 17 句 + 599/大规模 899 句）
@@ -48,7 +48,7 @@ def run(title, cmd, cwd=HERE, timeout=3600):
 def main():
     voice_root = _voice_root()
     ok = True
-    ok &= run("1. 端到端测试（109 项，含前端 golden）",
+    ok &= run("1. 端到端测试（128 项，含前端 golden）",
               [sys.executable, os.path.join(HERE, "tests", "test_all.py"),
                "--voice-root", voice_root])
     ok &= run("2. 中文 599 句逐 id",
