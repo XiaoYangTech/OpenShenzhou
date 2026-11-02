@@ -122,8 +122,11 @@ def main():
         slow = _np.asarray(t.speak_ssml('<speak %s><prosody rate="-20%%">Hello world.</prosody></speak>' % ns))
         check("SSML rate=-20% 时长 ×1.25", abs(len(slow) / len(base) - 1.25) < 0.03,
               "实际 %.4f" % (len(slow) / len(base)))
+        # 句中 break：引擎把 break 换成 br3 暂停 token（使该句音频多约 1800 采样），
+        # 再插入 ms×24 静音；实测引擎 "Hello<break/>world." 相对整句 +13800
         brk = _np.asarray(t.speak_ssml('<speak %s>Hello<break time="500ms"/>world.</speak>' % ns))
-        check("SSML break=500ms 插入 12000 采样", abs((len(brk) - len(base)) - 12000) < 600,
+        check("SSML 句中 break 总长 +13800（br3 暂停 + 12000 静音）",
+              abs((len(brk) - len(base)) - 13800) < 900,
               "实际差 %d" % (len(brk) - len(base)))
 
     print("== 3c. RateAdjustment 精确复刻（引擎算法自检） ==")

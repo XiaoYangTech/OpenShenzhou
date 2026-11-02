@@ -222,6 +222,138 @@ def _runs(segs):
     return runs
 
 
+def _engine_durations(tts, ids):
+    """引擎 encoder 的逐 token mel 帧数（SSML break 的插入位置由它决定）"""
+    enc = tts.pack.sessions()[0]
+    x = np.array([ids], dtype=np.int32)
+    sp = np.full((1, len(ids)), 1.0, np.float32)
+    _di, d = enc.run(None, {"inputs": x, "speed_ratios": sp})
+    return np.asarray(d).reshape(-1).astype(np.int64)
+
+
+def _synth_ids(tts, ids):
+    """按 token 序列合成（用于把 break 变成 br3 暂停 token 的单句）"""
+    from .synth import synthesize
+    stream = tts._streaming()
+    if stream:
+        return synthesize(tts.pack.sessions(), ids, None, streaming=stream)
+    proj = tts._projection()
+    return synthesize(tts.pack.sessions(), ids, None, projection=proj if proj else None)
+
+
+def _synth_break_pieces(tts, pieces):
+    """含 <break> 的 run。
+
+    引擎实测行为（findings §62）：
+      · 句中 break 在 token 序列里被替换为 ``br3``（暂停 token），整句一次合成；
+        实测音频总长 = 300 × encoder 总帧数，与引擎完全一致；
+      · 静音插入位置 = 300 × 到该 br3 为止的 encoder 帧数累计（多数用例与引擎逐采样一致，
+        个别用例差 2~3 帧，见 §62.3）；
+      · 句首 break：静音插在第一块 1200 采样之后（与引擎逐采样一致）；
+      · 句边界/句间 break：静音插在前一句音频之后 1200 采样处（引擎实测纯插入）；
+      · 句尾/文本末尾 break：引擎不插静音，忽略。
+    """
+    sym = tts.pack.symbols
+    # 1) 切成文本片段 + break 位置
+    frags = [[]]
+    break_pos = []  # [片段下标, ms]
+    for p in pieces:
+        if p[0] == "break":
+            break_pos.append([len(frags) - 1, p[1]])
+            frags.append([])
+        else:
+            frags[-1].append(p[1])
+    # 合并相邻 break
+    merged = {}
+    for pos, ms in break_pos:
+        merged[pos] = merged.get(pos, 0) + ms
+    frag_text = [_join_texts(x) for x in frags]
+    full_text = _join_texts([f for f in frag_text if f.strip()])
+    if not full_text:
+        return np.zeros(0, dtype=np.float32)
+    ids_full = tts.text_to_ids(full_text)
+    from .synth import split_sentences
+    chunks = split_sentences(ids_full, sym)
+    lens = [len(c) for c in chunks]
+    offs = np.cumsum([0] + lens[:-1]).tolist()
+
+    # 2) 定位每个 break：分类 + chunk/局部 token 下标
+    breaks = []  # (kind, chunk_idx, local_idx, ms)
+    for pos, ms in sorted(merged.items()):
+        pre = _join_texts([f for f in frag_text[:pos + 1] if f.strip()])
+        post = _join_texts([f for f in frag_text[pos + 1:] if f.strip()])
+        if not pre.strip():
+            breaks.append(("lead", 0, 0, ms))
+            continue
+        if not post.strip():
+            breaks.append(("trail", len(chunks) - 1, lens[-1] - 1, ms))
+            continue
+        ids_pre = tts.text_to_ids(pre)
+        k = 0
+        lim = min(len(ids_pre) - 2, len(ids_full) - 2)
+        while k < lim and ids_pre[2 + k] == ids_full[2 + k]:
+            k += 1
+        bidx = 2 + k
+        if bidx >= len(ids_full) or ids_full[bidx] == sym.get("~"):
+            breaks.append(("trail", len(chunks) - 1, lens[-1] - 1, ms))
+            continue
+        if ids_full[bidx] == sym.get("-bos-") or bidx in offs:
+            # 句边界：插到下一句（本 break 所在 chunk 的下一块）1200 处
+            nxt = 0
+            for i, o in enumerate(offs):
+                if o <= bidx:
+                    nxt = i
+            breaks.append(("sent", nxt, 0, ms))
+            continue
+        ci = 0
+        for i, o in enumerate(offs):
+            if o <= bidx < o + lens[i]:
+                ci = i
+                break
+        li = bidx - offs[ci]
+        breaks.append(("mid", ci, li, ms))
+
+    # 3) 逐 chunk 合成/插静音
+    out_parts = []
+    for ci, ch in enumerate(chunks):
+        ids_mod = list(ch)
+        cuts = []
+        for kind, bci, li, ms in breaks:
+            if kind == "mid" and bci == ci:
+                ids_mod[li] = sym["br3"]
+                cuts.append((li, int(round(ms * 24.0))))
+        if not cuts:
+            audio = _synth_ids(tts, ch)
+        else:
+            durs = _engine_durations(tts, ids_mod)
+            cum = np.cumsum(durs)
+            audio = _synth_ids(tts, ids_mod)
+            ins = []
+            for li, sil in cuts:
+                cut = int(cum[li]) * 300
+                ins.append((cut, sil))
+            ins.sort()
+            parts = []
+            prev = 0
+            for cut, sil in ins:
+                cut = max(prev, min(cut, len(audio)))
+                parts.append(audio[prev:cut])
+                parts.append(np.zeros(sil, dtype=np.float32))
+                prev = cut
+            parts.append(audio[prev:])
+            audio = np.concatenate(parts) if parts else audio
+        # 句首 / 句边界 break：插到 1200 采样处（句首插在首块，句间插在下一块）
+        for kind, bci, li, ms in breaks:
+            if kind in ("lead", "sent") and bci == ci:
+                sil = int(round(ms * 24.0))
+                local = min(1200, len(audio))
+                audio = np.concatenate([audio[:local], np.zeros(sil, dtype=np.float32),
+                                        audio[local:]])
+        out_parts.append(audio)
+    return np.concatenate(out_parts) if out_parts else np.zeros(0, dtype=np.float32)
+
+
+
 def speak_ssml(tts, ssml, volume=None):
     """按 SSML 合成音频（24 kHz float32）；volume 为整体额外增益（可选）"""
     t = tts
@@ -249,34 +381,7 @@ def speak_ssml(tts, ssml, volume=None):
                 continue
             audio = _synth(t, joined)
         else:
-            texts = [p[1] for p in pieces if p[0] == "text"]
-            joined = _join_texts(texts)
-            audio = _synth(t, joined) if joined else np.zeros(0, dtype=np.float32)
-            # 计算每个 break 前的词数 → 对应词边界采样位置
-            wrds = _WORD_RE.findall(joined)
-            starts = _word_starts(t, joined)
-            inserts = []  # (位置, 静音采样数)
-            word_pos = 0
-            for p in pieces:
-                if p[0] == "break":
-                    ms = p[1]
-                    silence = int(round(ms * 24.0))
-                    idx = word_pos
-                    pos = starts[idx] if starts and idx < len(starts) else len(audio)
-                    inserts.append((_break_pos(pos, len(audio)), silence))
-                else:
-                    token = _WORD_RE.search(p[1] or "")
-                    word_pos += len(_WORD_RE.findall(p[1] or ""))
-            if inserts:
-                out = []
-                prev = 0
-                for pos, silence in inserts:
-                    pos = max(prev, min(pos, len(audio)))
-                    out.append(audio[prev:pos])
-                    out.append(np.zeros(silence, dtype=np.float32))
-                    prev = pos
-                out.append(audio[prev:])
-                audio = np.concatenate(out) if out else audio
+            audio = _synth_break_pieces(t, pieces)
         factor = float(_np.float32(base_rate * _np.float32(1.0 + (rate or 0.0) / 100.0)))
         if abs(factor - 1.0) > 1e-9:
             # 引擎进 rate 处理器之前，自然音频首尾已有各 300 采样静音

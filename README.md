@@ -20,7 +20,9 @@
   精确复刻**（f28=2^(pct/120)，先 PSOLA 变速 r=f20/f28，再走引擎同款 12 抽头 int16 定点多相重采样器
   b0264 + afb08 flush 截断语义；对引擎进程内 24kHz PCM 实测 pitch=+25%/+50%/-50% **逐采样 maxdiff=0**，
   见 `openshenzhou/pitchshift.py` 与 `data/eval/ssml_pitch_golden.npz` 回归数据；SDK 端到端长度完全相同、
-  99.4%~99.5% 采样相同、残差 ≤2 LSB，来自自然音频 ±1 LSB 的固有差异）；break 细节近似）；
+  99.4%~99.5% 采样相同、残差 ≤2 LSB，来自自然音频 ±1 LSB 的固有差异）；break 已实测：句中 break 在 token 序列里替换为 `br3` 暂停 token（音频总长 = encoder 帧数×300，
+与引擎完全一致），静音长度精确 ms×24；句首/句间 break 按纯插入处理（插入位置 1200 / 前句+1200，
+与引擎逐采样一致），句尾 break 忽略；个别句中 break 插入位置与引擎差 ≤900 采样（引擎流式块调度差异））；
   **23 个音色包在自然语速（RateAdjustment=100）下与引擎基本逐采样一致**（唯一残差是 ONNX 浮点运算次序
   导致的 ±1 LSB，约 99.7% 采样完全相同、皮尔逊相关 1.0000000）；
   **12 个音色包的 `RateAdjustment` 保音高变速已完全逆向复刻**（`openshenzhou/rateadjust.py`：基音同步
