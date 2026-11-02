@@ -113,10 +113,16 @@ def classes(chars):
     while len(seq) % WINDOW:
         seq.append(w["emb"][1])
     F = np.stack(seq)
-    # 引擎实测：CBlstmWordBreaker 对整段（补齐到 20 的倍数）做一次双向 LSTM，
-    # 不是每 20 帧重置状态——按窗口重置会在窗口边界（第 20/40…字）产生类别错误。
+    # 引擎实测（进程内 hook 对拍）：CBlstmWordBreaker 按 20 帧窗口流式执行——
+    # 前向 LSTM 跨窗口携带隐状态（等价于整段一次前向），
+    # 后向 LSTM 在每个 20 帧窗口内独立回扫（窗口边界处重置），
+    # 这样才与引擎逐字类别一致（长句窗口边界附近尤其明显）。
     Hf = _run_lstm(F, w["w_fwd"], w["b_fwd"], reverse=False)
-    Hb = _run_lstm(F, w["w_bwd"], w["b_bwd"], reverse=True)
+    N = len(F)
+    Hb = np.zeros((N, 64), dtype=np.float32)
+    for st in range(0, N, WINDOW):
+        en = min(N, st + WINDOW)
+        Hb[st:en] = _run_lstm(F[st:en], w["w_bwd"], w["b_bwd"], reverse=True)
     H = np.concatenate([Hf, Hb], 1)
     logits = H @ w["w_out"] + w["b_out"]
     cls = logits.argmax(1)
