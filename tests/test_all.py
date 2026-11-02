@@ -146,6 +146,45 @@ def main():
     o2 = adjust_int16(sig, 1.1)
     check("rate复刻确定性", _np2.array_equal(o1, o2))
 
+    print("== 3d. SSML pitch 语义（引擎链路自检） ==")
+    if "en" in tts:
+        import numpy as _np3
+        _t = tts["en"]
+        _ns = 'xmlns="http://www.w3.org/2001/10/synthesis"'
+        def _pitch_ctx(pct):
+            return _np3.asarray(_t.speak_ssml(
+                '<speak %s><prosody pitch="%s">hello world.</prosody></speak>' % (_ns, pct)),
+                dtype=_np3.float32)
+        def _f0_est(x, sr=24000):
+            x = _np3.asarray(x, dtype=_np3.float64)
+            vals = []
+            for st in range(0, len(x) - 2048, 512):
+                seg = x[st:st + 2048]
+                if _np3.sqrt((seg ** 2).mean()) < 0.02:
+                    continue
+                seg = seg - seg.mean()
+                ac = _np3.correlate(seg, seg, 'full')[len(seg) - 1:]
+                lo, hi = int(sr / 500), int(sr / 70)
+                if hi >= len(ac):
+                    continue
+                k = lo + int(_np3.argmax(ac[lo:hi]))
+                if ac[k] > 0.3 * ac[0]:
+                    vals.append(sr / k)
+            return float(_np3.median(vals)) if vals else 0.0
+        _base = _pitch_ctx("0%")
+        _up = _pitch_ctx("50%")
+        _dn = _pitch_ctx("-50%")
+        check("pitch +50% 时长保持", abs(len(_up) / len(_base) - 1.0) < 0.02,
+              "实际 %.4f" % (len(_up) / len(_base)))
+        check("pitch -50% 时长保持", abs(len(_dn) / len(_base) - 1.0) < 0.02,
+              "实际 %.4f" % (len(_dn) / len(_base)))
+        _r_up = _f0_est(_up) / (_f0_est(_base) + 1e-9)
+        _r_dn = _f0_est(_dn) / (_f0_est(_base) + 1e-9)
+        check("pitch +50% F0 比 ≈ 2^(5/12)=1.3348", abs(_r_up - 1.3348) < 0.08,
+              "实际 %.4f" % _r_up)
+        check("pitch -50% F0 比 ≈ 2^(-5/12)=0.7492", abs(_r_dn - 0.7492) < 0.06,
+              "实际 %.4f" % _r_dn)
+
     if not a.skip_node and os.path.exists(os.path.join(ROOT, "node", "node_modules")):
         print("== 4. Node≡Python G2P 一致 ==")
         script = os.path.join(os.environ.get("TEMP", "."), "os_node_ids.js")
