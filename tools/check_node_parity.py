@@ -8,7 +8,11 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = os.getcwd()
 script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "node_ids.js")
-node_dir = os.path.join(ROOT, "node").replace(os.sep, "/")
+SDK = os.environ.get("OS_SDK_ROOT") or ROOT
+NODE = os.environ.get("OS_NODE_ROOT") or ROOT
+if os.path.isdir(os.path.join(NODE, "node")):
+    NODE = os.path.join(NODE, "node")
+node_dir = NODE.replace(os.sep, "/")
 
 tests = {
     "zh": ("Xiaoxiao_Female_zh-CN", ["你好，世界。", "人工智能语音合成。", "系统加载中，请稍候。",
@@ -28,11 +32,14 @@ ok = bad = 0
 for lang, (pkg, texts) in tests.items():
     pkg_path = _voice_pkg(pkg)
     for text in texts:
+        pyenv = os.environ.copy()
+        pyenv["PYTHONPATH"] = SDK
         py = subprocess.run(
             [sys.executable, "-c",
-             "import sys,json;sys.path.insert(0,'.');from openshenzhou import TTS;"
+             "import sys,json,os;sys.path.insert(0,os.environ.get('OS_SDK_ROOT') or '.');"
+             "from openshenzhou import TTS;"
              "t=TTS(%r);print(json.dumps(t.text_to_ids(%r),ensure_ascii=False))" % (pkg_path, text)],
-            capture_output=True, encoding="utf-8", errors="replace")
+            capture_output=True, encoding="utf-8", errors="replace", env=pyenv)
         node = subprocess.run(["node", script, pkg_path, text, node_dir],
                               capture_output=True, encoding="utf-8", errors="replace")
         try:
