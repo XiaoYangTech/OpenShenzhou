@@ -153,20 +153,12 @@ function classes(chars) {
   }
   seq.push(w.emb.subarray(64, 128));
   while (seq.length % WINDOW) seq.push(w.emb.subarray(64, 128));
+  // 引擎实测：对整段（补齐到 20 的倍数）做一次双向 LSTM，不按 20 帧重置状态
+  const hf = runLstm(seq, w.wFwd, w.bFwd, false);
+  const hb = runLstm(seq, w.wBwd, w.bBwd, true);
   const T = seq.length;
-  const Hf = new Float32Array(T * 64);
-  const Hb = new Float32Array(T * 64);
-  for (let s = 0; s < T; s += WINDOW) {
-    const X = seq.slice(s, s + WINDOW);
-    const hf = runLstm(X, w.wFwd, w.bFwd, false);
-    const hb = runLstm(X, w.wBwd, w.bBwd, true);
-    for (let k = 0; k < X.length; k++) {
-      for (let j = 0; j < 64; j++) {
-        Hf[(s + k) * 64 + j] = hf[k * 64 + j];
-        Hb[(s + k) * 64 + j] = hb[k * 64 + j];
-      }
-    }
-  }
+  const Hf = hf;
+  const Hb = hb;
   const out = [];
   for (let k = 0; k < n; k++) {
     const t = k + 1;
@@ -253,6 +245,12 @@ function mergeByLexicon(text, segs) {
   return segs;
 }
 
+function segmentsWithClasses(chars, cls) {
+  const text = chars.join('');
+  const segs = r1Segments(cls);
+  return mergeByLexicon(text, segs);
+}
+
 function segments(chars) {
   const text = chars.join('');
   const segs = r1Segments(classes(chars));
@@ -270,7 +268,7 @@ function boundsFromWords(chars, words) {
   return bounds;
 }
 
-module.exports = { classes, segments, boundsFromWords, available: () => { try { load(); return true; } catch (e) { return false; } } };
+module.exports = { classes, segments, segmentsWithClasses, boundsFromWords, available: () => { try { load(); return true; } catch (e) { return false; } } };
 
 if (require.main === module) {
   const args = process.argv.slice(2);

@@ -592,6 +592,8 @@ function applyYiSandhi(ids, sym) {
 
 function textToIdsSentence(text, sym, pkgDir) {
   // 句尾的非句末标点（，；：等）：引擎当作句末处理（实测：句尾「，」→ br4+punc,；句尾「：」→ 仅 br4）
+  const sentText = text; // 引擎词界模型输入 = 整句原文（含标点）
+  let wbCtx = null;
   let tailPunc = null;
   const trimmed = text.replace(/\s+$/, '');
   if (trimmed && '，、；：,;:'.includes(trimmed[trimmed.length - 1])) {
@@ -718,7 +720,21 @@ function textToIdsSentence(text, sym, pkgDir) {
         let wbWords = null, wbBounds = null;
         if (wb) {
           try {
-            wbWords = wb.segments(chars).map(([s0, L0]) => chars.slice(s0, s0 + L0).join(''));
+            let wbSegs = null;
+            try {
+              if (wbCtx === null) wbCtx = wb.classes([...sentText]);
+              const cp = sentText.indexOf(chunk);
+              if (cp >= 0 && wbCtx.length >= cp + chunk.length) {
+                const cls = [];
+                for (let j = 0; j < chunk.length; j++) {
+                  const c = chunk[j];
+                  if ((c >= '一' && c <= '鿿') || c === '〇') cls.push(wbCtx[cp + j]);
+                }
+                if (cls.length === chars.length) wbSegs = wb.segmentsWithClasses(chars, cls);
+              }
+            } catch (e) { wbSegs = null; }
+            const wsegs = wbSegs || wb.segments(chars);
+            wbWords = wsegs.map(([s0, L0]) => chars.slice(s0, s0 + L0).join(''));
             wbBounds = wb.boundsFromWords(chars, wbWords);
           } catch (e) { wbWords = null; wbBounds = null; }
         }
