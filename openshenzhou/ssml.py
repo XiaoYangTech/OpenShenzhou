@@ -382,12 +382,17 @@ def speak_ssml(tts, ssml, volume=None):
             audio = _synth(t, joined)
         else:
             audio = _synth_break_pieces(t, pieces)
-        # 引擎总速率因子：f20 = float32( base * float32(1 + float32(pct) * float32(0.01)) )
-        # （实测：Aria +60% → 1.5999999046；+20% → 1.2000000477；-20% → 0.8000000119；
-        #  -33% → 0.6700000167；与 (1+pct/100.0) 的 float32 结果有 1 ulp 差异）
+        # 引擎总速率因子 f20（对 Aria/Katja 共 16 组实测逐位匹配，见 findings §63.2）：
+        #   pf  = float32(1 + float32(pct) * float32(0.01f))
+        #   f20 = pf                                  （RateAdjustment == 100）
+        #   f20 = float32(float32(RateAdj*pf) * float32(0.01f))   （RateAdjustment != 100）
         _pct = _np.float32(rate or 0.0)
-        factor = float(_np.float32(_np.float32(base_rate) * _np.float32(
-            1.0 + _np.float32(_pct * _np.float32(0.01)))))
+        _pf = _np.float32(1.0 + _np.float32(_pct * _np.float32(0.01)))
+        _ra = int(getattr(t.pack, "rate_adjust", 100) or 100)
+        if _ra == 100:
+            factor = float(_pf)
+        else:
+            factor = float(_np.float32(_np.float32(_np.float32(_ra) * _pf) * _np.float32(0.01)))
         # 引擎音高：f28 = 2^(pitch百分比/120)
         f28 = float(np.float32(2.0) ** np.float32((pitch or 0.0) / 120.0))
         if abs(f28 - 1.0) > 1e-6:
