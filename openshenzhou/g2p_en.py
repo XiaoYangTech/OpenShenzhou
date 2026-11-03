@@ -1760,6 +1760,10 @@ def _text_to_ids_impl(text, sym, lexicon=None, variant=""):
             while j < len(flat) and flat[j][0] == "punc_after_end":
                 extra.append(flat[j][1])
                 j += 1
+            quote_punc = None
+            if j < len(flat) and flat[j][0] == "quote_after_end":
+                quote_punc = flat[j][1]
+                j += 1
             next_end = flat[j] if j < len(flat) and flat[j][0] == "end" else None
             if item[1] == "punc." and len(extra) >= 2:
                 # 省略号：引擎结构 br4 + punc... + punc.（后面紧跟 ?/! 时用对应标点）
@@ -1773,6 +1777,9 @@ def _text_to_ids_impl(text, sym, lexicon=None, variant=""):
                 ids.append(sym.get(item[1], sym.get("punc.", 0)))
                 for e in extra:
                     ids.append(sym.get(e, sym.get("punc.", 0)))
+                if quote_punc is not None:
+                    _push(ids, sym.get("br0"))
+                    ids.append(sym.get(quote_punc, sym.get("punc.", 0)))
             _push(ids, sym.get(END))
             if j < len(flat):
                 ids.extend([x for x in (sym.get(BOS), sym.get("br0")) if x is not None])
