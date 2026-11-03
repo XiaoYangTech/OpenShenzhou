@@ -210,10 +210,37 @@ def text_to_ids(text, sym, lexicon=None, variant=""):
         _ACTIVE_LEX = lexicon
         _ACTIVE_VARIANT = variant
     try:
-        return _text_to_ids_impl(text, sym, lexicon, variant)
+        res = _text_to_ids_impl(text, sym, lexicon, variant)
     finally:
         _ACTIVE_LEX = prev
         _ACTIVE_VARIANT = prev_var
+    return _merge_bracket_tail(res, sym, text)
+
+
+_PUNC_IDS_CACHE = {}
+
+
+def _merge_bracket_tail(ids, sym, text):
+    """引擎实测：文本以「)/ ] + 句末标点」结尾时，闭合括号的 punc 与句点的 punc
+    属于同一句（br4 punc. punc. ~）；我们的状态机偶尔会把后者拆成空句，
+    这里把空句尾段合并回前一句（仅当尾段不含任何词/音素 token）。"""
+    try:
+        if not text or text.strip()[-1] not in ").]!?":
+            return ids
+        END = sym.get("~")
+        BOS = sym.get("-bos-")
+        BR0 = sym.get("br0")
+        BR4 = sym.get("br4")
+        if not ids or ids[-1] != END or ids[-2] in (BR4, BR0, BOS, END):
+            return ids
+        # 尾段 = ['-bos-','br0','br4',punc,'~']，且其前是前一句的 '~'
+        if (len(ids) >= 6 and ids[-1] == END and ids[-2] is not None
+                and ids[-3] == BR4 and ids[-4] == BR0 and ids[-5] == BOS and ids[-6] == END):
+            tail_punc = ids[-2]
+            ids = ids[:-6] + [tail_punc, END]
+        return ids
+    except Exception:
+        return ids
 
 
 # 印式英语：个别音素在 *_hin 符号表中缺失时的回退映射（引擎实测的印式口音音素）
