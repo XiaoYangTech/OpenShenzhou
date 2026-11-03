@@ -6,6 +6,7 @@
 // 词界 = 「在 class∈{0,3} 的字符之前切」，再按官方词表 + 引擎合并率做相邻词合并。
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const DATA = path.join(__dirname, '..', '..', 'data');
 const WINDOW = 20;
@@ -19,6 +20,7 @@ let OFFICIAL = null;
 let RATES = null;
 let RATES_TH = null;
 let EVIDENCE = null;
+let SEQDICT = null;
 
 function load() {
   if (W) return W;
@@ -198,7 +200,44 @@ function loadEvidence() {
   return EVIDENCE;
 }
 
+function loadSeqDict() {
+  if (SEQDICT !== undefined && SEQDICT !== null) return SEQDICT;
+  try {
+    const buf = zlib.gunzipSync(fs.readFileSync(path.join(DATA, 'zh_compound_dict.txt.gz')));
+    SEQDICT = new Set(buf.toString('utf8').split(/\r?\n/).filter((x) => x.length));
+  } catch (e) { SEQDICT = new Set(); }
+  return SEQDICT;
+}
+
+// 引擎实测的精确合并：连续 CWordBreaker 词用逗号连接，在序列词表中贪心最长匹配。
+function mergeBySeqDict(text, segs, maxWords) {
+  const d = loadSeqDict();
+  if (!d || d.size === 0 || segs.length < 2) return segs;
+  const lim = maxWords || 5;
+  const toks = segs.map(([s0, L0]) => text.substr(s0, L0));
+  const out = [];
+  let i = 0;
+  const n = toks.length;
+  while (i < n) {
+    let best = i;
+    for (let k = i + 1; k < Math.min(n, i + lim); k++) {
+      if (d.has(toks.slice(i, k + 1).join(','))) best = k;
+    }
+    if (best > i) {
+      const start = segs[i][0];
+      const end = segs[best][0] + segs[best][1];
+      out.push([start, end - start]);
+      i = best + 1;
+    } else {
+      out.push(segs[i]);
+      i += 1;
+    }
+  }
+  return out;
+}
+
 function mergeByLexicon(text, segs) {
+  segs = mergeBySeqDict(text, segs);
   const words = loadMergeWords();
   const probe = loadProbeWords();
   const wbmerge = loadWbMerge();
