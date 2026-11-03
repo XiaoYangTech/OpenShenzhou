@@ -1072,6 +1072,11 @@ def _parse(text):
                     i += run
                     continue
                 nxt = text[i + 1] if i + 1 < n else ""
+                if nxt and nxt in BQUOTE:
+                    events.append(("end", "punc."))
+                    events.append(("quote_after_end", "punc."))
+                    i += 2
+                    continue
                 if nxt and not nxt.isspace() and nxt not in ")]":
                     if nxt.isalnum():
                         i += 1
@@ -1172,7 +1177,7 @@ def _parse(text):
             i += 1
             continue
         if ch == '"':
-            events.append(("br2", None))
+            # 引擎实测：双引号不产生任何 token（词边界由相邻词自然给出）
             i += 1
             continue
         if ch == "=":
