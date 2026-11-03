@@ -78,6 +78,12 @@ def load_broad_lexicon():
 def load_lexicon():
     """引擎标定的「词 → 音素序列」（符号名，使用时映射到本音色包 id）"""
     from .symbols import load_json_prefer_names
+    _override = os.environ.get("OS_ZH_LEXICON_FILE", "")
+    if _override and os.path.exists(_override):
+        try:
+            return json.load(open(_override, encoding="utf-8"))
+        except Exception:
+            pass
     d = load_json_prefer_names(os.path.join(ROOT, "data", "lexicon_zh"))
     if d:
         mode = os.environ.get("OS_ZH_BROAD", "fill")
