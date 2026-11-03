@@ -96,7 +96,8 @@ Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
 ```
 data/    标定数据与离线评测数据：8 语种词表/符号表/断词模型/CRF 映射/英文实测词表、
          引擎后处理分词复合词表（108,577 条）、POSTWORDBREAKER 资源主词表
-         （108,578 条扁平词，zh_postwb_words.txt.gz）与真值 CWordBreaker 词序列、
+         （108,578 条扁平词，zh_postwb_words.txt.gz）、引擎词典读音码全量
+         （57,046 词/60,751 变体，zh_lex_engine_codes.json.gz）与真值 CWordBreaker 词序列、
          eval/ 下的评测语料（中文 599、中文大规模 3000、英文 5 套、八语种 golden）
 tools/   数据构建、评测、验证脚本（含一键验证 verify_all.py）
 ```
