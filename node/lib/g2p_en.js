@@ -739,6 +739,12 @@ function parse(text) {
           continue;
         }
         const nxt = i + 1 < n ? text[i + 1] : '';
+        if (nxt && BQUOTE.has(nxt)) {
+          events.push(['end', 'punc.']);
+          events.push(['quote_after_end', 'punc.']);
+          i += 2;
+          continue;
+        }
         if (nxt && !/\s/.test(nxt) && !')]'.includes(nxt)) {
           if (/[A-Za-z0-9]/.test(nxt)) { i += 1; continue; }
           events.push([nxt === '_' ? 'pause_br1' : 'pause', 'punc.']);
@@ -828,7 +834,7 @@ function parse(text) {
     }
     if (ch === '=') { events.push(['phones', ['iy1', '-', 'k', 'w', 'ax', 'l', 'z']]); i += 1; continue; }
     if (ch === '@') { events.push(['w', 'at']); i += 1; continue; }
-    if (ch === '"') { events.push(['br2', null]); i += 1; continue; }
+    if (ch === '"') { i += 1; continue; }
     if (ch === "'") { i += 1; continue; }
     if (ch === '\\') { i += 1; continue; }
     if (SYMBOL_WORDS[ch] !== undefined) {
