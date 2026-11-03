@@ -1386,8 +1386,14 @@ function _textToIdsImpl(text, sym, variant) {
       let jx = i + 1;
       const extra = [];
       while (jx < flat.length && flat[jx][0] === 'punc_after_end') { extra.push(flat[jx][1]); jx += 1; }
+      let quotePunc = null;
+      if (jx < flat.length && flat[jx][0] === 'quote_after_end') { quotePunc = flat[jx][1]; jx += 1; }
       if (extra.length) {
         for (const ex of extra) ids.push(sym[ex] !== undefined ? sym[ex] : (sym['punc.'] || 0));
+      }
+      if (quotePunc !== null) {
+        ids.push(sym['br0'] !== undefined ? sym['br0'] : 0);
+        ids.push(sym[quotePunc] !== undefined ? sym[quotePunc] : (sym['punc.'] || 0));
       }
       if (jx < flat.length) {
         ids.push(sym[END]);
