@@ -1420,7 +1420,33 @@ function _textToIdsImpl(text, sym, variant) {
     if (variant !== 'in' && sym['punc.'] !== undefined) ids.push(sym['punc.']);
     if (sym[END] !== undefined) ids.push(sym[END]);
   }
-  return ids;
+  return mergeBracketTail(ids, sym, text);
+}
+
+// 引擎实测：文本以「) / ] + 句末标点」结尾时，闭合括号的 punc 与句点的 punc 同属一句
+// （br4 punc. punc. ~）；状态机偶尔把后者拆成空句，这里合并回前一句。
+function mergeBracketTail(ids, sym, text) {
+  try {
+    if (!text) return ids;
+    const t = String(text).trim();
+    if (!t) return ids;
+    const lastCh = t[t.length - 1];
+    if (').]!?'.indexOf(lastCh) < 0) return ids;
+    const END = sym['~'];
+    const BOS = sym['-bos-'];
+    const BR0 = sym['br0'];
+    const BR4 = sym['br4'];
+    const n = ids.length;
+    if (n < 7) return ids;
+    if (ids[n - 1] !== END) return ids;
+    if (ids[n - 3] === BR4 && ids[n - 4] === BR0 && ids[n - 5] === BOS && ids[n - 6] === END) {
+      const tailPunc = ids[n - 2];
+      return ids.slice(0, n - 6).concat([tailPunc, END]);
+    }
+    return ids;
+  } catch (e) {
+    return ids;
+  }
 }
 
 module.exports = { textToIds, loadVariantLexicon };
