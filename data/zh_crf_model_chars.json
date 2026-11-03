@@ -178,8 +178,8 @@
     "ng_l"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "重重",
+  "reason": "runtime-hook"
  },
  "9": {
   "labels": [
@@ -337,8 +337,8 @@
     "u_l"
    ]
   ],
-  "char": "都",
-  "reason": "manual"
+  "char": "斗",
+  "reason": "runtime-hook"
  },
  "18": {
   "labels": [
@@ -377,8 +377,8 @@
     "if_l"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "分子",
+  "reason": "runtime-hook"
  },
  "20": {
   "labels": [
@@ -535,8 +535,8 @@
     "ib_l"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "好事",
+  "reason": "runtime-hook"
  },
  "29": {
   "labels": [
@@ -819,8 +819,8 @@
     "i_l"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "美的",
+  "reason": "runtime-hook"
  },
  "45": {
   "labels": [
@@ -1049,8 +1049,8 @@
     "ng_h"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "人行",
+  "reason": "runtime-hook"
  },
  "57": {
   "labels": [
@@ -1187,8 +1187,8 @@
     "ng_l"
    ]
   ],
-  "char": "乘",
-  "reason": "manual"
+  "char": "盛",
+  "reason": "runtime-hook"
  },
  "65": {
   "labels": [
@@ -1259,8 +1259,8 @@
     "u_l"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "数数",
+  "reason": "runtime-hook"
  },
  "67": {
   "labels": [
@@ -1315,8 +1315,8 @@
     "ng_h"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "同行",
+  "reason": "runtime-hook"
  },
  "70": {
   "labels": [
@@ -1371,8 +1371,8 @@
     "nn_l"
    ]
   ],
-  "char": null,
-  "reason": "label-pair"
+  "char": "相称",
+  "reason": "runtime-hook"
  },
  "73": {
   "labels": [
