@@ -21,6 +21,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NPZ = os.path.join(ROOT, "data", "wb_bilstm_weights.npz")
 OFFICIAL_WORDS = os.path.join(ROOT, "data", "official_words_zh.json")
 MERGE_EVIDENCE = os.path.join(ROOT, "data", "zh_merge_evidence.json")
+SEQ_DICT = os.path.join(ROOT, "data", "zh_compound_dict.txt.gz")
 WINDOW = 20
 MAX_MERGE_LEN = 12
 
@@ -219,12 +220,52 @@ def _load_merge_rates():
     return _load_merge_params()[0]
 
 
+def _load_seq_dict():
+    """引擎精确后处理词表：按「CWordBreaker 词序列」逗号连接串索引（108,577 条）。"""
+    if "seqdict" in _cache:
+        return _cache["seqdict"]
+    try:
+        import gzip
+        with gzip.open(SEQ_DICT, "rt", encoding="utf-8") as f:
+            d = {line.rstrip() for line in f if line.strip()}
+    except OSError:
+        d = set()
+    _cache["seqdict"] = d
+    return d
+
+
+def _merge_by_seq_dict(text, segs, max_words=5):
+    """引擎实测的精确合并：连续 CWordBreaker 词用逗号连接，在序列词表中贪心最长匹配。"""
+    d = _load_seq_dict()
+    if not d or len(segs) < 2:
+        return segs
+    toks = [text[s0:s0 + L0] for s0, L0 in segs]
+    out = []
+    i = 0
+    n = len(toks)
+    while i < n:
+        best = i
+        for k in range(i + 1, min(n, i + max_words)):
+            if ",".join(toks[i:k + 1]) in d:
+                best = k
+        if best > i:
+            start = segs[i][0]
+            end = segs[best][0] + segs[best][1]
+            out.append((start, end - start))
+            i = best + 1
+        else:
+            out.append(segs[i])
+            i += 1
+    return out
+
+
 def _merge_by_lexicon(text, segs, words, max_len=MAX_MERGE_LEN):
     """相邻词合并：候选词在官方词表中，且「引擎合并率」≥ 阈值才合并。
 
     合并率来自引擎语料统计（tools/tune_merge.py 生成）：
     引擎对哪些词会合并、哪些会拆开，直接反映其 Trie 后处理行为。
     """
+    segs = _merge_by_seq_dict(text, segs)
     wbpair = _load_wbpair()
     rates, file_th = _load_merge_params()
     env_th = os.environ.get("OS_MERGE_TH")
