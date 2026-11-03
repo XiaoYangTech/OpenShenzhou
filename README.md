@@ -95,6 +95,7 @@ Python SDK 与 Node SDK（分别见 `python` / `node` 分支）均支持：
 
 ```
 data/    标定数据与离线评测数据：8 语种词表/符号表/断词模型/CRF 映射/英文实测词表、
+         CHINESETONE 声调资源（dat entry19 原始数据 + 105 词表 + 引擎读音实测）、
          引擎后处理分词复合词表（108,577 条）、POSTWORDBREAKER 资源主词表
          （108,578 条扁平词，zh_postwb_words.txt.gz）、引擎词典读音码全量
          （57,046 词/60,751 变体，zh_lex_engine_codes.json.gz）与真值 CWordBreaker 词序列、
