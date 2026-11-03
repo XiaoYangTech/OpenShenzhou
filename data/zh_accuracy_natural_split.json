@@ -1,0 +1,22 @@
+{
+  "599": {
+    "total": 599,
+    "natural_ok": 502,
+    "natural_total": 502,
+    "overall_ok": 596,
+    "residual_all": 3,
+    "residual_natural": 0
+  },
+  "3000": {
+    "total": 3000,
+    "natural_ok": 2308,
+    "natural_total": 2377,
+    "overall_ok": 2915,
+    "residual_all": 85,
+    "residual_natural": 69,
+    "tone_natural": 43,
+    "sep_natural": 22,
+    "mixed_natural": 4
+  },
+  "definition": "natural = 词典字覆盖率(官方词表字符集) ≥ 60% 的行；其余为 ASCII/技术文本被错误解码产生的乱码行"
+}
