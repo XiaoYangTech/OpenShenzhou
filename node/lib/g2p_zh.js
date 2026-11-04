@@ -126,7 +126,8 @@ const ZH_WORDS = new Set((() => {
 const TONES = { 1: ['h', 'h'], 2: ['l', 'h'], 3: ['l', 'l'], 4: ['h', 'l'], 5: ['m', 'm'] };
 const V_FINALS = { u: ['v', 'v'], ue: ['eh', 'eh'], uan: ['a', 'nn'], un: ['el', 'nn'] };
 const PUNCT = { '，': 'punc,', ',': 'punc,', '。': 'punc。', '.': 'punc。', '？': 'punc?', '?': 'punc?',
-                '！': 'punc!', '!': 'punc!', '、': 'punc、', '；': 'punc;', ';': 'punc;' };
+                '！': 'punc!', '!': 'punc!', '、': 'punc、', '；': 'punc;', ';': 'punc;',
+                '：': 'punc:', ':': 'punc:' };
 const DIGITS = '零一二三四五六七八九';
 
 function readDigitSeq(ds) {
@@ -686,7 +687,7 @@ function textToIdsSentence(text, sym, pkgDir) {
       if (groups.length) emitGroups(groups);
       continue;
     }
-    const parts = seg.v.split(/([，,。.？?！!、；;])/);
+    const parts = seg.v.split(/([，,。.？?！!、；;：:])/);
     for (const chunk of parts) {
       if (!chunk) continue;
       if (PUNCT[chunk]) {
@@ -821,10 +822,16 @@ function splitSentences(text) {
 
 function textToIds(text, sym, pkgDir) {
   if (!text) return [];
+  let trad = null;
+  try { trad = require('./zh_trad'); } catch (e) { trad = null; }
   const out = [];
   for (const sent of splitSentences(text)) {
     if (!sent.trim()) continue;
-    for (const id of textToIdsSentence(sent, sym, pkgDir)) out.push(id);
+    let ids = textToIdsSentence(sent, sym, pkgDir);
+    if (trad) {
+      try { ids = trad.apply(sent, ids, sym); } catch (e) { /* 保持基线 */ }
+    }
+    for (const id of ids) out.push(id);
   }
   return out;
 }
