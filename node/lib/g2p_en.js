@@ -121,17 +121,18 @@ const UNIT_SINGULAR = { hours: 'hour', minutes: 'minute', seconds: 'second',
 const CURRENCY = { $: ['dollar', 'cent'], '€': ['euro', 'cent'],
   '£': ['pound', 'penny'], '¥': ['yen', 'sen'], '￥': ['yen', 'sen'] };
 const SPECIAL_PHONES = {
+  caret: ['k', 'eh1', '-', 'r', 'ax', 't'],
   underscore: ['ah2', 'n', '-', 'd', 'ax', 'r', '-', 's', 'k', 'ao1', 'r'],
   asterisk: ['ae1', '-', 's', 't', 'ax', '-', 'r', 'ih', 's', 'k'],
   "o'clock": ['ax', '-', 'k', 'l', 'aa1', 'k'],
   covid: ['k', 'ah1', '-', 'v', 'ih', 'd'],
 };
 const SYMBOL_WORDS = { '*': 'asterisk', _: 'underscore', '#': 'number', '@': 'at',
-  '+': 'plus', '<': 'less', '>': 'greater', '~': null, '|': 'bar' };
+  '+': 'plus', '<': 'less', '>': 'greater', '^': 'caret', '~': null, '|': 'bar' };
 const STRONG_AND = ['ae1', 'n', 'd'];
 const STRONG_FOR = ['f', 'ao1', 'r'];
 const PAUSE_PUNCT = { ',': 'punc,', ';': 'punc;', ':': null, '(': 'punc,',
-  ')': 'punc,', '[': 'punc,', ']': 'punc,' };
+  ')': 'punc,', '[': 'punc,', ']': 'punc,', '{': 'punc,', '}': 'punc,' };
 const END_PUNCT = { '.': 'punc.', '?': 'punc?', '!': 'punc!' };
 const BQUOTE = new Set(['"', '’', '”', "'"]);
 const DENOM = { 2: 'half', 3: 'third', 4: 'fourth', 5: 'fifth', 6: 'sixth',
