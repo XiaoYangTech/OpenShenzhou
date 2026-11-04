@@ -1,0 +1,1510 @@
+[
+ {
+  "idx": 0,
+  "L": 2,
+  "T": 12,
+  "lenA": 7456,
+  "lenB": 8312,
+  "A_off": 9874328,
+  "B_off": 9881784,
+  "labels": [
+   "AE%1%-%D%R%EH%S",
+   "AX%-%D%R%EH%1%S"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "ae1",
+    "-",
+    "d",
+    "r",
+    "eh",
+    "s"
+   ],
+   [
+    "ax",
+    "-",
+    "d",
+    "r",
+    "eh1",
+    "s"
+   ]
+  ],
+  "word": "address",
+  "words": [
+   "address"
+  ]
+ },
+ {
+  "idx": 1,
+  "L": 2,
+  "T": 12,
+  "lenA": 8108,
+  "lenB": 9944,
+  "A_off": 9892236,
+  "B_off": 9900344,
+  "labels": [
+   "K%L%OW%1%S",
+   "K%L%OW%1%Z"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "l",
+    "ow1",
+    "s"
+   ],
+   [
+    "k",
+    "l",
+    "ow1",
+    "z"
+   ]
+  ],
+  "word": "close",
+  "words": [
+   "close"
+  ]
+ },
+ {
+  "idx": 2,
+  "L": 2,
+  "T": 12,
+  "lenA": 8568,
+  "lenB": 9392,
+  "A_off": 9912408,
+  "B_off": 9920976,
+  "labels": [
+   "K%AA%1%M%-%P%L%EH%K%S",
+   "K%AX%M%-%P%L%EH%1%K%S"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "aa1",
+    "m",
+    "-",
+    "p",
+    "l",
+    "eh",
+    "k",
+    "s"
+   ],
+   [
+    "k",
+    "ax",
+    "m",
+    "-",
+    "p",
+    "l",
+    "eh1",
+    "k",
+    "s"
+   ]
+  ],
+  "word": "complex",
+  "words": [
+   "complex"
+  ]
+ },
+ {
+  "idx": 3,
+  "L": 2,
+  "T": 12,
+  "lenA": 7700,
+  "lenB": 7936,
+  "A_off": 9932532,
+  "B_off": 9940232,
+  "labels": [
+   "K%AA%1%N%-%D%AH%K%T",
+   "K%AX%N%-%D%AH%1%K%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "aa1",
+    "n",
+    "-",
+    "d",
+    "ah",
+    "k",
+    "t"
+   ],
+   [
+    "k",
+    "ax",
+    "n",
+    "-",
+    "d",
+    "ah1",
+    "k",
+    "t"
+   ]
+  ],
+  "word": "conduct",
+  "words": [
+   "conduct"
+  ]
+ },
+ {
+  "idx": 4,
+  "L": 2,
+  "T": 12,
+  "lenA": 8020,
+  "lenB": 7976,
+  "A_off": 9950324,
+  "B_off": 9958344,
+  "labels": [
+   "K%AA%1%N%-%D%AH%K%T%S",
+   "K%AX%N%-%D%AH%1%K%T%S"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "aa1",
+    "n",
+    "-",
+    "d",
+    "ah",
+    "k",
+    "t",
+    "s"
+   ],
+   [
+    "k",
+    "ax",
+    "n",
+    "-",
+    "d",
+    "ah1",
+    "k",
+    "t",
+    "s"
+   ]
+  ],
+  "word": null,
+  "words": []
+ },
+ {
+  "idx": 5,
+  "L": 2,
+  "T": 12,
+  "lenA": 8412,
+  "lenB": 9416,
+  "A_off": 9968484,
+  "B_off": 9976896,
+  "labels": [
+   "K%AA%1%N%-%F%L%IH%K%T",
+   "K%AX%N%-%F%L%IH%1%K%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "aa1",
+    "n",
+    "-",
+    "f",
+    "l",
+    "ih",
+    "k",
+    "t"
+   ],
+   [
+    "k",
+    "ax",
+    "n",
+    "-",
+    "f",
+    "l",
+    "ih1",
+    "k",
+    "t"
+   ]
+  ],
+  "word": "conflict",
+  "words": [
+   "conflict"
+  ]
+ },
+ {
+  "idx": 6,
+  "L": 2,
+  "T": 12,
+  "lenA": 5796,
+  "lenB": 6640,
+  "A_off": 9988476,
+  "B_off": 9994272,
+  "labels": [
+   "K%AA%1%N%-%T%EH%S%T",
+   "K%AX%N%-%T%EH%1%S%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "aa1",
+    "n",
+    "-",
+    "t",
+    "eh",
+    "s",
+    "t"
+   ],
+   [
+    "k",
+    "ax",
+    "n",
+    "-",
+    "t",
+    "eh1",
+    "s",
+    "t"
+   ]
+  ],
+  "word": "contest",
+  "words": [
+   "contest"
+  ]
+ },
+ {
+  "idx": 7,
+  "L": 2,
+  "T": 12,
+  "lenA": 6428,
+  "lenB": 7448,
+  "A_off": 10003068,
+  "B_off": 10009496,
+  "labels": [
+   "K%AA%1%N%-%T%EH%S%T%S",
+   "K%AX%N%-%T%EH%1%S%T%S"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "aa1",
+    "n",
+    "-",
+    "t",
+    "eh",
+    "s",
+    "t",
+    "s"
+   ],
+   [
+    "k",
+    "ax",
+    "n",
+    "-",
+    "t",
+    "eh1",
+    "s",
+    "t",
+    "s"
+   ]
+  ],
+  "word": "contests",
+  "words": [
+   "contests"
+  ]
+ },
+ {
+  "idx": 8,
+  "L": 2,
+  "T": 12,
+  "lenA": 7984,
+  "lenB": 8984,
+  "A_off": 10019108,
+  "B_off": 10027092,
+  "labels": [
+   "K%AA%1%N%-%T%R%AE%K%T",
+   "K%AX%N%-%T%R%AE%1%K%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "k",
+    "aa1",
+    "n",
+    "-",
+    "t",
+    "r",
+    "ae",
+    "k",
+    "t"
+   ],
+   [
+    "k",
+    "ax",
+    "n",
+    "-",
+    "t",
+    "r",
+    "ae1",
+    "k",
+    "t"
+   ]
+  ],
+  "word": "contract",
+  "words": [
+   "contract"
+  ]
+ },
+ {
+  "idx": 9,
+  "L": 2,
+  "T": 24,
+  "lenA": 13520,
+  "lenB": 21856,
+  "A_off": 10038288,
+  "B_off": 10051808,
+  "labels": [
+   "D%IH%-%F%EH%1%N%S",
+   "D%IY%1%-%F%EH%N%S"
+  ],
+  "templates": [
+   "U00:Token.PreviousCharacters.GetCharacter(2)",
+   "U01:Token.PreviousCharacters.GetCharacter(1)",
+   "U02:Token.PreviousCharacters.GetCharacter(0)",
+   "U03:Token.PreviousCharacters.GetCharacter(2)/Token.PreviousCharacters.GetCharacter(1)",
+   "U04:Token.PreviousCharacters.GetCharacter(1)/Token.PreviousCharacters.GetCharacter(0)",
+   "U05:Token.PreviousCharacters.GetCharacter(2)/Token.PreviousCharacters.GetCharacter(1)/Token.PreviousCharacters.GetCharacter(0)",
+   "U06:Token.NextCharacters.GetCharacter(0)",
+   "U07:Token.NextCharacters.GetCharacter(1)",
+   "U08:Token.NextCharacters.GetCharacter(2)",
+   "U09:Token.NextCharacters.GetCharacter(0)/Token.NextCharacters.GetCharacter(1)",
+   "U10:Token.NextCharacters.GetCharacter(1)/Token.NextCharacters.GetCharacter(2)",
+   "U11:Token.NextCharacters.GetCharacter(0)/Token.NextCharacters.GetCharacter(1)/Token.NextCharacters.GetCharacter(2)",
+   "U12:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U13:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U14:Token.PrevToken.CaseInsensitiveText",
+   "U15:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U16:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U17:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U18:Token.NextToken.CaseInsensitiveText",
+   "U19:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U20:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U21:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U22:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U23:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "d",
+    "ih",
+    "-",
+    "f",
+    "eh1",
+    "n",
+    "s"
+   ],
+   [
+    "d",
+    "iy1",
+    "-",
+    "f",
+    "eh",
+    "n",
+    "s"
+   ]
+  ],
+  "word": null,
+  "words": [
+   "defence",
+   "defense"
+  ]
+ },
+ {
+  "idx": 10,
+  "L": 2,
+  "T": 12,
+  "lenA": 6016,
+  "lenB": 7008,
+  "A_off": 10077492,
+  "B_off": 10083508,
+  "labels": [
+   "IH%-%L%AE%1%-%B%AX%-%R%EY%2%T",
+   "IH%-%L%AE%1%-%B%AX%-%R%IH%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "ih",
+    "-",
+    "l",
+    "ae1",
+    "-",
+    "b",
+    "ax",
+    "-",
+    "r",
+    "ey2",
+    "t"
+   ],
+   [
+    "ih",
+    "-",
+    "l",
+    "ae1",
+    "-",
+    "b",
+    "ax",
+    "-",
+    "r",
+    "ih",
+    "t"
+   ]
+  ],
+  "word": null,
+  "words": []
+ },
+ {
+  "idx": 11,
+  "L": 2,
+  "T": 12,
+  "lenA": 7224,
+  "lenB": 8448,
+  "A_off": 10092708,
+  "B_off": 10099932,
+  "labels": [
+   "L%EH%1%D",
+   "L%IY%1%D"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "l",
+    "eh1",
+    "d"
+   ],
+   [
+    "l",
+    "iy1",
+    "d"
+   ]
+  ],
+  "word": null,
+  "words": [
+   "lead",
+   "led"
+  ]
+ },
+ {
+  "idx": 12,
+  "L": 2,
+  "T": 12,
+  "lenA": 9280,
+  "lenB": 11248,
+  "A_off": 10110492,
+  "B_off": 10119772,
+  "labels": [
+   "L%AY%1%V",
+   "L%IH%1%V"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "l",
+    "ay1",
+    "v"
+   ],
+   [
+    "l",
+    "ih1",
+    "v"
+   ]
+  ],
+  "word": "live",
+  "words": [
+   "live"
+  ]
+ },
+ {
+  "idx": 13,
+  "L": 2,
+  "T": 12,
+  "lenA": 10892,
+  "lenB": 12336,
+  "A_off": 10133132,
+  "B_off": 10144024,
+  "labels": [
+   "AA%1%B%-%JH%EH%K%T",
+   "AX%B%-%JH%EH%1%K%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "aa1",
+    "b",
+    "-",
+    "jh",
+    "eh",
+    "k",
+    "t"
+   ],
+   [
+    "ax",
+    "b",
+    "-",
+    "jh",
+    "eh1",
+    "k",
+    "t"
+   ]
+  ],
+  "word": "object",
+  "words": [
+   "object"
+  ]
+ },
+ {
+  "idx": 14,
+  "L": 2,
+  "T": 24,
+  "lenA": 13232,
+  "lenB": 21216,
+  "A_off": 10158560,
+  "B_off": 10171792,
+  "labels": [
+   "AO%1%-%F%EH%N%S",
+   "AX%-%F%EH%1%N%S"
+  ],
+  "templates": [
+   "U00:Token.PreviousCharacters.GetCharacter(2)",
+   "U01:Token.PreviousCharacters.GetCharacter(1)",
+   "U02:Token.PreviousCharacters.GetCharacter(0)",
+   "U03:Token.PreviousCharacters.GetCharacter(2)/Token.PreviousCharacters.GetCharacter(1)",
+   "U04:Token.PreviousCharacters.GetCharacter(1)/Token.PreviousCharacters.GetCharacter(0)",
+   "U05:Token.PreviousCharacters.GetCharacter(2)/Token.PreviousCharacters.GetCharacter(1)/Token.PreviousCharacters.GetCharacter(0)",
+   "U06:Token.NextCharacters.GetCharacter(0)",
+   "U07:Token.NextCharacters.GetCharacter(1)",
+   "U08:Token.NextCharacters.GetCharacter(2)",
+   "U09:Token.NextCharacters.GetCharacter(0)/Token.NextCharacters.GetCharacter(1)",
+   "U10:Token.NextCharacters.GetCharacter(1)/Token.NextCharacters.GetCharacter(2)",
+   "U11:Token.NextCharacters.GetCharacter(0)/Token.NextCharacters.GetCharacter(1)/Token.NextCharacters.GetCharacter(2)",
+   "U12:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U13:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U14:Token.PrevToken.CaseInsensitiveText",
+   "U15:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U16:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U17:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U18:Token.NextToken.CaseInsensitiveText",
+   "U19:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U20:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U21:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U22:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U23:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "ao1",
+    "-",
+    "f",
+    "eh",
+    "n",
+    "s"
+   ],
+   [
+    "ax",
+    "-",
+    "f",
+    "eh1",
+    "n",
+    "s"
+   ]
+  ],
+  "word": null,
+  "words": [
+   "offence",
+   "offense"
+  ]
+ },
+ {
+  "idx": 15,
+  "L": 2,
+  "T": 12,
+  "lenA": 6884,
+  "lenB": 7480,
+  "A_off": 10196804,
+  "B_off": 10203688,
+  "labels": [
+   "AO%1%-%F%EH%N%-%S%IH%Z",
+   "AX%-%F%EH%1%N%-%S%IH%Z"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "ao1",
+    "-",
+    "f",
+    "eh",
+    "n",
+    "-",
+    "s",
+    "ih",
+    "z"
+   ],
+   [
+    "ax",
+    "-",
+    "f",
+    "eh1",
+    "n",
+    "-",
+    "s",
+    "ih",
+    "z"
+   ]
+  ],
+  "word": "offences",
+  "words": [
+   "offences"
+  ]
+ },
+ {
+  "idx": 16,
+  "L": 2,
+  "T": 12,
+  "lenA": 8900,
+  "lenB": 10536,
+  "A_off": 10213336,
+  "B_off": 10222236,
+  "labels": [
+   "P%R%EH%1%-%Z%AX%N%T",
+   "P%R%IH%-%Z%EH%1%N%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "p",
+    "r",
+    "eh1",
+    "-",
+    "z",
+    "ax",
+    "n",
+    "t"
+   ],
+   [
+    "p",
+    "r",
+    "ih",
+    "-",
+    "z",
+    "eh1",
+    "n",
+    "t"
+   ]
+  ],
+  "word": "present",
+  "words": [
+   "present"
+  ]
+ },
+ {
+  "idx": 17,
+  "L": 2,
+  "T": 12,
+  "lenA": 6468,
+  "lenB": 7056,
+  "A_off": 10234928,
+  "B_off": 10241396,
+  "labels": [
+   "P%R%AX%-%D%UW%1%S",
+   "P%R%OW%1%-%D%UW%S"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "p",
+    "r",
+    "ax",
+    "-",
+    "d",
+    "uw1",
+    "s"
+   ],
+   [
+    "p",
+    "r",
+    "ow1",
+    "-",
+    "d",
+    "uw",
+    "s"
+   ]
+  ],
+  "word": "produce",
+  "words": [
+   "produce"
+  ]
+ },
+ {
+  "idx": 18,
+  "L": 2,
+  "T": 12,
+  "lenA": 6100,
+  "lenB": 6976,
+  "A_off": 10250600,
+  "B_off": 10256700,
+  "labels": [
+   "P%R%AA%1%-%JH%EH%K%T%S",
+   "P%R%AX%-%JH%EH%1%K%T%S"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "p",
+    "r",
+    "aa1",
+    "-",
+    "jh",
+    "eh",
+    "k",
+    "t",
+    "s"
+   ],
+   [
+    "p",
+    "r",
+    "ax",
+    "-",
+    "jh",
+    "eh1",
+    "k",
+    "t",
+    "s"
+   ]
+  ],
+  "word": "projects",
+  "words": [
+   "projects"
+  ]
+ },
+ {
+  "idx": 19,
+  "L": 2,
+  "T": 12,
+  "lenA": 6380,
+  "lenB": 7592,
+  "A_off": 10265844,
+  "B_off": 10272224,
+  "labels": [
+   "P%AH%1%-%T%IH%NG",
+   "P%UH%1%-%T%IH%NG"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "p",
+    "ah1",
+    "-",
+    "t",
+    "ih",
+    "ng"
+   ],
+   [
+    "p",
+    "uh1",
+    "-",
+    "t",
+    "ih",
+    "ng"
+   ]
+  ],
+  "word": "putting",
+  "words": [
+   "putting"
+  ]
+ },
+ {
+  "idx": 20,
+  "L": 2,
+  "T": 12,
+  "lenA": 6996,
+  "lenB": 7824,
+  "A_off": 10281960,
+  "B_off": 10288956,
+  "labels": [
+   "R%EH%1%D",
+   "R%IY%1%D"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "r",
+    "eh1",
+    "d"
+   ],
+   [
+    "r",
+    "iy1",
+    "d"
+   ]
+  ],
+  "word": null,
+  "words": [
+   "read",
+   "red",
+   "reed",
+   "reid"
+  ]
+ },
+ {
+  "idx": 21,
+  "L": 2,
+  "T": 12,
+  "lenA": 9912,
+  "lenB": 11968,
+  "A_off": 10298892,
+  "B_off": 10308804,
+  "labels": [
+   "R%EH%1%-%K%AX%R%D",
+   "R%IH%-%K%AO%1%R%D"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "r",
+    "eh1",
+    "-",
+    "k",
+    "ax",
+    "r",
+    "d"
+   ],
+   [
+    "r",
+    "ih",
+    "-",
+    "k",
+    "ao1",
+    "r",
+    "d"
+   ]
+  ],
+  "word": "record",
+  "words": [
+   "record"
+  ]
+ },
+ {
+  "idx": 22,
+  "L": 2,
+  "T": 24,
+  "lenA": 9640,
+  "lenB": 14320,
+  "A_off": 10322968,
+  "B_off": 10332608,
+  "labels": [
+   "R%EH%2%-%Z%UH%-%M%EY%1",
+   "R%IH%-%Z%UW%1%M"
+  ],
+  "templates": [
+   "U00:Token.PreviousCharacters.GetCharacter(2)",
+   "U01:Token.PreviousCharacters.GetCharacter(1)",
+   "U02:Token.PreviousCharacters.GetCharacter(0)",
+   "U03:Token.PreviousCharacters.GetCharacter(2)/Token.PreviousCharacters.GetCharacter(1)",
+   "U04:Token.PreviousCharacters.GetCharacter(1)/Token.PreviousCharacters.GetCharacter(0)",
+   "U05:Token.PreviousCharacters.GetCharacter(2)/Token.PreviousCharacters.GetCharacter(1)/Token.PreviousCharacters.GetCharacter(0)",
+   "U06:Token.NextCharacters.GetCharacter(0)",
+   "U07:Token.NextCharacters.GetCharacter(1)",
+   "U08:Token.NextCharacters.GetCharacter(2)",
+   "U09:Token.NextCharacters.GetCharacter(0)/Token.NextCharacters.GetCharacter(1)",
+   "U10:Token.NextCharacters.GetCharacter(1)/Token.NextCharacters.GetCharacter(2)",
+   "U11:Token.NextCharacters.GetCharacter(0)/Token.NextCharacters.GetCharacter(1)/Token.NextCharacters.GetCharacter(2)",
+   "U12:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U13:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U14:Token.PrevToken.CaseInsensitiveText",
+   "U15:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U16:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U17:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U18:Token.NextToken.CaseInsensitiveText",
+   "U19:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U20:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U21:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U22:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U23:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "r",
+    "eh2",
+    "-",
+    "z",
+    "uh",
+    "-",
+    "m",
+    "ey1"
+   ],
+   [
+    "r",
+    "ih",
+    "-",
+    "z",
+    "uw1",
+    "m"
+   ]
+  ],
+  "word": "resume",
+  "words": [
+   "resume"
+  ]
+ },
+ {
+  "idx": 23,
+  "L": 2,
+  "T": 12,
+  "lenA": 6156,
+  "lenB": 6952,
+  "A_off": 10350740,
+  "B_off": 10356896,
+  "labels": [
+   "S%EH%1%-%P%AX%-%R%AX%T",
+   "S%EH%1%-%P%AX%-%R%EY%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "s",
+    "eh1",
+    "-",
+    "p",
+    "ax",
+    "-",
+    "r",
+    "ax",
+    "t"
+   ],
+   [
+    "s",
+    "eh1",
+    "-",
+    "p",
+    "ax",
+    "-",
+    "r",
+    "ey",
+    "t"
+   ]
+  ],
+  "word": "separate",
+  "words": [
+   "separate"
+  ]
+ },
+ {
+  "idx": 24,
+  "L": 2,
+  "T": 12,
+  "lenA": 10724,
+  "lenB": 12320,
+  "A_off": 10366016,
+  "B_off": 10376740,
+  "labels": [
+   "S%AH%1%B%-%JH%EH%K%T",
+   "S%AX%B%-%JH%EH%1%K%T"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "s",
+    "ah1",
+    "b",
+    "-",
+    "jh",
+    "eh",
+    "k",
+    "t"
+   ],
+   [
+    "s",
+    "ax",
+    "b",
+    "-",
+    "jh",
+    "eh1",
+    "k",
+    "t"
+   ]
+  ],
+  "word": "subject",
+  "words": [
+   "subject"
+  ]
+ },
+ {
+  "idx": 25,
+  "L": 2,
+  "T": 12,
+  "lenA": 8248,
+  "lenB": 10184,
+  "A_off": 10391220,
+  "B_off": 10399468,
+  "labels": [
+   "AH%1%P%S",
+   "Y%UW%1%-%P%IY%1%-%EH%1%S"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "ah1",
+    "p",
+    "s"
+   ],
+   [
+    "y",
+    "uw1",
+    "-",
+    "p",
+    "iy1",
+    "-",
+    "eh1",
+    "s"
+   ]
+  ],
+  "word": "ups",
+  "words": [
+   "ups"
+  ]
+ },
+ {
+  "idx": 26,
+  "L": 2,
+  "T": 12,
+  "lenA": 14428,
+  "lenB": 15056,
+  "A_off": 10411796,
+  "B_off": 10426224,
+  "labels": [
+   "Y%UW%1%S",
+   "Y%UW%1%Z"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "y",
+    "uw1",
+    "s"
+   ],
+   [
+    "y",
+    "uw1",
+    "z"
+   ]
+  ],
+  "word": "use",
+  "words": [
+   "use"
+  ]
+ },
+ {
+  "idx": 27,
+  "L": 2,
+  "T": 12,
+  "lenA": 6728,
+  "lenB": 8240,
+  "A_off": 10443392,
+  "B_off": 10450120,
+  "labels": [
+   "W%AY%1%N%D",
+   "W%IH%1%N%D"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "w",
+    "ay1",
+    "n",
+    "d"
+   ],
+   [
+    "w",
+    "ih1",
+    "n",
+    "d"
+   ]
+  ],
+  "word": "wind",
+  "words": [
+   "wind"
+  ]
+ },
+ {
+  "idx": 28,
+  "L": 2,
+  "T": 12,
+  "lenA": 7672,
+  "lenB": 8936,
+  "A_off": 10460480,
+  "B_off": 10468152,
+  "labels": [
+   "W%AY%1%N%D%Z",
+   "W%IH%1%N%D%Z"
+  ],
+  "templates": [
+   "U00:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText",
+   "U01:Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U02:Token.PrevToken.CaseInsensitiveText",
+   "U03:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText",
+   "U04:Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U05:Token.PrevToken.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.PrevToken.CaseInsensitiveText/Token.PrevToken.CaseInsensitiveText",
+   "U06:Token.NextToken.CaseInsensitiveText",
+   "U07:Token.NextToken.NextToken.CaseInsensitiveText",
+   "U08:Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U09:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText",
+   "U10:Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText",
+   "U11:Token.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.CaseInsensitiveText/Token.NextToken.NextToken.NextToken.CaseInsensitiveText"
+  ],
+  "phones": [
+   [
+    "w",
+    "ay1",
+    "n",
+    "d",
+    "z"
+   ],
+   [
+    "w",
+    "ih1",
+    "n",
+    "d",
+    "z"
+   ]
+  ],
+  "word": "winds",
+  "words": [
+   "winds"
+  ]
+ }
+]
