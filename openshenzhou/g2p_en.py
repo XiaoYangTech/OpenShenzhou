@@ -1651,6 +1651,30 @@ def _text_to_ids_impl(text, sym, lexicon=None, variant=""):
     # 日期上下文：month word + number
     ev = _expand(raw)
     flat = _flatten(ev)
+    # 英文异读 CRF 的 token 上下文（引擎 token = 词 + 标点；引号不产生 token）
+    crf_tokens = []
+    crf_tok_idx = {}
+    _punc_map = {"punc.": ".", "punc,": ",", "punc?": "?", "punc!": "!",
+                 "punc;": ";", "punc:": ":", "punc...": "..."}
+    for _k, _it in enumerate(flat):
+        _kk = _it[0]
+        _tk = None
+        if _kk == "w":
+            _tk = _it[1]
+        elif _kk in ("pause", "pause_plain", "pause_br1"):
+            _tk = ","
+        elif _kk == "end":
+            _tk = _punc_map.get(_it[1], ".")
+        elif _kk in ("end_ellipsis", "ellipsis_pause"):
+            _tk = "..."
+        if _tk is not None:
+            crf_tokens.append(_tk)
+            crf_tok_idx[_k] = len(crf_tokens) - 1
+    _crf_on = True
+    try:
+        from . import crf_en as _crf_en
+    except Exception:
+        _crf_on = False
     ids = [x for x in (sym.get(BOS), sym.get("br0")) if x is not None]
     first = True
     ended = False
@@ -1674,7 +1698,16 @@ def _text_to_ids_impl(text, sym, lexicon=None, variant=""):
                     j2 -= 1
                 if j2 >= 0:
                     prev_w = flat[j2][1]
-            phones = pron_word(w, nxt, prev_w)
+            phones = None
+            if _crf_on:
+                _ti = crf_tok_idx.get(i)
+                if _ti is not None:
+                    try:
+                        phones = _crf_en.select(w, crf_tokens, _ti)
+                    except Exception:
+                        phones = None
+            if phones is None:
+                phones = pron_word(w, nxt, prev_w)
             wl = w.lower()
             after_kind = flat[i + 1][0] if i + 1 < len(flat) else "end"
             after_w = flat[i + 1][1] if i + 1 < len(flat) and flat[i + 1][0] == "w" else ""

@@ -94,6 +94,11 @@ class TTS:
                     load_lexicon())
         if self.lang == "en":
             from .g2p_en import load_lexicon, text_to_ids
+            try:
+                from . import crf_en
+                crf_en.set_dat_path(os.path.join(self.pack.dir, "MSTTSLocEnUS.dat"))
+            except Exception:
+                pass
             return (text_to_ids, self.pack.symbols, load_lexicon(self._en_variant), None)
         if self.lang in ("es", "fr", "de", "pt"):
             from .g2p_latin import load_lexicon, text_to_ids
