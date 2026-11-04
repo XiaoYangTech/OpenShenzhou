@@ -824,10 +824,15 @@ function textToIds(text, sym, pkgDir) {
   if (!text) return [];
   let trad = null;
   try { trad = require('./zh_trad'); } catch (e) { trad = null; }
+  let tone = null;
+  try { tone = require('./zh_tone'); } catch (e) { tone = null; }
   const out = [];
   for (const sent of splitSentences(text)) {
     if (!sent.trim()) continue;
     let ids = textToIdsSentence(sent, sym, pkgDir);
+    if (tone) {
+      try { ids = tone.apply(sent, ids, sym); } catch (e) { /* 保持基线 */ }
+    }
     if (trad) {
       try { ids = trad.apply(sent, ids, sym); } catch (e) { /* 保持基线 */ }
     }
