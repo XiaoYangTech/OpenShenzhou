@@ -10,6 +10,7 @@
   4. tools/check_en_parity.py                                   英文 Python≡Node 682 句逐 id
   5. tools/eval_ml_offline.py                                   八语种逐 id（golden 来自引擎实测）
   3c. tools/check_zh_trad_parity.py                             繁体 300 句 Python≡Node
+  3d. tools/check_zh_tone_parity.py                             声调覆盖生效句 Python≡Node
   5b. tools/eval_zh_trad.py                                     繁体逐字读音（引擎 3000 句繁体小说 ids）
   6. 英文三套引擎语料指标（自然句/TN/异读词）
 
@@ -79,6 +80,8 @@ def main():
     ok &= run("3c. 繁体 Node≡Python 逐 id（300 句）",
               [sys.executable, os.path.join(HERE, "tools", "check_zh_trad_parity.py"),
                "--limit", "300"])
+    ok &= run("3d. 声调覆盖句 Node≡Python 逐 id",
+              [sys.executable, os.path.join(HERE, "tools", "check_zh_tone_parity.py")])
     ok &= run("5. 八语种逐 id（离线 golden）",
               [sys.executable, os.path.join(HERE, "tools", "eval_ml_offline.py")])
     # 5b. 繁体逐字读音（阈值 98%：低于说明繁体投影损坏或用错语料）
