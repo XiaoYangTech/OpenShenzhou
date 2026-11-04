@@ -1664,10 +1664,19 @@ def text_to_ids(text, table, sym2id, lexicon=None):
         from . import zh_trad
     except Exception:
         zh_trad = None
+    try:
+        from . import zh_tone
+    except Exception:
+        zh_tone = None
     for sent in split_sentences(text):
         if not any(ch.strip() for ch in sent):
             continue
         ids = _text_to_ids_sentence(sent, table, sym2id, lexicon)
+        if zh_tone is not None:
+            try:
+                ids = zh_tone.apply(sent, ids, sym2id)
+            except Exception:
+                pass
         if zh_trad is not None:
             try:
                 ids = zh_trad.apply(sent, ids, sym2id)
