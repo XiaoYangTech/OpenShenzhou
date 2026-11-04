@@ -86,18 +86,20 @@ CURRENCY = {"$": ("dollar", "cent"), "€": ("euro", "cent"),
             "￥": ("yen", "sen"), "usd": ("dollar", "cent"),
             "eur": ("euro", "cent"), "gbp": ("pound", "penny")}
 SPECIAL_PHONES = {
+    "caret": ["k", "eh1", "-", "r", "ax", "t"],
     "underscore": ["ah2", "n", "-", "d", "ax", "r", "-", "s", "k", "ao1", "r"],
     "asterisk": ["ae1", "-", "s", "t", "ax", "-", "r", "ih", "s", "k"],
     "o'clock": ["ax", "-", "k", "l", "aa1", "k"],
     "covid": ["k", "ah1", "-", "v", "ih", "d"],
 }
 SYMBOL_WORDS = {"*": "asterisk", "_": "underscore", "#": "number", "@": "at",
-                "+": "plus", "<": "less", ">": "greater",
+                "+": "plus", "<": "less", ">": "greater", "^": "caret",
                 "~": None, "|": "bar", "\\": None}
 STRONG_AND = ["ae1", "n", "d"]
 STRONG_FOR = ["f", "ao1", "r"]
 PAUSE_PUNCT = {",": "punc,", ";": "punc;", ":": None, "(": "punc,",
-               ")": "punc,", "[": "punc,", "]": "punc,"}
+               ")": "punc,", "[": "punc,", "]": "punc,",
+               "{": "punc,", "}": "punc,"}
 BQUOTE = "\"’”'"
 END_PUNCT = {".": "punc.", "?": "punc?", "!": "punc!"}
 
