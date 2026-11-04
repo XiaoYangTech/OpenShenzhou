@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""zh_tone.py —— 中文上下文声调/读音修正（数据驱动）
+"""zh_tone.py —— 中文上下文声调/读音修正（数据驱动，v2 富特征）
 
-来源：8,756 句同域 UI 语料的引擎 ids 与 SDK 基线 ids 对齐训练的字级上下文修正表
-（键 = 基线音节 token + 前2/前1/后1字符，5 级 backoff；只保留 count>=5、ratio>=0.90
-且与基线不同的覆盖项）。
+来源：8,756 句同域 UI 语料的引擎 ids 与 SDK 基线 ids 对齐训练的字级上下文修正表。
+v2 特征：基线音节 token + 前2/前1/后1字符 + 前后词界位 + 句内位置（首/中/末），
+7 级 backoff。
 
 验证：
-  - 独立留出 1500 句：基线 1419/1500 → 1448/1500（+29，仅 2 句被破坏）
-  - 中文 3000 句评测：2915/3000 → **2922/3000**（+7，0 句被破坏）
-  - 中文 599 句评测：不变（596/599）
+  - 独立留出 1500 句：基线 1419/1500 → **1462/1500（+43，仅 1 句被破坏）**
+  - 中文 3000 句评测：2915 → **2925/3000（fixed 12 / broke 2）**
+  - 中文 599 句：不变（596/599）
 只对简体路径生效（繁体文本由 zh_trad 处理）。
 """
 import gzip
@@ -44,26 +44,54 @@ def set_enabled(flag):
     _ENABLED = bool(flag)
 
 
-def _lookup(chars, i, cur):
-    n = len(chars)
-    ch = chars[i]
-    p1 = chars[i - 1] if i > 0 else "^"
-    p2 = chars[i - 2] if i > 1 else "^"
-    n1 = chars[i + 1] if i + 1 < n else "$"
-    cur_s = " ".join(cur)
-    keys = [cur_s + "\x1f" + p2 + p1 + ch + n1,
-            cur_s + "\x1f" + p1 + ch + n1,
-            cur_s + "\x1f" + ch + n1,
-            cur_s + "\x1f" + ch,
-            cur_s]
-    for depth, key in enumerate(keys):
-        table = _TABLES[depth] if depth < len(_TABLES) else None
-        if not table:
-            continue
-        hit = table.get(key)
-        if hit:
-            return list(hit)
-    return None
+def _parse(ids, rev):
+    names = []
+    for x in ids:
+        names.append(rev.get(x, "?%d" % x))
+        if x == 1:
+            break
+    pieces = []
+    cur = []
+    for t in names:
+        if t in BOUND or t.startswith("punc"):
+            if cur:
+                pieces.append(("word", cur))
+                cur = []
+            pieces.append(("sep", t))
+        else:
+            cur.append(t)
+    if cur:
+        pieces.append(("word", cur))
+    words = [p[1] for p in pieces if p[0] == "word"]
+    bits = []
+    pending = []
+    for kind, payload in pieces:
+        if kind == "sep":
+            pending.append(payload)
+        else:
+            bits.append(1 if "br1" in pending else 0)
+            pending = []
+    return pieces, words, bits
+
+
+def _keys(chs, words, bits, i):
+    n = len(chs)
+    ch = chs[i]
+    p1 = chs[i - 1] if i > 0 else "^"
+    p2 = chs[i - 2] if i > 1 else "^"
+    n1 = chs[i + 1] if i + 1 < n else "$"
+    bl = bits[i] if i < len(bits) else 0
+    br = bits[i + 1] if i + 1 < len(bits) else 0
+    pos = "B" if i == 0 else ("E" if i == n - 1 else "M")
+    cur = " ".join(words[i])
+    s = "\x1f"
+    return [s.join([cur, p2 + p1 + ch + n1, "%d%d" % (bl, br), pos]),
+            s.join([cur, p1 + ch + n1, "%d%d" % (bl, br)]),
+            s.join([cur, ch + n1, "%d%d" % (bl, br)]),
+            s.join([cur, p1 + ch, str(bl)]),
+            s.join([cur, ch, str(bl)]),
+            s.join([cur, ch]),
+            cur]
 
 
 def apply(text, ids, sym2id):
@@ -78,42 +106,34 @@ def apply(text, ids, sym2id):
     except Exception:
         pass
     rev = {v: k for k, v in sym2id.items()}
-    names = []
-    for x in ids:
-        names.append(rev.get(x, "?%d" % x))
-        if x == 1:
-            break
     chars = [c for c in text if "\u4e00" <= c <= "\u9fff" or c == "〇"]
-    pieces = []
-    cur = []
-    for t in names:
-        if t in BOUND or t.startswith("punc"):
-            if cur:
-                pieces.append(("word", cur))
-                cur = []
-            pieces.append(("sep", t))
-        else:
-            cur.append(t)
-    if cur:
-        pieces.append(("word", cur))
-    words = [p[1] for p in pieces if p[0] == "word"]
+    pieces, words, bits = _parse(ids, rev)
     if len(words) != len(chars):
         return ids
-    out = []
     changed = False
+    new_words = []
+    for i, w in enumerate(words):
+        keys = _keys(chars, words, bits, i)
+        use = w
+        for d, key in enumerate(keys):
+            table = _TABLES[d] if d < len(_TABLES) else None
+            if not table:
+                continue
+            hit = table.get(key)
+            if hit:
+                if hit != w and all(t in sym2id for t in hit):
+                    use = list(hit)
+                    changed = True
+                break
+        new_words.append(use)
+    if not changed:
+        return ids
+    out = []
     wi = 0
     for kind, payload in pieces:
         if kind == "sep":
             out.append(sym2id.get(payload, sym2id.get("padding", 0)))
-            continue
-        i = wi
-        wi += 1
-        w = payload
-        pred = _lookup(chars, i, w)
-        if pred is not None and pred != w and all(t in sym2id for t in pred):
-            w = pred
-            changed = True
-        out.extend(sym2id[t] for t in w)
-    if not changed:
-        return ids
+        else:
+            out.extend(sym2id[t] for t in new_words[wi])
+            wi += 1
     return out
