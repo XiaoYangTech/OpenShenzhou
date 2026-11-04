@@ -9,6 +9,8 @@
   3. tools/check_node_parity.py + check_zh_parity_batch.py      Node≡Python 逐 id（中文 17 句 + 599/大规模 899 句）
   4. tools/check_en_parity.py                                   英文 Python≡Node 682 句逐 id
   5. tools/eval_ml_offline.py                                   八语种逐 id（golden 来自引擎实测）
+  3c. tools/check_zh_trad_parity.py                             繁体 300 句 Python≡Node
+  5b. tools/eval_zh_trad.py                                     繁体逐字读音（引擎 3000 句繁体小说 ids）
   6. 英文三套引擎语料指标（自然句/TN/异读词）
 
 用法::
@@ -74,8 +76,21 @@ def main():
               [sys.executable, os.path.join(HERE, "tools", "check_zh_parity_batch.py")])
     ok &= run("4. 英文 Node≡Python 逐 id（1682 句）",
               [sys.executable, os.path.join(HERE, "tools", "check_en_parity.py")])
+    ok &= run("3c. 繁体 Node≡Python 逐 id（300 句）",
+              [sys.executable, os.path.join(HERE, "tools", "check_zh_trad_parity.py"),
+               "--limit", "300"])
     ok &= run("5. 八语种逐 id（离线 golden）",
               [sys.executable, os.path.join(HERE, "tools", "eval_ml_offline.py")])
+    # 5b. 繁体逐字读音（阈值 98%：低于说明繁体投影损坏或用错语料）
+    print("\n==== 5b 繁体逐字读音（引擎繁体小说 3000 句） ====")
+    p = subprocess.run([sys.executable, os.path.join(HERE, "tools", "eval_zh_trad.py")],
+                       cwd=HERE, capture_output=True, text=True,
+                       encoding="utf-8", errors="replace", timeout=3600)
+    line = (p.stdout or "").strip().splitlines()[-1] if (p.stdout or "").strip() else ""
+    print(line)
+    import re as _re2
+    m = _re2.search(r"(\d+)/(\d+) = ([\d.]+)%", line)
+    ok &= bool(m and float(m.group(3)) / 100.0 >= 0.98)
     # 6. 英文三套语料指标（低于阈值视为回归）
     ev = os.path.join(HERE, "tools", "eval_en_corpus.py")
     thresholds = [(os.path.join(HERE, "data", "eval", "en_engine_500.jsonl"), 0.98),
