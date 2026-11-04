@@ -76,6 +76,10 @@ class TTS {
       this._g2p = (text) => textToIds(text, this.pack.symbols, this.pack.dir);
     } else if (this.lang === 'en') {
       const { textToIds, loadVariantLexicon } = require('./lib/g2p_en');
+      try {
+        const crfEn = require('./lib/crf_en');
+        crfEn.setDatPath(require('path').join(this.pack.dir, 'MSTTSLocEnUS.dat'));
+      } catch (e) { /* 无 CRF 数据时退回既有规则 */ }
       const variant = this._detectEnVariant();
       const lex = loadVariantLexicon(variant);
       this._g2p = (text) => textToIds(text, this.pack.symbols, lex, variant);

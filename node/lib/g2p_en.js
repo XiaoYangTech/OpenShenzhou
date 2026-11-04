@@ -1289,6 +1289,24 @@ function _textToIdsImpl(text, sym, variant) {
   const raw = parse(text);
   const ev = expand(raw);
   const flat = flatten(ev);
+  // 英文异读 CRF 的 token 上下文（引擎 token = 词 + 标点；引号不产生 token）
+  const crfTokens = [];
+  const crfTokIdx = new Map();
+  const puncMap = { 'punc.': '.', 'punc,': ',', 'punc?': '?', 'punc!': '!', 'punc;': ';', 'punc:': ':', 'punc...': '...' };
+  for (let k = 0; k < flat.length; k++) {
+    const kk = flat[k][0];
+    let tk = null;
+    if (kk === 'w') tk = flat[k][1];
+    else if (kk === 'pause' || kk === 'pause_plain' || kk === 'pause_br1') tk = ',';
+    else if (kk === 'end') tk = puncMap[flat[k][1]] || '.';
+    else if (kk === 'end_ellipsis' || kk === 'ellipsis_pause') tk = '...';
+    if (tk !== null) {
+      crfTokens.push(tk);
+      crfTokIdx.set(k, crfTokens.length - 1);
+    }
+  }
+  let crfEn = null;
+  try { crfEn = require('./crf_en'); } catch (e) { crfEn = null; }
   const ids = [];
   if (sym[BOS] !== undefined) ids.push(sym[BOS]);
   if (sym['br0'] !== undefined) ids.push(sym['br0']);
@@ -1308,7 +1326,14 @@ function _textToIdsImpl(text, sym, variant) {
         while (j2 >= 0 && flat[j2][0] !== 'w') j2--;
         if (j2 >= 0) prevW = flat[j2][1];
       }
-      let phones = pronWord(w, nxt, prevW);
+      let phones = null;
+      if (crfEn) {
+        const ti = crfTokIdx.get(i);
+        if (ti !== undefined) {
+          try { phones = crfEn.select(w, crfTokens, ti); } catch (e) { phones = null; }
+        }
+      }
+      if (phones === null || phones === undefined) phones = pronWord(w, nxt, prevW);
       const wl = String(w).toLowerCase();
       const afterKind = i + 1 < flat.length ? flat[i + 1][0] : 'end';
       const afterW = i + 1 < flat.length && flat[i + 1][0] === 'w' ? flat[i + 1][1] : '';
