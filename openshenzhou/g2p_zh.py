@@ -33,7 +33,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 特殊符号
 BOS, SEP, BR0, BR1, BR2, BR3, BR4, END = "-bos-", "-", "br0", "br1", "br2", "br3", "br4", "~"
-PUNCT = {"，": "punc,", "。": "punc。", "？": "punc?", "！": "punc!", "、": "punc、", "；": "punc;", "：": "punc:"}
+PUNCT = {"，": "punc,", "。": "punc。", "？": "punc?", "！": "punc!", "、": "punc、",
+         "；": "punc;", ";": "punc;", "：": "punc:", "…": "punc...", ".": "punc.",
+         "〔": "punc,", "〕": "punc,"}
 
 
 def load_symbols(phones_txt):
@@ -354,7 +356,11 @@ NUM_RE = re.compile(
     r"|(?P<int>\d+)"
 )
 
-PUNCT_CHARS = "，。？！、；：,"
+PUNCT_CHARS = "，。？！、；：,;.…（）【】〔〕()[]｛｝{}"
+BRACKET_CHARS = "（）【】()[]｛｝{}"
+COLON_CHARS = "：:"
+import re as _re
+_PUNCT_RE = _re.compile("([" + _re.escape(PUNCT_CHARS) + "])")
 
 
 SYM_RULES = [
@@ -1432,6 +1438,24 @@ def _num_sandhi(py, next_tone=None):
             out[i] = "bu2"
     return out
 
+def _split_latin_segments(segs):
+    """把文本片段中的拉丁字母串拆成 ('en', run) 片段（其余保持 ('t', ...)）。"""
+    out = []
+    for kind, val in segs:
+        if kind == "t" and val and any("A" <= c <= "Z" or "a" <= c <= "z" for c in val):
+            parts = re.split(r"([A-Za-z]+(?:-[A-Za-z]+)*)", val)
+            for part in parts:
+                if not part:
+                    continue
+                if len(part) > 0 and all(("A" <= c <= "Z") or ("a" <= c <= "z") or c == "-" for c in part):
+                    out.append(("en", part))
+                else:
+                    out.append(("t", part))
+        else:
+            out.append((kind, val))
+    return out
+
+
 def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
     """单句：-bos- br0 <syl> - <syl> ... [br3 punc, br0] <syl> ... br4 [punc。] ~"""
     # 句尾的非句末标点（，；：等）：引擎把它当作句末处理
@@ -1439,11 +1463,13 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
     sent_text = text  # 引擎词界模型的输入 = 整句原文（含标点）
     wb_ctx = None
     tail_punc = None
+    for _q in "“”「」《》〈〉‘’":
+        text = text.replace(_q, "")
     _t = text.rstrip()
-    if _t and _t[-1] in "，、；：,;:":
+    if _t and _t[-1] in "，、；：,;:.…":
         tail_punc = _t[-1]
         text = _t[:-1]
-    segs = normalize_segments(text)
+    segs = _split_latin_segments(normalize_segments(text))
     crf_sent_chars = list(text)
     crf_tokens = None
     crf_cursor = 0
@@ -1472,6 +1498,23 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
         first = False
 
     for seg_idx, (kind, val) in enumerate(segs):
+        if kind == "en":
+            try:
+                from . import zh_latin
+                grp = zh_latin.groups(val, sym2id)
+            except Exception:
+                grp = None
+            if grp:
+                ids_groups = []
+                for toks in grp:
+                    g = [sym2id.get(t) for t in toks]
+                    if any(x is None for x in g):
+                        g = None
+                        break
+                    ids_groups.append(g)
+                if ids_groups:
+                    emit_word(ids_groups)
+            continue
         if kind == "ny":
             py = [x[0] for x in pinyin(val, style=Style.TONE3, neutral_tone_with_five=True)]
             py = apply_sandhi(py)
@@ -1487,7 +1530,8 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
             py = apply_sandhi(py)
             next_tone = None
             if seg_idx + 1 < len(segs) and segs[seg_idx + 1][0] == "t":
-                nch = next((c for c in segs[seg_idx + 1][1] if ("一" <= c <= "鿿" or c == "〇")), None)
+                _nxt = segs[seg_idx + 1][1]
+                nch = _nxt[0] if (_nxt and ("一" <= _nxt[0] <= "鿿" or _nxt[0] == "〇")) else None
                 if nch:
                     try:
                         np = pinyin(nch, style=Style.TONE3, neutral_tone_with_five=True)
@@ -1504,14 +1548,39 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
             if grp:
                 emit_word(grp)
             continue
-        chunks = re.split(r"([" + PUNCT_CHARS + "])", val)
+        chunks = _PUNCT_RE.split(val)
         for chunk in chunks:
             if not chunk:
                 continue
+            if chunk in BRACKET_CHARS:
+                # 括号：静默停顿（引擎实测：（A）正确 → ey1 br3 正确；连续括号合并）
+                if not first and not ended and ids[-1] != sym2id.get("br3", 39):
+                    ids.append(sym2id.get("br3", 39))
+                first = True
+                continue
+            if chunk in COLON_CHARS:
+                # 句内冒号：br3 br0，引擎不输出 punc token
+                if not first and not ended:
+                    ids.append(sym2id.get("br3", 39))
+                    ids.append(sym2id[BR0])
+                first = True
+                continue
+            if chunk == ".":
+                # ASCII 句点：句内 br1 punc. br0（引擎实测：1. 第一项 / A.B）
+                if not first and not ended:
+                    ids.append(sym2id["br1"])
+                    ids.append(sym2id.get("punc.", 81))
+                    ids.append(sym2id[BR0])
+                first = True
+                continue
             if chunk in PUNCT or chunk == ",":
                 key = PUNCT.get(chunk) or "punc,"
+                if chunk in ("〔", "〕") and first:
+                    continue
                 is_end = chunk in ("。", "？", "！")
                 if is_end:
+                    while ids and ids[-1] == sym2id.get("br3", 39):
+                        ids.pop()
                     ids.append(sym2id[BR4])
                     ids.append(sym2id.get(key, sym2id.get("punc?", 32)))
                     ended = True
@@ -1608,6 +1677,8 @@ def _text_to_ids_sentence(text, table, sym2id, lexicon=None):
                                 for sym in syl_to_symbols(p2, table)])
                 if grp:
                     emit_word(grp)
+    while ids and ids[-1] == sym2id.get("br3", 39):
+        ids.pop()
     if tail_punc is not None:
         ids.append(sym2id[BR4])
         key = PUNCT.get(tail_punc) or "punc,"
