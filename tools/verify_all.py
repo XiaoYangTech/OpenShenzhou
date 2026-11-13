@@ -11,6 +11,8 @@
   5. tools/eval_ml_offline.py                                   八语种逐 id（golden 来自引擎实测）
   3c. tools/check_zh_trad_parity.py                             繁体 300 句 Python≡Node
   3d. tools/check_zh_tone_parity.py                             声调覆盖生效句 Python≡Node
+  2g. tools/eval_zh_mixed.py                                    中文混合拉丁读法（引擎探针集，含 A、B、C 标注）
+  3e. （同 2g 内）混合读法 Python≡Node 逐 id
   5b. tools/eval_zh_trad.py                                     繁体逐字读音（引擎 3000 句繁体小说 ids）
   6. 英文三套引擎语料指标（自然句/TN/异读词）
 
@@ -70,6 +72,9 @@ def main():
                "--show", "0"])
     ok &= run("2f. CWordBreaker 复刻 vs 引擎真值词序列",
               [sys.executable, os.path.join(HERE, "tools", "eval_engine_wb.py"),
+               "--show", "0"])
+    ok &= run("2g. 中文混合拉丁读法（引擎探针集：A、B、C 标注/英文词/标点）",
+              [sys.executable, os.path.join(HERE, "tools", "eval_zh_mixed.py"),
                "--show", "0"])
     ok &= run("3. 中文 Node≡Python 逐 id（17 句基础）",
               [sys.executable, os.path.join(HERE, "tools", "check_node_parity.py")])

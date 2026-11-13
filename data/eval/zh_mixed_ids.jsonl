@@ -1,0 +1,99 @@
+{"text": "A", "ids": [2, 68, 142, 17, 1], "source": "abc_engine.json"}
+{"text": "AB", "ids": [2, 68, 142, 3, 95, 85, 17, 1], "source": "abc_engine.json"}
+{"text": "ABC 选项", "ids": [2, 68, 142, 3, 95, 9, 3, 122, 85, 25, 186, 59, 36, 3, 127, 102, 78, 17, 1], "source": "abc_engine.json"}
+{"text": "A、B、C", "ids": [2, 68, 142, 39, 62, 68, 121, 6, 165, 39, 62, 68, 122, 6, 6, 17, 1], "source": "abc_engine.json"}
+{"text": "A、打开设置。", "ids": [2, 68, 142, 39, 62, 68, 83, 59, 59, 3, 112, 108, 115, 25, 179, 97, 178, 3, 19, 185, 21, 17, 67, 1], "source": "abc_engine.json"}
+{"text": "A和B", "ids": [2, 68, 142, 25, 166, 178, 97, 25, 121, 6, 165, 17, 1], "source": "abc_engine.json"}
+{"text": "CPU", "ids": [2, 68, 122, 9, 3, 96, 54, 3, 16, 45, 17, 1], "source": "abc_engine.json"}
+{"text": "Hello 你好", "ids": [2, 68, 90, 61, 3, 40, 38, 25, 48, 165, 6, 3, 166, 118, 101, 17, 1], "source": "abc_engine.json"}
+{"text": "a、b、c", "ids": [2, 68, 142, 39, 62, 68, 121, 6, 165, 39, 62, 68, 122, 6, 6, 17, 1], "source": "abc_engine.json"}
+{"text": "答案：B、C。", "ids": [2, 68, 83, 59, 108, 3, 14, 108, 36, 39, 68, 121, 6, 165, 39, 62, 68, 122, 6, 6, 17, 67, 1], "source": "abc_engine.json"}
+{"text": "请选择：A、B、C。", "ids": [2, 68, 43, 178, 47, 25, 186, 59, 36, 3, 146, 178, 97, 39, 68, 142, 39, 62, 68, 121, 6, 165, 39, 62, 68, 122, 6, 6, 17, 67, 1], "source": "abc_engine.json"}
+{"text": "选项A正确。", "ids": [2, 68, 186, 59, 36, 3, 127, 102, 78, 25, 142, 25, 19, 97, 78, 3, 49, 115, 64, 17, 67, 1], "source": "abc_engine.json"}
+{"text": "（A）正确", "ids": [2, 68, 142, 39, 19, 97, 78, 3, 49, 115, 64, 17, 1], "source": "abc_engine.json"}
+{"text": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z", "ids": [2, 68, 142, 25, 121, 6, 165, 25, 122, 6, 6, 25, 4, 6, 165, 25, 16, 6, 165, 25, 72, 176, 25, 7, 6, 165, 25, 142, 50, 25, 189, 25, 7, 115, 165, 25, 112, 115, 165, 25, 72, 40, 25, 72, 34, 25, 169, 97, 5, 25, 153, 105, 184, 25, 66, 6, 165, 25, 188, 16, 45, 25, 107, 131, 25, 72, 122, 25, 13, 6, 165, 25, 16, 105, 184, 25, 52, 85, 25, 83, 108, 108, 3, 95, 42, 3, 8, 158, 25, 72, 188, 122, 25, 134, 189, 25, 151, 85, 17, 1], "source": "alphabet_engine.json"}
+{"text": "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ids": [2, 68, 142, 3, 95, 85, 3, 122, 85, 3, 94, 85, 3, 85, 3, 72, 176, 3, 71, 85, 3, 142, 3, 50, 189, 3, 71, 142, 3, 188, 142, 3, 72, 3, 40, 72, 3, 34, 72, 3, 60, 38, 3, 96, 85, 3, 188, 16, 45, 3, 107, 3, 131, 72, 3, 122, 162, 85, 3, 16, 45, 3, 52, 85, 3, 94, 84, 3, 95, 42, 40, 3, 16, 30, 3, 72, 188, 3, 122, 134, 189, 3, 151, 85, 17, 1], "source": "alphabet_engine.json"}
+{"text": "AI", "ids": [2, 68, 142, 3, 189, 17, 1], "source": "alphabet_engine.json"}
+{"text": "APP", "ids": [2, 68, 180, 96, 17, 1], "source": "alphabet_engine.json"}
+{"text": "Excel", "ids": [2, 68, 161, 188, 3, 122, 72, 40, 17, 1], "source": "alphabet_engine.json"}
+{"text": "HTTP", "ids": [2, 68, 142, 50, 3, 162, 9, 3, 162, 9, 3, 96, 85, 17, 1], "source": "alphabet_engine.json"}
+{"text": "ID", "ids": [2, 68, 189, 3, 94, 85, 17, 1], "source": "alphabet_engine.json"}
+{"text": "IP", "ids": [2, 68, 189, 3, 96, 85, 17, 1], "source": "alphabet_engine.json"}
+{"text": "MP3", "ids": [2, 68, 72, 34, 3, 96, 85, 25, 122, 108, 5, 17, 1], "source": "alphabet_engine.json"}
+{"text": "Office", "ids": [2, 68, 107, 3, 176, 161, 122, 17, 1], "source": "alphabet_engine.json"}
+{"text": "PDF", "ids": [2, 68, 96, 85, 3, 94, 9, 3, 72, 176, 17, 1], "source": "alphabet_engine.json"}
+{"text": "QQ", "ids": [2, 68, 188, 16, 45, 3, 188, 16, 30, 17, 1], "source": "alphabet_engine.json"}
+{"text": "URL", "ids": [2, 68, 16, 30, 3, 170, 131, 3, 72, 40, 17, 1], "source": "alphabet_engine.json"}
+{"text": "WiFi", "ids": [2, 68, 134, 189, 3, 176, 189, 17, 1], "source": "alphabet_engine.json"}
+{"text": "Word", "ids": [2, 68, 134, 76, 131, 94, 17, 1], "source": "alphabet_engine.json"}
+{"text": "iPhone", "ids": [2, 68, 189, 3, 176, 38, 60, 17, 1], "source": "alphabet_engine.json"}
+{"text": "微信", "ids": [2, 68, 134, 115, 6, 3, 127, 6, 36, 17, 1], "source": "alphabet_engine.json"}
+{"text": "A B", "ids": [2, 68, 142, 25, 121, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "A-B", "ids": [2, 68, 142, 3, 95, 85, 17, 1], "source": "letters_engine.json"}
+{"text": "ABC", "ids": [2, 68, 142, 3, 95, 9, 3, 122, 85, 17, 1], "source": "letters_engine.json"}
+{"text": "API", "ids": [2, 68, 142, 3, 96, 9, 3, 189, 17, 1], "source": "letters_engine.json"}
+{"text": "A、B", "ids": [2, 68, 142, 39, 62, 68, 121, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "B", "ids": [2, 68, 121, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "C", "ids": [2, 68, 122, 6, 6, 17, 1], "source": "letters_engine.json"}
+{"text": "D", "ids": [2, 68, 4, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "E", "ids": [2, 68, 16, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "F", "ids": [2, 68, 72, 176, 17, 1], "source": "letters_engine.json"}
+{"text": "G", "ids": [2, 68, 7, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "H", "ids": [2, 68, 142, 50, 17, 1], "source": "letters_engine.json"}
+{"text": "Hello", "ids": [2, 68, 90, 61, 3, 40, 38, 17, 1], "source": "letters_engine.json"}
+{"text": "I", "ids": [2, 68, 189, 17, 1], "source": "letters_engine.json"}
+{"text": "J", "ids": [2, 68, 7, 115, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "K", "ids": [2, 68, 112, 115, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "L", "ids": [2, 68, 72, 40, 17, 1], "source": "letters_engine.json"}
+{"text": "M", "ids": [2, 68, 72, 34, 17, 1], "source": "letters_engine.json"}
+{"text": "N", "ids": [2, 68, 169, 97, 5, 17, 1], "source": "letters_engine.json"}
+{"text": "O", "ids": [2, 68, 153, 105, 184, 17, 1], "source": "letters_engine.json"}
+{"text": "OK", "ids": [2, 68, 38, 3, 188, 142, 17, 1], "source": "letters_engine.json"}
+{"text": "P", "ids": [2, 68, 66, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "Q", "ids": [2, 68, 188, 16, 45, 17, 1], "source": "letters_engine.json"}
+{"text": "R", "ids": [2, 68, 107, 131, 17, 1], "source": "letters_engine.json"}
+{"text": "S", "ids": [2, 68, 72, 122, 17, 1], "source": "letters_engine.json"}
+{"text": "T", "ids": [2, 68, 13, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "U", "ids": [2, 68, 16, 105, 184, 17, 1], "source": "letters_engine.json"}
+{"text": "USB", "ids": [2, 68, 16, 45, 3, 79, 122, 3, 95, 85, 17, 1], "source": "letters_engine.json"}
+{"text": "V", "ids": [2, 68, 52, 85, 17, 1], "source": "letters_engine.json"}
+{"text": "W", "ids": [2, 68, 83, 108, 108, 3, 95, 42, 3, 8, 158, 17, 1], "source": "letters_engine.json"}
+{"text": "Windows", "ids": [2, 68, 134, 116, 60, 3, 94, 63, 151, 17, 1], "source": "letters_engine.json"}
+{"text": "Windows 你好", "ids": [2, 68, 134, 116, 60, 3, 94, 63, 151, 25, 48, 165, 6, 3, 166, 118, 101, 17, 1], "source": "letters_engine.json"}
+{"text": "X", "ids": [2, 68, 72, 188, 122, 17, 1], "source": "letters_engine.json"}
+{"text": "XYZ", "ids": [2, 68, 72, 188, 122, 3, 134, 189, 3, 151, 85, 17, 1], "source": "letters_engine.json"}
+{"text": "Y", "ids": [2, 68, 134, 189, 17, 1], "source": "letters_engine.json"}
+{"text": "Z", "ids": [2, 68, 151, 85, 17, 1], "source": "letters_engine.json"}
+{"text": "a", "ids": [2, 68, 142, 17, 1], "source": "letters_engine.json"}
+{"text": "abc", "ids": [2, 68, 142, 3, 95, 9, 3, 122, 85, 17, 1], "source": "letters_engine.json"}
+{"text": "b", "ids": [2, 68, 121, 6, 165, 17, 1], "source": "letters_engine.json"}
+{"text": "c", "ids": [2, 68, 122, 6, 6, 17, 1], "source": "letters_engine.json"}
+{"text": "第A项", "ids": [2, 68, 4, 6, 165, 25, 142, 25, 127, 102, 78, 17, 1], "source": "letters_engine.json"}
+{"text": "A 和 B", "ids": [2, 68, 142, 25, 166, 178, 97, 25, 121, 6, 165, 17, 1], "source": "punct2_engine.json"}
+{"text": "A.B", "ids": [2, 68, 142, 25, 81, 68, 121, 6, 165, 17, 1], "source": "punct2_engine.json"}
+{"text": "A.B.C", "ids": [2, 68, 142, 25, 81, 68, 121, 6, 165, 25, 81, 68, 122, 6, 6, 17, 1], "source": "punct2_engine.json"}
+{"text": "HELLO", "ids": [2, 68, 90, 61, 3, 40, 38, 17, 1], "source": "punct2_engine.json"}
+{"text": "NASA", "ids": [2, 68, 60, 180, 3, 122, 42, 17, 1], "source": "punct2_engine.json"}
+{"text": "“A”正确", "ids": [2, 68, 142, 25, 19, 97, 78, 3, 49, 115, 64, 17, 1], "source": "punct2_engine.json"}
+{"text": "“你好”世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 25, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "〈你好〉世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 25, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "《你好》世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 25, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "「你好」世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 25, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "〔你好〕世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 39, 109, 68, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "你好;世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 39, 145, 68, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "你好…世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 39, 143, 68, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "你好；世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 39, 145, 68, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct2_engine.json"}
+{"text": "（（A））正确", "ids": [2, 68, 142, 39, 19, 97, 78, 3, 49, 115, 64, 17, 1], "source": "punct2_engine.json"}
+{"text": "(A)正确", "ids": [2, 68, 142, 39, 19, 97, 78, 3, 49, 115, 64, 17, 1], "source": "punct_engine.json"}
+{"text": "A4纸", "ids": [2, 68, 142, 25, 122, 86, 82, 25, 19, 21, 21, 17, 1], "source": "punct_engine.json"}
+{"text": "A——B", "ids": [2, 68, 142, 25, 121, 6, 165, 17, 1], "source": "punct_engine.json"}
+{"text": "Windows10", "ids": [2, 68, 134, 116, 60, 3, 94, 63, 151, 25, 179, 21, 185, 17, 1], "source": "punct_engine.json"}
+{"text": "【A】正确", "ids": [2, 68, 142, 39, 19, 97, 78, 3, 49, 115, 64, 17, 1], "source": "punct_engine.json"}
+{"text": "一、第一项", "ids": [2, 68, 16, 6, 6, 39, 62, 68, 4, 6, 165, 3, 16, 6, 6, 25, 127, 102, 78, 17, 1], "source": "punct_engine.json"}
+{"text": "你好（世界）。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 39, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct_engine.json"}
+{"text": "注意：请勿操作。", "ids": [2, 68, 141, 184, 92, 3, 16, 6, 165, 39, 68, 43, 178, 78, 3, 134, 184, 92, 25, 15, 102, 105, 3, 140, 105, 101, 17, 67, 1], "source": "punct_engine.json"}
+{"text": "第1项", "ids": [2, 68, 4, 6, 165, 25, 16, 165, 6, 25, 127, 102, 78, 17, 1], "source": "punct_engine.json"}
+{"text": "请选择：A。", "ids": [2, 68, 43, 178, 47, 25, 186, 59, 36, 3, 146, 178, 97, 39, 68, 142, 17, 67, 1], "source": "punct_engine.json"}
+{"text": "请选择：第一项。", "ids": [2, 68, 43, 178, 47, 25, 186, 59, 36, 3, 146, 178, 97, 39, 68, 4, 6, 165, 3, 16, 6, 6, 25, 127, 102, 78, 17, 67, 1], "source": "punct_engine.json"}
+{"text": "选项A：正确。", "ids": [2, 68, 186, 59, 36, 3, 127, 102, 78, 25, 142, 39, 68, 19, 97, 78, 3, 49, 115, 64, 17, 67, 1], "source": "punct_engine.json"}
+{"text": "（你好）世界。", "ids": [2, 68, 48, 165, 6, 3, 166, 118, 101, 39, 179, 185, 21, 3, 129, 115, 64, 17, 67, 1], "source": "punct_engine.json"}
